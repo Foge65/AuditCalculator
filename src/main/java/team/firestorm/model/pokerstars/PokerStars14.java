@@ -1,29 +1,24 @@
 package team.firestorm.model.pokerstars;
 
 public class PokerStars14 implements PokerStarsIndex {
-    private final int amount = 6;
-    private final int starsCoin = 7;
-    private final int tMoney = 8;
-    private final int balance = 10;
-
     @Override
     public int getAmount() {
-        return amount;
+        return 6;
     }
 
     @Override
     public int getStarsCoin() {
-        return starsCoin;
+        return 7;
     }
 
     @Override
     public int getTMoney() {
-        return tMoney;
+        return 8;
     }
 
     @Override
     public int getBalance() {
-        return balance;
+        return 10;
     }
 
 }

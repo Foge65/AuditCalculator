@@ -5,10 +5,10 @@ import lombok.Getter;
 import java.io.File;
 
 public class PokerStarsCollector {
-    private StringProcessor stringProcessor;
-    private LanguageDetection languageDetection;
+    private final StringProcessor stringProcessor;
+    private final LanguageDetection languageDetection;
     @Getter
-    private PokerStarsBuilder pokerStarsBuilder;
+    private final PokerStarsBuilder pokerStarsBuilder;
 
     public PokerStarsCollector(File file) {
         stringProcessor = new StringProcessor(file);

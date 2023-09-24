@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TabContent {
-    private StringProcessor stringProcessor;
+    private final StringProcessor stringProcessor;
 
     public TabContent(StringProcessor stringProcessor) {
         this.stringProcessor = stringProcessor;

@@ -13,17 +13,17 @@ import java.util.List;
 import java.util.Set;
 
 public class View {
-    private Controller controller;
-    private PokerStarsBuilder pokerStarsBuilder;
-    private Column column;
-    private Text text;
-    private DateSelect dateFrom;
-    private DateSelect dateTo;
+    private final Controller controller;
+    private final PokerStarsBuilder pokerStarsBuilder;
+    private final Column column;
+    private final Text text;
+    private final DateSelect dateFrom;
+    private final DateSelect dateTo;
 
-    private List<PokerStarsGameModel> listModelSpinGame = new ArrayList<>();
-    private List<PokerStarsGameModel> listModelAnotherGame = new ArrayList<>();
-    private ObservableList<PokerStarsGameModel> observableListSpinGame = FXCollections.observableArrayList(listModelSpinGame);
-    private ObservableList<PokerStarsGameModel> observableListAnotherGame = FXCollections.observableArrayList(listModelAnotherGame);
+    private final List<PokerStarsGameModel> listModelSpinGame = new ArrayList<>();
+    private final List<PokerStarsGameModel> listModelAnotherGame = new ArrayList<>();
+    private final ObservableList<PokerStarsGameModel> observableListSpinGame = FXCollections.observableArrayList(listModelSpinGame);
+    private final ObservableList<PokerStarsGameModel> observableListAnotherGame = FXCollections.observableArrayList(listModelAnotherGame);
 
     public View(Controller controller, PokerStarsBuilder pokerStarsBuilder) {
         this.controller = controller;

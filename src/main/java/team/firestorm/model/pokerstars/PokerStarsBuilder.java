@@ -11,9 +11,9 @@ import java.util.Map;
 import java.util.Set;
 
 public class PokerStarsBuilder {
-    private LanguageDetection languageDetection;
+    private final LanguageDetection languageDetection;
     @Getter
-    private StringProcessor stringProcessor;
+    private final StringProcessor stringProcessor;
 
     private PokerStarsBase pokerStarsBase;
     private PokerStarsEn pokerStarsEn;
