@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="team.firestorm.controller.Controller">
+    <children>
+        <Button fx:id="btnOpen" defaultButton="true" mnemonicParsing="false" prefHeight="30.0" text="Open Audits" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <graphic>
+                <ImageView disable="true" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@OpenFile.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+      <TabPane fx:id="tabPane" prefHeight="35.0" prefWidth="1075.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+      <GridPane hgap="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="40.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" />
+                <ColumnConstraints hgrow="SOMETIMES" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                    <Label fx:id="labelDateFrom" text="Date From:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                    <DatePicker fx:id="dateFrom" prefWidth="120.0" GridPane.columnIndex="1" />
+                    <Label fx:id="labelDateTo" text="Date To:" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                    <DatePicker fx:id="dateTo" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="27.0" />
+               </GridPane.margin>
+            </GridPane>
+            <GridPane gridLinesVisible="true" GridPane.columnIndex="1">
+              <columnConstraints>
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" />
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="35.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Start Balance:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Text fx:id="startBalance" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Label text="Final Balance:" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Text fx:id="finalBalance" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Text>
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="27.0" />
+               </GridPane.margin>
+            </GridPane>
+            <GridPane gridLinesVisible="true" GridPane.columnIndex="2">
+              <columnConstraints>
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" />
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="35.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Start T$:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Text fx:id="startTMoney" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Label text="Final T$:" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Text fx:id="finalTMoney" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Label text="Total T$:" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Text fx:id="totalTMoney" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Text>
+               </children>
+            </GridPane>
+            <GridPane gridLinesVisible="true" GridPane.columnIndex="3">
+               <columnConstraints>
+                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" />
+                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="35.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label text="Start Coin:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Text fx:id="startCoin" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Label text="Final Coin:" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Text fx:id="finalCoin" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Label text="Total Coin:" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Text fx:id="totalCoin" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Text>
+               </children>
+            </GridPane>
+         </children>
+      </GridPane>
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" AnchorPane.bottomAnchor="117.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="125.0">
+        <items>
+          <AnchorPane>
+               <children>
+                    <TableView fx:id="tableViewSpin" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+               </children>
+            </AnchorPane>
+          <AnchorPane>
+               <children>
+                  <TableView fx:id="tableViewAnother" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <GridPane hgap="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <GridPane gridLinesVisible="true">
+              <columnConstraints>
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" />
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="35.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="35.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Withdrawal:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Text fx:id="withdrawal" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Label text="Transfer Sent:" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Text fx:id="transferSent" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Label text="Transfer Received:" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Text fx:id="transferReceived" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Label text="Deposit:" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Text fx:id="deposit" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text fx:id="withdrawalText1" strokeType="OUTSIDE" strokeWidth="0.0" text=" DETAIL " GridPane.columnIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="withdrawalText2" strokeType="OUTSIDE" strokeWidth="0.0" text=" DETAIL " GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="withdrawalText21" strokeType="OUTSIDE" strokeWidth="0.0" text=" DETAIL " GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="withdrawalText211" strokeType="OUTSIDE" strokeWidth="0.0" text=" DETAIL " GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </GridPane>
+            <GridPane gridLinesVisible="true" GridPane.columnIndex="1">
+               <columnConstraints>
+                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" />
+                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="35.0" />
+                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" />
+                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="35.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label text="Bonus:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Label text="Exchange Coin:" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Label text="Cash Game:" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Label text="Roulette:" GridPane.columnIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Label text="Omaha:" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Label text="Other Games:" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets bottom="27.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </GridPane>
+         </children>
+      </GridPane>
+    </children>
+</AnchorPane>
