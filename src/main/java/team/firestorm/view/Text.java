@@ -1,16 +1,13 @@
 package team.firestorm.view;
 
+import lombok.AllArgsConstructor;
 import team.firestorm.controller.Controller;
 import team.firestorm.model.pokerstars.PokerStarsBuilder;
 
+@AllArgsConstructor
 public class Text {
-    private Controller controller;
-    private PokerStarsBuilder pokerStarsBuilder;
-
-    public Text(Controller controller, PokerStarsBuilder pokerStarsBuilder) {
-        this.controller = controller;
-        this.pokerStarsBuilder = pokerStarsBuilder;
-    }
+    private final Controller controller;
+    private final PokerStarsBuilder pokerStarsBuilder;
 
     public void setText() {
         controller.getStartBalance().setText(pokerStarsBuilder.getStartBalance());

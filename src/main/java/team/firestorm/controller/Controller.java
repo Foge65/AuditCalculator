@@ -19,62 +19,47 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 
+@Getter
 public class Controller implements Initializable {
     @FXML
     private Button btnOpen;
     @FXML
-    @Getter
     private DatePicker dateFrom;
     @FXML
-    @Getter
     private DatePicker dateTo;
     @FXML
-    @Getter
     private TableView<PokerStarsGameModel> tableViewSpin;
     @FXML
-    @Getter
     private TableView<PokerStarsGameModel> tableViewAnother;
     @FXML
-    @Getter
     private Text startBalance;
     @FXML
-    @Getter
     private Text finalBalance;
     @FXML
-    @Getter
     private Text startTMoney;
     @FXML
-    @Getter
     private Text finalTMoney;
     @FXML
-    @Getter
     private Text totalTMoney;
     @FXML
-    @Getter
     private Text startCoin;
     @FXML
-    @Getter
     private Text finalCoin;
     @FXML
-    @Getter
     private Text totalCoin;
     @FXML
-    @Getter
     private Text withdrawal;
     @FXML
-    @Getter
     private Text transferSent;
     @FXML
-    @Getter
     private Text transferReceived;
     @FXML
-    @Getter
     private Text deposit;
 
-    private boolean fileChooserOpen = false;
+    private static boolean fileChooserOpen = false;
 
-    private PokerStarsCollector pokerStarsCollector;
-    private View view;
+    private static PokerStarsCollector pokerStarsCollector;
+    private static View view;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

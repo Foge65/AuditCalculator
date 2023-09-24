@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class DateProcessor {
-    private StringProcessor stringProcessor;
+    private final StringProcessor stringProcessor;
 
     public DateProcessor(StringProcessor stringProcessor) {
         this.stringProcessor = stringProcessor;

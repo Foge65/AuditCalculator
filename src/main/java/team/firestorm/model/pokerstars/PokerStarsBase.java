@@ -11,7 +11,7 @@ public abstract class PokerStarsBase implements PokerStars {
     private static final int ID = 2;
     private static final int GAME = 3;
 
-    private StringProcessor stringProcessor;
+    private final StringProcessor stringProcessor;
     private PokerStarsIndex pokerStarsIndex;
 
     public PokerStarsBase(StringProcessor stringProcessor) {

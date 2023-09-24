@@ -1,15 +1,13 @@
 package team.firestorm.view;
 
+import lombok.AllArgsConstructor;
 import team.firestorm.controller.Controller;
 
 import java.time.LocalDate;
 
+@AllArgsConstructor
 public class DateSelect {
-    private Controller controller;
-
-    public DateSelect(Controller controller) {
-        this.controller = controller;
-    }
+    private final Controller controller;
 
     public void setDateFrom(LocalDate date) {
         controller.getDateFrom().valueProperty().set(date);

@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import lombok.AllArgsConstructor;
 import team.firestorm.controller.Controller;
 import team.firestorm.model.pokerstars.PokerStarsBuilder;
 import team.firestorm.model.pokerstars.PokerStarsGameModel;
@@ -12,15 +13,11 @@ import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Set;
 
+@AllArgsConstructor
 public class Column {
-    private Controller controller;
+    private final Controller controller;
 
-    private PokerStarsBuilder pokerStarsBuilder;
-
-    public Column(Controller controller, PokerStarsBuilder pokerStarsBuilder) {
-        this.controller = controller;
-        this.pokerStarsBuilder = pokerStarsBuilder;
-    }
+    private final PokerStarsBuilder pokerStarsBuilder;
 
     public void buildColumnSpin() {
         TableColumn<PokerStarsGameModel, Set<String>> game = new TableColumn<>("Spin Game Limit");

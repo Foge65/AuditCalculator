@@ -9,11 +9,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
+@Getter
 public class StringProcessor {
-    @Getter
-    private String firstString;
-    @Getter
-    private List<String[]> strings = new ArrayList<>();
+    private final String firstString;
+    private final List<String[]> strings = new ArrayList<>();
 
     public StringProcessor(File file) {
         List<String> stringList = read(file);

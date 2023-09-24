@@ -5,7 +5,7 @@ import com.cybozu.labs.langdetect.DetectorFactory;
 import com.cybozu.labs.langdetect.LangDetectException;
 
 public class LanguageDetection {
-    private StringProcessor StringProcessor;
+    private final StringProcessor StringProcessor;
 
     public LanguageDetection(StringProcessor stringProcessor) {
         this.StringProcessor = stringProcessor;
