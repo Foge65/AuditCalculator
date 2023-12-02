@@ -1,0 +1,94 @@
+package team.firestorm.pokerstars.model;
+
+import java.time.format.DateTimeFormatter;
+
+public class LanguageRu extends PokerStarsBase implements DateFormat {
+    private static final String DATETIMEFORMAT = "dd.MM.yyyy h:mm a";
+    private static final String REGISTRATION = "Регистрация в турнире";
+    private static final String UNREGISTRATION = "Отмена регистрации в турнире";
+    private static final String NETWON = "Победа в турнире";
+    // TODO : Найти аудит на русском, где есть необходимые строки
+    private static final String REENTRY = "";
+    private static final String KNOCKOUT = "";
+    private static final String WITHDRAWAL = "Вывод средств";
+    private static final String SENT = "Деньги отправлены";
+    private static final String RECEIVED1 = "Деньги получены";
+    private static final String RECEIVED2 = "Перевод получен (админ)";
+    private static final String DEPOSIT = "Депозит (игрок)";
+    private static final String CHEST_REWARD = "Награда из подарка";
+    private static final String BUY_CHIPS = "Награда при покупке фишек";
+
+    public LanguageRu(CsvParser csvParser) {
+        super(csvParser);
+    }
+
+    @Override
+    public String replaceComma(String string) {
+        return string.replace(" ", "").replace(",", ".");
+    }
+
+    @Override
+    public DateTimeFormatter getFormat() {
+        return DateTimeFormatter.ofPattern(DATETIMEFORMAT);
+    }
+
+    @Override
+    public String getRegistrationString() {
+        return REGISTRATION;
+    }
+
+    @Override
+    public String getUnRegistrationString() {
+        return UNREGISTRATION;
+    }
+
+    @Override
+    public String getNetWonString() {
+        return NETWON;
+    }
+
+    @Override
+    public String getReEntryString() {
+        return REENTRY;
+    }
+
+    @Override
+    public String getKnockOutString() {
+        return KNOCKOUT;
+    }
+
+    @Override
+    public String getWithdrawalString() {
+        return WITHDRAWAL;
+    }
+
+    @Override
+    public String getMoneySentString() {
+        return SENT;
+    }
+
+    @Override
+    public String getMoneyReceivedStringVer1() {
+        return RECEIVED1;
+    }
+
+    @Override
+    public String getMoneyReceivedStringVer2() {
+        return RECEIVED2;
+    }
+
+    @Override
+    public String getDepositString() {
+        return DEPOSIT;
+    }
+
+    @Override
+    public String getChestString() {
+        return CHEST_REWARD;
+    }
+
+    @Override
+    public String getExchangeCoinString() {
+        return BUY_CHIPS;
+    }
+}
