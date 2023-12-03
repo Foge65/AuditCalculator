@@ -41,7 +41,7 @@ public class CsvParser {
     }
 
     private void removeStringWhichStartWithHTML(List<String> strings) {
-        strings.removeIf(string -> string.startsWith("\"<HTML><HEAD><title>Playing History Audit"));
+        strings.removeIf(string -> string.contains("<HTML><HEAD><title>Playing History Audit"));
     }
 
     private void combine(List<String> stringList) {
