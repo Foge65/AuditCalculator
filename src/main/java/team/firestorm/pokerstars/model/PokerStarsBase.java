@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -497,27 +498,49 @@ public abstract class PokerStarsBase implements PokerStars {
     @Override
     public Map<String, BigDecimal> sumBonusPool(List<String[]> strings, Set<String> game, int amount, int tMoney) {
         Map<String, BigDecimal> sum = new HashMap<>();
+        Double countRegisterByTicket = 0.00;
         for (String buyIn : game) {
-            BigDecimal sumRegistrationForTMoney = BigDecimal.ZERO;
+            Integer counter = 0;
             for (String[] stringArray : strings) {
                 String actionValue = stringArray[ACTION];
 
                 String buyInValue = stringArray[GAME];
                 String buyInValueQuote = replaceQuote(buyInValue);
 
-                String tMoneyValue = stringArray[tMoney];
-                String tMoneyValueQuote = replaceQuote(tMoneyValue);
-                String tMoneyValueComma = replaceComma(tMoneyValueQuote);
+                String amountValue = stringArray[amount];
+                String amountValueQuote = replaceQuote(amountValue);
+                String amountValueComma = replaceComma(amountValueQuote);
+                BigDecimal amountBigDecimal = new BigDecimal(amountValueComma);
 
                 if (buyInValueQuote.equals(buyIn)) {
-                    if (actionValue.equals(getRegistrationString())) {
-                        sumRegistrationForTMoney = sumRegistrationForTMoney.add(new BigDecimal(tMoneyValueComma));
+                    if (actionValue.equals(getRegistrationString())
+                            && amountBigDecimal.compareTo(BigDecimal.ZERO) == 0) {
+                        counter++;
+                        countRegisterByTicket = countRegisterByTicket(buyIn);
                     }
                 }
+                sum.put(buyIn, BigDecimal.valueOf(countRegisterByTicket * counter));
             }
-            sum.put(buyIn, sumRegistrationForTMoney.negate());
         }
         return sum;
+    }
+
+    private Double countRegisterByTicket(String buyIn) {
+        Pattern compile = Pattern.compile("(\\d*[.,]\\d*)/(\\d*[.,]\\d*)");
+        Matcher matcher = compile.matcher(buyIn);
+        double stake = 0.00;
+        double rake = 0.00;
+        if (matcher.find()) {
+            String buyInLeft = matcher.group(1);
+            String buyInRight = matcher.group(2);
+            if (buyInLeft.contains(",") && buyInRight.contains(",")) {
+                buyInLeft = buyInLeft.replace(",", ".");
+                buyInRight = buyInRight.replace(",", ".");
+            }
+            stake = Double.parseDouble(buyInLeft);
+            rake = Double.parseDouble(buyInRight);
+        }
+        return stake + rake;
     }
 
     @Override
