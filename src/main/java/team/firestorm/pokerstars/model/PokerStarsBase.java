@@ -104,9 +104,10 @@ public abstract class PokerStarsBase implements PokerStars {
         for (String buyIn : game) {
             BigDecimal sumRegistration = BigDecimal.ZERO;
             BigDecimal sumUnregistration = BigDecimal.ZERO;
-            BigDecimal sumWon = BigDecimal.ZERO;
+            BigDecimal sumNetWon = BigDecimal.ZERO;
             for (String[] stringArray : strings) {
                 String actionValue = stringArray[ACTION];
+
                 String idValue = stringArray[ID];
 
                 String buyInValue = stringArray[GAME];
@@ -135,15 +136,15 @@ public abstract class PokerStarsBase implements PokerStars {
                         sumUnregistration = sumUnregistration.add(amountBigDecimal).add(tMoneyBigDecimal);
                     }
                     if (actionValue.equals(getNetWonString())) {
+                        sumNetWon = sumNetWon.add(new BigDecimal(amountValueComma));
                         for (String idString : ids) {
                             if (idValue.equals(idString)) {
-                                sumWon = sumWon.add(new BigDecimal(amountValueComma));
                             }
                         }
                     }
                 }
             }
-            BigDecimal sum = sumRegistration.add(sumUnregistration).add(sumWon);
+            BigDecimal sum = sumRegistration.add(sumUnregistration).add(sumNetWon);
             profit.put(buyIn, sum);
         }
         return profit;
@@ -498,9 +499,10 @@ public abstract class PokerStarsBase implements PokerStars {
     @Override
     public Map<String, BigDecimal> sumBonusPool(List<String[]> strings, Set<String> game, int amount, int tMoney) {
         Map<String, BigDecimal> sum = new HashMap<>();
-        Double countRegisterByTicket = 0.00;
         for (String buyIn : game) {
+            Double buyInStakePlusRake = 0.00;
             Integer counter = 0;
+            BigDecimal sumRegisterForTMoney = BigDecimal.ZERO;
             for (String[] stringArray : strings) {
                 String actionValue = stringArray[ACTION];
 
@@ -512,20 +514,31 @@ public abstract class PokerStarsBase implements PokerStars {
                 String amountValueComma = replaceComma(amountValueQuote);
                 BigDecimal amountBigDecimal = new BigDecimal(amountValueComma);
 
+                String tMoneyValue = stringArray[tMoney];
+                String tMoneyValueQuote = replaceQuote(tMoneyValue);
+                String tMoneyValueComma = replaceComma(tMoneyValueQuote);
+                BigDecimal tMoneyBigDecimal = new BigDecimal(tMoneyValueComma);
+
                 if (buyInValueQuote.equals(buyIn)) {
                     if (actionValue.equals(getRegistrationString())
-                            && amountBigDecimal.compareTo(BigDecimal.ZERO) == 0) {
+                            && amountBigDecimal.compareTo(BigDecimal.ZERO) == 0
+                            && tMoneyBigDecimal.compareTo(BigDecimal.ZERO) == 0) {
+                        buyInStakePlusRake = parseBuyInFromString(buyIn);
                         counter++;
-                        countRegisterByTicket = countRegisterByTicket(buyIn);
+                    }
+                    if (actionValue.equals(getRegistrationString())
+                            && tMoneyBigDecimal.compareTo(BigDecimal.ZERO) < 0) {
+                        sumRegisterForTMoney = sumRegisterForTMoney.add(new BigDecimal(tMoneyValueComma));
                     }
                 }
-                sum.put(buyIn, BigDecimal.valueOf(countRegisterByTicket * counter));
+                sum.put(buyIn, BigDecimal.valueOf(buyInStakePlusRake * counter).subtract(sumRegisterForTMoney));
             }
         }
         return sum;
     }
 
-    private Double countRegisterByTicket(String buyIn) {
+    @Override
+    public Double parseBuyInFromString(String buyIn) {
         Pattern compile = Pattern.compile("(\\d*[.,]\\d*)/(\\d*[.,]\\d*)");
         Matcher matcher = compile.matcher(buyIn);
         double stake = 0.00;
