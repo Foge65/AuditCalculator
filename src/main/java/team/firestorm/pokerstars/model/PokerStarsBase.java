@@ -145,14 +145,12 @@ public abstract class PokerStarsBase implements PokerStars {
     @Override
     public Map<String, BigDecimal> sumBonus(List<String[]> strings, Set<String> game, int amount, int tMoney) {
         Map<String, BigDecimal> bonus = new HashMap<>();
-        List<String> ids = new ArrayList<>();
         for (String buyIn : game) {
-            BigDecimal registerForTMoneySum = BigDecimal.ZERO;
-            BigDecimal registrationSum = BigDecimal.ZERO;
-            BigDecimal wonSum = BigDecimal.ZERO;
+            BigDecimal sumRegistrationForTMoney = BigDecimal.ZERO;
+            double buyInStakePlusRake = 0.00;
+            int counterTicket = 0;
             for (String[] stringArray : strings) {
                 String actionValue = stringArray[ACTION];
-                String idValue = stringArray[ID];
 
                 String buyInValue = stringArray[GAME];
                 String buyInValueQuote = replaceQuote(buyInValue);
@@ -160,40 +158,26 @@ public abstract class PokerStarsBase implements PokerStars {
                 String amountValue = stringArray[amount];
                 String amountValueQuote = replaceQuote(amountValue);
                 String amountValueComma = replaceComma(amountValueQuote);
+                BigDecimal amountBigDecimal = new BigDecimal(amountValueComma);
 
                 String tMoneyValue = stringArray[tMoney];
                 String tMoneyValueQuote = replaceQuote(tMoneyValue);
                 String tMoneyValueComma = replaceComma(tMoneyValueQuote);
+                BigDecimal tMoneyBigDecimal = new BigDecimal(tMoneyValueComma);
 
                 if (buyInValueQuote.equals(buyIn)) {
                     if (actionValue.equals(getRegistrationString())) {
-                        BigDecimal tMoneyBigDecimal = new BigDecimal(tMoneyValueComma);
-                        tMoneyBigDecimal = tMoneyBigDecimal.negate();
-
-                        if (tMoneyBigDecimal.compareTo(BigDecimal.ZERO) > 0) {
-                            registerForTMoneySum = registerForTMoneySum.add(tMoneyBigDecimal);
-                        }
-
-                        registrationSum = registrationSum.add(new BigDecimal(tMoneyValueComma));
-                        registrationSum = registrationSum.negate();
-
-                        BigDecimal amountBigDecimal = new BigDecimal(amountValueComma);
-                        int compareAmountToZero = amountBigDecimal.compareTo(BigDecimal.ZERO);
-                        if (compareAmountToZero == 0) {
-                            ids.add(idValue);
-                        }
-
+                        sumRegistrationForTMoney = sumRegistrationForTMoney.add(tMoneyBigDecimal);
                     }
-                    if (actionValue.equals(getNetWonString())) {
-                        wonSum = ids.stream()
-                                .filter(id -> id.equals(idValue))
-                                .map(amountVal -> new BigDecimal(amountValueComma))
-                                .reduce(wonSum, BigDecimal::add);
+                    if (actionValue.equals(getRegistrationString())
+                            && amountBigDecimal.compareTo(BigDecimal.ZERO) == 0
+                            && tMoneyBigDecimal.compareTo(BigDecimal.ZERO) == 0) {
+                        buyInStakePlusRake = parseBuyInFromString(buyIn);
+                        counterTicket++;
                     }
                 }
             }
-            BigDecimal sum = registerForTMoneySum.add(registrationSum).add(wonSum);
-            bonus.put(buyIn, sum);
+            bonus.put(buyIn, BigDecimal.valueOf(buyInStakePlusRake * counterTicket).subtract(sumRegistrationForTMoney));
         }
         return bonus;
     }
