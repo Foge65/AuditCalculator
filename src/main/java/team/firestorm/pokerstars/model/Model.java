@@ -37,7 +37,6 @@ public class Model {
     private Map<String, BigDecimal> sumNetWonAnother;
     private Map<String, Integer> countReEntryAnother;
     private Map<String, BigDecimal> sumReEntryAnother;
-    private Map<String, Integer> countWonTicketAnother;
     private Map<String, BigDecimal> sumKnockoutAnother;
 
     private LocalDate dateFrom;
@@ -95,7 +94,6 @@ public class Model {
         setSumNetWonAnother(modelBuilderFromCsvFile.getSumNetWonAnother());
         setCountReEntryAnother(modelBuilderFromCsvFile.getCountReEntryAnother());
         setSumReEntryAnother(modelBuilderFromCsvFile.getSumReEntryAnother());
-        setCountWonTicketAnother(modelBuilderFromCsvFile.getCountWonTicketAnother());
         setSumKnockoutAnother(modelBuilderFromCsvFile.getSumKnockoutAnother());
 
         setDateFrom(modelBuilderFromCsvFile.getDateFrom());

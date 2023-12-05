@@ -285,40 +285,6 @@ public abstract class PokerStarsBase implements PokerStars {
     }
 
     @Override
-    public Map<String, Integer> countWonTicket(List<String[]> strings, Set<String> game, int amount, int tMoney) {
-        Map<String, Integer> countTicket = new HashMap<>();
-        for (String buyIn : game) {
-            int counterTicket = 0;
-            for (String[] stringArray : strings) {
-                String actionValue = stringArray[ACTION];
-
-                String buyInValue = stringArray[GAME];
-                String buyInValueQuote = replaceQuote(buyInValue);
-
-                String amountValue = stringArray[amount];
-                String amountValueQuote = replaceQuote(amountValue);
-                String amountValueComma = replaceComma(amountValueQuote);
-                BigDecimal amountBigDecimal = new BigDecimal(amountValueComma);
-
-                String tMoneyValue = stringArray[tMoney];
-                String tMoneyValueQuote = replaceQuote(tMoneyValue);
-                String tMoneyValueComma = replaceComma(tMoneyValueQuote);
-                BigDecimal tMoneyBigDecimal = new BigDecimal(tMoneyValueComma);
-
-                if (buyInValueQuote.equals(buyIn)) {
-                    if (actionValue.equals(getRegistrationString())
-                            && amountBigDecimal.compareTo(BigDecimal.ZERO) == 0
-                            && tMoneyBigDecimal.compareTo(BigDecimal.ZERO) == 0) {
-                        counterTicket++;
-                    }
-                }
-            }
-            countTicket.put(buyIn, counterTicket);
-        }
-        return countTicket;
-    }
-
-    @Override
     public Map<String, BigDecimal> sumKnockout(List<String[]> strings, Set<String> game, int amount) {
         Map<String, BigDecimal> knockoutMap = new HashMap<>();
         Map<String, List<String>> buyInIdMap = new HashMap<>();

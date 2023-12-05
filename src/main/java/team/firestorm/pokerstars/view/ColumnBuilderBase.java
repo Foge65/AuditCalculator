@@ -56,9 +56,6 @@ public abstract class ColumnBuilderBase implements ColumnBuilder {
         TableColumn<Model, BigDecimal> sumReEntry = new TableColumn<>("Sum\nRe-Entry");
         setCellValueNumber(table, model.getSumReEntryAnother(), sumReEntry);
 
-        TableColumn<Model, Integer> countWonTicket = new TableColumn<>("Count\nWon Tickets");
-        setCellValueNumber(table, model.getCountWonTicketAnother(), countWonTicket);
-
         TableColumn<Model, BigDecimal> sumKnockout = new TableColumn<>("Sum\nKnockout");
         setCellValueNumber(table, model.getSumKnockoutAnother(), sumKnockout);
     }

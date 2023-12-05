@@ -52,7 +52,6 @@ public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
         model.setSumNetWonAnother(pokerStarsBase.sumColumn(filteredStrings, gameAnother, pokerStarsBase.getNetWonString(), getAmountIndex()));
         model.setCountReEntryAnother(pokerStarsBase.countReEntry(filteredStrings, gameAnother));
         model.setSumReEntryAnother(pokerStarsBase.sumReEntry(filteredStrings, gameAnother, getAmountIndex()));
-        model.setCountWonTicketAnother(pokerStarsBase.countWonTicket(filteredStrings, gameAnother, getAmountIndex(), getTMoneyAmountIndex()));
         model.setSumKnockoutAnother(pokerStarsBase.sumKnockout(filteredStrings, gameAnother, getAmountIndex()));
 
         model.setStartBalance(pokerStarsBase.startBalanceMoney(filteredStrings, getAmountIndex(), getBalanceIndex()));
