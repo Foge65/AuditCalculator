@@ -122,8 +122,7 @@ public abstract class PokerStarsBase implements PokerStars {
                 BigDecimal tMoneyBigDecimal = new BigDecimal(tMoneyValueComma);
 
                 if (buyInValueQuote.equals(buyIn)) {
-                    if (actionValue.equals(getRegistrationString())
-                            && amountBigDecimal.compareTo(BigDecimal.ZERO) < 0) {
+                    if (actionValue.equals(getRegistrationString())) {
                         sumRegistrationForMoney = sumRegistrationForMoney.add(amountBigDecimal);
                         sumRegistrationForTMoney = sumRegistrationForTMoney.add(tMoneyBigDecimal);
                     }
@@ -131,7 +130,7 @@ public abstract class PokerStarsBase implements PokerStars {
                         sumUnregistrationForMoney = sumUnregistrationForMoney.add(amountBigDecimal);
                     }
                     if (actionValue.equals(getNetWonString())) {
-                        sumNetWon = sumNetWon.add(new BigDecimal(amountValueComma));
+                        sumNetWon = sumNetWon.add(amountBigDecimal);
                     }
                 }
             }
