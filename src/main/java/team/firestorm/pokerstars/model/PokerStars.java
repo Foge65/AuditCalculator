@@ -17,6 +17,7 @@ public interface PokerStars {
     Map<String, Integer> countReEntry(List<String[]> strings, Set<String> game);
     Map<String, BigDecimal> sumReEntry(List<String[]> strings, Set<String> game, int amount);
     Map<String, Integer> countWonTicket(List<String[]> strings, Set<String> game);
+    Map<String, Integer> countWonTicket(List<String[]> strings, Set<String> game, int amount, int tMoney);
     Map<String, BigDecimal> sumKnockout(List<String[]> strings, Set<String> game, int amount);
     String startBalance(List<String[]> strings, int column);
     String startBalanceMoney(List<String[]> strings, int amount, int balance);

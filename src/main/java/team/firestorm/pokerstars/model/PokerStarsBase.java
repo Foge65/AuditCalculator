@@ -285,10 +285,37 @@ public abstract class PokerStarsBase implements PokerStars {
         return sumReEntry;
     }
 
-    // TODO : Реализовать
     @Override
-    public Map<String, Integer> countWonTicket(List<String[]> strings, Set<String> game) {
+    public Map<String, Integer> countWonTicket(List<String[]> strings, Set<String> game, int amount, int tMoney) {
         Map<String, Integer> countTicket = new HashMap<>();
+        for (String buyIn : game) {
+            int counterTicket = 0;
+            for (String[] stringArray : strings) {
+                String actionValue = stringArray[ACTION];
+
+                String buyInValue = stringArray[GAME];
+                String buyInValueQuote = replaceQuote(buyInValue);
+
+                String amountValue = stringArray[amount];
+                String amountValueQuote = replaceQuote(amountValue);
+                String amountValueComma = replaceComma(amountValueQuote);
+                BigDecimal amountBigDecimal = new BigDecimal(amountValueComma);
+
+                String tMoneyValue = stringArray[tMoney];
+                String tMoneyValueQuote = replaceQuote(tMoneyValue);
+                String tMoneyValueComma = replaceComma(tMoneyValueQuote);
+                BigDecimal tMoneyBigDecimal = new BigDecimal(tMoneyValueComma);
+
+                if (buyInValueQuote.equals(buyIn)) {
+                    if (actionValue.equals(getRegistrationString())
+                            && amountBigDecimal.compareTo(BigDecimal.ZERO) == 0
+                            && tMoneyBigDecimal.compareTo(BigDecimal.ZERO) == 0) {
+                        counterTicket++;
+                    }
+                }
+            }
+            countTicket.put(buyIn, counterTicket);
+        }
         return countTicket;
     }
 
