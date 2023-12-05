@@ -144,7 +144,7 @@ public class ModelBuilderFromCsvFile {
         sumNetWonAnother = pokerStarsBase.sumColumn(csvStrings, gameAnother, pokerStarsBase.getNetWonString(), amountIndex);
         countReEntryAnother = pokerStarsBase.countReEntry(csvStrings, gameAnother);
         sumReEntryAnother = pokerStarsBase.sumReEntry(csvStrings, gameAnother, amountIndex);
-        countWonTicketAnother = pokerStarsBase.countWonTicket(csvStrings, gameAnother);
+        countWonTicketAnother = pokerStarsBase.countWonTicket(csvStrings, gameAnother, amountIndex, tMoneyAmountIndex);
         sumKnockoutAnother = pokerStarsBase.sumKnockout(csvStrings, gameAnother, amountIndex);
 
         startBalance = pokerStarsBase.startBalanceMoney(csvStrings, amountIndex, balanceIndex);
