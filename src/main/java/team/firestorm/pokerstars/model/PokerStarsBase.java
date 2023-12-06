@@ -6,6 +6,7 @@ import lombok.Getter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -100,13 +101,19 @@ public abstract class PokerStarsBase implements PokerStars {
     @Override
     public Map<String, BigDecimal> sumProfit(List<String[]> strings, Set<String> game, int amount, int tMoney) {
         Map<String, BigDecimal> profit = new HashMap<>();
+        Set<String> ids = new HashSet<>();
         for (String buyIn : game) {
+            double buyInStakePlusRake = 0.00;
+            int countRegistrationByTicket = 0;
             BigDecimal sumRegistrationForMoney = BigDecimal.ZERO;
             BigDecimal sumUnregistrationForMoney = BigDecimal.ZERO;
             BigDecimal sumNetWon = BigDecimal.ZERO;
             BigDecimal sumRegistrationForTMoney = BigDecimal.ZERO;
+            BigDecimal sumNetWonForTicket = BigDecimal.ZERO;
             for (String[] stringArray : strings) {
                 String actionValue = stringArray[ACTION];
+
+                String idValue = stringArray[ID];
 
                 String buyInValue = stringArray[GAME];
                 String buyInValueQuote = replaceQuote(buyInValue);
@@ -126,18 +133,31 @@ public abstract class PokerStarsBase implements PokerStars {
                         sumRegistrationForMoney = sumRegistrationForMoney.add(amountBigDecimal);
                         sumRegistrationForTMoney = sumRegistrationForTMoney.add(tMoneyBigDecimal);
                     }
+                    if (actionValue.equals(getRegistrationString())
+                            && amountBigDecimal.compareTo(BigDecimal.ZERO) == 0
+                            && tMoneyBigDecimal.compareTo(BigDecimal.ZERO) == 0) {
+                        ids.add(idValue);
+                    }
                     if (actionValue.equals(getUnRegistrationString())) {
                         sumUnregistrationForMoney = sumUnregistrationForMoney.add(amountBigDecimal);
                     }
                     if (actionValue.equals(getNetWonString())) {
                         sumNetWon = sumNetWon.add(amountBigDecimal);
                     }
+                    for (String id : ids) {
+                        if (actionValue.equals(getNetWonString())
+                                && id.equals(idValue)) {
+                            sumNetWonForTicket = amountBigDecimal.subtract(BigDecimal.valueOf(buyInStakePlusRake * countRegistrationByTicket));
+                        }
+                    }
                 }
             }
             profit.put(buyIn, sumRegistrationForMoney
                     .add(sumUnregistrationForMoney)
                     .add(sumNetWon)
-                    .add(sumRegistrationForTMoney));
+                    .add(sumRegistrationForTMoney)
+                    .add(BigDecimal.valueOf(buyInStakePlusRake * countRegistrationByTicket))
+                    .subtract(sumNetWonForTicket));
         }
         return profit;
     }
@@ -478,15 +498,7 @@ public abstract class PokerStarsBase implements PokerStars {
                     .add(sumUnregistrationForMoney)
                     .add(sumNetWon)
                     .add(sumRegistrationForTMoney)
-                    .add(BigDecimal.valueOf(buyInStakePlusRake * counterTicket))
-                    .subtract(clearProfit));
-            System.out.println(buyIn + " "
-                    + sumRegistrationForMoney + " "
-                    + sumUnregistrationForMoney + " "
-                    + sumNetWon + " "
-                    + sumRegistrationForTMoney + " "
-                    + buyInStakePlusRake * counterTicket + " "
-                    + clearProfit + " ");
+                    .subtract(BigDecimal.valueOf(buyInStakePlusRake * counterTicket)));
         }
         return profit;
     }
