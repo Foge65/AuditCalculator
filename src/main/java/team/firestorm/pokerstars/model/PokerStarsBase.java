@@ -434,6 +434,7 @@ public abstract class PokerStarsBase implements PokerStars {
             BigDecimal sumUnregistrationForMoney = BigDecimal.ZERO;
             BigDecimal sumNetWon = BigDecimal.ZERO;
             BigDecimal sumRegistrationForTMoney = BigDecimal.ZERO;
+            BigDecimal clearProfit = BigDecimal.ZERO;
             for (String[] stringArray : strings) {
                 String actionValue = stringArray[ACTION];
 
@@ -478,7 +479,14 @@ public abstract class PokerStarsBase implements PokerStars {
                     .add(sumNetWon)
                     .add(sumRegistrationForTMoney)
                     .add(BigDecimal.valueOf(buyInStakePlusRake * counterTicket))
-            );
+                    .subtract(clearProfit));
+            System.out.println(buyIn + " "
+                    + sumRegistrationForMoney + " "
+                    + sumUnregistrationForMoney + " "
+                    + sumNetWon + " "
+                    + sumRegistrationForTMoney + " "
+                    + buyInStakePlusRake * counterTicket + " "
+                    + clearProfit + " ");
         }
         return profit;
     }
