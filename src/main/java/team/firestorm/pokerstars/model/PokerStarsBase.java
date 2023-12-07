@@ -101,14 +101,14 @@ public abstract class PokerStarsBase implements PokerStars {
     @Override
     public Map<String, BigDecimal> sumProfit(List<String[]> strings, Set<String> game, int amount, int tMoney) {
         Map<String, BigDecimal> profit = new HashMap<>();
-        Map<String, Integer> ids = new HashMap<>();
+        Set<String> ids = new HashSet<>();
         for (String buyIn : game) {
-            double buyInStakePlusRakeValue = 0.00;
-            int countRegistrationByTicket = 0;
             BigDecimal sumRegistrationForMoney = BigDecimal.ZERO;
-            BigDecimal sumUnregistrationForMoney = BigDecimal.ZERO;
-            BigDecimal sumNetWon = BigDecimal.ZERO;
             BigDecimal sumRegistrationForTMoney = BigDecimal.ZERO;
+            BigDecimal sumUnRegistrationForMoney = BigDecimal.ZERO;
+            BigDecimal sumUnRegistrationForTMoney = BigDecimal.ZERO;
+            BigDecimal sumNetWon = BigDecimal.ZERO;
+            BigDecimal sumNetWonForTicket = BigDecimal.ZERO;
             for (String[] stringArray : strings) {
                 String actionValue = stringArray[ACTION];
 
@@ -135,29 +135,26 @@ public abstract class PokerStarsBase implements PokerStars {
                     if (actionValue.equals(getRegistrationString())
                             && amountBigDecimal.compareTo(BigDecimal.ZERO) == 0
                             && tMoneyBigDecimal.compareTo(BigDecimal.ZERO) == 0) {
-                        buyInStakePlusRakeValue = parseBuyInFromString(buyIn);
-                        countRegistrationByTicket++;
-                        ids.put(idValue, countRegistrationByTicket);
+                        ids.add(idValue);
                     }
                     if (actionValue.equals(getUnRegistrationString())) {
-                        sumUnregistrationForMoney = sumUnregistrationForMoney.add(amountBigDecimal);
-//                        sumUnregistrationForTMoney
+                        sumUnRegistrationForMoney = sumUnRegistrationForMoney.add(amountBigDecimal);
+                        sumUnRegistrationForTMoney = sumUnRegistrationForTMoney.add(tMoneyBigDecimal);
                     }
                     if (actionValue.equals(getNetWonString())) {
                         sumNetWon = sumNetWon.add(amountBigDecimal);
                     }
-//                    if (actionValue.equals(getNetWonString())
-//                            && ids.contains(idValue)) {
-//                        sumNetWon = sumNetWon.add(amountBigDecimal);
-//                    }
+                    if (actionValue.equals(getNetWonString()) && ids.contains(idValue)) {
+                        sumNetWonForTicket = sumNetWonForTicket.subtract(amountBigDecimal);
+                    }
                 }
             }
             profit.put(buyIn, sumRegistrationForMoney
-                            .add(sumUnregistrationForMoney)
-                            .add(sumNetWon)
-                            .add(sumRegistrationForTMoney)
-//                    .subtract(BigDecimal.valueOf(buyInStakePlusRakeValue * countRegistrationByTicket))
-            );
+                    .add(sumRegistrationForTMoney)
+                    .add(sumUnRegistrationForMoney)
+                    .add(sumUnRegistrationForTMoney)
+                    .add(sumNetWon)
+                    .add(sumNetWonForTicket));
         }
         return profit;
     }
