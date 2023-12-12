@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 class DepositBeastTest extends PokerStarsBaseTest {
     DepositBeastTest() {
-        super("c:\\Users\\user\\Downloads\\audits\\csv\\ccf732bef1c8ac13\\Pl111aying history audit.csv");
+        super("src/test/resources/DepositBeast.csv");
     }
 
     @Override

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 class Yura0053Test extends PokerStarsBaseTest {
     Yura0053Test() {
-        super("c:\\Users\\user\\Downloads\\audits\\csv\\Новая папка\\yura0053.csv");
+        super("src/test/resources/Yura0053.csv");
     }
 
     @Override
