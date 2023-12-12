@@ -6,7 +6,12 @@
 
     <groupId>team.firestorm</groupId>
     <artifactId>AuditCalculator</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>FXApplication</module>
+        <module>SpringWebServer</module>
+    </modules>
     <name>AuditCalculator</name>
 
     <properties>
