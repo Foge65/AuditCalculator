@@ -13,5 +13,4 @@
         <module>FXApplication</module>
         <module>SpringWebServer</module>
     </modules>
-    <name>AuditCalculator</name>
 </project>
