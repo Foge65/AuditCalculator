@@ -15,7 +15,7 @@ public class Language {
 
     private static void loadProfile() {
         try {
-            DetectorFactory.loadProfile("src/main/resources/profiles");
+            DetectorFactory.loadProfile("FXApplication/src/main/resources/profiles");
         } catch (LangDetectException e) {
             e.printStackTrace();
         }
