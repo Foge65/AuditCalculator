@@ -1,7 +1,7 @@
 <assembly>
-    <id>launcher</id>
+    <id>src</id>
     <formats>
-        <format>zip</format>
+        <format>dir</format>
     </formats>
     <includeBaseDirectory>false</includeBaseDirectory>
     <fileSets>
@@ -20,18 +20,15 @@
             </includes>
         </fileSet>
         <fileSet>
-            <directory>${project.basedir}</directory>
+            <directory>${project.build.outputDirectory}</directory>
             <outputDirectory>/</outputDirectory>
             <includes>
-                <include>*.jar</include>
+                <include>**/*.class</include>
             </includes>
         </fileSet>
+        <fileSet>
+            <directory>${project.build.directory}/jre</directory>
+            <outputDirectory>/jre</outputDirectory>
+        </fileSet>
     </fileSets>
-    <dependencySets>
-        <dependencySet>
-            <outputDirectory>/lib</outputDirectory>
-            <useProjectArtifact>true</useProjectArtifact>
-            <unpack>false</unpack>
-        </dependencySet>
-    </dependencySets>
 </assembly>
