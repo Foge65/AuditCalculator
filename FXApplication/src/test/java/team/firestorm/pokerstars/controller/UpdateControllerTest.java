@@ -6,11 +6,18 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UpdateControllerTest {
+    private UpdateController updateController = new UpdateController();
+
     @Test
     @SneakyThrows
     void fetchVersion() {
-        UpdateController updateController = new UpdateController();
         String version = updateController.fetchVersion();
         assertEquals("1.0", version);
+    }
+
+    @Test
+    void currentVersion() {
+        String currentVersion = updateController.currentVersion();
+        assertEquals("1.0", currentVersion);
     }
 }

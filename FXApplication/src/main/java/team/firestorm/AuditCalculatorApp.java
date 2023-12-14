@@ -12,14 +12,15 @@ import java.io.IOException;
 public class AuditCalculatorApp extends Application {
 
     public static void main(String[] args) {
-        checkVersion();
+        updateVersion();
 
         Application.launch();
     }
 
-    private static void checkVersion() {
+    private static void updateVersion() {
         UpdateController updateController = new UpdateController();
-        String version = updateController.fetchVersion();
+        String fetchVersion = updateController.fetchVersion();
+        String currentVersion = updateController.currentVersion();
     }
 
     @Override
