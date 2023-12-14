@@ -1,6 +1,7 @@
 package team.firestorm;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -18,9 +19,15 @@ public class AuditCalculatorApp extends Application {
     }
 
     private static void updateVersion() {
-        UpdateController updateController = new UpdateController();
-        String fetchVersion = updateController.fetchVersion();
-        String currentVersion = updateController.currentVersion();
+        Platform.runLater(() -> {
+            UpdateController updateController = new UpdateController();
+            String fetchVersionFromServer = updateController.fetchVersionFromServer();
+            String currentVersionFromFile = updateController.currentVersionFromFile();
+            if (!fetchVersionFromServer.equals(currentVersionFromFile)) {
+                updateController.downloadUpdate();
+                updateController.updateVersionInFile(fetchVersionFromServer);
+            }
+        });
     }
 
     @Override
