@@ -8,14 +8,29 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import team.firestorm.updateapp.UpdateController;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class AuditCalculatorApp extends Application {
 
     public static void main(String[] args) {
+        errorsToFile();
+
         updateVersion();
 
         Application.launch();
+    }
+
+    private static void errorsToFile() {
+        Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
+            try (PrintWriter printWriter = new PrintWriter(new FileWriter("errors.log", true))) {
+                printWriter.println("=== Uncaught Exception ===");
+                throwable.printStackTrace(printWriter);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     private static void updateVersion() {
