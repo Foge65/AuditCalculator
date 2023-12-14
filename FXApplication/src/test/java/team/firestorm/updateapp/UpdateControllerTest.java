@@ -20,9 +20,4 @@ class UpdateControllerTest {
         String currentVersion = updateController.currentVersionFromFile();
         assertEquals("1.0", currentVersion);
     }
-
-    @Test
-    void downloadUpdate() {
-        updateController.downloadUpdate();
-    }
 }

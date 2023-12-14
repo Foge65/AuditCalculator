@@ -15,7 +15,8 @@ import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 public class UpdateController {
-    private static final String SERVER_URL = "http://195.201.60.237:8080/";
+//    private static final String SERVER_URL = "http://195.201.60.237:8080/";
+    private static final String SERVER_URL = "http://localhost:8080/";
     private final URL resource = UpdateController.class.getResource("/team/firestorm/Version");
 
     @SneakyThrows
