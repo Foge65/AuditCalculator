@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import team.firestorm.pokerstars.controller.UpdateController;
+import team.firestorm.updateapp.UpdateController;
 
 import java.io.IOException;
 

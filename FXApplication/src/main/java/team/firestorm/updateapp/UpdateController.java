@@ -1,4 +1,4 @@
-package team.firestorm.pokerstars.controller;
+package team.firestorm.updateapp;
 
 import lombok.Cleanup;
 import lombok.SneakyThrows;

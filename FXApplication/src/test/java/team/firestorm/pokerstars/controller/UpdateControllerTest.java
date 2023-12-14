@@ -2,6 +2,7 @@ package team.firestorm.pokerstars.controller;
 
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
+import team.firestorm.updateapp.UpdateController;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
