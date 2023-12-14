@@ -5,13 +5,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import team.firestorm.pokerstars.controller.UpdateController;
 
 import java.io.IOException;
 
 public class AuditCalculatorApp extends Application {
 
     public static void main(String[] args) {
+        checkVersion();
+
         Application.launch();
+    }
+
+    private static void checkVersion() {
+        UpdateController updateController = new UpdateController();
+        String version = updateController.fetchVersion();
     }
 
     @Override
