@@ -16,7 +16,7 @@ import java.util.List;
 
 public class Updater {
     private static final String SERVER_URL = "http://195.201.60.237:8080/";
-    private final Path pathToVersionFile = Paths.get("FXApplication", "src", "main", "resources", "team", "firestorm", "Version").toAbsolutePath();
+    private final Path pathToVersionFile = Paths.get("Version").toAbsolutePath();
 
     @SneakyThrows
     public String fetchVersionFromServer() {
@@ -64,11 +64,4 @@ public class Updater {
     public void deleteTmpFile() {
         Files.deleteIfExists(Path.of("AuditCalculator.tmp"));
     }
-
-//    public void updateAlert() {
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        alert.setTitle("Update");
-//        alert.setHeaderText("Application updated successfully");
-//        alert.showAndWait();
-//    }
 }
