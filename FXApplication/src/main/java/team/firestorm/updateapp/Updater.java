@@ -1,5 +1,6 @@
 package team.firestorm.updateapp;
 
+import javafx.scene.control.Alert;
 import lombok.Cleanup;
 import lombok.SneakyThrows;
 
@@ -14,7 +15,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 
-public class UpdateController {
+public class Updater {
     private static final String SERVER_URL = "http://195.201.60.237:8080/";
     private final Path pathToVersionFile = Paths.get("FXApplication", "src", "main", "resources", "team", "firestorm", "Version").toAbsolutePath();
 
@@ -44,12 +45,31 @@ public class UpdateController {
     @SneakyThrows
     public void downloadUpdate() {
         @Cleanup InputStream inputStream = new URL(SERVER_URL + "download").openStream();
-            Path sourcePath = Paths.get(".", "AuditCalculator.exe");
+            Path sourcePath = Paths.get(".", "AuditCalculator.tmp");
             Files.copy(inputStream, sourcePath, StandardCopyOption.REPLACE_EXISTING);
     }
 
     @SneakyThrows
     public void updateVersionInFile(String current) {
         Files.writeString(pathToVersionFile, current);
+    }
+
+    @SneakyThrows
+    public void replaceExe() {
+        String newFile = "AuditCalculator.tmp";
+        String oldFile = "AuditCalculator.exe";
+        Files.copy(Path.of(newFile), Path.of(oldFile), StandardCopyOption.REPLACE_EXISTING);
+    }
+
+    @SneakyThrows
+    public void deleteTmpFile() {
+        Files.deleteIfExists(Path.of("AuditCalculator.tmp"));
+    }
+
+    public void updateAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Update");
+        alert.setHeaderText("Application updated successfully");
+        alert.showAndWait();
     }
 }
