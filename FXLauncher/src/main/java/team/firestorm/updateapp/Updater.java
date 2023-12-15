@@ -43,9 +43,11 @@ public class Updater {
 
     @SneakyThrows
     public void downloadUpdate() {
+        System.out.println("Downloading Update!");
         @Cleanup InputStream inputStream = new URL(SERVER_URL + "download").openStream();
         Path sourcePath = Paths.get(".", "AuditCalculator.tmp");
         Files.copy(inputStream, sourcePath, StandardCopyOption.REPLACE_EXISTING);
+        System.out.println("Update Downloaded!");
     }
 
     @SneakyThrows
