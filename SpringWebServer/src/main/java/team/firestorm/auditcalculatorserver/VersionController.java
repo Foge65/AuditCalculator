@@ -21,7 +21,7 @@ public class VersionController {
     @GetMapping("/download")
     @SneakyThrows
     public ResponseEntity<Resource> update() {
-            Resource resource = new UrlResource(Paths.get("/home/foge/java/AuditCalculator/AuditCalculator.exe").toUri());
+            Resource resource = new UrlResource(Paths.get("/home/foge/java/AuditCalculator/app.exe").toUri());
             return ResponseEntity.ok()
                     .body(resource);
     }

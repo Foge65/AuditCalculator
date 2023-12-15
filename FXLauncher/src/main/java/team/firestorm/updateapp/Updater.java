@@ -45,7 +45,7 @@ public class Updater {
     public void downloadUpdate() {
         System.out.println("Downloading Update!");
         @Cleanup InputStream inputStream = new URL(SERVER_URL + "download").openStream();
-        Path sourcePath = Paths.get(".", "AuditCalculator.tmp");
+        Path sourcePath = Paths.get(".", "app.tmp");
         Files.copy(inputStream, sourcePath, StandardCopyOption.REPLACE_EXISTING);
         System.out.println("Update Downloaded!");
     }
@@ -57,13 +57,13 @@ public class Updater {
 
     @SneakyThrows
     public void replaceExe() {
-        String newFile = "AuditCalculator.tmp";
-        String oldFile = "AuditCalculator.exe";
+        String newFile = "app.tmp";
+        String oldFile = "app.exe";
         Files.copy(Path.of(newFile), Path.of(oldFile), StandardCopyOption.REPLACE_EXISTING);
     }
 
     @SneakyThrows
     public void deleteTmpFile() {
-        Files.deleteIfExists(Path.of("AuditCalculator.tmp"));
+        Files.deleteIfExists(Path.of("app.tmp"));
     }
 }

@@ -24,7 +24,7 @@ public class Launcher {
 
     @SneakyThrows
     private static void launchMainApplication() {
-        String pathToApp = "AuditCalculator.exe";
+        String pathToApp = "app.exe";
         ProcessBuilder processBuilder = new ProcessBuilder(pathToApp);
         processBuilder.start();
     }
