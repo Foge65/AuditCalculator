@@ -3,11 +3,7 @@ package team.firestorm.pokerstars.model;
 import lombok.Getter;
 import lombok.Setter;
 import team.firestorm.pokerstars.controller.TabController;
-import team.firestorm.pokerstars.view.ColumnBuilderCsv;
-import team.firestorm.pokerstars.view.ColumnBuilderFilterByDate;
-import team.firestorm.pokerstars.view.ColumnBuilderFilterByPool;
-import team.firestorm.pokerstars.view.ModelObserver;
-import team.firestorm.pokerstars.view.TextBuilder;
+import team.firestorm.pokerstars.view.*;
 
 import java.io.File;
 import java.time.LocalDate;
