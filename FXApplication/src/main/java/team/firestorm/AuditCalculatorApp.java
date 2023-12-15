@@ -36,11 +36,11 @@ public class AuditCalculatorApp extends Application {
     private static void updateVersion() {
         Platform.runLater(() -> {
             UpdateController updateController = new UpdateController();
-            String fetchVersionFromServer = updateController.fetchVersionFromServer();
-            String currentVersionFromFile = updateController.currentVersionFromFile();
-            if (!fetchVersionFromServer.equals(currentVersionFromFile)) {
+            String serverVersion = updateController.fetchVersionFromServer();
+            String localVersion = updateController.currentVersionFromFile();
+            if (!serverVersion.equals(localVersion)) {
                 updateController.downloadUpdate();
-                updateController.updateVersionInFile(fetchVersionFromServer);
+                updateController.updateVersionInFile(serverVersion);
             }
         });
     }

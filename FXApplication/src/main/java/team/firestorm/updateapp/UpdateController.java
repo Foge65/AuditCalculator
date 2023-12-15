@@ -16,7 +16,7 @@ import java.util.List;
 
 public class UpdateController {
     private static final String SERVER_URL = "http://195.201.60.237:8080/";
-    private final URL resource = UpdateController.class.getResource("/team/firestorm/Version");
+    private final Path pathToVersionFile = Paths.get("FXApplication", "src", "main", "resources", "team", "firestorm", "Version").toAbsolutePath();
 
     @SneakyThrows
     public String fetchVersionFromServer() {
@@ -37,8 +37,7 @@ public class UpdateController {
 
     @SneakyThrows
     public String currentVersionFromFile() {
-        Path pathToFile = Path.of(resource.toURI());
-        List<String> lines = Files.readAllLines(pathToFile);
+        List<String> lines = Files.readAllLines(pathToVersionFile);
         return String.join("", lines);
     }
 
@@ -51,7 +50,6 @@ public class UpdateController {
 
     @SneakyThrows
     public void updateVersionInFile(String current) {
-        Path pathToFile = Path.of(resource.toURI());
-        Files.writeString(pathToFile, current);
+        Files.writeString(pathToVersionFile, current);
     }
 }
