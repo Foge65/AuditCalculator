@@ -4,9 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>AuditCalculator</artifactId>
-    <groupId>team.firestorm</groupId>
-    <version>1.0-SNAPSHOT</version>
+    <parent>
+        <groupId>team.firestorm</groupId>
+        <artifactId>AuditCalculator</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>FXApplication</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
