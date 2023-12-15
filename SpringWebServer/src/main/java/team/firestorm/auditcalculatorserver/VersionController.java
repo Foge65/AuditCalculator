@@ -12,6 +12,7 @@ import java.nio.file.Paths;
 @RestController
 public class VersionController {
     private static final String CURRENT_VERSION = "1.0";
+
     @GetMapping("/version")
     public String currentVersion() {
         return CURRENT_VERSION;
@@ -20,8 +21,7 @@ public class VersionController {
     @GetMapping("/download")
     @SneakyThrows
     public ResponseEntity<Resource> update() {
-//            Resource resource = new UrlResource(Paths.get("/home/foge/java/AuditCalculator/AuditCalculator.exe").toUri());
-            Resource resource = new UrlResource(Paths.get("c:\\Users\\user\\Downloads\\artifacts\\AuditCalculator\\AuditCalculator.exe").toUri());
+            Resource resource = new UrlResource(Paths.get("/home/foge/java/AuditCalculator/AuditCalculator.exe").toUri());
             return ResponseEntity.ok()
                     .body(resource);
     }
