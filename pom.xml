@@ -18,5 +18,6 @@
     <modules>
         <module>FXApplication</module>
         <module>SpringWebServer</module>
+        <module>FXLauncher</module>
     </modules>
 </project>
