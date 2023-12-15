@@ -1,6 +1,5 @@
 package team.firestorm.updateapp;
 
-import javafx.scene.control.Alert;
 import lombok.Cleanup;
 import lombok.SneakyThrows;
 
@@ -45,8 +44,8 @@ public class Updater {
     @SneakyThrows
     public void downloadUpdate() {
         @Cleanup InputStream inputStream = new URL(SERVER_URL + "download").openStream();
-            Path sourcePath = Paths.get(".", "AuditCalculator.tmp");
-            Files.copy(inputStream, sourcePath, StandardCopyOption.REPLACE_EXISTING);
+        Path sourcePath = Paths.get(".", "AuditCalculator.tmp");
+        Files.copy(inputStream, sourcePath, StandardCopyOption.REPLACE_EXISTING);
     }
 
     @SneakyThrows
@@ -66,10 +65,10 @@ public class Updater {
         Files.deleteIfExists(Path.of("AuditCalculator.tmp"));
     }
 
-    public void updateAlert() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Update");
-        alert.setHeaderText("Application updated successfully");
-        alert.showAndWait();
-    }
+//    public void updateAlert() {
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        alert.setTitle("Update");
+//        alert.setHeaderText("Application updated successfully");
+//        alert.showAndWait();
+//    }
 }
