@@ -12,9 +12,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lombok.Getter;
-import lombok.SneakyThrows;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -108,9 +108,12 @@ public class MainController implements Initializable {
         return new FXMLLoader(getClass().getResource(path));
     }
 
-    @SneakyThrows
     private AnchorPane getAnchorPane(FXMLLoader fxmlLoader) {
-        return fxmlLoader.load();
+        try {
+            return fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private <T> T getTabController(FXMLLoader fxmlLoader) {

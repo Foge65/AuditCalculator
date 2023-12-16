@@ -1,6 +1,6 @@
 package team.firestorm.updateapp;
 
-import lombok.SneakyThrows;
+import java.io.IOException;
 
 public class Launcher {
     public static void main(String[] args) {
@@ -22,10 +22,13 @@ public class Launcher {
         }
     }
 
-    @SneakyThrows
     private static void launchMainApplication() {
         String pathToApp = "app.exe";
         ProcessBuilder processBuilder = new ProcessBuilder(pathToApp);
-        processBuilder.start();
+        try {
+            processBuilder.start();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
