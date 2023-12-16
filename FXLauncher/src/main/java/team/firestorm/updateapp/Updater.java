@@ -32,10 +32,10 @@ public class Updater {
                 }
                 return version.toString();
             } else {
-                throw new RuntimeException("Failed to get version");
+                throw new RuntimeException("Failed get version from server");
             }
         } catch (MalformedURLException | ProtocolException e) {
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
