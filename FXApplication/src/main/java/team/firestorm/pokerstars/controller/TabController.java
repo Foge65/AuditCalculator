@@ -167,27 +167,19 @@ public class TabController implements Initializable {
 
     @FXML
     public void onClickDatePickerFrom() {
-        dateSelectFrom = datePickerFrom.getValue();
-        dateSelectTo = datePickerTo.getValue();
-        LocalDate dateModelBuilder = tabContent.getModel().getDateFrom();
-        if (!dateSelectFrom.isEqual(dateModelBuilder)) {
-            filterByDate(tabContent.getModelBuilderFromCsvFile());
-            tabContent.getModel().setDateFrom(dateSelectFrom);
-        }
+        filterByDate(tabContent.getModelBuilderFromCsvFile());
     }
 
     @FXML
     private void onClickDatePickerTo() {
-        dateSelectFrom = datePickerFrom.getValue();
-        dateSelectTo = datePickerTo.getValue();
-        LocalDate dateModelBuilder = tabContent.getModel().getDateTo();
-        if (!dateSelectTo.isEqual(dateModelBuilder)) {
-            filterByDate(tabContent.getModelBuilderFromCsvFile());
-            tabContent.getModel().setDateTo(dateSelectTo);
-        }
+        filterByDate(tabContent.getModelBuilderFromCsvFile());
     }
 
     private void filterByDate(ModelBuilderFromCsvFile modelBuilderFromCsvFile) {
+        dateSelectFrom = datePickerFrom.getValue();
+        dateSelectTo = datePickerTo.getValue();
+        tabContent.getModel().setDateFrom(dateSelectFrom);
+        tabContent.getModel().setDateTo(dateSelectTo);
         tabContent.buildFilterDataByDate(modelBuilderFromCsvFile.getDateTimeFormatter(), dateSelectFrom, dateSelectTo);
         tabContent.buildFilterViewByDate(this);
     }

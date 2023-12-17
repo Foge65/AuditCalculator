@@ -15,5 +15,5 @@ public interface ColumnBuilder {
     void setCellCheckBox(TableView<Model> table, TableColumn<Model, Boolean> pool);
     void setCellValueGame(TableView<Model> table, TableColumn<Model, Set<String>> game);
     <T> void setCellValueNumber(TableView<Model> table, Map<String, T> value, TableColumn<Model, T> column);
-    void addGameToObservableList(Set<String> game, Map<String, ?> value, ObservableList<Model> observableList, TableView<Model> table);
+    void addGameToObservableList(Set<String> game, ObservableList<Model> observableList, TableView<Model> table);
 }

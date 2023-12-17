@@ -131,7 +131,7 @@ public abstract class ColumnBuilderBase implements ColumnBuilder {
     }
 
     @Override
-    public void addGameToObservableList(Set<String> game, Map<String, ?> value, ObservableList<Model> observableList, TableView<Model> table) {
+    public void addGameToObservableList(Set<String> game, ObservableList<Model> observableList, TableView<Model> table) {
         for (String buyIn : game) {
             Model model = new Model(Collections.singleton(buyIn));
             observableList.add(model);
