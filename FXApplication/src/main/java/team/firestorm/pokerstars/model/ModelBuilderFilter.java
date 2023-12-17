@@ -71,6 +71,8 @@ public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
         model.setChestReward(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getChestString(), "    "));
         model.setExchangeCoin(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getExchangeCoinString(), "    "));
 
+        model.setCasino(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getCasinoString(), "    "));
+
         model.setDateFrom(getDateFrom());
         model.setDateTo(getDateTo());
     }

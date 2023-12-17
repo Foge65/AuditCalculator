@@ -26,5 +26,7 @@ public class TextBuilder {
 
         tabController.getChestReward().setText(model.getChestReward());
         tabController.getExchangeCoin().setText(model.getExchangeCoin());
+
+        tabController.getCasino().setText(model.getCasino());
     }
 }

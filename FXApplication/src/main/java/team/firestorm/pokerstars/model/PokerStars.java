@@ -40,4 +40,5 @@ public interface PokerStars {
     String getDepositString();
     String getChestString();
     String getExchangeCoinString();
+    String getCasinoString();
 }
