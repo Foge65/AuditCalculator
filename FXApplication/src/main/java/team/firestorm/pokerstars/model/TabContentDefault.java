@@ -57,6 +57,8 @@ public class TabContentDefault {
         columnBuilderCsv = new ColumnBuilderCsv(tabController, model);
         columnBuilderCsv.buildColumnSpin();
         columnBuilderCsv.buildColumnAnother();
+        columnBuilderCsv.addGameToObservableList(model.getGameSpin(), modelObserver.getObservableListSpinGame(), tabController.getTableViewSpin());
+        columnBuilderCsv.addGameToObservableList(model.getGameAnother(), modelObserver.getObservableListAnotherGame(), tabController.getTableViewAnother());
 
         textBuilder = new TextBuilder(tabController, model);
         textBuilder.setText();

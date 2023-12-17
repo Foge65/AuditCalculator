@@ -45,10 +45,7 @@ public class TabContent {
         modelObserver.clear(tabController);
 
         columnBuilderCsv = new ColumnBuilderCsv(tabController, model);
-        columnBuilderCsv.buildColumnSpin();
-        columnBuilderCsv.buildColumnAnother();
-        columnBuilderCsv.addGameToObservableList(model.getGameSpin(), model.getCountRegistrationSpin(), modelObserver.getObservableListSpinGame(), tabController.getTableViewSpin());
-        columnBuilderCsv.addGameToObservableList(model.getGameAnother(), model.getCountRegistrationAnother(), modelObserver.getObservableListAnotherGame(), tabController.getTableViewAnother());
+        buildTable(columnBuilderCsv, tabController);
 
         textBuilder = new TextBuilder(tabController, model);
         textBuilder.setText();
@@ -78,11 +75,17 @@ public class TabContent {
         modelObserver.clear(tabController);
 
         columnBuilderFilterByDate = new ColumnBuilderFilterByDate(tabController, model);
-        columnBuilderFilterByDate.buildColumnSpin();
-        columnBuilderFilterByDate.buildColumnAnother();
+        buildTable(columnBuilderFilterByDate, tabController);
 
         textBuilder = new TextBuilder(tabController, model);
         textBuilder.setText();
+    }
+
+    public void buildTable(ColumnBuilder columnBuilder, TabController tabController) {
+        columnBuilder.buildColumnSpin();
+        columnBuilder.buildColumnAnother();
+        columnBuilder.addGameToObservableList(model.getGameSpin(), modelObserver.getObservableListSpinGame(), tabController.getTableViewSpin());
+        columnBuilder.addGameToObservableList(model.getGameAnother(), modelObserver.getObservableListAnotherGame(), tabController.getTableViewAnother());
     }
 
     public void buildFilterDataByPool(DateTimeFormatter dateTimeFormatter, LocalDate dateSelectFrom, LocalDate dateSelectTo) {
