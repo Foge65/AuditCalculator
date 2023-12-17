@@ -172,6 +172,7 @@ public class TabController implements Initializable {
         LocalDate dateModelBuilder = tabContent.getModel().getDateFrom();
         if (!dateSelectFrom.isEqual(dateModelBuilder)) {
             filterByDate(tabContent.getModelBuilderFromCsvFile());
+            tabContent.getModel().setDateFrom(dateSelectFrom);
         }
     }
 
@@ -182,6 +183,7 @@ public class TabController implements Initializable {
         LocalDate dateModelBuilder = tabContent.getModel().getDateTo();
         if (!dateSelectTo.isEqual(dateModelBuilder)) {
             filterByDate(tabContent.getModelBuilderFromCsvFile());
+            tabContent.getModel().setDateTo(dateSelectTo);
         }
     }
 
