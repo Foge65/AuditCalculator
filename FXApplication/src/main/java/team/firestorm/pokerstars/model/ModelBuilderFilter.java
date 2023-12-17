@@ -26,6 +26,9 @@ public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
     }
 
     public void setModel(Model model) {
+        model.setDateFrom(getDateFrom());
+        model.setDateTo(getDateTo());
+
         Set<String> gameSpin = pokerStarsBase.game(pokerStarsBase.getRegexGameSpin(), filteredStrings);
         model.setGameSpin(gameSpin);
         model.setCountRegistrationSpin(pokerStarsBase.countTourney(filteredStrings, gameSpin, pokerStarsBase.getRegistrationString()));
@@ -72,8 +75,5 @@ public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
         model.setExchangeCoin(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getExchangeCoinString(), "    "));
 
         model.setCasino(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getCasinoString(), "    "));
-
-        model.setDateFrom(getDateFrom());
-        model.setDateTo(getDateTo());
     }
 }
