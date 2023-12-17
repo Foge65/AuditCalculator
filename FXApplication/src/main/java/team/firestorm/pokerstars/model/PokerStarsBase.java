@@ -439,7 +439,7 @@ public abstract class PokerStarsBase implements PokerStars {
             String amountValueQuote = replaceQuote(amountValue);
             String amountValueComma = replaceComma(amountValueQuote);
 
-            if (actionValue.equals(actionParam1) || actionValue.equals(actionParam2)) {
+            if (actionValue.startsWith(actionParam1) || actionValue.startsWith(actionParam2)) {
                 sumTransfer = sumTransfer.add(new BigDecimal(amountValueComma));
             }
         }
