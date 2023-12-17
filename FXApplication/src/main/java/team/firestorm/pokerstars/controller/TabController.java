@@ -69,7 +69,7 @@ public class TabController implements Initializable {
     private Text cashGame;
 
     @FXML
-    private Text roulette;
+    private Text casino;
     @FXML
     private Text omaha;
     @FXML
@@ -107,7 +107,7 @@ public class TabController implements Initializable {
     private Button btnCopyCashGame;
 
     @FXML
-    private Button btnCopyRoulette;
+    private Button btnCopyCasino;
     @FXML
     private Button btnCopyOmaha;
     @FXML
@@ -142,7 +142,7 @@ public class TabController implements Initializable {
         onClickBtnCopy(btnCopyExchangeCoin, exchangeCoin);
         onClickBtnCopy(btnCopyCashGame, cashGame);
 
-        onClickBtnCopy(btnCopyRoulette, roulette);
+        onClickBtnCopy(btnCopyCasino, casino);
         onClickBtnCopy(btnCopyOmaha, omaha);
         onClickBtnCopy(btnCopyOtherGame, otherGame);
     }

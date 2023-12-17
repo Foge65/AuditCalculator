@@ -60,7 +60,7 @@ public class Model {
     private String exchangeCoin;
     private String cash;
 
-    private String roulette;
+    private String casino;
     private String omaha;
     private String other;
 
@@ -117,7 +117,7 @@ public class Model {
         setExchangeCoin(modelBuilderFromCsvFile.getExchangeCoin());
         setCash(modelBuilderFromCsvFile.getCash());
 
-        setRoulette(modelBuilderFromCsvFile.getRoulette());
+        setCasino(modelBuilderFromCsvFile.getCasino());
         setOmaha(modelBuilderFromCsvFile.getOmaha());
         setOther(modelBuilderFromCsvFile.getOther());
     }

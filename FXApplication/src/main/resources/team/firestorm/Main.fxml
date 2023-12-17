@@ -395,7 +395,7 @@
                 <Button mnemonicParsing="false" text="Copy" GridPane.columnIndex="2"/>
                 <Button mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
                 <Button mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-                <Label text="Roulette:" GridPane.columnIndex="3">
+                <Label text="Casino:" GridPane.columnIndex="3">
                     <font>
                         <Font size="18.0"/>
                     </font>

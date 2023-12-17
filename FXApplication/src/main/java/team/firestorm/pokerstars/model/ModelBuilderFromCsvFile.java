@@ -76,7 +76,7 @@ public class ModelBuilderFromCsvFile {
     private final String exchangeCoin;
     private String cash;
 
-    private String roulette;
+    private String casino;
     private String omaha;
     private String other;
 

@@ -365,7 +365,7 @@
             <Button fx:id="btnCopyBonus" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" />
             <Button fx:id="btnCopyExchangeCoin" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Button fx:id="btnCopyCashGame" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Label text="Roulette:" GridPane.columnIndex="3">
+            <Label text="Casino:" GridPane.columnIndex="3">
                 <font>
                     <Font size="18.0" />
                 </font>
@@ -373,7 +373,7 @@
                     <Insets left="5.0" right="5.0" />
                 </GridPane.margin>
             </Label>
-            <Text fx:id="roulette" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="4">
+            <Text fx:id="casino" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="4">
                 <font>
                     <Font size="18.0" />
                 </font>
@@ -413,7 +413,7 @@
                     <Insets left="5.0" right="5.0" />
                 </GridPane.margin>
             </Text>
-            <Button fx:id="btnCopyRoulette" mnemonicParsing="false" text="Copy" GridPane.columnIndex="5" />
+            <Button fx:id="btnCopyCasino" mnemonicParsing="false" text="Copy" GridPane.columnIndex="5" />
             <Button fx:id="btnCopyOmaha" mnemonicParsing="false" text="Copy" GridPane.columnIndex="5" GridPane.rowIndex="1" />
             <Button fx:id="btnCopyOtherGame" mnemonicParsing="false" text="Copy" GridPane.columnIndex="5" GridPane.rowIndex="2" />
         </GridPane>
