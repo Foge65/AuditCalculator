@@ -5,6 +5,9 @@ import com.cybozu.labs.langdetect.DetectorFactory;
 import com.cybozu.labs.langdetect.LangDetectException;
 import lombok.AllArgsConstructor;
 
+import java.io.File;
+import java.net.URISyntaxException;
+
 @AllArgsConstructor
 public class Language {
     static {
@@ -15,10 +18,22 @@ public class Language {
 
     private static void loadProfile() {
         try {
-            DetectorFactory.loadProfile("FXApplication/src/main/resources/profiles");
-        } catch (LangDetectException e) {
-            e.printStackTrace();
+            loadProfileForApp();
+        } catch (LangDetectException e1) {
+            try {
+                loadProfileForTest();
+            } catch (LangDetectException | URISyntaxException e2) {
+                e2.printStackTrace();
+            }
         }
+    }
+
+    private static void loadProfileForApp() throws LangDetectException {
+        DetectorFactory.loadProfile("FXApplication/src/main/resources/profiles");
+    }
+
+    public static void loadProfileForTest() throws LangDetectException, URISyntaxException {
+        DetectorFactory.loadProfile(new File(Language.class.getResource("/profiles").toURI()));
     }
 
     public String detect() {
