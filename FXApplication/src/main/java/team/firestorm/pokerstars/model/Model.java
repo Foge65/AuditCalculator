@@ -23,10 +23,8 @@ public class Model {
     private Map<String, Integer> countRegistrationByTicketSpin;
     private Map<String, BigDecimal> sumProfitSpin;
     private Map<String, BigDecimal> sumBonusSpin;
-
     private Map<String, BigDecimal> sumProfitPoolSpin;
     private Map<String, BigDecimal> sumBonusPoolSpin;
-
     private Map<String, Boolean> pool;
 
     private Set<String> gameAnother;
@@ -77,10 +75,8 @@ public class Model {
         setCountRegistrationByTicketSpin(modelBuilderFromCsvFile.getCountRegistrationByTicketSpin());
         setSumProfitSpin(modelBuilderFromCsvFile.getSumProfitSpin());
         setSumBonusSpin(modelBuilderFromCsvFile.getSumBonusSpin());
-
         setSumProfitPoolSpin(modelBuilderFromCsvFile.getSumProfitPoolSpin());
         setSumBonusPoolSpin(modelBuilderFromCsvFile.getSumBonusPoolSpin());
-
         setPool(modelBuilderFromCsvFile.getPool());
 
         setGameAnother(modelBuilderFromCsvFile.getGameAnother());

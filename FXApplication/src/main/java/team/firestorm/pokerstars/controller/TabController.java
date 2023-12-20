@@ -14,8 +14,11 @@ import team.firestorm.pokerstars.model.ModelBuilderFromCsvFile;
 import team.firestorm.pokerstars.model.TabContent;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 @Getter
@@ -177,6 +180,37 @@ public class TabController implements Initializable {
         });
     }
 
-    public void onClickPoolSetting() {
+    public void onClickPoolSetting(boolean oldValue, boolean newValue, String buyIn) {
+        Map<String, BigDecimal> profit = tabContent.getModel().getSumProfitSpin();
+        Map<String, BigDecimal> profitPool = tabContent.getModel().getSumProfitPoolSpin();
+        Map<String, BigDecimal> profitDefault = new HashMap<>(tabContent.getModel().getSumProfitSpin());
+
+        Map<String, BigDecimal> bonus = tabContent.getModel().getSumBonusSpin();
+        Map<String, BigDecimal> bonusPool = tabContent.getModel().getSumBonusPoolSpin();
+        Map<String, BigDecimal> bonusDefault = new HashMap<>(tabContent.getModel().getSumBonusSpin());
+
+        if (newValue) {
+            System.out.println("---------------------");
+            profit.put(buyIn, profitPool.get(buyIn));
+            System.out.println("newValue: " + newValue);
+            System.out.println("new profit: " + profit.entrySet().stream().filter(stringBigDecimalEntry -> stringBigDecimalEntry.getKey().contains(buyIn)).toList());
+            System.out.println("---------------------");
+        } else if (oldValue) {
+            System.out.println("---------------------");
+            profit.put(buyIn, profitDefault.get(buyIn));
+            System.out.println("oldValue: " + oldValue);
+            System.out.println("old profit: " + profit.entrySet().stream().filter(stringBigDecimalEntry -> stringBigDecimalEntry.getKey().contains(buyIn)).toList());
+            System.out.println("---------------------");
+        }
+
+        tableViewSpin.refresh();
+    }
+
+    private void updateValue(String selectedBuyIn) {
+        for (Object item : getTableViewSpin().getItems()) {
+            if (item instanceof Model && ((Model) item).getGameSpin().contains(selectedBuyIn)) {
+                getTableViewSpin().refresh();
+            }
+        }
     }
 }

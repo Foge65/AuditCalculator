@@ -26,8 +26,6 @@ public class TabContent {
 
     private ModelBuilderFilter modelBuilderCsvFilter;
     private ColumnBuilderFilterByDate columnBuilderFilterByDate;
-    private ColumnBuilderFilterByPool columnBuilderFilterByPool;
-
     private TabContentDefault tabContentDefault;
 
     public void buildCsvData(File file) {
@@ -86,23 +84,5 @@ public class TabContent {
         columnBuilder.buildColumnAnother();
         columnBuilder.addGameToObservableList(model.getGameSpin(), modelObserver.getObservableListSpinGame(), tabController.getTableViewSpin());
         columnBuilder.addGameToObservableList(model.getGameAnother(), modelObserver.getObservableListAnotherGame(), tabController.getTableViewAnother());
-    }
-
-    public void buildFilterDataByPool(DateTimeFormatter dateTimeFormatter, LocalDate dateSelectFrom, LocalDate dateSelectTo) {
-        modelBuilderCsvFilter = new ModelBuilderFilter(modelBuilderFromCsvFile.getPokerStarsBase());
-        modelBuilderCsvFilter.addToFilteredList(dateTimeFormatter, dateSelectFrom, dateSelectTo);
-        modelBuilderCsvFilter.setModel(model);
-    }
-
-    public void buildFilterViewByPool(TabController tabController) {
-        modelObserver = new ModelObserver();
-        modelObserver.clear(tabController);
-
-        columnBuilderFilterByPool = new ColumnBuilderFilterByPool(tabController, model);
-        columnBuilderFilterByPool.buildColumnSpin();
-        columnBuilderFilterByPool.buildColumnAnother();
-
-        textBuilder = new TextBuilder(tabController, model);
-        textBuilder.setText();
     }
 }

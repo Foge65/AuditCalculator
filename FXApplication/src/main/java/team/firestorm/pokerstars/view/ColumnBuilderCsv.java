@@ -16,8 +16,6 @@ public class ColumnBuilderCsv extends ColumnBuilderBase {
         super(tabController, model);
         this.tabController = tabController;
         this.model = model;
-        addListenerToTable(tabController.getTableViewSpin());
-        addListenerToTable(tabController.getTableViewAnother());
     }
 
     @Override

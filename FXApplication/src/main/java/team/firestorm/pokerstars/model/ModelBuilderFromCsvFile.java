@@ -117,7 +117,8 @@ public class ModelBuilderFromCsvFile {
         sumProfitPoolSpin = pokerStarsBase.sumProfitPool(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);
         sumBonusPoolSpin = pokerStarsBase.sumBonusPool(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);
 
-//        pool = pokerStarsBase.setPoolBoolean(gameSpin);
+        pool = pokerStarsBase.setPoolBoolean(gameSpin);
+//        pool = new HashMap<>();
 
         gameAnother = pokerStarsBase.game(pokerStarsBase.getRegexGameAnother(), csvStrings);
         countRegistrationAnother = pokerStarsBase.countTourney(csvStrings, gameAnother, pokerStarsBase.getRegistrationString());

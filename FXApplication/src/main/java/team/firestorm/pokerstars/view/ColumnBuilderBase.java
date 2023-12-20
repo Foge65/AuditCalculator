@@ -2,26 +2,27 @@ package team.firestorm.pokerstars.view;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
-import lombok.Getter;
+import javafx.util.Pair;
 import team.firestorm.pokerstars.controller.TabController;
 import team.firestorm.pokerstars.model.Model;
 
 import java.math.BigDecimal;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 public abstract class ColumnBuilderBase implements ColumnBuilder {
     private final TabController tabController;
     private final Model model;
-    @Getter
-    private CheckBox checkBox;
+    private Map<String, Pair<CheckBox, ChangeListener<Boolean>>> checkBoxMap = new HashMap<>();
 
     public ColumnBuilderBase(TabController tabController, Model model) {
         this.tabController = tabController;
@@ -62,26 +63,36 @@ public abstract class ColumnBuilderBase implements ColumnBuilder {
 
     @Override
     public void setCellCheckBox(TableView<Model> table, TableColumn<Model, Boolean> pool) {
-        pool.setCellValueFactory(cellData -> new SimpleBooleanProperty(false));
+        pool.setCellValueFactory(cell -> new SimpleBooleanProperty());
         pool.setCellFactory(new Callback<>() {
             @Override
-            public TableCell<Model, Boolean> call(TableColumn<Model, Boolean> column) {
+            public TableCell<Model, Boolean> call(TableColumn<Model, Boolean> poolColumn) {
                 return new TableCell<>() {
-                    {
-                        checkBox = new CheckBox();
-                        checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
-                                tabController.onClickPoolSetting();
-                        });
-                    }
+                    private final CheckBox checkBox = new CheckBox();
 
                     @Override
                     protected void updateItem(Boolean item, boolean empty) {
                         super.updateItem(item, empty);
-                        if (empty || item == null) {
+                        if (item == null || empty) {
                             setGraphic(null);
                         } else {
-                            checkBox.setSelected(item);
                             setGraphic(checkBox);
+                            checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
+                                boolean selected = checkBox.isSelected();
+                                System.out.println("---------------------------------------");
+                                System.out.println("item " + item);
+                                System.out.println("selected " + selected);
+                                System.out.println("---------------------------------------");
+                                Map<String, Boolean> poolMap = model.getPool();
+//                                if (item != selected) {
+                                    String buyIn = getTableRow().getItem().getGameSpin().stream().findFirst().orElse(null);
+                                    System.out.println("---------------------------------------");
+                                    System.out.println(buyIn);
+                                    System.out.println("---------------------------------------");
+                                    poolMap.put(buyIn, newValue);
+                                    tabController.onClickPoolSetting(oldValue, newValue, buyIn);
+//                                }
+                            });
                         }
                     }
                 };
@@ -137,14 +148,5 @@ public abstract class ColumnBuilderBase implements ColumnBuilder {
             observableList.add(model);
         }
         table.setItems(observableList);
-    }
-
-    public void addListenerToTable(TableView<Model> table) {
-        table.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-        });
-    }
-
-    public <T> void setCellValueNumberCustom(TableView<Model> table, Map<String, T> value, TableColumn<Model, T> column) {
-        table.getColumns().add(column);
     }
 }

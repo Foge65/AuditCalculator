@@ -476,8 +476,7 @@ public abstract class PokerStarsBase implements PokerStars {
     public Map<String, Boolean> setPoolBoolean(Set<String> game) {
         Map<String, Boolean> pool = new HashMap<>();
         for (String buyIn : game) {
-            Boolean setting = false;
-            pool.put(buyIn, setting);
+            pool.put(buyIn, false);
         }
         return pool;
     }
