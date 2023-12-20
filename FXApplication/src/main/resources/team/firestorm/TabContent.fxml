@@ -36,7 +36,7 @@
                     <Insets left="5.0" right="5.0" />
                 </GridPane.margin>
             </Label>
-            <DatePicker fx:id="datePickerFrom" onAction="#onClickDatePickerFrom" prefWidth="120.0" GridPane.columnIndex="1" />
+            <DatePicker fx:id="datePickerFrom" prefWidth="120.0" GridPane.columnIndex="1" />
             <Label text="Date To:" GridPane.rowIndex="1">
                 <font>
                     <Font size="18.0" />
@@ -45,7 +45,7 @@
                     <Insets left="5.0" right="5.0" />
                 </GridPane.margin>
             </Label>
-            <DatePicker fx:id="datePickerTo" onAction="#onClickDatePickerTo" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <DatePicker fx:id="datePickerTo" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Button fx:id="btnResetFilter" maxHeight="1.7976931348623157E308" mnemonicParsing="false" text="Reset Filters" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.rowSpan="2" />
         </GridPane>
         <GridPane gridLinesVisible="true" GridPane.columnIndex="1">

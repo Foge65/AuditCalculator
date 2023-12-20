@@ -119,8 +119,8 @@ public class TabController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        datePickerFrom.setOnAction(event -> onClickDatePickerFrom());
-        datePickerTo.setOnAction(event -> onClickDatePickerTo());
+        datePickerFrom.setOnAction(event -> filterByDate(tabContent.getModelBuilderFromCsvFile()));
+        datePickerTo.setOnAction(event -> filterByDate(tabContent.getModelBuilderFromCsvFile()));
 
         onClickBtnResetFilter();
 
@@ -163,16 +163,6 @@ public class TabController implements Initializable {
         Tab tab = new Tab(tabContent.getTabNameString());
         tab.setContent(anchorPane);
         tabPane.getTabs().add(tab);
-    }
-
-    @FXML
-    public void onClickDatePickerFrom() {
-        filterByDate(tabContent.getModelBuilderFromCsvFile());
-    }
-
-    @FXML
-    private void onClickDatePickerTo() {
-        filterByDate(tabContent.getModelBuilderFromCsvFile());
     }
 
     private void filterByDate(ModelBuilderFromCsvFile modelBuilderFromCsvFile) {
