@@ -54,13 +54,7 @@ public class ColumnBuilderCsv extends ColumnBuilderBase {
         TableColumn<Model, BigDecimal> sumBonus = new TableColumn<>("Sum\nBonus");
         setCellValueNumber(table, model.getSumBonusSpin(), sumBonus);
 
-        TableColumn<Model, Boolean> pool = new TableColumn<>("Pool\nSetting");
+        TableColumn<Model, Boolean> pool = new TableColumn<>("Enable\nPool");
         setCellCheckBox(table, pool);
-
-        TableColumn<Model, BigDecimal> sumProfitPool = new TableColumn<>("Sum\nProfit Pool");
-        setCellValueNumber(table, model.getSumProfitPoolSpin(), sumProfitPool);
-
-        TableColumn<Model, BigDecimal> sumBonusPool = new TableColumn<>("Sum\nBonus Pool");
-        setCellValueNumber(table, model.getSumBonusPoolSpin(), sumBonusPool);
     }
 }
