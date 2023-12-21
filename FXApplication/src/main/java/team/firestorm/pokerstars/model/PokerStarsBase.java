@@ -190,7 +190,7 @@ public abstract class PokerStarsBase implements PokerStars {
                         ids.add(idValue);
                     }
                     if (actionValue.equals(getUnRegistrationString())) {
-                        sumUnRegistrationForTMoney = sumUnRegistrationForTMoney.add(tMoneyBigDecimal);
+                        sumUnRegistrationForTMoney = sumUnRegistrationForTMoney.subtract(tMoneyBigDecimal);
                     }
                     if (actionValue.equals(getNetWonString()) && ids.contains(idValue)) {
                         sumNetWonForTicket = sumNetWonForTicket.add(amountBigDecimal);
@@ -456,7 +456,6 @@ public abstract class PokerStarsBase implements PokerStars {
             BigDecimal sumUnregistrationForMoney = BigDecimal.ZERO;
             BigDecimal sumNetWon = BigDecimal.ZERO;
             BigDecimal sumRegistrationForTMoney = BigDecimal.ZERO;
-            BigDecimal clearProfit = BigDecimal.ZERO;
             for (String[] stringArray : strings) {
                 String actionValue = stringArray[ACTION];
 
@@ -530,14 +529,14 @@ public abstract class PokerStarsBase implements PokerStars {
 
                 if (buyInValueQuote.equals(buyIn)) {
                     if (actionValue.equals(getRegistrationString())
+                            && tMoneyBigDecimal.compareTo(BigDecimal.ZERO) < 0) {
+                        sumRegistrationForTMoney = sumRegistrationForTMoney.add(tMoneyBigDecimal);
+                    }
+                    if (actionValue.equals(getRegistrationString())
                             && amountBigDecimal.compareTo(BigDecimal.ZERO) == 0
                             && tMoneyBigDecimal.compareTo(BigDecimal.ZERO) == 0) {
                         buyInStakePlusRake = parseBuyInFromString(buyIn);
                         counterTicket++;
-                    }
-                    if (actionValue.equals(getRegistrationString())
-                            && tMoneyBigDecimal.compareTo(BigDecimal.ZERO) < 0) {
-                        sumRegistrationForTMoney = sumRegistrationForTMoney.add(tMoneyBigDecimal);
                     }
                 }
                 bonus.put(buyIn, BigDecimal.valueOf(buyInStakePlusRake * counterTicket).subtract(sumRegistrationForTMoney));
