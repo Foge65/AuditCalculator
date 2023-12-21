@@ -7,9 +7,8 @@ public class LanguageRu extends PokerStarsBase implements DateFormat {
     private static final String REGISTRATION = "Регистрация в турнире";
     private static final String UNREGISTRATION = "Отмена регистрации в турнире";
     private static final String NETWON = "Победа в турнире";
-    // TODO : Найти аудит на русском, где есть необходимые строки
-    private static final String REENTRY = "";
-    private static final String KNOCKOUT = "";
+    private static final String REENTRY = "Ре-ентри в турнире";
+    private static final String KNOCKOUT = "Промежуточная выплата в турнире";
     private static final String WITHDRAWAL = "Вывод средств";
     private static final String SENT = "Деньги отправлены";
     private static final String RECEIVED1 = "Деньги получены";
