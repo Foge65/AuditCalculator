@@ -56,7 +56,7 @@ public class MainController implements Initializable {
                     Preferences preferences = Preferences.userNodeForPackage(getClass());
                     String lastDirectory = preferences.get("lastDirectory", System.getProperty("user.home"));
                     fileChooser.setInitialDirectory(new File(lastDirectory));
-                    List<File> files = getFileList(fileChooser);
+                    List<File> files = getFileList(fileChooser, (Stage) tabPane.getScene().getWindow());
                     if (files != null) {
                         String selectedDirectory = files.get(0).getParent();
                         preferences.put("lastDirectory", selectedDirectory);
@@ -75,8 +75,8 @@ public class MainController implements Initializable {
         fileChooser.setTitle("Please, select files");
     }
 
-    private List<File> getFileList(FileChooser fileChooser) {
-        return fileChooser.showOpenMultipleDialog(new Stage());
+    private List<File> getFileList(FileChooser fileChooser, Stage stage) {
+        return fileChooser.showOpenMultipleDialog(stage);
     }
 
     private void addTask(List<File> files) {
