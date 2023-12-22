@@ -22,7 +22,6 @@ public interface PokerStars {
     String startBalanceTMoney(List<String[]> strings, int amount, int balance);
     String finalBalance(List<String[]> strings, int column);
     int totalCountRow(List<String[]> strings);
-    String sumBalance(List<String[]> strings, int column);
     String sumTransfer(List<String[]> strings, int amount, String actionParam1, String actionParam2);
     Map<String, BigDecimal> sumProfitPool(List<String[]> strings, Set<String> game, int amount, int tMoney);
     Map<String, BigDecimal> sumBonusPool(List<String[]> strings, Set<String> game, int amount, int tMoney);

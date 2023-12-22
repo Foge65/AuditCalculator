@@ -356,16 +356,6 @@ public abstract class PokerStarsBase implements PokerStars {
     }
 
     @Override
-    public String sumBalance(List<String[]> strings, int column) {
-        BigDecimal sumBalance = BigDecimal.ZERO;
-        for (String[] stringArray : strings) {
-            String balanceValueComma = numberColumnParser(stringArray[column]);
-            sumBalance = sumBalance.add(new BigDecimal(balanceValueComma));
-        }
-        return String.valueOf(sumBalance);
-    }
-
-    @Override
     public String sumTransfer(List<String[]> strings, int amount, String actionParam1, String actionParam2) {
         BigDecimal sumTransfer = BigDecimal.ZERO;
         for (String[] stringArray : strings) {
