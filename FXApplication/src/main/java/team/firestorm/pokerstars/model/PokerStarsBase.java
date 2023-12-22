@@ -43,14 +43,8 @@ public abstract class PokerStarsBase implements PokerStars {
             BigDecimal sum = BigDecimal.ZERO;
             for (String[] stringArray : strings) {
                 String actionValue = stringArray[ACTION];
-
-                String buyInValue = stringArray[GAME];
-                String buyInValueQuote = replaceQuote(buyInValue);
-
-                String columnValue = stringArray[column];
-                String columnValueQuote = replaceQuote(columnValue);
-                String columnValueComma = replaceComma(columnValueQuote);
-
+                String buyInValueQuote = gameParser(stringArray);
+                String columnValueComma = numberColumnParser(stringArray[column]);
                 if (buyInValueQuote.equals(buyIn) && actionValue.equals(action)) {
                     sum = sum.add(new BigDecimal(columnValueComma));
                 }
@@ -63,30 +57,19 @@ public abstract class PokerStarsBase implements PokerStars {
     @Override
     public Map<String, Integer> countRegistrationByTicket(List<String[]> strings, Set<String> game, int amount, int tMoney) {
         Map<String, Integer> countRegistration = new HashMap<>();
-
         for (String buyIn : game) {
             int counter = 0;
             for (String[] stringArray : strings) {
                 String actionValue = stringArray[ACTION];
-
-                String buyInValue = stringArray[GAME];
-                String buyInValueQuote = replaceQuote(buyInValue);
-
-                String amountValue = stringArray[amount];
-                String amountValueQuote = replaceQuote(amountValue);
-                String amountValueComma = replaceComma(amountValueQuote);
-
-                String tMoneyValue = stringArray[tMoney];
-                String tMoneyValueQuote = replaceQuote(tMoneyValue);
-                String tMoneyValueComma = replaceComma(tMoneyValueQuote);
-
+                String buyInValueQuote = gameParser(stringArray);
+                String amountValueComma = numberColumnParser(stringArray[amount]);
+                String tMoneyValueComma = numberColumnParser(stringArray[tMoney]);
                 if (buyInValueQuote.equals(buyIn)
                         && actionValue.equals(getRegistrationString())
                         && BigDecimal.ZERO.compareTo(new BigDecimal(amountValueComma)) == 0
                         && BigDecimal.ZERO.compareTo(new BigDecimal(tMoneyValueComma)) == 0) {
                     counter++;
                 }
-
             }
             countRegistration.put(buyIn, counter);
         }
@@ -106,22 +89,14 @@ public abstract class PokerStarsBase implements PokerStars {
             BigDecimal sumNetWonForTicket = BigDecimal.ZERO;
             for (String[] stringArray : strings) {
                 String actionValue = stringArray[ACTION];
-
                 String idValue = stringArray[ID];
+                String buyInValueQuote = gameParser(stringArray);
 
-                String buyInValue = stringArray[GAME];
-                String buyInValueQuote = replaceQuote(buyInValue);
-
-                String amountValue = stringArray[amount];
-                String amountValueQuote = replaceQuote(amountValue);
-                String amountValueComma = replaceComma(amountValueQuote);
+                String amountValueComma = numberColumnParser(stringArray[amount]);
                 BigDecimal amountBigDecimal = new BigDecimal(amountValueComma);
 
-                String tMoneyValue = stringArray[tMoney];
-                String tMoneyValueQuote = replaceQuote(tMoneyValue);
-                String tMoneyValueComma = replaceComma(tMoneyValueQuote);
+                String tMoneyValueComma = numberColumnParser(stringArray[tMoney]);
                 BigDecimal tMoneyBigDecimal = new BigDecimal(tMoneyValueComma);
-
                 if (buyInValueQuote.equals(buyIn)) {
                     if (actionValue.equals(getRegistrationString())) {
                         sumRegistrationForMoney = sumRegistrationForMoney.add(amountBigDecimal);
@@ -164,22 +139,14 @@ public abstract class PokerStarsBase implements PokerStars {
             BigDecimal sumNetWonForTicket = BigDecimal.ZERO;
             for (String[] stringArray : strings) {
                 String actionValue = stringArray[ACTION];
-
                 String idValue = stringArray[ID];
+                String buyInValueQuote = gameParser(stringArray);
 
-                String buyInValue = stringArray[GAME];
-                String buyInValueQuote = replaceQuote(buyInValue);
-
-                String amountValue = stringArray[amount];
-                String amountValueQuote = replaceQuote(amountValue);
-                String amountValueComma = replaceComma(amountValueQuote);
+                String amountValueComma = numberColumnParser(stringArray[amount]);
                 BigDecimal amountBigDecimal = new BigDecimal(amountValueComma);
 
-                String tMoneyValue = stringArray[tMoney];
-                String tMoneyValueQuote = replaceQuote(tMoneyValue);
-                String tMoneyValueComma = replaceComma(tMoneyValueQuote);
+                String tMoneyValueComma = numberColumnParser(stringArray[tMoney]);
                 BigDecimal tMoneyBigDecimal = new BigDecimal(tMoneyValueComma);
-
                 if (buyInValueQuote.equals(buyIn)) {
                     if (actionValue.equals(getRegistrationString())) {
                         sumRegistrationForTMoney = sumRegistrationForTMoney.subtract(tMoneyBigDecimal);
@@ -211,10 +178,7 @@ public abstract class PokerStarsBase implements PokerStars {
             int counter = 0;
             for (String[] stringArray : strings) {
                 String actionValue = stringArray[ACTION];
-
-                String buyInValue = stringArray[GAME];
-                String buyInValueQuote = replaceQuote(buyInValue);
-
+                String buyInValueQuote = gameParser(stringArray);
                 if (buyIn.equals(buyInValueQuote) && action.equals(actionValue)) {
                     counter++;
                 }
@@ -240,10 +204,7 @@ public abstract class PokerStarsBase implements PokerStars {
             for (String[] stringArray : strings) {
                 String actionValue = stringArray[ACTION];
                 String idValue = stringArray[ID];
-
-                String buyInValue = stringArray[GAME];
-                String buyInValueQuote = replaceQuote(buyInValue);
-
+                String buyInValueQuote = gameParser(stringArray);
                 if (buyInValueQuote.equals(buyIn) && actionValue.equals(getRegistrationString())) {
                     counter += (int) ids.stream().filter(idValue::startsWith).count();
                 }
@@ -269,14 +230,8 @@ public abstract class PokerStarsBase implements PokerStars {
             for (String[] stringArray : strings) {
                 String actionValue = stringArray[ACTION];
                 String idValue = stringArray[ID];
-
-                String buyInValue = stringArray[GAME];
-                String buyInValueQuote = replaceQuote(buyInValue);
-
-                String amountValue = stringArray[amount];
-                String amountValueQuote = replaceQuote(amountValue);
-                String amountValueComma = replaceComma(amountValueQuote);
-
+                String buyInValueQuote = gameParser(stringArray);
+                String amountValueComma = numberColumnParser(stringArray[amount]);
                 if (buyInValueQuote.equals(buyIn) && actionValue.equals(getRegistrationString())) {
                     for (String id : ids) {
                         if (id.startsWith(idValue)) {
@@ -297,10 +252,7 @@ public abstract class PokerStarsBase implements PokerStars {
         for (String[] stringArray : strings) {
             String actionValue = stringArray[ACTION];
             String idValue = stringArray[ID];
-
-            String buyInValue = stringArray[GAME];
-            String buyInValueQuote = replaceQuote(buyInValue);
-
+            String buyInValueQuote = gameParser(stringArray);
             if (actionValue.equals(getRegistrationString())) {
                 if (buyInIdMap.containsKey(buyInValueQuote)) {
                     buyInIdMap.get(buyInValueQuote).add(idValue);
@@ -311,17 +263,12 @@ public abstract class PokerStarsBase implements PokerStars {
                 }
             }
         }
-
         for (String buyIn : game) {
             BigDecimal sum = BigDecimal.ZERO;
             for (String[] stringArray : strings) {
                 String actionValue = stringArray[ACTION];
                 String idValue = stringArray[ID];
-
-                String amountValue = stringArray[amount];
-                String amountValueQuote = replaceQuote(amountValue);
-                String amountValueComma = replaceComma(amountValueQuote);
-
+                String amountValueComma = numberColumnParser(stringArray[amount]);
                 if (actionValue.equals(getKnockOutString())) {
                     for (Map.Entry<String, List<String>> entry : buyInIdMap.entrySet()) {
                         String bi = entry.getKey();
@@ -353,14 +300,10 @@ public abstract class PokerStarsBase implements PokerStars {
         String[] firstString = strings.get(0);
         String actionValue = replaceQuote(firstString[ACTION]);
 
-        String amountValue = firstString[amount];
-        String amountValueQuote = replaceQuote(amountValue);
-        String amountValueComma = replaceComma(amountValueQuote);
+        String amountValueComma = numberColumnParser(firstString[amount]);
         BigDecimal amountBigDecimal = new BigDecimal(amountValueComma);
 
-        String balanceValue = replaceQuote(firstString[balance]);
-        String balanceValueQuote = replaceQuote(balanceValue);
-        String balanceValueComma = replaceComma(balanceValueQuote);
+        String balanceValueComma = numberColumnParser(firstString[balance]);
         BigDecimal balanceBigDecimal = new BigDecimal(balanceValueComma);
 
         BigDecimal startBalance = BigDecimal.ZERO;
@@ -381,14 +324,10 @@ public abstract class PokerStarsBase implements PokerStars {
         String[] firstString = strings.get(0);
         String actionValue = replaceQuote(firstString[ACTION]);
 
-        String amountValue = firstString[amount];
-        String amountValueQuote = replaceQuote(amountValue);
-        String amountValueComma = replaceComma(amountValueQuote);
+        String amountValueComma = numberColumnParser(firstString[amount]);
         BigDecimal amountBigDecimal = new BigDecimal(amountValueComma);
 
-        String balanceValue = replaceQuote(firstString[balance]);
-        String balanceValueQuote = replaceQuote(balanceValue);
-        String balanceValueComma = replaceComma(balanceValueQuote);
+        String balanceValueComma = numberColumnParser(firstString[balance]);
         BigDecimal balanceBigDecimal = new BigDecimal(balanceValueComma);
 
         BigDecimal startBalance = BigDecimal.ZERO;
@@ -420,11 +359,8 @@ public abstract class PokerStarsBase implements PokerStars {
     public String sumBalance(List<String[]> strings, int column) {
         BigDecimal sumBalance = BigDecimal.ZERO;
         for (String[] stringArray : strings) {
-            String balanceValue = replaceQuote(stringArray[column]);
-            String balanceValueQuote = replaceQuote(balanceValue);
-            String balanceValueComma = replaceComma(balanceValueQuote);
-            BigDecimal sumValue = new BigDecimal(balanceValueComma);
-            sumBalance = sumBalance.add(sumValue);
+            String balanceValueComma = numberColumnParser(stringArray[column]);
+            sumBalance = sumBalance.add(new BigDecimal(balanceValueComma));
         }
         return String.valueOf(sumBalance);
     }
@@ -434,11 +370,7 @@ public abstract class PokerStarsBase implements PokerStars {
         BigDecimal sumTransfer = BigDecimal.ZERO;
         for (String[] stringArray : strings) {
             String actionValue = replaceQuote(stringArray[ACTION]);
-
-            String amountValue = stringArray[amount];
-            String amountValueQuote = replaceQuote(amountValue);
-            String amountValueComma = replaceComma(amountValueQuote);
-
+            String amountValueComma = numberColumnParser(stringArray[amount]);
             if (actionValue.startsWith(actionParam1) || actionValue.startsWith(actionParam2)) {
                 sumTransfer = sumTransfer.add(new BigDecimal(amountValueComma));
             }
@@ -458,20 +390,13 @@ public abstract class PokerStarsBase implements PokerStars {
             BigDecimal sumRegistrationForTMoney = BigDecimal.ZERO;
             for (String[] stringArray : strings) {
                 String actionValue = stringArray[ACTION];
+                String buyInValueQuote = gameParser(stringArray);
 
-                String buyInValue = stringArray[GAME];
-                String buyInValueQuote = replaceQuote(buyInValue);
-
-                String amountValue = stringArray[amount];
-                String amountValueQuote = replaceQuote(amountValue);
-                String amountValueComma = replaceComma(amountValueQuote);
+                String amountValueComma = numberColumnParser(stringArray[amount]);
                 BigDecimal amountBigDecimal = new BigDecimal(amountValueComma);
 
-                String tMoneyValue = stringArray[tMoney];
-                String tMoneyValueQuote = replaceQuote(tMoneyValue);
-                String tMoneyValueComma = replaceComma(tMoneyValueQuote);
+                String tMoneyValueComma = numberColumnParser(stringArray[tMoney]);
                 BigDecimal tMoneyBigDecimal = new BigDecimal(tMoneyValueComma);
-
                 if (buyInValueQuote.equals(buyIn)) {
                     if (actionValue.equals(getRegistrationString())
                             && amountBigDecimal.compareTo(BigDecimal.ZERO) < 0) {
@@ -513,20 +438,13 @@ public abstract class PokerStarsBase implements PokerStars {
             BigDecimal sumRegistrationForTMoney = BigDecimal.ZERO;
             for (String[] stringArray : strings) {
                 String actionValue = stringArray[ACTION];
+                String buyInValueQuote = gameParser(stringArray);
 
-                String buyInValue = stringArray[GAME];
-                String buyInValueQuote = replaceQuote(buyInValue);
-
-                String amountValue = stringArray[amount];
-                String amountValueQuote = replaceQuote(amountValue);
-                String amountValueComma = replaceComma(amountValueQuote);
+                String amountValueComma = numberColumnParser(stringArray[amount]);
                 BigDecimal amountBigDecimal = new BigDecimal(amountValueComma);
 
-                String tMoneyValue = stringArray[tMoney];
-                String tMoneyValueQuote = replaceQuote(tMoneyValue);
-                String tMoneyValueComma = replaceComma(tMoneyValueQuote);
+                String tMoneyValueComma = numberColumnParser(stringArray[tMoney]);
                 BigDecimal tMoneyBigDecimal = new BigDecimal(tMoneyValueComma);
-
                 if (buyInValueQuote.equals(buyIn)) {
                     if (actionValue.equals(getRegistrationString())
                             && tMoneyBigDecimal.compareTo(BigDecimal.ZERO) < 0) {
@@ -572,5 +490,18 @@ public abstract class PokerStarsBase implements PokerStars {
             pool.put(buyIn, setting);
         }
         return pool;
+    }
+
+    private String gameParser(String[] stringArray) {
+        String buyInValue = stringArray[GAME];
+        String buyInValueQuote = replaceQuote(buyInValue);
+        return buyInValueQuote;
+    }
+
+    private String numberColumnParser(String stringArray) {
+        String columnValue = stringArray;
+        String columnValueQuote = replaceQuote(columnValue);
+        String columnValueComma = replaceComma(columnValueQuote);
+        return columnValueComma;
     }
 }
