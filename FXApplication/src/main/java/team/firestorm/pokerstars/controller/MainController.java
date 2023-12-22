@@ -23,13 +23,13 @@ import java.util.prefs.Preferences;
 @Getter
 public class MainController implements Initializable {
     @FXML
-    private TabPane tabPane;
-    @FXML
     public AnchorPane anchorTabContent;
     @FXML
-    private Button btnOpen;
-    @FXML
     public Button btnCloseAllTab;
+    @FXML
+    private TabPane tabPane;
+    @FXML
+    private Button btnOpen;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -54,7 +54,7 @@ public class MainController implements Initializable {
                     FileChooser fileChooser = new FileChooser();
                     setFileChooserProperty(fileChooser);
                     Preferences preferences = Preferences.userNodeForPackage(getClass());
-                    String lastDirectory = preferences.get("lastDirectory", System.getProperty("user.home"));
+                    String lastDirectory = getLastDirectory(preferences);
                     fileChooser.setInitialDirectory(new File(lastDirectory));
                     List<File> files = getFileList(fileChooser, (Stage) tabPane.getScene().getWindow());
                     if (files != null) {
@@ -65,6 +65,21 @@ public class MainController implements Initializable {
                     btnOpen.setDisable(false);
                 }
         );
+    }
+
+    private String getLastDirectory(Preferences preferences) {
+        try {
+            String lastDirectory = preferences.get("lastDirectory", System.getProperty("user.home"));
+            File lastDirectoryFile = new File(lastDirectory);
+            if (lastDirectoryFile.exists() && lastDirectoryFile.isDirectory()) {
+                return lastDirectory;
+            } else {
+                return System.getProperty("user.home");
+            }
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            return System.getProperty("user.home");
+        }
     }
 
     private void setFileChooserProperty(FileChooser fileChooser) {
