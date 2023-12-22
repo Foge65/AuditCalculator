@@ -8,10 +8,10 @@ import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
-abstract class PokerStarsBaseTest {
+abstract class CsvFileBaseForTests {
     protected ModelBuilderFromCsvFile modelBuilderFromCsvFile;
 
-    public PokerStarsBaseTest(String filePath) {
+    public CsvFileBaseForTests(String filePath) {
         CsvParser csvParser = new CsvParser(new File(filePath));
         modelBuilderFromCsvFile = new ModelBuilderFromCsvFile(csvParser);
     }

@@ -2,8 +2,8 @@ package team.firestorm.pokerstars.model;
 
 import java.math.BigDecimal;
 
-class Yura0053Test extends PokerStarsBaseTest {
-    Yura0053Test() {
+class Yura0053ForTests extends CsvFileBaseForTests {
+    Yura0053ForTests() {
         super("src/test/resources/Yura0053.csv");
     }
 
