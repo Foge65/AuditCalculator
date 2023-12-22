@@ -61,7 +61,7 @@ public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
         model.setFinalBalance(pokerStarsBase.finalBalance(filteredStrings, getBalanceIndex()));
 
         model.setStartTMoney(pokerStarsBase.startBalanceTMoney(filteredStrings, getTMoneyAmountIndex(), getTMoneyBalanceIndex()));
-        model.setFinalTMoney(pokerStarsBase.finalBalance(filteredStrings, getTMoneyAmountIndex()));
+        model.setFinalTMoney(pokerStarsBase.finalBalance(filteredStrings, getTMoneyBalanceIndex()));
 
         model.setStartCoin(pokerStarsBase.startBalance(filteredStrings, getCoinBalanceIndex()));
         model.setFinalCoin(pokerStarsBase.finalBalance(filteredStrings, getCoinBalanceIndex()));

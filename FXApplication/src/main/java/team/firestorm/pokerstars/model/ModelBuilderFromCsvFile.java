@@ -149,7 +149,7 @@ public class ModelBuilderFromCsvFile {
         finalBalance = pokerStarsBase.finalBalance(csvStrings, balanceIndex);
 
         startTMoney = pokerStarsBase.startBalanceTMoney(csvStrings, tMoneyAmountIndex, tMoneyBalanceIndex);
-        finalTMoney = pokerStarsBase.finalBalance(csvStrings, tMoneyAmountIndex);
+        finalTMoney = pokerStarsBase.finalBalance(csvStrings, tMoneyBalanceIndex);
 
         startCoin = pokerStarsBase.startBalance(csvStrings, coinBalanceIndex);
         finalCoin = pokerStarsBase.finalBalance(csvStrings, coinBalanceIndex);
