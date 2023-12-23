@@ -1,6 +1,5 @@
 package team.firestorm.pokerstars.controller;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -15,13 +14,9 @@ import team.firestorm.pokerstars.model.ModelBuilderFromCsvFile;
 import team.firestorm.pokerstars.model.TabContent;
 
 import java.io.File;
-import java.math.BigDecimal;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 @Getter
 @NoArgsConstructor
@@ -196,18 +191,5 @@ public class TabController implements Initializable {
     }
 
     public void onClickPoolSetting() {
-        ObservableList<Model> selectedItems = tableViewSpin.getSelectionModel().getSelectedItems();
-        selectedItems.forEach(e -> System.out.println(e.getSumProfitSpin()));
-
-        int indexColumnProfit = 8;
-        Map<String, BigDecimal> sumProfitPoolSpin = tabContent.getModel().getSumProfitPoolSpin();
-        Model row = tableViewSpin.getSelectionModel().getSelectedItem();
-        BigDecimal cellProfitValue = (BigDecimal) tableViewSpin.getColumns().get(indexColumnProfit).getCellData(row);
-        Set<String> gameSpin = row.getGameSpin();
-        String buyIn = gameSpin.toString().replace("[", "").replace("]", "");
-        if (sumProfitPoolSpin.containsKey(buyIn)) {
-            Map<String, BigDecimal> filteredSumProfitPoolSpin = new HashMap<>();
-            filteredSumProfitPoolSpin.put(buyIn, cellProfitValue);
-        }
     }
 }

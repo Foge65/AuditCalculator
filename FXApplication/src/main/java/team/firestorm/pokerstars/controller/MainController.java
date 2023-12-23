@@ -67,6 +67,14 @@ public class MainController implements Initializable {
         );
     }
 
+    private void setFileChooserProperty(FileChooser fileChooser) {
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("CSV", "*.csv", "*.xlsx"),
+                new FileChooser.ExtensionFilter("All Files", "*.*")
+        );
+        fileChooser.setTitle("Please, select files");
+    }
+
     private String getLastDirectory(Preferences preferences) {
         try {
             String lastDirectory = preferences.get("lastDirectory", System.getProperty("user.home"));
@@ -80,14 +88,6 @@ public class MainController implements Initializable {
             e.printStackTrace();
             return System.getProperty("user.home");
         }
-    }
-
-    private void setFileChooserProperty(FileChooser fileChooser) {
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("CSV", "*.csv", "*.xlsx"),
-                new FileChooser.ExtensionFilter("All Files", "*.*")
-        );
-        fileChooser.setTitle("Please, select files");
     }
 
     private List<File> getFileList(FileChooser fileChooser, Stage stage) {
@@ -104,12 +104,12 @@ public class MainController implements Initializable {
                     @Override
                     protected Void call() {
                         tabController.buildTabData(file);
+                        tabController.buildTabView(tabController);
                         return null;
                     }
 
                     @Override
                     protected void succeeded() {
-                        tabController.buildTabView(tabController);
                         tabController.addTab(anchorPane, tabPane);
                         btnOpen.setDisable(false);
                     }
