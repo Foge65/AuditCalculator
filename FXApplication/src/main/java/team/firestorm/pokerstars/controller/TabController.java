@@ -61,14 +61,9 @@ public class TabController implements Initializable {
     @FXML
     private Text exchangeCoin;
     @FXML
-    private Text cashGame;
-
+    private Text otherBonus;
     @FXML
     private Text casino;
-    @FXML
-    private Text omaha;
-    @FXML
-    private Text otherGame;
 
     @FXML
     private Button btnCopyStartBalance;
@@ -95,18 +90,13 @@ public class TabController implements Initializable {
     private Button btnCopyDeposit;
 
     @FXML
-    private Button btnCopyBonus;
+    private Button btnCopyChestReward;
     @FXML
     private Button btnCopyExchangeCoin;
     @FXML
-    private Button btnCopyCashGame;
-
+    private Button btnCopyOtherBonus;
     @FXML
     private Button btnCopyCasino;
-    @FXML
-    private Button btnCopyOmaha;
-    @FXML
-    private Button btnCopyOtherGame;
 
     private TabContent tabContent;
     private LocalDate dateSelectFrom;
@@ -133,13 +123,10 @@ public class TabController implements Initializable {
         onClickBtnCopy(btnCopyTransferReceived, transferReceived);
         onClickBtnCopy(btnCopyDeposit, deposit);
 
-        onClickBtnCopy(btnCopyBonus, chestReward);
+        onClickBtnCopy(btnCopyChestReward, chestReward);
         onClickBtnCopy(btnCopyExchangeCoin, exchangeCoin);
-        onClickBtnCopy(btnCopyCashGame, cashGame);
-
+        onClickBtnCopy(btnCopyOtherBonus, otherBonus);
         onClickBtnCopy(btnCopyCasino, casino);
-        onClickBtnCopy(btnCopyOmaha, omaha);
-        onClickBtnCopy(btnCopyOtherGame, otherGame);
     }
 
     public void buildTabData(File file) {

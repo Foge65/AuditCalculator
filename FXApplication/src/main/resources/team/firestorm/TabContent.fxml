@@ -4,16 +4,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane stylesheets="@theme.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="team.firestorm.pokerstars.controller.TabController">
+<AnchorPane stylesheets="@theme.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="team.firestorm.pokerstars.controller.TabController">
     <GridPane hgap="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES"/>
-            <ColumnConstraints hgrow="SOMETIMES"/>
-            <ColumnConstraints hgrow="SOMETIMES"/>
-            <ColumnConstraints hgrow="SOMETIMES"/>
+            <ColumnConstraints hgrow="SOMETIMES" />
+            <ColumnConstraints hgrow="SOMETIMES" />
+            <ColumnConstraints hgrow="SOMETIMES" />
+            <ColumnConstraints hgrow="SOMETIMES" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints vgrow="SOMETIMES"/>
+            <RowConstraints vgrow="SOMETIMES" />
         </rowConstraints>
         <GridPane>
             <columnConstraints>
@@ -22,11 +22,11 @@
                 <ColumnConstraints hgrow="SOMETIMES" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES" />
             </rowConstraints>
             <GridPane.margin>
-                <Insets/>
+                <Insets />
             </GridPane.margin>
             <Label text="Date From:">
                 <font>
@@ -55,11 +55,11 @@
                 <ColumnConstraints hgrow="SOMETIMES" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES" />
             </rowConstraints>
             <GridPane.margin>
-                <Insets/>
+                <Insets />
             </GridPane.margin>
             <Label text="Start Balance:">
                 <font>
@@ -103,8 +103,8 @@
                 <ColumnConstraints hgrow="SOMETIMES" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES" />
             </rowConstraints>
             <Label text="Start T$:">
                 <font>
@@ -122,7 +122,7 @@
                     <Insets left="5.0" right="5.0" />
                 </GridPane.margin>
             </Text>
-            <Button fx:id="btnCopyStartTMoney" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2"/>
+            <Button fx:id="btnCopyStartTMoney" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" />
             <Label text="Final T$:" GridPane.rowIndex="1">
                 <font>
                     <Font size="18.0" />
@@ -148,8 +148,8 @@
                 <ColumnConstraints hgrow="SOMETIMES" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES" />
             </rowConstraints>
             <Label text="Start Coin:">
                 <font>
@@ -167,7 +167,7 @@
                     <Insets left="5.0" right="5.0" />
                 </GridPane.margin>
             </Text>
-            <Button fx:id="btnCopyStartCoin" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2"/>
+            <Button fx:id="btnCopyStartCoin" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" />
             <Label text="Final Coin:" GridPane.rowIndex="1">
                 <font>
                     <Font size="18.0" />
@@ -187,8 +187,7 @@
             <Button fx:id="btnCopyFinalCoin" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="1" />
         </GridPane>
     </GridPane>
-    <SplitPane dividerPositions="0.5" orientation="VERTICAL" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="5.0"
-               AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="65.0">
+    <SplitPane dividerPositions="0.5" orientation="VERTICAL" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="65.0">
         <AnchorPane>
             <TableView fx:id="tableViewSpin" editable="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
         </AnchorPane>
@@ -196,226 +195,319 @@
             <TableView fx:id="tableViewAnother" editable="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
         </AnchorPane>
     </SplitPane>
-    <GridPane hgap="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES"/>
-            <ColumnConstraints hgrow="SOMETIMES"/>
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-        <GridPane gridLinesVisible="true">
+   <GridPane gridLinesVisible="true" hgap="5.0" layoutX="10.0" layoutY="10.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0">
+      <columnConstraints>
+         <ColumnConstraints hgrow="SOMETIMES" />
+         <ColumnConstraints hgrow="SOMETIMES" />
+         <ColumnConstraints hgrow="SOMETIMES" />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints vgrow="SOMETIMES" />
+      </rowConstraints>
+      <children>
+         <GridPane gridLinesVisible="true">
             <columnConstraints>
-                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" />
-                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="35.0" />
-                <ColumnConstraints hgrow="SOMETIMES" />
-                <ColumnConstraints hgrow="SOMETIMES" />
+               <ColumnConstraints hgrow="SOMETIMES" />
+               <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="35.0" />
+               <ColumnConstraints hgrow="SOMETIMES" />
+               <ColumnConstraints hgrow="SOMETIMES" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints vgrow="SOMETIMES" />
-                <RowConstraints vgrow="SOMETIMES" />
-                <RowConstraints vgrow="SOMETIMES" />
-                <RowConstraints vgrow="SOMETIMES" />
+               <RowConstraints vgrow="SOMETIMES" />
+               <RowConstraints vgrow="SOMETIMES" />
+               <RowConstraints vgrow="SOMETIMES" />
+               <RowConstraints vgrow="SOMETIMES" />
             </rowConstraints>
             <GridPane.margin>
-                <Insets />
+               <Insets />
             </GridPane.margin>
-            <Label text="Withdrawal:">
-                <font>
-                    <Font size="18.0" />
-                </font>
-                <GridPane.margin>
-                    <Insets left="5.0" right="5.0" />
-                </GridPane.margin>
-            </Label>
-            <Text fx:id="withdrawal" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1">
-                <font>
-                    <Font size="18.0" />
-                </font>
-                <GridPane.margin>
-                    <Insets left="5.0" right="5.0" />
-                </GridPane.margin>
-            </Text>
-            <Label text="Transfer Sent:" GridPane.rowIndex="1">
-                <font>
-                    <Font size="18.0" />
-                </font>
-                <GridPane.margin>
-                    <Insets left="5.0" right="5.0" />
-                </GridPane.margin>
-            </Label>
-            <Text fx:id="transferSent" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                <font>
-                    <Font size="18.0" />
-                </font>
-                <GridPane.margin>
-                    <Insets left="5.0" right="5.0" />
-                </GridPane.margin>
-            </Text>
-            <Label text="Transfer Received:" GridPane.rowIndex="2">
-                <font>
-                    <Font size="18.0" />
-                </font>
-                <GridPane.margin>
-                    <Insets left="5.0" right="5.0" />
-                </GridPane.margin>
-            </Label>
-            <Text fx:id="transferReceived" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                <font>
-                    <Font size="18.0" />
-                </font>
-                <GridPane.margin>
-                    <Insets left="5.0" right="5.0" />
-                </GridPane.margin>
-            </Text>
-            <Label text="Deposit:" GridPane.rowIndex="3">
-                <font>
-                    <Font size="18.0" />
-                </font>
-                <GridPane.margin>
-                    <Insets left="5.0" right="5.0" />
-                </GridPane.margin>
-            </Label>
-            <Text fx:id="deposit" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                <font>
-                    <Font size="18.0" />
-                </font>
-                <GridPane.margin>
-                    <Insets left="5.0" right="5.0" />
-                </GridPane.margin>
-            </Text>
-            <Button fx:id="btnDetailWithdrawal" mnemonicParsing="false" text="Detail" textAlignment="CENTER" GridPane.columnIndex="3" />
-            <Button fx:id="btnDetailTransferSent" mnemonicParsing="false" text="Detail" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Button fx:id="btnDetailTransferReceived" mnemonicParsing="false" text="Detail" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <Button fx:id="btnDetailDeposit" mnemonicParsing="false" text="Detail" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <Button fx:id="btnCopyWithdrawal" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" />
-            <Button fx:id="btnCopyTransferSent" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Button fx:id="btnCopyTransferReceived" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Button fx:id="btnCopyDeposit" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-        </GridPane>
-        <GridPane gridLinesVisible="true" GridPane.columnIndex="1">
+            <children>
+               <Label text="Withdrawal:">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Label>
+               <Text fx:id="withdrawal" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Text>
+               <Button fx:id="btnCopyWithdrawal" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" />
+               <Button fx:id="btnDetailWithdrawal" mnemonicParsing="false" text="Detail" textAlignment="CENTER" GridPane.columnIndex="3" />
+               <Label text="Transfer Sent:" GridPane.rowIndex="1">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Label>
+               <Text fx:id="transferSent" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Text>
+               <Button fx:id="btnCopyTransferSent" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+               <Button fx:id="btnDetailTransferSent" mnemonicParsing="false" text="Detail" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+               <Label text="Transfer Received:" GridPane.rowIndex="2">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Label>
+               <Text fx:id="transferReceived" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Text>
+               <Button fx:id="btnCopyTransferReceived" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+               <Button fx:id="btnDetailTransferReceived" mnemonicParsing="false" text="Detail" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+               <Label text="Deposit:" GridPane.rowIndex="3">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Label>
+               <Text fx:id="deposit" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Text>
+               <Button fx:id="btnCopyDeposit" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+               <Button fx:id="btnDetailDeposit" mnemonicParsing="false" text="Detail" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            </children>
+         </GridPane>
+         <GridPane gridLinesVisible="true" GridPane.columnIndex="1">
             <columnConstraints>
-                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" />
-                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="35.0" />
-                <ColumnConstraints hgrow="SOMETIMES" />
-                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" />
-                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="35.0" />
-                <ColumnConstraints hgrow="SOMETIMES" />
+               <ColumnConstraints hgrow="SOMETIMES" />
+               <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="35.0" />
+               <ColumnConstraints hgrow="SOMETIMES" />
+               <ColumnConstraints hgrow="SOMETIMES" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints vgrow="SOMETIMES" />
-                <RowConstraints vgrow="SOMETIMES" />
-                <RowConstraints vgrow="SOMETIMES" />
+               <RowConstraints vgrow="SOMETIMES" />
+               <RowConstraints vgrow="SOMETIMES" />
+               <RowConstraints vgrow="SOMETIMES" />
+               <RowConstraints vgrow="SOMETIMES" />
             </rowConstraints>
-            <padding>
-                <Insets bottom="27.0" />
-            </padding>
             <GridPane.margin>
-                <Insets />
+               <Insets />
             </GridPane.margin>
-            <Label text="Chest Reward:">
-                <font>
-                    <Font size="18.0" />
-                </font>
-                <GridPane.margin>
-                    <Insets left="5.0" right="5.0" />
-                </GridPane.margin>
-            </Label>
-            <Text fx:id="chestReward" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT"
-                  GridPane.columnIndex="1">
-                <font>
-                    <Font size="18.0" />
-                </font>
-                <GridPane.margin>
-                    <Insets left="5.0" right="5.0" />
-                </GridPane.margin>
-            </Text>
-            <Label text="Exchange Coin:" GridPane.rowIndex="1">
-                <font>
-                    <Font size="18.0" />
-                </font>
-                <GridPane.margin>
-                    <Insets left="5.0" right="5.0" />
-                </GridPane.margin>
-            </Label>
-            <Text fx:id="exchangeCoin" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                <font>
-                    <Font size="18.0" />
-                </font>
-                <GridPane.margin>
-                    <Insets left="5.0" right="5.0" />
-                </GridPane.margin>
-            </Text>
-            <Label text="Cash Game:" GridPane.rowIndex="2">
-                <font>
-                    <Font size="18.0" />
-                </font>
-                <GridPane.margin>
-                    <Insets left="5.0" right="5.0" />
-                </GridPane.margin>
-            </Label>
-            <Text fx:id="cashGame" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                <font>
-                    <Font size="18.0" />
-                </font>
-                <GridPane.margin>
-                    <Insets left="5.0" right="5.0" />
-                </GridPane.margin>
-            </Text>
-            <Button fx:id="btnCopyBonus" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" />
-            <Button fx:id="btnCopyExchangeCoin" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Button fx:id="btnCopyCashGame" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Label text="Casino:" GridPane.columnIndex="3">
-                <font>
-                    <Font size="18.0" />
-                </font>
-                <GridPane.margin>
-                    <Insets left="5.0" right="5.0" />
-                </GridPane.margin>
-            </Label>
-            <Text fx:id="casino" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="4">
-                <font>
-                    <Font size="18.0" />
-                </font>
-                <GridPane.margin>
-                    <Insets left="5.0" right="5.0" />
-                </GridPane.margin>
-            </Text>
-            <Label text="Omaha:" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                <font>
-                    <Font size="18.0" />
-                </font>
-                <GridPane.margin>
-                    <Insets left="5.0" right="5.0" />
-                </GridPane.margin>
-            </Label>
-            <Text fx:id="omaha" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                <font>
-                    <Font size="18.0" />
-                </font>
-                <GridPane.margin>
-                    <Insets left="5.0" right="5.0" />
-                </GridPane.margin>
-            </Text>
-            <Label text="Other Games:" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                <font>
-                    <Font size="18.0" />
-                </font>
-                <GridPane.margin>
-                    <Insets left="5.0" right="5.0" />
-                </GridPane.margin>
-            </Label>
-            <Text fx:id="otherGame" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="4" GridPane.rowIndex="2">
-                <font>
-                    <Font size="18.0" />
-                </font>
-                <GridPane.margin>
-                    <Insets left="5.0" right="5.0" />
-                </GridPane.margin>
-            </Text>
-            <Button fx:id="btnCopyCasino" mnemonicParsing="false" text="Copy" GridPane.columnIndex="5" />
-            <Button fx:id="btnCopyOmaha" mnemonicParsing="false" text="Copy" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <Button fx:id="btnCopyOtherGame" mnemonicParsing="false" text="Copy" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-        </GridPane>
-    </GridPane>
+            <children>
+               <Label text="Chest Reward:">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Label>
+               <Text fx:id="chestReward" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="1">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Text>
+               <Button fx:id="btnCopyChestReward" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" />
+               <Button fx:id="btnDetailChest" mnemonicParsing="false" text="Detail" textAlignment="CENTER" GridPane.columnIndex="3" />
+               <Label text="Exchange Coin:" GridPane.rowIndex="1">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Label>
+               <Text fx:id="exchangeCoin" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Text>
+               <Button fx:id="btnCopyExchangeCoin" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+               <Button fx:id="btnDetailExchangeCoin" mnemonicParsing="false" text="Detail" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+               <Label text="Other Bonus:" GridPane.rowIndex="2">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Label>
+               <Text fx:id="otherBonus" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Text>
+               <Button fx:id="btnCopyOtherBonus" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+               <Button fx:id="btnDetailOtherBonus" mnemonicParsing="false" text="Detail" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+               <Label text="Casino:" GridPane.rowIndex="3">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Label>
+               <Text fx:id="casino" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Text>
+               <Button fx:id="btnCopyCasino" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+               <Button fx:id="btnDetailCasino" mnemonicParsing="false" text="Detail" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            </children>
+         </GridPane>
+         <GridPane gridLinesVisible="true" GridPane.columnIndex="2">
+            <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" />
+               <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="35.0" />
+               <ColumnConstraints hgrow="SOMETIMES" />
+               <ColumnConstraints hgrow="SOMETIMES" />
+               <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="35.0" />
+               <ColumnConstraints hgrow="SOMETIMES" />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints vgrow="SOMETIMES" />
+               <RowConstraints vgrow="SOMETIMES" />
+               <RowConstraints vgrow="SOMETIMES" />
+               <RowConstraints vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+               <Label text="Count Spins:">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Label>
+               <Text fx:id="countSpins" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="1">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Text>
+               <Button fx:id="btnCopyTotalSpins" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" />
+               <Label text="Total Profit Spin:" GridPane.rowIndex="1">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Label>
+               <Text fx:id="totalProfitSpin" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Text>
+               <Button fx:id="btnCopyTotalProfitSpin" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <GridPane.margin>
+                     <Insets />
+                  </GridPane.margin>
+               </Button>
+               <Label text="Total Bonus Spin:" GridPane.rowIndex="2">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Label>
+               <Text fx:id="totalBonusSpin" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Text>
+               <Button fx:id="btnCopyTotalBonusSpin" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+               <Label text="Total All bonus:" GridPane.rowIndex="3">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Label>
+               <Text fx:id="totalAllBonuse" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Text>
+               <Button fx:id="btnCopyAllBonuse" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+               <Label text="Total Profit MTT:" GridPane.columnIndex="3">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Label>
+               <Text fx:id="totalProfitMTT" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="4">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Text>
+               <Button fx:id="btnCopyTotalProfitMTT" mnemonicParsing="false" text="Copy" GridPane.columnIndex="5" />
+               <Label text="Total Profit Cash:" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Label>
+               <Text fx:id="totalProfitCash" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Text>
+               <Button fx:id="btnCopyTotalProfitCash" mnemonicParsing="false" text="Copy" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            </children>
+         </GridPane>
+      </children>
+   </GridPane>
 </AnchorPane>
