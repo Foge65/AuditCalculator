@@ -19,6 +19,7 @@ public abstract class PokerStarsBase implements PokerStars {
     public final String regexGameSpin = "NL\\sHold'em\\sSit&Go\\sBuy-In:\\s";
     public final String regexGameAnother = "^(?!.*NL Hold'em Sit&Go Buy-In).*";
     private CsvParser csvParser;
+    private static final String OTHER_BONUS_LC = "LC_";
 
     @Override
     public String replaceQuote(String string) {
@@ -493,5 +494,10 @@ public abstract class PokerStarsBase implements PokerStars {
         String columnValueQuote = replaceQuote(columnValue);
         String columnValueComma = replaceComma(columnValueQuote);
         return columnValueComma;
+    }
+
+    @Override
+    public String getOtherBonusString() {
+        return OTHER_BONUS_LC;
     }
 }

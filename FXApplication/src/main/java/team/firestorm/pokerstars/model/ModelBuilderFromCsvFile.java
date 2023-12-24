@@ -14,24 +14,7 @@ public class ModelBuilderFromCsvFile {
     private final Language languageDetection;
     private final String language;
     private final Date date;
-    private LanguageEn languageEn;
-    private LanguageRu languageRu;
-    private PokerStarsBase pokerStarsBase;
-    private LocalDate dateFrom;
-    private LocalDate dateTo;
-    private DateTimeFormatter dateTimeFormatter;
-
     private final int elements;
-    private ElementIndex elementIndex;
-
-    private int amountIndex;
-    private int coinAmountIndex;
-    private int tMoneyAmountIndex;
-
-    private int balanceIndex;
-    private int coinBalanceIndex;
-    private int tMoneyBalanceIndex;
-
     private final Set<String> gameSpin;
     private final Map<String, Integer> countRegistrationSpin;
     private final Map<String, BigDecimal> sumRegistrationSpin;
@@ -42,12 +25,8 @@ public class ModelBuilderFromCsvFile {
     private final Map<String, Integer> countRegistrationByTicketSpin;
     private final Map<String, BigDecimal> sumProfitSpin;
     private final Map<String, BigDecimal> sumBonusSpin;
-
     private final Map<String, BigDecimal> sumProfitPoolSpin;
     private final Map<String, BigDecimal> sumBonusPoolSpin;
-
-    private Map<String, Boolean> pool;
-
     private final Set<String> gameAnother;
     private final Map<String, Integer> countRegistrationAnother;
     private final Map<String, BigDecimal> sumRegistrationAnother;
@@ -57,28 +36,34 @@ public class ModelBuilderFromCsvFile {
     private final Map<String, Integer> countReEntryAnother;
     private final Map<String, BigDecimal> sumReEntryAnother;
     private final Map<String, BigDecimal> sumKnockoutAnother;
-
     private final String startBalance;
     private final String finalBalance;
-
     private final String startTMoney;
     private final String finalTMoney;
-
     private final String startCoin;
     private final String finalCoin;
-
     private final String withdrawal;
     private final String sent;
     private final String received;
     private final String deposit;
-
     private final String chestReward;
     private final String exchangeCoin;
-    private String cash;
-
+    private final String otherBonus;
+    private LanguageEn languageEn;
+    private LanguageRu languageRu;
+    private PokerStarsBase pokerStarsBase;
+    private LocalDate dateFrom;
+    private LocalDate dateTo;
+    private DateTimeFormatter dateTimeFormatter;
+    private ElementIndex elementIndex;
+    private int amountIndex;
+    private int coinAmountIndex;
+    private int tMoneyAmountIndex;
+    private int balanceIndex;
+    private int coinBalanceIndex;
+    private int tMoneyBalanceIndex;
+    private Map<String, Boolean> pool;
     private String casino;
-    private String omaha;
-    private String other;
 
     public ModelBuilderFromCsvFile(CsvParser csvParser) {
         List<String[]> csvStrings = csvParser.getStrings();
@@ -129,7 +114,6 @@ public class ModelBuilderFromCsvFile {
         countRegistrationByTicketSpin = pokerStarsBase.countRegistrationByTicket(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);
         sumProfitSpin = pokerStarsBase.sumProfit(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);
         sumBonusSpin = pokerStarsBase.sumBonus(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);
-
         sumProfitPoolSpin = pokerStarsBase.sumProfitPool(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);
         sumBonusPoolSpin = pokerStarsBase.sumBonusPool(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);
 
@@ -161,7 +145,7 @@ public class ModelBuilderFromCsvFile {
 
         chestReward = pokerStarsBase.sumTransfer(csvStrings, amountIndex, pokerStarsBase.getChestString(), "    ");
         exchangeCoin = pokerStarsBase.sumTransfer(csvStrings, amountIndex, pokerStarsBase.getExchangeCoinString(), "    ");
-
+        otherBonus = pokerStarsBase.sumTransfer(csvStrings, amountIndex, pokerStarsBase.getOtherBonusString(), "    ");
         casino = pokerStarsBase.sumTransfer(csvStrings, amountIndex, pokerStarsBase.getCasinoString(), "    ");
     }
 }

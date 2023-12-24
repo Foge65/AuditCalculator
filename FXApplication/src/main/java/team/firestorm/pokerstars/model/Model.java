@@ -58,11 +58,8 @@ public class Model {
 
     private String chestReward;
     private String exchangeCoin;
-    private String cash;
-
+    private String otherBonus;
     private String casino;
-    private String omaha;
-    private String other;
 
     public Model(Set<String> game) {
         gameSpin = game;
@@ -115,10 +112,7 @@ public class Model {
 
         setChestReward(modelBuilderFromCsvFile.getChestReward());
         setExchangeCoin(modelBuilderFromCsvFile.getExchangeCoin());
-        setCash(modelBuilderFromCsvFile.getCash());
-
+        setOtherBonus(modelBuilderFromCsvFile.getOtherBonus());
         setCasino(modelBuilderFromCsvFile.getCasino());
-        setOmaha(modelBuilderFromCsvFile.getOmaha());
-        setOther(modelBuilderFromCsvFile.getOther());
     }
 }

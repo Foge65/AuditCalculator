@@ -40,7 +40,6 @@ public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
         model.setCountRegistrationByTicketSpin(pokerStarsBase.countRegistrationByTicket(filteredStrings, gameSpin, getAmountIndex(), getTMoneyAmountIndex()));
         model.setSumProfitSpin(pokerStarsBase.sumProfit(filteredStrings, gameSpin, getAmountIndex(), getTMoneyAmountIndex()));
         model.setSumBonusSpin(pokerStarsBase.sumBonus(filteredStrings, gameSpin, getAmountIndex(), getTMoneyAmountIndex()));
-
         model.setSumProfitPoolSpin(pokerStarsBase.sumProfitPool(filteredStrings, gameSpin, getAmountIndex(), getTMoneyAmountIndex()));
         model.setSumBonusPoolSpin(pokerStarsBase.sumBonusPool(filteredStrings, gameSpin, getAmountIndex(), getTMoneyAmountIndex()));
 
@@ -73,7 +72,7 @@ public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
 
         model.setChestReward(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getChestString(), "    "));
         model.setExchangeCoin(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getExchangeCoinString(), "    "));
-
+        model.setOtherBonus(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getOtherBonusString(), "    "));
         model.setCasino(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getCasinoString(), "    "));
     }
 }
