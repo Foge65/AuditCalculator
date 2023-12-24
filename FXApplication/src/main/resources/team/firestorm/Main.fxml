@@ -342,7 +342,7 @@
                 <GridPane.margin>
                     <Insets/>
                 </GridPane.margin>
-                <Label text="Bonus:">
+                <Label text="Chest Reward:">
                     <font>
                         <Font size="18.0"/>
                     </font>
