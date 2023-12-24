@@ -6,7 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane prefHeight="650.0" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="team.firestorm.pokerstars.controller.MainController">
+<AnchorPane prefHeight="600.0" prefWidth="1200.0" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="team.firestorm.pokerstars.controller.MainController">
     <Button fx:id="btnOpen" mnemonicParsing="false" onAction="#onClickBtnOpen" prefHeight="30.0" prefWidth="120.0" text="Open Audits" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
         <opaqueInsets>
             <Insets />
