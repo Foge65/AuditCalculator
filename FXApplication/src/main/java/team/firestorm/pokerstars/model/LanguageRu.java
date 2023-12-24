@@ -93,6 +93,11 @@ public class LanguageRu extends PokerStarsBase implements DateFormat {
     }
 
     @Override
+    public String getOtherBonusStringGoodWill() {
+        return "    ";
+    }
+
+    @Override
     public String getCasinoString() {
         return CASINO;
     }

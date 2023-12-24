@@ -497,7 +497,7 @@ public abstract class PokerStarsBase implements PokerStars {
     }
 
     @Override
-    public String getOtherBonusString() {
+    public String getOtherBonusStringLC() {
         return OTHER_BONUS_LC;
     }
 }

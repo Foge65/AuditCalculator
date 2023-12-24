@@ -16,6 +16,7 @@ public class LanguageEn extends PokerStarsBase implements DateFormat {
     private static final String DEPOSIT = "Deposit (Player)";
     private static final String CHEST_REWARD = "Chest Reward";
     private static final String BUY_CHIPS = "Buy Chips";
+    private static final String OTHER_BONUS_GOOD_WILL = "Good Will Credit";
     private static final String CASINO = "Casino: ";
 
     public LanguageEn(CsvParser csvParser) {
@@ -90,6 +91,11 @@ public class LanguageEn extends PokerStarsBase implements DateFormat {
     @Override
     public String getExchangeCoinString() {
         return BUY_CHIPS;
+    }
+
+    @Override
+    public String getOtherBonusStringGoodWill() {
+        return OTHER_BONUS_GOOD_WILL;
     }
 
     @Override
