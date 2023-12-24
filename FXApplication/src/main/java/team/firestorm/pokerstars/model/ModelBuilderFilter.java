@@ -72,7 +72,7 @@ public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
 
         model.setChestReward(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getChestString(), "    "));
         model.setExchangeCoin(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getExchangeCoinString(), "    "));
-        model.setOtherBonus(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getOtherBonusStringLC(), pokerStarsBase.getOtherBonusStringGoodWill()));
+        model.setOtherBonus(pokerStarsBase.sumOtherBonus(filteredStrings, pokerStarsBase.getBonuses(), getAmountIndex()));
         model.setCasino(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getCasinoString(), "    "));
     }
 }

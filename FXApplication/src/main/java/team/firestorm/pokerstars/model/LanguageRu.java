@@ -17,6 +17,7 @@ public class LanguageRu extends PokerStarsBase implements DateFormat {
     private static final String CHEST_REWARD = "Награда из подарка";
     private static final String BUY_CHIPS = "Награда при покупке фишек";
     private static final String CASINO = "Казино: ";
+    private final String[] bonuses = new String[]{"LC_", "Бонус зачислен"};
 
     public LanguageRu(CsvParser csvParser) {
         super(csvParser);
@@ -93,12 +94,12 @@ public class LanguageRu extends PokerStarsBase implements DateFormat {
     }
 
     @Override
-    public String getOtherBonusStringGoodWill() {
-        return "    ";
+    public String getCasinoString() {
+        return CASINO;
     }
 
     @Override
-    public String getCasinoString() {
-        return CASINO;
+    public String[] getBonuses() {
+        return bonuses;
     }
 }

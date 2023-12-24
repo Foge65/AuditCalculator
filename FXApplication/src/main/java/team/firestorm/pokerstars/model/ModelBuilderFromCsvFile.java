@@ -145,7 +145,7 @@ public class ModelBuilderFromCsvFile {
 
         chestReward = pokerStarsBase.sumTransfer(csvStrings, amountIndex, pokerStarsBase.getChestString(), "    ");
         exchangeCoin = pokerStarsBase.sumTransfer(csvStrings, amountIndex, pokerStarsBase.getExchangeCoinString(), "    ");
-        otherBonus = pokerStarsBase.sumTransfer(csvStrings, amountIndex, pokerStarsBase.getOtherBonusStringLC(), pokerStarsBase.getOtherBonusStringGoodWill());
+        otherBonus = pokerStarsBase.sumOtherBonus(csvStrings, pokerStarsBase.getBonuses(), amountIndex);
         casino = pokerStarsBase.sumTransfer(csvStrings, amountIndex, pokerStarsBase.getCasinoString(), "    ");
     }
 }

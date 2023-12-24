@@ -40,5 +40,6 @@ public interface PokerStars {
     String getChestString();
     String getExchangeCoinString();
     String getCasinoString();
+    String[] getBonuses();
     String sumOtherBonus(List<String[]> strings, String[] bonuses, int amount);
 }
