@@ -19,7 +19,6 @@ public abstract class PokerStarsBase implements PokerStars {
     public final String regexGameSpin = "NL\\sHold'em\\sSit&Go\\sBuy-In:\\s";
     public final String regexGameAnother = "^(?!.*NL Hold'em Sit&Go Buy-In).*";
     private CsvParser csvParser;
-    private static final String OTHER_BONUS_LC = "LC_";
 
     @Override
     public String replaceQuote(String string) {
@@ -497,7 +496,16 @@ public abstract class PokerStarsBase implements PokerStars {
     }
 
     @Override
-    public String getOtherBonusStringLC() {
-        return OTHER_BONUS_LC;
+    public String sumOtherBonus(List<String[]> strings, String[] bonuses, int amount) {
+        BigDecimal result = BigDecimal.ZERO;
+        for (String bonus : bonuses) {
+            for (String[] stringArray : strings) {
+                String action = stringArray[ACTION];
+                if (action.startsWith(bonus)) {
+                    result = result.add(new BigDecimal(numberColumnParser(stringArray[amount])));
+                }
+            }
+        }
+        return String.valueOf(result);
     }
 }
