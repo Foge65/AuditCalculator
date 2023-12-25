@@ -25,7 +25,6 @@ public class Model {
     private Map<String, BigDecimal> sumBonusSpin;
     private Map<String, BigDecimal> sumProfitPoolSpin;
     private Map<String, BigDecimal> sumBonusPoolSpin;
-    private Map<String, Boolean> pool;
 
     private Set<String> gameAnother;
     private Map<String, Integer> countRegistrationAnother;
@@ -77,7 +76,6 @@ public class Model {
         setSumBonusSpin(modelBuilderFromCsvFile.getSumBonusSpin());
         setSumProfitPoolSpin(modelBuilderFromCsvFile.getSumProfitPoolSpin());
         setSumBonusPoolSpin(modelBuilderFromCsvFile.getSumBonusPoolSpin());
-        setPool(modelBuilderFromCsvFile.getPool());
 
         setGameAnother(modelBuilderFromCsvFile.getGameAnother());
         setCountRegistrationAnother(modelBuilderFromCsvFile.getCountRegistrationAnother());

@@ -2,8 +2,8 @@ package team.firestorm.pokerstars.model;
 
 import java.math.BigDecimal;
 
-class DepositBeastForTests extends CsvFileBaseForTests {
-    DepositBeastForTests() {
+class DepositBeastTests extends CsvFileBaseForTests {
+    DepositBeastTests() {
         super("src/test/resources/DepositBeast.csv");
     }
 

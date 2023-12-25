@@ -2,14 +2,12 @@ package team.firestorm.pokerstars.view;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
-import javafx.util.Pair;
 import team.firestorm.pokerstars.controller.TabController;
 import team.firestorm.pokerstars.model.Model;
 
@@ -22,7 +20,7 @@ import java.util.Set;
 public abstract class ColumnBuilderBase implements ColumnBuilder {
     private final TabController tabController;
     private final Model model;
-    private Map<String, Pair<CheckBox, ChangeListener<Boolean>>> checkBoxMap = new HashMap<>();
+    private Map<String, CheckBox> checkBoxMap = new HashMap<>();
 
     public ColumnBuilderBase(TabController tabController, Model model) {
         this.tabController = tabController;
@@ -63,6 +61,8 @@ public abstract class ColumnBuilderBase implements ColumnBuilder {
 
     @Override
     public void setCellCheckBox(TableView<Model> table, TableColumn<Model, Boolean> pool) {
+        Map<String, BigDecimal> profitDefault = new HashMap<>(model.getSumProfitSpin());
+        Map<String, BigDecimal> bonusDefault = new HashMap<>(model.getSumBonusSpin());
         pool.setCellValueFactory(cell -> new SimpleBooleanProperty());
         pool.setCellFactory(new Callback<>() {
             @Override
@@ -77,29 +77,47 @@ public abstract class ColumnBuilderBase implements ColumnBuilder {
                             setGraphic(null);
                         } else {
                             setGraphic(checkBox);
-                            checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
-                                boolean selected = checkBox.isSelected();
-                                System.out.println("---------------------------------------");
-                                System.out.println("item " + item);
-                                System.out.println("selected " + selected);
-                                System.out.println("---------------------------------------");
-                                Map<String, Boolean> poolMap = model.getPool();
-//                                if (item != selected) {
-                                    String buyIn = getTableRow().getItem().getGameSpin().stream().findFirst().orElse(null);
-                                    System.out.println("---------------------------------------");
-                                    System.out.println(buyIn);
-                                    System.out.println("---------------------------------------");
-                                    poolMap.put(buyIn, newValue);
-                                    tabController.onClickPoolSetting(oldValue, newValue, buyIn);
-//                                }
-                            });
+                            if (getTableRow() != null && getTableRow().getItem() != null) {
+                                checkBox.setSelected(getCheckBoxState().getOrDefault(getTableRow().getItem().getGameSpin().stream().findFirst().orElse(null), false));
+                                addListenerToCheckBox();
+                                checkBoxMap.put(getTableRow().getItem().getGameSpin().stream().findFirst().orElse(null), checkBox);
+                            }
                         }
+                    }
+
+                    private void addListenerToCheckBox() {
+                        checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
+                            String buyIn = getTableRow().getItem().getGameSpin().stream().findFirst().orElse(null);
+                            Map<String, Boolean> checkBoxStateMap = getCheckBoxState();
+                            checkBoxStateMap.put(buyIn, newValue);
+                            Map<String, BigDecimal> profit = model.getSumProfitSpin();
+                            Map<String, BigDecimal> bonus = model.getSumBonusSpin();
+                            Map<String, BigDecimal> profitPool = model.getSumProfitPoolSpin();
+                            Map<String, BigDecimal> bonusPool = model.getSumBonusPoolSpin();
+                            if (newValue) {
+                                profit.put(buyIn, profitPool.get(buyIn));
+                                bonus.put(buyIn, bonusPool.get(buyIn));
+                            } else {
+                                profit.put(buyIn, profitDefault.get(buyIn));
+                                bonus.put(buyIn, bonusDefault.get(buyIn));
+                            }
+                            table.refresh();
+                        });
+                    }
+
+                    private Map<String, Boolean> getCheckBoxState() {
+                        Map<String, Boolean> poolMap = new HashMap<>();
+                        for (Map.Entry<String, CheckBox> entry : checkBoxMap.entrySet()) {
+                            poolMap.put(entry.getKey(), entry.getValue().isSelected());
+                        }
+                        return poolMap;
                     }
                 };
             }
         });
         table.getColumns().add(pool);
     }
+
 
     @Override
     public void setCellValueGame(TableView<Model> table, TableColumn<Model, Set<String>> game) {

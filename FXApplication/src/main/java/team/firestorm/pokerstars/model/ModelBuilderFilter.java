@@ -42,7 +42,6 @@ public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
         model.setSumBonusSpin(pokerStarsBase.sumBonus(filteredStrings, gameSpin, getAmountIndex(), getTMoneyAmountIndex()));
         model.setSumProfitPoolSpin(pokerStarsBase.sumProfitPool(filteredStrings, gameSpin, getAmountIndex(), getTMoneyAmountIndex()));
         model.setSumBonusPoolSpin(pokerStarsBase.sumBonusPool(filteredStrings, gameSpin, getAmountIndex(), getTMoneyAmountIndex()));
-        model.setPool(pokerStarsBase.setPoolBoolean(gameSpin));
 
         Set<String> gameAnother = pokerStarsBase.game(pokerStarsBase.getRegexGameAnother(), filteredStrings);
         model.setGameAnother(gameAnother);

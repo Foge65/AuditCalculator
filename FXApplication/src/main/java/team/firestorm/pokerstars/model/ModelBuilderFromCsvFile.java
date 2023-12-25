@@ -27,6 +27,7 @@ public class ModelBuilderFromCsvFile {
     private final Map<String, BigDecimal> sumBonusSpin;
     private final Map<String, BigDecimal> sumProfitPoolSpin;
     private final Map<String, BigDecimal> sumBonusPoolSpin;
+
     private final Set<String> gameAnother;
     private final Map<String, Integer> countRegistrationAnother;
     private final Map<String, BigDecimal> sumRegistrationAnother;
@@ -49,6 +50,7 @@ public class ModelBuilderFromCsvFile {
     private final String chestReward;
     private final String exchangeCoin;
     private final String otherBonus;
+    private final String casino;
     private LanguageEn languageEn;
     private LanguageRu languageRu;
     private PokerStarsBase pokerStarsBase;
@@ -62,8 +64,6 @@ public class ModelBuilderFromCsvFile {
     private int balanceIndex;
     private int coinBalanceIndex;
     private int tMoneyBalanceIndex;
-    private Map<String, Boolean> pool;
-    private String casino;
 
     public ModelBuilderFromCsvFile(CsvParser csvParser) {
         List<String[]> csvStrings = csvParser.getStrings();
@@ -116,9 +116,6 @@ public class ModelBuilderFromCsvFile {
         sumBonusSpin = pokerStarsBase.sumBonus(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);
         sumProfitPoolSpin = pokerStarsBase.sumProfitPool(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);
         sumBonusPoolSpin = pokerStarsBase.sumBonusPool(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);
-
-        pool = pokerStarsBase.setPoolBoolean(gameSpin);
-//        pool = new HashMap<>();
 
         gameAnother = pokerStarsBase.game(pokerStarsBase.getRegexGameAnother(), csvStrings);
         countRegistrationAnother = pokerStarsBase.countTourney(csvStrings, gameAnother, pokerStarsBase.getRegistrationString());
