@@ -17,14 +17,52 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public abstract class ColumnBuilderBase implements ColumnBuilder {
+public class ColumnBuilderImpl implements ColumnBuilder {
     private final TabController tabController;
     private final Model model;
-    private Map<String, CheckBox> checkBoxMap = new HashMap<>();
+    private final Map<String, CheckBox> checkBoxMap = new HashMap<>();
 
-    public ColumnBuilderBase(TabController tabController, Model model) {
+    public ColumnBuilderImpl(TabController tabController, Model model) {
         this.tabController = tabController;
         this.model = model;
+    }
+
+    @Override
+    public void buildColumnSpin() {
+        TableView<Model> table = tabController.getTableViewSpin();
+
+        TableColumn<Model, Boolean> pool = new TableColumn<>("Enable\nPool");
+        setCellCheckBox(table, pool);
+
+        TableColumn<Model, Set<String>> game = new TableColumn<>("Spin\nGame");
+        setCellValueGame(table, game);
+
+        TableColumn<Model, Integer> countRegistration = new TableColumn<>("Count\nRegistration");
+        setCellValueNumber(table, model.getCountRegistrationSpin(), countRegistration);
+
+        TableColumn<Model, BigDecimal> sumRegistration = new TableColumn<>("Sum\nRegistration");
+        setCellValueNumber(table, model.getSumRegistrationSpin(), sumRegistration);
+
+        TableColumn<Model, Integer> countUnRegistration = new TableColumn<>("Count\nUnRegistration");
+        setCellValueNumber(table, model.getCountUnRegistrationSpin(), countUnRegistration);
+
+        TableColumn<Model, BigDecimal> sumUnRegistration = new TableColumn<>("Sum\nUnRegistration");
+        setCellValueNumber(table, model.getSumUnRegistrationSpin(), sumUnRegistration);
+
+        TableColumn<Model, BigDecimal> sumNetWon = new TableColumn<>("Sum\nNetWon");
+        setCellValueNumber(table, model.getSumNetWonSpin(), sumNetWon);
+
+        TableColumn<Model, BigDecimal> sumRegistrationForTMoney = new TableColumn<>("Sum Registration\nFor TMoney");
+        setCellValueNumber(table, model.getSumRegistrationForTMoneySpin(), sumRegistrationForTMoney);
+
+        TableColumn<Model, Integer> countRegistrationByTicket = new TableColumn<>("Count Registration\nBy Ticket");
+        setCellValueNumber(table, model.getCountRegistrationByTicketSpin(), countRegistrationByTicket);
+
+        TableColumn<Model, BigDecimal> sumProfit = new TableColumn<>("Sum\nProfit");
+        setCellValueNumber(table, model.getSumProfitSpin(), sumProfit);
+
+        TableColumn<Model, BigDecimal> sumBonus = new TableColumn<>("Sum\nBonus");
+        setCellValueNumber(table, model.getSumBonusSpin(), sumBonus);
     }
 
     @Override
@@ -117,7 +155,6 @@ public abstract class ColumnBuilderBase implements ColumnBuilder {
         });
         table.getColumns().add(pool);
     }
-
 
     @Override
     public void setCellValueGame(TableView<Model> table, TableColumn<Model, Set<String>> game) {

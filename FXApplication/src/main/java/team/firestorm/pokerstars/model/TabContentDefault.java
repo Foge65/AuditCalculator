@@ -2,7 +2,7 @@ package team.firestorm.pokerstars.model;
 
 import lombok.Getter;
 import team.firestorm.pokerstars.controller.TabController;
-import team.firestorm.pokerstars.view.ColumnBuilderCsv;
+import team.firestorm.pokerstars.view.ColumnBuilderImpl;
 import team.firestorm.pokerstars.view.ModelObserver;
 import team.firestorm.pokerstars.view.TextBuilder;
 
@@ -13,7 +13,7 @@ public class TabContentDefault {
     private Model model;
 
     private ModelObserver modelObserver;
-    private ColumnBuilderCsv columnBuilderCsv;
+    private ColumnBuilderImpl columnBuilder;
     private TextBuilder textBuilder;
     private DateSet dateSetFrom;
     private DateSet dateSetTo;
@@ -25,9 +25,9 @@ public class TabContentDefault {
         this.modelObserver = modelObserver;
     }
 
-    public void saveView(ModelObserver modelObserver, ColumnBuilderCsv columnBuilderCsv, TextBuilder textBuilder, DateSet dateSetFrom, DateSet dateSetTo) {
+    public void saveView(ModelObserver modelObserver, ColumnBuilderImpl columnBuilder, TextBuilder textBuilder, DateSet dateSetFrom, DateSet dateSetTo) {
         this.modelObserver = modelObserver;
-        this.columnBuilderCsv = columnBuilderCsv;
+        this.columnBuilder = columnBuilder;
         this.textBuilder = textBuilder;
         this.dateSetFrom = dateSetFrom;
         this.dateSetTo = dateSetTo;
@@ -44,7 +44,7 @@ public class TabContentDefault {
         tabContent.setModelBuilderFromCsvFile(modelBuilderFromCsvFile);
         tabContent.setModel(model);
         tabContent.setModelObserver(modelObserver);
-        tabContent.setColumnBuilderCsv(columnBuilderCsv);
+        tabContent.setColumnBuilderFromCsv(columnBuilder);
         tabContent.setTextBuilder(textBuilder);
         tabContent.setDateSetFrom(dateSetFrom);
         tabContent.setDateSetTo(dateSetTo);
@@ -54,11 +54,11 @@ public class TabContentDefault {
         modelObserver = new ModelObserver();
         modelObserver.clear(tabController);
 
-        columnBuilderCsv = new ColumnBuilderCsv(tabController, model);
-        columnBuilderCsv.buildColumnSpin();
-        columnBuilderCsv.buildColumnAnother();
-        columnBuilderCsv.addGameToObservableList(model.getGameSpin(), modelObserver.getObservableListSpinGame(), tabController.getTableViewSpin());
-        columnBuilderCsv.addGameToObservableList(model.getGameAnother(), modelObserver.getObservableListAnotherGame(), tabController.getTableViewAnother());
+        columnBuilder = new ColumnBuilderImpl(tabController, model);
+        columnBuilder.buildColumnSpin();
+        columnBuilder.buildColumnAnother();
+        columnBuilder.addGameToObservableList(model.getGameSpin(), modelObserver.getObservableListSpinGame(), tabController.getTableViewSpin());
+        columnBuilder.addGameToObservableList(model.getGameAnother(), modelObserver.getObservableListAnotherGame(), tabController.getTableViewAnother());
 
         textBuilder = new TextBuilder(tabController, model);
         textBuilder.setText();

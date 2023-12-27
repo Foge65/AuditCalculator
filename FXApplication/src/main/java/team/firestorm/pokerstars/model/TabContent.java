@@ -3,7 +3,10 @@ package team.firestorm.pokerstars.model;
 import lombok.Getter;
 import lombok.Setter;
 import team.firestorm.pokerstars.controller.TabController;
-import team.firestorm.pokerstars.view.*;
+import team.firestorm.pokerstars.view.ColumnBuilder;
+import team.firestorm.pokerstars.view.ColumnBuilderImpl;
+import team.firestorm.pokerstars.view.ModelObserver;
+import team.firestorm.pokerstars.view.TextBuilder;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -17,7 +20,7 @@ public class TabContent {
     private Model model;
 
     private ModelObserver modelObserver;
-    private ColumnBuilderCsv columnBuilderCsv;
+    private ColumnBuilderImpl columnBuilderFromCsv;
     private TextBuilder textBuilder;
     private DateSet dateSetFrom;
     private DateSet dateSetTo;
@@ -25,7 +28,7 @@ public class TabContent {
     private String tabNameString;
 
     private ModelBuilderFilter modelBuilderCsvFilter;
-    private ColumnBuilderFilterByDate columnBuilderFilterByDate;
+    private ColumnBuilderImpl columnBuilderFilterByDate;
     private TabContentDefault tabContentDefault;
 
     public void buildCsvData(File file) {
@@ -42,8 +45,8 @@ public class TabContent {
         modelObserver = new ModelObserver();
         modelObserver.clear(tabController);
 
-        columnBuilderCsv = new ColumnBuilderCsv(tabController, model);
-        buildTable(columnBuilderCsv, tabController);
+        columnBuilderFromCsv = new ColumnBuilderImpl(tabController, model);
+        buildTable(columnBuilderFromCsv, tabController);
 
         textBuilder = new TextBuilder(tabController, model);
         textBuilder.setText();
@@ -54,7 +57,7 @@ public class TabContent {
         dateSetTo = new DateSet();
         dateSetTo.setDate(tabController.getDatePickerTo(), model.getDateTo());
 
-        tabContentDefault.saveView(modelObserver, columnBuilderCsv, textBuilder, dateSetFrom, getDateSetTo());
+        tabContentDefault.saveView(modelObserver, columnBuilderFromCsv, textBuilder, dateSetFrom, getDateSetTo());
     }
 
     public void setTabName() {
@@ -72,7 +75,7 @@ public class TabContent {
         modelObserver = new ModelObserver();
         modelObserver.clear(tabController);
 
-        columnBuilderFilterByDate = new ColumnBuilderFilterByDate(tabController, model);
+        columnBuilderFilterByDate = new ColumnBuilderImpl(tabController, model);
         buildTable(columnBuilderFilterByDate, tabController);
 
         textBuilder = new TextBuilder(tabController, model);

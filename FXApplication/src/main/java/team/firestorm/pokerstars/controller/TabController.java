@@ -156,7 +156,6 @@ public class TabController implements Initializable {
         tabContent.buildFilterViewByDate(this);
     }
 
-    // TODO: Добавить сброс чек-боксов
     private void onClickBtnResetFilter() {
         btnResetFilter.setOnAction(event -> {
             tabContent.getTabContentDefault().updateData();
