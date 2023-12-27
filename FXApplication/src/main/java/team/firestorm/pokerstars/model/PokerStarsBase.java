@@ -350,8 +350,8 @@ public abstract class PokerStarsBase implements PokerStars {
 
     @Override
     public int totalCountRow(List<String[]> strings) {
-        int counter = 1;
-        counter += (int) IntStream.rangeClosed(0, strings.size() - 3).count();
+        int counter = 0;
+        counter += (int) IntStream.rangeClosed(0, strings.size() - 2).count();
         return counter;
     }
 
