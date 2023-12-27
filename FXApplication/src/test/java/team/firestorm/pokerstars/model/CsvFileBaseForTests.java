@@ -89,6 +89,15 @@ abstract class CsvFileBaseForTests {
         Integer[] actualArray = values.toArray(new Integer[0]);
         assertionIntegerArrays(expectedArray, actualArray);
     }
-
     abstract Integer[] setCountRegistrationSpin();
+
+    @Test
+    void countUnRegistration() {
+        Collection<Integer> values = modelBuilderFromCsvFile.getCountUnRegistrationSpin().values();
+        Integer[] expectedArray = setCountUnRegistrationSpin();
+        Integer[] actualArray = values.toArray(new Integer[0]);
+        assertionIntegerArrays(expectedArray, actualArray);
+    }
+
+    abstract Integer[] setCountUnRegistrationSpin();
 }

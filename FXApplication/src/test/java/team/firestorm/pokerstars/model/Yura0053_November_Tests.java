@@ -36,4 +36,9 @@ class Yura0053_November_Tests extends CsvFileBaseForTests {
     Integer[] setCountRegistrationSpin() {
         return new Integer[]{9161, 654};
     }
+
+    @Override
+    Integer[] setCountUnRegistrationSpin() {
+        return new Integer[]{13, 2};
+    }
 }
