@@ -2,9 +2,9 @@ package team.firestorm.pokerstars.model;
 
 import java.math.BigDecimal;
 
-class Yura0053Tests extends CsvFileBaseForTests {
-    Yura0053Tests() {
-        super("src/test/resources/Yura0053.csv");
+class Yura0053_November_Tests extends CsvFileBaseForTests {
+    Yura0053_November_Tests() {
+        super("src/test/resources/Yura0053_November.csv");
     }
 
     @Override
