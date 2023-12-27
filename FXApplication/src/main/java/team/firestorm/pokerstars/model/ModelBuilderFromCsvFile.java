@@ -37,6 +37,9 @@ public class ModelBuilderFromCsvFile {
     private final Map<String, Integer> countReEntryAnother;
     private final Map<String, BigDecimal> sumReEntryAnother;
     private final Map<String, BigDecimal> sumKnockoutAnother;
+
+    private final Integer countRegistrationSpinWithoutUnregistration;
+
     private final String startBalance;
     private final String finalBalance;
     private final String startTMoney;
@@ -126,6 +129,8 @@ public class ModelBuilderFromCsvFile {
         countReEntryAnother = pokerStarsBase.countReEntry(csvStrings, gameAnother);
         sumReEntryAnother = pokerStarsBase.sumReEntry(csvStrings, gameAnother, amountIndex);
         sumKnockoutAnother = pokerStarsBase.sumKnockout(csvStrings, gameAnother, amountIndex);
+
+        countRegistrationSpinWithoutUnregistration = pokerStarsBase.getCountRegistrationSpinWithoutUnregistration(csvStrings, getPokerStarsBase().getRegistrationString(), pokerStarsBase.getUnRegistrationString());
 
         startBalance = pokerStarsBase.startBalanceMoney(csvStrings, amountIndex, balanceIndex);
         finalBalance = pokerStarsBase.finalBalance(csvStrings, balanceIndex);

@@ -41,4 +41,9 @@ class DepositBeastTests extends CsvFileBaseForTests {
     Integer[] setCountUnRegistrationSpin() {
         return new Integer[]{0, 6};
     }
+
+    @Override
+    Integer setTotalCountRegistrationWithoutUnregistration() {
+        return 1820;
+    }
 }

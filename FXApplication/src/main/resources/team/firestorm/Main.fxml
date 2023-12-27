@@ -433,6 +433,9 @@
                      <font>
                         <Font size="18.0" />
                      </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
                   </Text>
                   <Button fx:id="btnCopyTotalSpins" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" />
                   <Label text="Total Profit Spin:" GridPane.rowIndex="1">

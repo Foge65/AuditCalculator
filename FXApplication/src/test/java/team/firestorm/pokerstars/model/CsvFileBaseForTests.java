@@ -6,6 +6,7 @@ import java.io.File;
 import java.math.BigDecimal;
 import java.util.Collection;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 abstract class CsvFileBaseForTests {
@@ -89,6 +90,7 @@ abstract class CsvFileBaseForTests {
         Integer[] actualArray = values.toArray(new Integer[0]);
         assertionIntegerArrays(expectedArray, actualArray);
     }
+
     abstract Integer[] setCountRegistrationSpin();
 
     @Test
@@ -100,4 +102,13 @@ abstract class CsvFileBaseForTests {
     }
 
     abstract Integer[] setCountUnRegistrationSpin();
+
+    @Test
+    void totalCountRegistrationWithoutUnregistration() {
+        Integer expected = setTotalCountRegistrationWithoutUnregistration();
+        Integer actual = modelBuilderFromCsvFile.getCountRegistrationSpinWithoutUnregistration();
+        assertEquals(expected, actual);
+    }
+
+    abstract Integer setTotalCountRegistrationWithoutUnregistration();
 }

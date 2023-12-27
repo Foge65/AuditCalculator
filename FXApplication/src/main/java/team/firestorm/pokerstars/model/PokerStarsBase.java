@@ -507,4 +507,22 @@ public abstract class PokerStarsBase implements PokerStars {
         }
         return String.valueOf(result);
     }
+
+    @Override
+    public Integer getCountRegistrationSpinWithoutUnregistration(List<String[]> strings, String registerAction, String unRegisterAction) {
+        int registerCount = 0;
+        int unRegisterCount = 0;
+        for (String[] stringArray : strings) {
+            String actionValue = stringArray[ACTION];
+            String gameValue = gameParser(stringArray);
+            String spin = " NL Hold'em Sit&Go Buy-In:";
+            if (actionValue.equals(registerAction) && gameValue.startsWith(spin)) {
+                registerCount++;
+            }
+            if (actionValue.equals(unRegisterAction) && gameValue.startsWith(spin)) {
+                unRegisterCount++;
+            }
+        }
+        return registerCount - unRegisterCount;
+    }
 }
