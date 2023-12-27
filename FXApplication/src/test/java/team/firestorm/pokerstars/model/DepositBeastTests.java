@@ -31,4 +31,9 @@ class DepositBeastTests extends CsvFileBaseForTests {
     BigDecimal[] setBonusPoolArray() {
         return new BigDecimal[]{new BigDecimal("50"), new BigDecimal("0")};
     }
+
+    @Override
+    Integer[] setCountRegistrationSpin() {
+        return new Integer[]{1, 1825};
+    }
 }

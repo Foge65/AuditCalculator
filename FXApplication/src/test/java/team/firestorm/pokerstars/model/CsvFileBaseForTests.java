@@ -16,6 +16,22 @@ abstract class CsvFileBaseForTests {
         modelBuilderFromCsvFile = new ModelBuilderFromCsvFile(csvParser);
     }
 
+    private static void assertionIntegerArrays(Integer[] expectedArray, Integer[] actualArray) {
+        for (int i = 0; i < expectedArray.length; i++) {
+            if (expectedArray[i].compareTo(actualArray[i]) != 0) {
+                fail("Values at index " + i + " differ. Expected: " + expectedArray[i] + ", Actual: " + actualArray[i]);
+            }
+        }
+    }
+
+    private static void assertionBigDecimalArrays(BigDecimal[] expectedArray, BigDecimal[] actualArray) {
+        for (int i = 0; i < expectedArray.length; i++) {
+            if (expectedArray[i].compareTo(actualArray[i]) != 0) {
+                fail("Values at index " + i + " differ. Expected: " + expectedArray[i] + ", Actual: " + actualArray[i]);
+            }
+        }
+    }
+
     @Test
     void ticket() {
         Collection<Integer> values = modelBuilderFromCsvFile.getCountRegistrationByTicketSpin().values();
@@ -25,14 +41,6 @@ abstract class CsvFileBaseForTests {
     }
 
     abstract Integer[] setTicketArray();
-
-    private static void assertionIntegerArrays(Integer[] expectedArray, Integer[] actualArray) {
-        for (int i = 0; i < expectedArray.length; i++) {
-            if (expectedArray[i].compareTo(actualArray[i]) != 0) {
-                fail("Values at index " + i + " differ. Expected: " + expectedArray[i] + ", Actual: " + actualArray[i]);
-            }
-        }
-    }
 
     @Test
     void profit() {
@@ -74,11 +82,13 @@ abstract class CsvFileBaseForTests {
 
     abstract BigDecimal[] setBonusPoolArray();
 
-    private static void assertionBigDecimalArrays(BigDecimal[] expectedArray, BigDecimal[] actualArray) {
-        for (int i = 0; i < expectedArray.length; i++) {
-            if (expectedArray[i].compareTo(actualArray[i]) != 0) {
-                fail("Values at index " + i + " differ. Expected: " + expectedArray[i] + ", Actual: " + actualArray[i]);
-            }
-        }
+    @Test
+    void countRegistration() {
+        Collection<Integer> values = modelBuilderFromCsvFile.getCountRegistrationSpin().values();
+        Integer[] expectedArray = setCountRegistrationSpin();
+        Integer[] actualArray = values.toArray(new Integer[0]);
+        assertionIntegerArrays(expectedArray, actualArray);
     }
+
+    abstract Integer[] setCountRegistrationSpin();
 }

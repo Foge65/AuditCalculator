@@ -31,4 +31,9 @@ class Yura0053Tests extends CsvFileBaseForTests {
     BigDecimal[] setBonusPoolArray() {
         return new BigDecimal[]{new BigDecimal("150"), new BigDecimal("50")};
     }
+
+    @Override
+    Integer[] setCountRegistrationSpin() {
+        return new Integer[]{9161, 654};
+    }
 }
