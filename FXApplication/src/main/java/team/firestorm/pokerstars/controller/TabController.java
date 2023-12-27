@@ -66,6 +66,9 @@ public class TabController implements Initializable {
     private Text casino;
 
     @FXML
+    private Text countSpins;
+
+    @FXML
     private Button btnCopyStartBalance;
     @FXML
     private Button btnCopyFinalBalance;
@@ -97,6 +100,9 @@ public class TabController implements Initializable {
     private Button btnCopyOtherBonus;
     @FXML
     private Button btnCopyCasino;
+
+    @FXML
+    private Button btnCopyTotalSpins;
 
     private TabContent tabContent;
     private LocalDate dateSelectFrom;
