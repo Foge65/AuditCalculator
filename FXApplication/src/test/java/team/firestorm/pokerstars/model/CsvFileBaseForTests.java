@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.math.BigDecimal;
-import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -34,74 +33,104 @@ abstract class CsvFileBaseForTests {
     }
 
     @Test
-    void ticket() {
-        Collection<Integer> values = modelBuilderFromCsvFile.getCountRegistrationByTicketSpin().values();
-        Integer[] expectedArray = setTicketArray();
-        Integer[] actualArray = values.toArray(new Integer[0]);
-        assertionIntegerArrays(expectedArray, actualArray);
-    }
-
-    abstract Integer[] setTicketArray();
-
-    @Test
-    void profit() {
-        Collection<BigDecimal> values = modelBuilderFromCsvFile.getSumProfitSpin().values();
-        BigDecimal[] expectedArray = setProfitArray();
-        BigDecimal[] actualArray = values.toArray(new BigDecimal[0]);
-        assertionBigDecimalArrays(expectedArray, actualArray);
-    }
-
-    abstract BigDecimal[] setProfitArray();
-
-    @Test
-    void bonus() {
-        Collection<BigDecimal> values = modelBuilderFromCsvFile.getSumBonusSpin().values();
-        BigDecimal[] expectedArray = setBonusArray();
-        BigDecimal[] actualArray = values.toArray(new BigDecimal[0]);
-        assertionBigDecimalArrays(expectedArray, actualArray);
-    }
-
-    abstract BigDecimal[] setBonusArray();
-
-    @Test
-    void profitPool() {
-        Collection<BigDecimal> values = modelBuilderFromCsvFile.getSumProfitPoolSpin().values();
-        BigDecimal[] expectedArray = setProfitPoolArray();
-        BigDecimal[] actualArray = values.toArray(new BigDecimal[0]);
-        assertionBigDecimalArrays(expectedArray, actualArray);
-    }
-
-    abstract BigDecimal[] setProfitPoolArray();
-
-    @Test
-    void bonusPool() {
-        Collection<BigDecimal> values = modelBuilderFromCsvFile.getSumBonusPoolSpin().values();
-        BigDecimal[] expectedArray = setBonusPoolArray();
-        BigDecimal[] actualArray = values.toArray(new BigDecimal[0]);
-        assertionBigDecimalArrays(expectedArray, actualArray);
-    }
-
-    abstract BigDecimal[] setBonusPoolArray();
-
-    @Test
-    void countRegistration() {
-        Collection<Integer> values = modelBuilderFromCsvFile.getCountRegistrationSpin().values();
-        Integer[] expectedArray = setCountRegistrationSpin();
-        Integer[] actualArray = values.toArray(new Integer[0]);
-        assertionIntegerArrays(expectedArray, actualArray);
+    void countRegistrationSpin() {
+        Integer[] expected = setCountRegistrationSpin();
+        Integer[] actual = modelBuilderFromCsvFile.getCountRegistrationSpin().values().toArray(new Integer[0]);
+        assertionIntegerArrays(expected, actual);
     }
 
     abstract Integer[] setCountRegistrationSpin();
 
     @Test
-    void countUnRegistration() {
-        Collection<Integer> values = modelBuilderFromCsvFile.getCountUnRegistrationSpin().values();
-        Integer[] expectedArray = setCountUnRegistrationSpin();
-        Integer[] actualArray = values.toArray(new Integer[0]);
-        assertionIntegerArrays(expectedArray, actualArray);
+    void sumRegistrationSpin() {
+        BigDecimal[] expected = setSumRegistrationSpin();
+        BigDecimal[] actual = modelBuilderFromCsvFile.getSumRegistrationSpin().values().toArray(new BigDecimal[0]);
+        assertionBigDecimalArrays(expected, actual);
+    }
+
+    abstract BigDecimal[] setSumRegistrationSpin();
+
+    @Test
+    void countUnRegistrationSpin() {
+        Integer[] expected = setCountUnRegistrationSpin();
+        Integer[] actual = modelBuilderFromCsvFile.getCountUnRegistrationSpin().values().toArray(new Integer[0]);
+        assertionIntegerArrays(expected, actual);
     }
 
     abstract Integer[] setCountUnRegistrationSpin();
+
+    @Test
+    void sumUnRegistrationSpin() {
+        BigDecimal[] expected = setSumUnRegistrationSpin();
+        BigDecimal[] actual = modelBuilderFromCsvFile.getSumUnRegistrationSpin().values().toArray(new BigDecimal[0]);
+        assertionBigDecimalArrays(expected, actual);
+    }
+
+    abstract BigDecimal[] setSumUnRegistrationSpin();
+
+    @Test
+    void sumNetWonSpin() {
+        BigDecimal[] expected = setSumNetWonSpin();
+        BigDecimal[] actual = modelBuilderFromCsvFile.getSumNetWonSpin().values().toArray(new BigDecimal[0]);
+        assertionBigDecimalArrays(expected, actual);
+    }
+
+    abstract BigDecimal[] setSumNetWonSpin();
+
+    @Test
+    void sumRegistrationForTMoneySpin() {
+        BigDecimal[] expected = setSumRegistrationForTMoney();
+        BigDecimal[] actual = modelBuilderFromCsvFile.getSumRegistrationForTMoneySpin().values().toArray(new BigDecimal[0]);
+        assertionBigDecimalArrays(expected, actual);
+    }
+
+    abstract BigDecimal[] setSumRegistrationForTMoney();
+
+    @Test
+    void countRegistrationForTicketSpin() {
+        Integer[] expected = setCountRegistrationForTicketSpin();
+        Integer[] actual = modelBuilderFromCsvFile.getCountRegistrationByTicketSpin().values().toArray(new Integer[0]);
+        assertionIntegerArrays(expected, actual);
+    }
+
+    abstract Integer[] setCountRegistrationForTicketSpin();
+
+    @Test
+    void sumProfitSpin() {
+        BigDecimal[] expected = setSumProfitSpin();
+        BigDecimal[] actual = modelBuilderFromCsvFile.getSumProfitSpin().values().toArray(new BigDecimal[0]);
+        assertionBigDecimalArrays(expected, actual);
+    }
+
+    abstract BigDecimal[] setSumProfitSpin();
+
+    @Test
+    void sumBonusSpin() {
+        BigDecimal[] expected = setSumBonusSpin();
+        BigDecimal[] actual = modelBuilderFromCsvFile.getSumBonusSpin().values().toArray(new BigDecimal[0]);
+        assertionBigDecimalArrays(expected, actual);
+    }
+
+    abstract BigDecimal[] setSumBonusSpin();
+
+    @Test
+    void sumProfitPoolSpin() {
+        BigDecimal[] expected = setSumProfitPoolSpin();
+        BigDecimal[] actual = modelBuilderFromCsvFile.getSumProfitPoolSpin().values().toArray(new BigDecimal[0]);
+        assertionBigDecimalArrays(expected, actual);
+    }
+
+    abstract BigDecimal[] setSumProfitPoolSpin();
+
+    @Test
+    void sumBonusPoolSpin() {
+        BigDecimal[] expected = setSumBonusPoolSpin();
+        BigDecimal[] actual = modelBuilderFromCsvFile.getSumBonusPoolSpin().values().toArray(new BigDecimal[0]);
+        assertionBigDecimalArrays(expected, actual);
+    }
+
+    abstract BigDecimal[] setSumBonusPoolSpin();
+
 
     @Test
     void totalCountRegistrationWithoutUnregistration() {
