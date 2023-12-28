@@ -26,7 +26,6 @@ public interface PokerStars {
     Map<String, BigDecimal> sumProfitPool(List<String[]> strings, Set<String> game, int amount, int tMoney);
     Map<String, BigDecimal> sumBonusPool(List<String[]> strings, Set<String> game, int amount, int tMoney);
     Double parseBuyInFromString(String buyIn);
-    Map<String, Boolean> setPoolBoolean(Set<String> game);
     String getRegistrationString();
     String getUnRegistrationString();
     String getNetWonString();
