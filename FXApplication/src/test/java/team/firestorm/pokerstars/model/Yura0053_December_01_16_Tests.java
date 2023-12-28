@@ -46,4 +46,14 @@ public class Yura0053_December_01_16_Tests extends CsvFileBaseForTests {
     Integer setTotalCountRegistrationWithoutUnregistration() {
         return 3855;
     }
+
+    @Override
+    BigDecimal setTotalProfit() {
+        return new BigDecimal("-2155.00");
+    }
+
+    @Override
+    BigDecimal setTotalBonus() {
+        return new BigDecimal("300.00");
+    }
 }

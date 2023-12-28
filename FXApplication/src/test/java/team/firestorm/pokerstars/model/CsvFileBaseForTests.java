@@ -111,4 +111,28 @@ abstract class CsvFileBaseForTests {
     }
 
     abstract Integer setTotalCountRegistrationWithoutUnregistration();
+
+    @Test
+    void totalProfit() {
+        BigDecimal expected = setTotalProfit();
+        BigDecimal[] actual = {BigDecimal.ZERO};
+        modelBuilderFromCsvFile.getSumProfitSpin().values().stream()
+                .map(BigDecimal.ZERO::add)
+                .forEach(element -> actual[0] = actual[0].add(element));
+        assertEquals(expected, actual[0]);
+    }
+
+    abstract BigDecimal setTotalProfit();
+
+    @Test
+    void totalBonus() {
+        BigDecimal expected = setTotalBonus();
+        BigDecimal[] actual = {BigDecimal.ZERO};
+        modelBuilderFromCsvFile.getSumBonusSpin().values().stream()
+                .map(BigDecimal.ZERO::add)
+                .forEach(element -> actual[0] = actual[0].add(element));
+        assertEquals(expected, actual[0]);
+    }
+
+    abstract BigDecimal setTotalBonus();
 }

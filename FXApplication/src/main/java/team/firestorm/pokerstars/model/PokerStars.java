@@ -42,5 +42,5 @@ public interface PokerStars {
     String getCasinoString();
     String[] getBonuses();
     String sumOtherBonus(List<String[]> strings, String[] bonuses, int amount);
-    Integer getCountRegistrationSpinWithoutUnregistration(List<String[]> strings, String registerAction, String unRegisterAction);
+    Integer totalCountRegistrationSpinWithoutUnregistration(List<String[]> strings, String registerAction, String unRegisterAction);
 }

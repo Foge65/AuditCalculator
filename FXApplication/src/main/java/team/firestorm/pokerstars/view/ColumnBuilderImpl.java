@@ -7,6 +7,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.text.Text;
 import javafx.util.Callback;
 import team.firestorm.pokerstars.controller.TabController;
 import team.firestorm.pokerstars.model.Model;
@@ -135,9 +136,13 @@ public class ColumnBuilderImpl implements ColumnBuilder {
                             if (newValue) {
                                 profit.put(buyIn, profitPool.get(buyIn));
                                 bonus.put(buyIn, bonusPool.get(buyIn));
+                                setNewTextValue(profit, tabController.getTotalProfitSpin());
+                                setNewTextValue(bonus, tabController.getTotalBonusSpin());
                             } else {
                                 profit.put(buyIn, profitDefault.get(buyIn));
                                 bonus.put(buyIn, bonusDefault.get(buyIn));
+                                setNewTextValue(profitDefault, tabController.getTotalProfitSpin());
+                                setNewTextValue(bonusDefault, tabController.getTotalBonusSpin());
                             }
                             table.refresh();
                         });
@@ -149,6 +154,12 @@ public class ColumnBuilderImpl implements ColumnBuilder {
                             poolMap.put(entry.getKey(), entry.getValue().isSelected());
                         }
                         return poolMap;
+                    }
+
+                    private void setNewTextValue(Map<String, BigDecimal> valueMap, Text field) {
+                        BigDecimal[] result = {BigDecimal.ZERO};
+                        valueMap.values().stream().map(BigDecimal.ZERO::add).forEach(sum -> result[0] = result[0].add(sum));
+                        field.setText(result[0].toString());
                     }
                 };
             }

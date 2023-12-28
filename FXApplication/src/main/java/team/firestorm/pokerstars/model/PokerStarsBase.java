@@ -509,7 +509,7 @@ public abstract class PokerStarsBase implements PokerStars {
     }
 
     @Override
-    public Integer getCountRegistrationSpinWithoutUnregistration(List<String[]> strings, String registerAction, String unRegisterAction) {
+    public Integer totalCountRegistrationSpinWithoutUnregistration(List<String[]> strings, String registerAction, String unRegisterAction) {
         int registerCount = 0;
         int unRegisterCount = 0;
         for (String[] stringArray : strings) {

@@ -46,4 +46,14 @@ class DepositBeastTests extends CsvFileBaseForTests {
     Integer setTotalCountRegistrationWithoutUnregistration() {
         return 1820;
     }
+
+    @Override
+    BigDecimal setTotalProfit() {
+        return new BigDecimal("-2375.00");
+    }
+
+    @Override
+    BigDecimal setTotalBonus() {
+        return new BigDecimal("250.00");
+    }
 }

@@ -466,7 +466,7 @@
                      <Insets left="5.0" right="5.0" />
                   </GridPane.margin>
                </Label>
-               <Text fx:id="totalAllBonuse" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <Text fx:id="totalAllBonus" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3">
                   <font>
                      <Font size="18.0" />
                   </font>
@@ -474,7 +474,7 @@
                      <Insets left="5.0" right="5.0" />
                   </GridPane.margin>
                </Text>
-               <Button fx:id="btnCopyAllBonuse" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+               <Button fx:id="btnCopyAllBonus" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                <Label text="Total Profit MTT:" GridPane.columnIndex="3">
                   <font>
                      <Font size="18.0" />

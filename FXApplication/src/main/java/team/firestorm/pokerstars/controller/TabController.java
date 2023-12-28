@@ -67,6 +67,12 @@ public class TabController implements Initializable {
 
     @FXML
     private Text countSpins;
+    @FXML
+    private Text totalProfitSpin;
+    @FXML
+    private Text totalBonusSpin;
+    @FXML
+    private Text totalAllBonus;
 
     @FXML
     private Button btnCopyStartBalance;
@@ -103,6 +109,12 @@ public class TabController implements Initializable {
 
     @FXML
     private Button btnCopyTotalSpins;
+    @FXML
+    private Button btnCopyTotalProfitSpin;
+    @FXML
+    private Button btnCopyTotalBonusSpin;
+    @FXML
+    private Button btnCopyAllBonus;
 
     private TabContent tabContent;
     private LocalDate dateSelectFrom;
@@ -133,6 +145,11 @@ public class TabController implements Initializable {
         onClickBtnCopy(btnCopyExchangeCoin, exchangeCoin);
         onClickBtnCopy(btnCopyOtherBonus, otherBonus);
         onClickBtnCopy(btnCopyCasino, casino);
+
+        onClickBtnCopy(btnCopyTotalSpins, countSpins);
+        onClickBtnCopy(btnCopyTotalProfitSpin, totalProfitSpin);
+        onClickBtnCopy(btnCopyTotalBonusSpin, totalBonusSpin);
+        onClickBtnCopy(btnCopyAllBonus, totalAllBonus);
     }
 
     public void buildTabData(File file) {
