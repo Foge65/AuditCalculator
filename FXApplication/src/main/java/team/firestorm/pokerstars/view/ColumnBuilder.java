@@ -8,7 +8,6 @@ import team.firestorm.pokerstars.model.Model;
 import java.util.Map;
 import java.util.Set;
 
-//TODO: Установить минимальный размер для всех столбцов
 public interface ColumnBuilder {
     void buildColumnSpin();
     void buildColumnAnother();

@@ -164,8 +164,6 @@ public class TabController implements Initializable {
         tabContent.setTabName();
     }
 
-    // TODO: Реализовать автоматическое переключение на последнюю добавленную вкладку.
-    //  Но перед этим уточнить, нужно ли такое
     public void addTab(AnchorPane anchorPane, TabPane tabPane) {
         Tab tab = new Tab(tabContent.getTabNameString());
         tab.setContent(anchorPane);
