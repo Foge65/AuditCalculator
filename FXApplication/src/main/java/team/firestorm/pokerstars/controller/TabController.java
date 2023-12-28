@@ -7,6 +7,7 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.util.Callback;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import team.firestorm.pokerstars.model.Model;
@@ -122,6 +123,7 @@ public class TabController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        disableOutOfRangeDate();
         datePickerFrom.setOnAction(event -> filterByDate(tabContent.getModelBuilderFromCsvFile()));
         datePickerTo.setOnAction(event -> filterByDate(tabContent.getModelBuilderFromCsvFile()));
 
@@ -177,6 +179,31 @@ public class TabController implements Initializable {
         tabContent.getModel().setDateTo(dateSelectTo);
         tabContent.buildFilterDataByDate(modelBuilderFromCsvFile.getDateTimeFormatter(), dateSelectFrom, dateSelectTo);
         tabContent.buildFilterViewByDate(this);
+    }
+
+    private void disableOutOfRangeDate() {
+        datePickerFrom.setDayCellFactory(getDayCellFactoryFrom());
+        datePickerTo.setDayCellFactory(getDayCellFactoryTo());
+    }
+
+    private Callback<DatePicker, DateCell> getDayCellFactoryFrom() {
+        return param -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                setDisable(empty || date.isBefore(tabContent.getModel().getDateFrom()));
+            }
+        };
+    }
+
+    private Callback<DatePicker, DateCell> getDayCellFactoryTo() {
+        return param -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                setDisable(empty || date.isAfter(tabContent.getModel().getDateTo()));
+            }
+        };
     }
 
     private void onClickBtnResetFilter() {
