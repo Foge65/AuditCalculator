@@ -180,26 +180,23 @@ public class TabController implements Initializable {
     }
 
     private void disableOutOfRangeDate() {
-        datePickerFrom.setDayCellFactory(getDayCellFactoryFrom());
-        datePickerTo.setDayCellFactory(getDayCellFactoryTo());
+        Callback<DatePicker, DateCell> dayCellFactory = getDayCellFactory();
+        datePickerFrom.setDayCellFactory(dayCellFactory);
+        datePickerTo.setDayCellFactory(dayCellFactory);
     }
 
-    private Callback<DatePicker, DateCell> getDayCellFactoryFrom() {
+    private Callback<DatePicker, DateCell> getDayCellFactory() {
         return param -> new DateCell() {
             @Override
             public void updateItem(LocalDate date, boolean empty) {
                 super.updateItem(date, empty);
-                setDisable(empty || date.isBefore(tabContent.getModel().getDateFrom()));
-            }
-        };
-    }
-
-    private Callback<DatePicker, DateCell> getDayCellFactoryTo() {
-        return param -> new DateCell() {
-            @Override
-            public void updateItem(LocalDate date, boolean empty) {
-                super.updateItem(date, empty);
-                setDisable(empty || date.isAfter(tabContent.getModel().getDateTo()));
+                LocalDate dateFrom = tabContent.getModel().getDateFrom();
+                LocalDate dateTo = tabContent.getModel().getDateTo();
+                if (date.isBefore(dateFrom) || date.isAfter(dateTo)) {
+                    setDisable(true);
+                } else {
+                    setDisable(false);
+                }
             }
         };
     }
