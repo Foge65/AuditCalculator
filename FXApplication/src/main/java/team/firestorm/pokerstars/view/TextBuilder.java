@@ -36,6 +36,9 @@ public class TextBuilder {
         tabController.getTotalProfitSpin().setText(getTextFromBigDecimal(model.getSumProfitSpin()));
         tabController.getTotalBonusSpin().setText(getTextFromBigDecimal(model.getSumBonusSpin()));
         tabController.getTotalAllBonus().setText(getTextFromTotalBonus());
+
+        tabController.getTotalProfitMTT().setText(getTextFromProfitMTT());
+        tabController.getTotalProfitCash().setText(getTextFromProfitCash());
     }
 
     private String getTextFromBigDecimal(Map<String, BigDecimal> valueMap) {
@@ -51,5 +54,15 @@ public class TextBuilder {
         double exchangeCoin = Double.parseDouble(model.getExchangeCoin());
         double otherBonus = Double.parseDouble(model.getOtherBonus());
         return String.valueOf(chest + exchangeCoin + otherBonus);
+    }
+
+    private String getTextFromProfitMTT() {
+        return model.getSumProfitMTT().values().stream()
+                .reduce(BigDecimal.ZERO, BigDecimal::add).toString();
+    }
+
+    private String getTextFromProfitCash() {
+        return model.getSumProfitCash().values().stream()
+                .reduce(BigDecimal.ZERO, BigDecimal::add).toString();
     }
 }

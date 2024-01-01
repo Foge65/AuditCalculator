@@ -16,7 +16,7 @@ public abstract class PokerStarsBase implements PokerStars {
     private static final int ACTION = 1;
     private static final int ID = 2;
     private static final int GAME = 3;
-    public final String regexGameSpin = "NL\\sHold'em\\sSit&Go\\sBuy-In:\\s";
+    public final String regexGameSpin = "NL\sHold'em\sSit&Go\sBuy-In:\s";
     public final String regexGameAnother = "^(?!.*NL Hold'em Sit&Go Buy-In).*";
     private CsvParser csvParser;
 
@@ -515,5 +515,30 @@ public abstract class PokerStarsBase implements PokerStars {
             }
         }
         return registerCount - unRegisterCount;
+    }
+
+    @Override
+    public Map<String, BigDecimal> gameMTT(List<String[]> strings, Set<String> games, int amount) {
+        Map<String, BigDecimal> result = new HashMap<>();
+        return result;
+    }
+
+    @Override
+    public Map<String, BigDecimal> gameCash(List<String[]> strings, Set<String> games, int amount) {
+        Map<String, BigDecimal> result = new HashMap<>();
+        Pattern pattern = Pattern.compile("^\\S.+\\/.+\\s(?:NL\\sHold'em|PL\\sOmaha)\\\"$");
+        for (String game : games) {
+            BigDecimal sum = BigDecimal.ZERO;
+            for (String[] stringArray : strings) {
+                Matcher matcher = pattern.matcher(stringArray[GAME]);
+                String buyInValue = gameParser(stringArray);
+                String amountValue = numberColumnParser(stringArray[amount]);
+                if (matcher.find() && buyInValue.equals(game)) {
+                    sum = sum.add(new BigDecimal(amountValue));
+                }
+            }
+            result.put(game, sum);
+        }
+        return result;
     }
 }

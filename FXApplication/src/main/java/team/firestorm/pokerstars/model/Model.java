@@ -37,6 +37,8 @@ public class Model {
     private Map<String, BigDecimal> sumKnockoutAnother;
 
     private Integer countRegistrationSpinWithoutUnregistration;
+    private Map<String, BigDecimal> sumProfitMTT;
+    private Map<String, BigDecimal> sumProfitCash;
 
     private LocalDate dateFrom;
     private LocalDate dateTo;
@@ -90,6 +92,8 @@ public class Model {
         setSumKnockoutAnother(modelBuilderFromCsvFile.getSumKnockoutAnother());
 
         setCountRegistrationSpinWithoutUnregistration(modelBuilderFromCsvFile.getCountRegistrationSpinWithoutUnregistration());
+        setSumProfitMTT(modelBuilderFromCsvFile.getSumProfitMTT());
+        setSumProfitCash(modelBuilderFromCsvFile.getSumProfitCash());
 
         setDateFrom(modelBuilderFromCsvFile.getDateFrom());
         setDateTo(modelBuilderFromCsvFile.getDateTo());
