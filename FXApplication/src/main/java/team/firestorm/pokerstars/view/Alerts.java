@@ -3,11 +3,11 @@ package team.firestorm.pokerstars.view;
 import javafx.scene.control.Alert;
 
 public class Alerts {
-    public static void unknown() {
+    public static void unknownLanguage() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
+        alert.setTitle("Unsupported language detected");
         alert.setHeaderText(null);
-        alert.setContentText("Please, contact with developer");
+        alert.setContentText("Please, re-order the audit in English or Russian!");
         alert.showAndWait();
     }
 

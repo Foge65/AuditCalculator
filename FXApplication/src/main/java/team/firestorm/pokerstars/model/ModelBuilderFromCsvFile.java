@@ -1,6 +1,8 @@
 package team.firestorm.pokerstars.model;
 
+import javafx.application.Platform;
 import lombok.Getter;
+import team.firestorm.pokerstars.view.Alerts;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -76,18 +78,24 @@ public class ModelBuilderFromCsvFile {
         languageDetection = new Language(csvParser);
         language = languageDetection.detect();
         date = new Date(csvParser);
-        if (language.equals("en")) {
-            languageEn = new LanguageEn(csvParser);
-            pokerStarsBase = languageEn;
-            dateFrom = date.setDateFrom(csvStrings, languageEn.getFormat());
-            dateTo = date.setDateTo(csvStrings, languageEn.getFormat());
-            dateTimeFormatter = languageEn.getFormat();
-        } else if (language.equals("ru")) {
-            languageRu = new LanguageRu(csvParser);
-            pokerStarsBase = languageRu;
-            dateFrom = date.setDateFrom(csvStrings, languageRu.getFormat());
-            dateTo = date.setDateTo(csvStrings, languageRu.getFormat());
-            dateTimeFormatter = languageRu.getFormat();
+        try {
+            if (language.equals("en")) {
+                languageEn = new LanguageEn(csvParser);
+                pokerStarsBase = languageEn;
+                dateFrom = date.setDateFrom(csvStrings, languageEn.getFormat());
+                dateTo = date.setDateTo(csvStrings, languageEn.getFormat());
+                dateTimeFormatter = languageEn.getFormat();
+            } else if (language.equals("ru")) {
+                languageRu = new LanguageRu(csvParser);
+                pokerStarsBase = languageRu;
+                dateFrom = date.setDateFrom(csvStrings, languageRu.getFormat());
+                dateTo = date.setDateTo(csvStrings, languageRu.getFormat());
+                dateTimeFormatter = languageRu.getFormat();
+            } else {
+                Platform.runLater(() -> Alerts.unknownLanguage());
+            }
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
         }
 
         elements = csvParser.countElements();
