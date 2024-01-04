@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 import team.firestorm.pokerstars.model.Model;
 import team.firestorm.pokerstars.model.ModelBuilderFromCsvFile;
 import team.firestorm.pokerstars.model.TabContent;
+import team.firestorm.pokerstars.view.Alerts;
 
 import java.io.File;
 import java.net.URL;
@@ -186,10 +187,14 @@ public class TabController implements Initializable {
     private void filterByDate(ModelBuilderFromCsvFile modelBuilderFromCsvFile) {
         dateSelectFrom = datePickerFrom.getValue();
         dateSelectTo = datePickerTo.getValue();
-        tabContent.getModel().setDateFrom(dateSelectFrom);
-        tabContent.getModel().setDateTo(dateSelectTo);
-        tabContent.buildFilterDataByDate(modelBuilderFromCsvFile.getDateTimeFormatter(), dateSelectFrom, dateSelectTo);
-        tabContent.buildFilterViewByDate(this);
+        try {
+            tabContent.getModel().setDateFrom(dateSelectFrom);
+            tabContent.getModel().setDateTo(dateSelectTo);
+            tabContent.buildFilterDataByDate(modelBuilderFromCsvFile.getDateTimeFormatter(), dateSelectFrom, dateSelectTo);
+            tabContent.buildFilterViewByDate(this);
+        } catch (IndexOutOfBoundsException e) {
+            Alerts.invalidDate();
+        }
     }
 
     private void disableOutOfRangeDate() {
