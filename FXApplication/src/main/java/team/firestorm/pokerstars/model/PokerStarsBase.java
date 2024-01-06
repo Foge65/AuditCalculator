@@ -46,7 +46,7 @@ public abstract class PokerStarsBase implements PokerStars {
                 String actionValue = stringArray[ACTION];
                 String buyInValueQuote = gameParser(stringArray);
                 String columnValueComma = numberColumnParser(stringArray[column]);
-                if (buyInValueQuote.equals(buyIn) && actionValue.equals(action)) {
+                if (buyInValueQuote.equals(buyIn) && actionValue.startsWith(action)) {
                     sum = sum.add(new BigDecimal(columnValueComma));
                 }
             }
@@ -180,7 +180,7 @@ public abstract class PokerStarsBase implements PokerStars {
             for (String[] stringArray : strings) {
                 String actionValue = stringArray[ACTION];
                 String buyInValueQuote = gameParser(stringArray);
-                if (buyIn.equals(buyInValueQuote) && action.equals(actionValue)) {
+                if (buyIn.equals(buyInValueQuote) && actionValue.startsWith(action)) {
                     counter++;
                 }
             }
@@ -534,4 +534,8 @@ public abstract class PokerStarsBase implements PokerStars {
         }
         return result;
     }
+
+    public abstract String getSeatInTable();
+    public abstract String getSeatOutTable();
+    public abstract String getAutoRebuyTable();
 }

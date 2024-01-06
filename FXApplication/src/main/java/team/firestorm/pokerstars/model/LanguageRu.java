@@ -17,7 +17,10 @@ public class LanguageRu extends PokerStarsBase implements DateFormat {
     private static final String CHEST_REWARD = "Награда из подарка";
     private static final String BUY_CHIPS = "Награда при покупке фишек";
     private static final String CASINO = "Казино: ";
-    private final String[] bonuses = new String[]{"LC_", "Бонус зачислен"};
+    private static final String[] BONUSES = new String[]{"LC_", "Бонус зачислен"};
+    private static final String SEAT_IN_TABLE = "Бай-ин на столе";
+    private static final String SEAT_OUT_TABLE = "Leave Table";
+    private static final String AUTO_REBUY_TABLE = "Авторебай на столе";
 
     public LanguageRu(CsvParser csvParser) {
         super(csvParser);
@@ -100,6 +103,21 @@ public class LanguageRu extends PokerStarsBase implements DateFormat {
 
     @Override
     public String[] getBonuses() {
-        return bonuses;
+        return BONUSES;
+    }
+
+    @Override
+    public String getSeatInTable() {
+        return SEAT_IN_TABLE;
+    }
+
+    @Override
+    public String getSeatOutTable() {
+        return SEAT_OUT_TABLE;
+    }
+
+    @Override
+    public String getAutoRebuyTable() {
+        return AUTO_REBUY_TABLE;
     }
 }

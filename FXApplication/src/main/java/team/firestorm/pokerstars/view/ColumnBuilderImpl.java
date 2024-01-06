@@ -35,7 +35,7 @@ public class ColumnBuilderImpl implements ColumnBuilder {
         TableColumn<Model, Boolean> pool = new TableColumn<>("Enable\nPool");
         setCellCheckBox(table, pool);
 
-        TableColumn<Model, Set<String>> game = new TableColumn<>("Spin\nGame");
+        TableColumn<Model, Set<String>> game = new TableColumn<>("Spin\nBuyIn");
         setCellValueGame(table, game);
 
         TableColumn<Model, Integer> countRegistration = new TableColumn<>("Count\nRegistration");
@@ -70,7 +70,7 @@ public class ColumnBuilderImpl implements ColumnBuilder {
     public void buildColumnMTT() {
         TableView<Model> table = tabController.getTableViewMTT();
 
-        TableColumn<Model, Set<String>> game = new TableColumn<>("MTT\nGame");
+        TableColumn<Model, Set<String>> game = new TableColumn<>("MTT\nBuyIn");
         setCellValueGame(table, game);
 
         TableColumn<Model, Integer> countRegistration = new TableColumn<>("Count\nRegistration");
@@ -116,6 +116,12 @@ public class ColumnBuilderImpl implements ColumnBuilder {
 
         TableColumn<Model, BigDecimal> sumUnRegistration = new TableColumn<>("Sum\nUnRegistration");
         setCellValueNumber(table, model.getSumUnRegistrationCash(), sumUnRegistration);
+
+        TableColumn<Model, Integer> countRebuy = new TableColumn<>("Count\nAutoRebuy");
+        setCellValueNumber(table, model.getCountRebuyCash(), countRebuy);
+
+        TableColumn<Model, BigDecimal> sumRebuy = new TableColumn<>("Sum\nAutoRebuy");
+        setCellValueNumber(table, model.getSumRebuyCash(), sumRebuy);
 
         TableColumn<Model, BigDecimal> sumNetWon = new TableColumn<>("Sum\nNetWon");
         setCellValueNumber(table, model.getSumNetWonCash(), sumNetWon);

@@ -17,7 +17,10 @@ public class LanguageEn extends PokerStarsBase implements DateFormat {
     private static final String CHEST_REWARD = "Chest Reward";
     private static final String BUY_CHIPS = "Buy Chips";
     private static final String CASINO = "Casino: ";
-    private final String[] bonuses = new String[]{"LC_", "Good Will Credit", "Bonus credit", "Tournament Prize Adjustment"};
+    private static final String[] BONUSES = new String[]{"LC_", "Good Will Credit", "Bonus credit", "Tournament Prize Adjustment"};
+    private static final String SEAT_IN_TABLE = "Table Buy In";
+    private static final String SEAT_OUT_TABLE = "Leave Table";
+    private static final String AUTO_REBUY_TABLE = "Table Auto Rebuy";
 
     public LanguageEn(CsvParser csvParser) {
         super(csvParser);
@@ -100,6 +103,21 @@ public class LanguageEn extends PokerStarsBase implements DateFormat {
 
     @Override
     public String[] getBonuses() {
-        return bonuses;
+        return BONUSES;
+    }
+
+    @Override
+    public String getSeatInTable() {
+        return SEAT_IN_TABLE;
+    }
+
+    @Override
+    public String getSeatOutTable() {
+        return SEAT_OUT_TABLE;
+    }
+
+    @Override
+    public String getAutoRebuyTable() {
+        return AUTO_REBUY_TABLE;
     }
 }

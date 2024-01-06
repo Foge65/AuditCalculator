@@ -41,6 +41,8 @@ public class Model {
     private Map<String, BigDecimal> sumRegistrationCash;
     private Map<String, Integer> countUnRegistrationCash;
     private Map<String, BigDecimal> sumUnRegistrationCash;
+    private Map<String, Integer> countRebuyCash;
+    private Map<String, BigDecimal> sumRebuyCash;
     private Map<String, BigDecimal> sumNetWonCash;
 
     private Integer countRegistrationSpinWithoutUnregistration;
@@ -104,6 +106,8 @@ public class Model {
         setSumRegistrationCash(modelBuilderFromCsvFile.getSumRegistrationCash());
         setCountUnRegistrationCash(modelBuilderFromCsvFile.getCountUnRegistrationCash());
         setSumUnRegistrationCash(modelBuilderFromCsvFile.getSumUnRegistrationCash());
+        setCountRebuyCash(modelBuilderFromCsvFile.getCountRebuyCash());
+        setSumRebuyCash(modelBuilderFromCsvFile.getSumRebuyCash());
         setSumNetWonCash(modelBuilderFromCsvFile.getSumNetWonCash());
 
         setCountRegistrationSpinWithoutUnregistration(modelBuilderFromCsvFile.getCountRegistrationSpinWithoutUnregistration());

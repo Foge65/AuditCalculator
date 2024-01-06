@@ -57,11 +57,13 @@ public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
 
         Set<String> gameCash = pokerStarsBase.game(pokerStarsBase.getRegexGameCash(), filteredStrings);
         model.setGameCash(gameCash);
-        model.setCountRegistrationCash(pokerStarsBase.countTourney(filteredStrings, gameCash, pokerStarsBase.getRegistrationString()));
-        model.setSumRegistrationCash(pokerStarsBase.sumColumn(filteredStrings, gameCash, pokerStarsBase.getRegistrationString(), getAmountIndex()));
-        model.setCountUnRegistrationCash(pokerStarsBase.countTourney(filteredStrings, gameCash, pokerStarsBase.getUnRegistrationString()));
-        model.setSumUnRegistrationCash(pokerStarsBase.sumColumn(filteredStrings, gameCash, pokerStarsBase.getUnRegistrationString(), getAmountIndex()));
-        model.setSumNetWonCash(pokerStarsBase.sumColumn(filteredStrings, gameCash, pokerStarsBase.getNetWonString(), getAmountIndex()));
+        model.setCountRegistrationCash(pokerStarsBase.countTourney(filteredStrings, gameCash, pokerStarsBase.getSeatInTable()));
+        model.setSumRegistrationCash(pokerStarsBase.sumColumn(filteredStrings, gameCash, pokerStarsBase.getSeatInTable(), getAmountIndex()));
+        model.setCountUnRegistrationCash(pokerStarsBase.countTourney(filteredStrings, gameCash, pokerStarsBase.getSeatOutTable()));
+        model.setSumUnRegistrationCash(pokerStarsBase.sumColumn(filteredStrings, gameCash, pokerStarsBase.getSeatOutTable(), getAmountIndex()));
+        model.setCountRebuyCash(pokerStarsBase.countTourney(filteredStrings, gameCash, pokerStarsBase.getAutoRebuyTable()));
+        model.setSumRebuyCash(pokerStarsBase.sumColumn(filteredStrings, gameCash, pokerStarsBase.getAutoRebuyTable(), getAmountIndex()));
+        model.setSumNetWonCash(pokerStarsBase.sumForEachGame(filteredStrings, gameCash, getAmountIndex()));
 
         model.setCountRegistrationSpinWithoutUnregistration(pokerStarsBase.totalCountRegistrationSpinWithoutUnregistration(filteredStrings, pokerStarsBase.getRegistrationString(), pokerStarsBase.getUnRegistrationString()));
         model.setSumProfitMTT(pokerStarsBase.sumForEachGame(filteredStrings, gameMTT, getAmountIndex()));
