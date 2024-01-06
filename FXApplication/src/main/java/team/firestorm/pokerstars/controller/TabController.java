@@ -32,7 +32,9 @@ public class TabController implements Initializable {
     @FXML
     private TableView<Model> tableViewSpin;
     @FXML
-    private TableView<Model> tableViewAnother;
+    private TableView<Model> tableViewMTT;
+    @FXML
+    private TableView<Model> tableViewCash;
 
     @FXML
     private Text startBalance;

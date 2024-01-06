@@ -10,7 +10,8 @@ import java.util.Set;
 
 public interface ColumnBuilder {
     void buildColumnSpin();
-    void buildColumnAnother();
+    void buildColumnMTT();
+    void buildColumnCash();
     void setCellCheckBox(TableView<Model> table, TableColumn<Model, Boolean> pool);
     void setCellValueGame(TableView<Model> table, TableColumn<Model, Set<String>> game);
     <T> void setCellValueNumber(TableView<Model> table, Map<String, T> value, TableColumn<Model, T> column);

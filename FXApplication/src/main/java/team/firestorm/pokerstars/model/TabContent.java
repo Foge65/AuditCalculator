@@ -84,8 +84,10 @@ public class TabContent {
 
     public void buildTable(ColumnBuilder columnBuilder, TabController tabController) {
         columnBuilder.buildColumnSpin();
-        columnBuilder.buildColumnAnother();
-        columnBuilder.addGameToObservableList(model.getGameSpin(), modelObserver.getObservableListSpinGame(), tabController.getTableViewSpin());
-        columnBuilder.addGameToObservableList(model.getGameAnother(), modelObserver.getObservableListAnotherGame(), tabController.getTableViewAnother());
+        columnBuilder.buildColumnMTT();
+        columnBuilder.buildColumnCash();
+        columnBuilder.addGameToObservableList(model.getGameSpin(), modelObserver.getObservableListSpin(), tabController.getTableViewSpin());
+        columnBuilder.addGameToObservableList(model.getGameMTT(), modelObserver.getObservableListMTT(), tabController.getTableViewMTT());
+        columnBuilder.addGameToObservableList(model.getGameCash(), modelObserver.getObservableListCash(), tabController.getTableViewCash());
     }
 }

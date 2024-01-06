@@ -26,15 +26,22 @@ public class Model {
     private Map<String, BigDecimal> sumProfitPoolSpin;
     private Map<String, BigDecimal> sumBonusPoolSpin;
 
-    private Set<String> gameAnother;
-    private Map<String, Integer> countRegistrationAnother;
-    private Map<String, BigDecimal> sumRegistrationAnother;
-    private Map<String, Integer> countUnRegistrationAnother;
-    private Map<String, BigDecimal> sumUnRegistrationAnother;
-    private Map<String, BigDecimal> sumNetWonAnother;
-    private Map<String, Integer> countReEntryAnother;
-    private Map<String, BigDecimal> sumReEntryAnother;
-    private Map<String, BigDecimal> sumKnockoutAnother;
+    private Set<String> gameMTT;
+    private Map<String, Integer> countRegistrationMTT;
+    private Map<String, BigDecimal> sumRegistrationMTT;
+    private Map<String, Integer> countUnRegistrationMTT;
+    private Map<String, BigDecimal> sumUnRegistrationMTT;
+    private Map<String, BigDecimal> sumNetWonMTT;
+    private Map<String, Integer> countReEntryMTT;
+    private Map<String, BigDecimal> sumReEntryMTT;
+    private Map<String, BigDecimal> sumKnockoutMTT;
+
+    private Set<String> gameCash;
+    private Map<String, Integer> countRegistrationCash;
+    private Map<String, BigDecimal> sumRegistrationCash;
+    private Map<String, Integer> countUnRegistrationCash;
+    private Map<String, BigDecimal> sumUnRegistrationCash;
+    private Map<String, BigDecimal> sumNetWonCash;
 
     private Integer countRegistrationSpinWithoutUnregistration;
     private Map<String, BigDecimal> sumProfitMTT;
@@ -64,7 +71,8 @@ public class Model {
 
     public Model(Set<String> game) {
         gameSpin = game;
-        gameAnother = game;
+        gameMTT = game;
+        gameCash = game;
     }
 
     public void setModel(ModelBuilderFromCsvFile modelBuilderFromCsvFile) {
@@ -81,15 +89,22 @@ public class Model {
         setSumProfitPoolSpin(modelBuilderFromCsvFile.getSumProfitPoolSpin());
         setSumBonusPoolSpin(modelBuilderFromCsvFile.getSumBonusPoolSpin());
 
-        setGameAnother(modelBuilderFromCsvFile.getGameAnother());
-        setCountRegistrationAnother(modelBuilderFromCsvFile.getCountRegistrationAnother());
-        setSumRegistrationAnother(modelBuilderFromCsvFile.getSumRegistrationAnother());
-        setCountUnRegistrationAnother(modelBuilderFromCsvFile.getCountUnRegistrationAnother());
-        setSumUnRegistrationAnother(modelBuilderFromCsvFile.getSumUnRegistrationAnother());
-        setSumNetWonAnother(modelBuilderFromCsvFile.getSumNetWonAnother());
-        setCountReEntryAnother(modelBuilderFromCsvFile.getCountReEntryAnother());
-        setSumReEntryAnother(modelBuilderFromCsvFile.getSumReEntryAnother());
-        setSumKnockoutAnother(modelBuilderFromCsvFile.getSumKnockoutAnother());
+        setGameMTT(modelBuilderFromCsvFile.getGameMTT());
+        setCountRegistrationMTT(modelBuilderFromCsvFile.getCountRegistrationMTT());
+        setSumRegistrationMTT(modelBuilderFromCsvFile.getSumRegistrationMTT());
+        setCountUnRegistrationMTT(modelBuilderFromCsvFile.getCountUnRegistrationMTT());
+        setSumUnRegistrationMTT(modelBuilderFromCsvFile.getSumUnRegistrationMTT());
+        setSumNetWonMTT(modelBuilderFromCsvFile.getSumNetWonMTT());
+        setCountReEntryMTT(modelBuilderFromCsvFile.getCountReEntryMTT());
+        setSumReEntryMTT(modelBuilderFromCsvFile.getSumReEntryMTT());
+        setSumKnockoutMTT(modelBuilderFromCsvFile.getSumKnockoutMTT());
+
+        setGameCash(modelBuilderFromCsvFile.getGameCash());
+        setCountRegistrationCash(modelBuilderFromCsvFile.getCountRegistrationCash());
+        setSumRegistrationCash(modelBuilderFromCsvFile.getSumRegistrationCash());
+        setCountUnRegistrationCash(modelBuilderFromCsvFile.getCountUnRegistrationCash());
+        setSumUnRegistrationCash(modelBuilderFromCsvFile.getSumUnRegistrationCash());
+        setSumNetWonCash(modelBuilderFromCsvFile.getSumNetWonCash());
 
         setCountRegistrationSpinWithoutUnregistration(modelBuilderFromCsvFile.getCountRegistrationSpinWithoutUnregistration());
         setSumProfitMTT(modelBuilderFromCsvFile.getSumProfitMTT());

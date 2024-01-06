@@ -96,26 +96,24 @@ public class MainController implements Initializable {
 
     private void addTask(List<File> files) {
         for (File file : files) {
-            if (!files.isEmpty()) {
-                FXMLLoader fxmlLoader = getLoader("/team/firestorm/TabContent.fxml");
-                AnchorPane anchorPane = getAnchorPane(fxmlLoader);
-                TabController tabController = getTabController(fxmlLoader);
-                Task<Void> task = new Task<>() {
-                    @Override
-                    protected Void call() {
-                        tabController.buildTabData(file);
-                        tabController.buildTabView(tabController);
-                        return null;
-                    }
+            FXMLLoader fxmlLoader = getLoader("/team/firestorm/TabContent.fxml");
+            AnchorPane anchorPane = getAnchorPane(fxmlLoader);
+            TabController tabController = getTabController(fxmlLoader);
+            Task<Void> task = new Task<>() {
+                @Override
+                protected Void call() {
+                    tabController.buildTabData(file);
+                    tabController.buildTabView(tabController);
+                    return null;
+                }
 
-                    @Override
-                    protected void succeeded() {
-                        tabController.addTab(anchorPane, tabPane);
-                        btnOpen.setDisable(false);
-                    }
-                };
-                new Thread(task).start();
-            }
+                @Override
+                protected void succeeded() {
+                    tabController.addTab(anchorPane, tabPane);
+                    btnOpen.setDisable(false);
+                }
+            };
+            new Thread(task).start();
         }
     }
 

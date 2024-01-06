@@ -67,35 +67,58 @@ public class ColumnBuilderImpl implements ColumnBuilder {
     }
 
     @Override
-    public void buildColumnAnother() {
-        TableView<Model> table = tabController.getTableViewAnother();
+    public void buildColumnMTT() {
+        TableView<Model> table = tabController.getTableViewMTT();
 
-        TableColumn<Model, Set<String>> game = new TableColumn<>("Another\nGame");
+        TableColumn<Model, Set<String>> game = new TableColumn<>("MTT\nGame");
         setCellValueGame(table, game);
 
         TableColumn<Model, Integer> countRegistration = new TableColumn<>("Count\nRegistration");
-        setCellValueNumber(table, model.getCountRegistrationAnother(), countRegistration);
+        setCellValueNumber(table, model.getCountRegistrationMTT(), countRegistration);
 
         TableColumn<Model, BigDecimal> sumRegistration = new TableColumn<>("Sum\nRegistration");
-        setCellValueNumber(table, model.getSumRegistrationAnother(), sumRegistration);
+        setCellValueNumber(table, model.getSumRegistrationMTT(), sumRegistration);
 
         TableColumn<Model, Integer> countUnRegistration = new TableColumn<>("Count\nUnRegistration");
-        setCellValueNumber(table, model.getCountUnRegistrationAnother(), countUnRegistration);
+        setCellValueNumber(table, model.getCountUnRegistrationMTT(), countUnRegistration);
 
         TableColumn<Model, BigDecimal> sumUnRegistration = new TableColumn<>("Sum\nUnRegistration");
-        setCellValueNumber(table, model.getSumUnRegistrationAnother(), sumUnRegistration);
+        setCellValueNumber(table, model.getSumUnRegistrationMTT(), sumUnRegistration);
 
         TableColumn<Model, BigDecimal> sumNetWon = new TableColumn<>("Sum\nNetWon");
-        setCellValueNumber(table, model.getSumNetWonAnother(), sumNetWon);
+        setCellValueNumber(table, model.getSumNetWonMTT(), sumNetWon);
 
         TableColumn<Model, Integer> countReEntry = new TableColumn<>("Count\nRe-Entry");
-        setCellValueNumber(table, model.getCountReEntryAnother(), countReEntry);
+        setCellValueNumber(table, model.getCountReEntryMTT(), countReEntry);
 
         TableColumn<Model, BigDecimal> sumReEntry = new TableColumn<>("Sum\nRe-Entry");
-        setCellValueNumber(table, model.getSumReEntryAnother(), sumReEntry);
+        setCellValueNumber(table, model.getSumReEntryMTT(), sumReEntry);
 
         TableColumn<Model, BigDecimal> sumKnockout = new TableColumn<>("Sum\nKnockout");
-        setCellValueNumber(table, model.getSumKnockoutAnother(), sumKnockout);
+        setCellValueNumber(table, model.getSumKnockoutMTT(), sumKnockout);
+    }
+
+    @Override
+    public void buildColumnCash() {
+        TableView<Model> table = tabController.getTableViewCash();
+
+        TableColumn<Model, Set<String>> game = new TableColumn<>("Cash\nGame");
+        setCellValueGame(table, game);
+
+        TableColumn<Model, Integer> countRegistration = new TableColumn<>("Count\nRegistration");
+        setCellValueNumber(table, model.getCountRegistrationCash(), countRegistration);
+
+        TableColumn<Model, BigDecimal> sumRegistration = new TableColumn<>("Sum\nRegistration");
+        setCellValueNumber(table, model.getSumRegistrationCash(), sumRegistration);
+
+        TableColumn<Model, Integer> countUnRegistration = new TableColumn<>("Count\nUnRegistration");
+        setCellValueNumber(table, model.getCountUnRegistrationCash(), countUnRegistration);
+
+        TableColumn<Model, BigDecimal> sumUnRegistration = new TableColumn<>("Sum\nUnRegistration");
+        setCellValueNumber(table, model.getSumUnRegistrationCash(), sumUnRegistration);
+
+        TableColumn<Model, BigDecimal> sumNetWon = new TableColumn<>("Sum\nNetWon");
+        setCellValueNumber(table, model.getSumNetWonCash(), sumNetWon);
     }
 
     @Override

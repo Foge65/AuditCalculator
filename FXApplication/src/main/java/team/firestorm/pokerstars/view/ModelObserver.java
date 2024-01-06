@@ -10,17 +10,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModelObserver {
-    private final List<Model> listModelSpinGame = new ArrayList<>();
-    private final List<Model> listModelAnotherGame = new ArrayList<>();
+    private final List<Model> listModelSpin = new ArrayList<>();
+    private final List<Model> listModelMTT = new ArrayList<>();
+    private final List<Model> listModelCash = new ArrayList<>();
     @Getter
-    private final ObservableList<Model> observableListSpinGame = FXCollections.observableArrayList(listModelSpinGame);
+    private final ObservableList<Model> observableListSpin = FXCollections.observableArrayList(listModelSpin);
     @Getter
-    private final ObservableList<Model> observableListAnotherGame = FXCollections.observableArrayList(listModelAnotherGame);
+    private final ObservableList<Model> observableListMTT = FXCollections.observableArrayList(listModelMTT);
+    @Getter
+    private final ObservableList<Model> observableListCash = FXCollections.observableArrayList(listModelCash);
 
     public void clear(TabController tabController) {
         tabController.getTableViewSpin().getColumns().clear();
-        tabController.getTableViewAnother().getColumns().clear();
-        observableListSpinGame.clear();
-        observableListAnotherGame.clear();
+        tabController.getTableViewMTT().getColumns().clear();
+        tabController.getTableViewCash().getColumns().clear();
+        observableListSpin.clear();
+        observableListMTT.clear();
+        observableListCash.clear();
     }
 }
