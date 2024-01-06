@@ -32,12 +32,12 @@ public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
 
         Set<String> gameSpin = pokerStarsBase.game(pokerStarsBase.getRegexGameSpin(), filteredStrings);
         model.setGameSpin(gameSpin);
-        model.setCountRegistrationSpin(pokerStarsBase.countTourney(filteredStrings, gameSpin, pokerStarsBase.getRegistrationString()));
-        model.setSumRegistrationSpin(pokerStarsBase.sumColumn(filteredStrings, gameSpin, pokerStarsBase.getRegistrationString(), getAmountIndex()));
-        model.setCountUnRegistrationSpin(pokerStarsBase.countTourney(filteredStrings, gameSpin, pokerStarsBase.getUnRegistrationString()));
-        model.setSumUnRegistrationSpin(pokerStarsBase.sumColumn(filteredStrings, gameSpin, pokerStarsBase.getUnRegistrationString(), getAmountIndex()));
-        model.setSumNetWonSpin(pokerStarsBase.sumColumn(filteredStrings, gameSpin, pokerStarsBase.getNetWonString(), getAmountIndex()));
-        model.setSumRegistrationForTMoneySpin(pokerStarsBase.sumColumn(filteredStrings, gameSpin, pokerStarsBase.getRegistrationString(), getTMoneyAmountIndex()));
+        model.setCountRegistrationSpin(pokerStarsBase.countGame(filteredStrings, gameSpin, pokerStarsBase.getRegistrationString()));
+        model.setSumRegistrationSpin(pokerStarsBase.sumGame(filteredStrings, gameSpin, pokerStarsBase.getRegistrationString(), getAmountIndex()));
+        model.setCountUnRegistrationSpin(pokerStarsBase.countGame(filteredStrings, gameSpin, pokerStarsBase.getUnRegistrationString()));
+        model.setSumUnRegistrationSpin(pokerStarsBase.sumGame(filteredStrings, gameSpin, pokerStarsBase.getUnRegistrationString(), getAmountIndex()));
+        model.setSumNetWonSpin(pokerStarsBase.sumGame(filteredStrings, gameSpin, pokerStarsBase.getNetWonString(), getAmountIndex()));
+        model.setSumRegistrationForTMoneySpin(pokerStarsBase.sumGame(filteredStrings, gameSpin, pokerStarsBase.getRegistrationString(), getTMoneyAmountIndex()));
         model.setCountRegistrationByTicketSpin(pokerStarsBase.countRegistrationByTicket(filteredStrings, gameSpin, getAmountIndex(), getTMoneyAmountIndex()));
         model.setSumProfitSpin(pokerStarsBase.sumProfit(filteredStrings, gameSpin, getAmountIndex(), getTMoneyAmountIndex()));
         model.setSumBonusSpin(pokerStarsBase.sumBonus(filteredStrings, gameSpin, getAmountIndex(), getTMoneyAmountIndex()));
@@ -46,23 +46,23 @@ public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
 
         Set<String> gameMTT = pokerStarsBase.game(pokerStarsBase.getRegexGameMTT(), filteredStrings);
         model.setGameMTT(gameMTT);
-        model.setCountRegistrationMTT(pokerStarsBase.countTourney(filteredStrings, gameMTT, pokerStarsBase.getRegistrationString()));
-        model.setSumRegistrationMTT(pokerStarsBase.sumColumn(filteredStrings, gameMTT, pokerStarsBase.getRegistrationString(), getAmountIndex()));
-        model.setCountUnRegistrationMTT(pokerStarsBase.countTourney(filteredStrings, gameMTT, pokerStarsBase.getUnRegistrationString()));
-        model.setSumUnRegistrationMTT(pokerStarsBase.sumColumn(filteredStrings, gameMTT, pokerStarsBase.getUnRegistrationString(), getAmountIndex()));
-        model.setSumNetWonMTT(pokerStarsBase.sumColumn(filteredStrings, gameMTT, pokerStarsBase.getNetWonString(), getAmountIndex()));
+        model.setCountRegistrationMTT(pokerStarsBase.countGame(filteredStrings, gameMTT, pokerStarsBase.getRegistrationString()));
+        model.setSumRegistrationMTT(pokerStarsBase.sumGame(filteredStrings, gameMTT, pokerStarsBase.getRegistrationString(), getAmountIndex()));
+        model.setCountUnRegistrationMTT(pokerStarsBase.countGame(filteredStrings, gameMTT, pokerStarsBase.getUnRegistrationString()));
+        model.setSumUnRegistrationMTT(pokerStarsBase.sumGame(filteredStrings, gameMTT, pokerStarsBase.getUnRegistrationString(), getAmountIndex()));
+        model.setSumNetWonMTT(pokerStarsBase.sumGame(filteredStrings, gameMTT, pokerStarsBase.getNetWonString(), getAmountIndex()));
         model.setCountReEntryMTT(pokerStarsBase.countReEntry(filteredStrings, gameMTT));
         model.setSumReEntryMTT(pokerStarsBase.sumReEntry(filteredStrings, gameMTT, getAmountIndex()));
         model.setSumKnockoutMTT(pokerStarsBase.sumKnockout(filteredStrings, gameMTT, getAmountIndex()));
 
         Set<String> gameCash = pokerStarsBase.game(pokerStarsBase.getRegexGameCash(), filteredStrings);
         model.setGameCash(gameCash);
-        model.setCountRegistrationCash(pokerStarsBase.countTourney(filteredStrings, gameCash, pokerStarsBase.getSeatInTable()));
-        model.setSumRegistrationCash(pokerStarsBase.sumColumn(filteredStrings, gameCash, pokerStarsBase.getSeatInTable(), getAmountIndex()));
-        model.setCountUnRegistrationCash(pokerStarsBase.countTourney(filteredStrings, gameCash, pokerStarsBase.getSeatOutTable()));
-        model.setSumUnRegistrationCash(pokerStarsBase.sumColumn(filteredStrings, gameCash, pokerStarsBase.getSeatOutTable(), getAmountIndex()));
-        model.setCountRebuyCash(pokerStarsBase.countTourney(filteredStrings, gameCash, pokerStarsBase.getAutoRebuyTable()));
-        model.setSumRebuyCash(pokerStarsBase.sumColumn(filteredStrings, gameCash, pokerStarsBase.getAutoRebuyTable(), getAmountIndex()));
+        model.setCountRegistrationCash(pokerStarsBase.countGame(filteredStrings, gameCash, pokerStarsBase.getSeatInTable()));
+        model.setSumRegistrationCash(pokerStarsBase.sumGame(filteredStrings, gameCash, pokerStarsBase.getSeatInTable(), getAmountIndex()));
+        model.setCountUnRegistrationCash(pokerStarsBase.countGame(filteredStrings, gameCash, pokerStarsBase.getSeatOutTable()));
+        model.setSumUnRegistrationCash(pokerStarsBase.sumGame(filteredStrings, gameCash, pokerStarsBase.getSeatOutTable(), getAmountIndex()));
+        model.setCountRebuyCash(pokerStarsBase.countGame(filteredStrings, gameCash, pokerStarsBase.getAutoRebuyTable()));
+        model.setSumRebuyCash(pokerStarsBase.sumGame(filteredStrings, gameCash, pokerStarsBase.getAutoRebuyTable(), getAmountIndex()));
         model.setSumNetWonCash(pokerStarsBase.sumForEachGame(filteredStrings, gameCash, getAmountIndex()));
 
         model.setCountRegistrationSpinWithoutUnregistration(pokerStarsBase.totalCountRegistrationSpinWithoutUnregistration(filteredStrings, pokerStarsBase.getRegistrationString(), pokerStarsBase.getUnRegistrationString()));
