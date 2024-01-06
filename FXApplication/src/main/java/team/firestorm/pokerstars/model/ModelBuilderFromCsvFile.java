@@ -156,8 +156,8 @@ public class ModelBuilderFromCsvFile {
         sumNetWonCash = pokerStarsBase.sumColumn(csvStrings, gameCash, pokerStarsBase.getNetWonString(), amountIndex);
 
         countRegistrationSpinWithoutUnregistration = pokerStarsBase.totalCountRegistrationSpinWithoutUnregistration(csvStrings, getPokerStarsBase().getRegistrationString(), pokerStarsBase.getUnRegistrationString());
-        sumProfitMTT = pokerStarsBase.gameMTT(csvStrings, gameMTT, amountIndex);
-        sumProfitCash = pokerStarsBase.gameCash(csvStrings, gameCash, amountIndex);
+        sumProfitMTT = pokerStarsBase.sumForEachGame(csvStrings, gameMTT, amountIndex);
+        sumProfitCash = pokerStarsBase.sumForEachGame(csvStrings, gameCash, amountIndex);
 
         startBalance = pokerStarsBase.startBalanceMoney(csvStrings, amountIndex, balanceIndex);
         finalBalance = pokerStarsBase.finalBalance(csvStrings, balanceIndex);

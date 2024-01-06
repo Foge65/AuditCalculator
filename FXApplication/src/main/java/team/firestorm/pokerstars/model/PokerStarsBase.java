@@ -519,35 +519,14 @@ public abstract class PokerStarsBase implements PokerStars {
     }
 
     @Override
-    public Map<String, BigDecimal> gameMTT(List<String[]> strings, Set<String> games, int amount) {
+    public Map<String, BigDecimal> sumForEachGame(List<String[]> strings, Set<String> games, int amount) {
         Map<String, BigDecimal> result = new HashMap<>();
-        Pattern pattern = Pattern.compile("^(?!\"\\d+[.,]\\d+\\/\\d+[.,]\\d+).*\"$");
         for (String game : games) {
             BigDecimal sum = BigDecimal.ZERO;
             for (String[] stringArray : strings) {
-                Matcher matcher = pattern.matcher(stringArray[GAME]);
                 String buyInValue = gameParser(stringArray);
                 String amountValue = numberColumnParser(stringArray[amount]);
-                if (matcher.find() && buyInValue.equals(game)) {
-                    sum = sum.add(new BigDecimal(amountValue));
-                }
-            }
-            result.put(game, sum);
-        }
-        return result;
-    }
-
-    @Override
-    public Map<String, BigDecimal> gameCash(List<String[]> strings, Set<String> games, int amount) {
-        Map<String, BigDecimal> result = new HashMap<>();
-        Pattern pattern = Pattern.compile("^\"\\d+[.,]\\d+\\/\\d+[.,]\\d+\\s\\w.+\"");
-        for (String game : games) {
-            BigDecimal sum = BigDecimal.ZERO;
-            for (String[] stringArray : strings) {
-                Matcher matcher = pattern.matcher(stringArray[GAME]);
-                String buyInValue = gameParser(stringArray);
-                String amountValue = numberColumnParser(stringArray[amount]);
-                if (matcher.find() && buyInValue.equals(game)) {
+                if (buyInValue.equals(game)) {
                     sum = sum.add(new BigDecimal(amountValue));
                 }
             }

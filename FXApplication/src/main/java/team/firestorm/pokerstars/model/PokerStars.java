@@ -42,6 +42,5 @@ public interface PokerStars {
     String[] getBonuses();
     String sumOtherBonus(List<String[]> strings, String[] bonuses, int amount);
     Integer totalCountRegistrationSpinWithoutUnregistration(List<String[]> strings, String registerAction, String unRegisterAction);
-    Map<String, BigDecimal> gameMTT(List<String[]> strings, Set<String> game, int amount);
-    Map<String, BigDecimal> gameCash(List<String[]> strings, Set<String> game, int amount);
+    Map<String, BigDecimal> sumForEachGame(List<String[]> strings, Set<String> game, int amount);
 }
