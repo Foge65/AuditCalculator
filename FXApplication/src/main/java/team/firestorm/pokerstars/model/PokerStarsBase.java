@@ -38,7 +38,7 @@ public abstract class PokerStarsBase implements PokerStars {
     }
 
     @Override
-    public Map<String, BigDecimal> sumColumn(List<String[]> strings, Set<String> game, String action, int column) {
+    public Map<String, BigDecimal> sumGame(List<String[]> strings, Set<String> game, String action, int column) {
         Map<String, BigDecimal> sumRegistration = new HashMap<>();
         for (String buyIn : game) {
             BigDecimal sum = BigDecimal.ZERO;
@@ -173,7 +173,7 @@ public abstract class PokerStarsBase implements PokerStars {
     }
 
     @Override
-    public Map<String, Integer> countTourney(List<String[]> strings, Set<String> game, String action) {
+    public Map<String, Integer> countGame(List<String[]> strings, Set<String> game, String action) {
         Map<String, Integer> count = new HashMap<>();
         for (String buyIn : game) {
             int counter = 0;
@@ -475,15 +475,12 @@ public abstract class PokerStarsBase implements PokerStars {
 
     private String gameParser(String[] stringArray) {
         String buyInValue = stringArray[GAME];
-        String buyInValueQuote = replaceQuote(buyInValue);
-        return buyInValueQuote;
+        return replaceQuote(buyInValue);
     }
 
     private String numberColumnParser(String stringArray) {
-        String columnValue = stringArray;
-        String columnValueQuote = replaceQuote(columnValue);
-        String columnValueComma = replaceComma(columnValueQuote);
-        return columnValueComma;
+        String columnValueQuote = replaceQuote(stringArray);
+        return replaceComma(columnValueQuote);
     }
 
     @Override

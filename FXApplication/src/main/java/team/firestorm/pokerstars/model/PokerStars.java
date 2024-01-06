@@ -9,8 +9,8 @@ public interface PokerStars {
     Set<String> game(String regex, List<String[]> strings);
     String replaceQuote(String string);
     String replaceComma(String string);
-    Map<String, Integer> countTourney(List<String[]> strings, Set<String> game, String action);
-    Map<String, BigDecimal> sumColumn(List<String[]> strings, Set<String> game, String action, int column);
+    Map<String, Integer> countGame(List<String[]> strings, Set<String> game, String action);
+    Map<String, BigDecimal> sumGame(List<String[]> strings, Set<String> game, String action, int column);
     Map<String, Integer> countRegistrationByTicket(List<String[]> strings, Set<String> game, int amount, int tMoney);
     Map<String, BigDecimal> sumProfit(List<String[]> strings, Set<String> game, int amount, int tMoney);
     Map<String, BigDecimal> sumBonus(List<String[]> strings, Set<String> game, int amount, int tMoney);
