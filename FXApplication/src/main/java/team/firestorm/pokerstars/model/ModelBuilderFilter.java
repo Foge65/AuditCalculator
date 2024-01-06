@@ -8,11 +8,12 @@ import java.util.Set;
 
 public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
     private final PokerStarsBase pokerStarsBase;
-    private final List<String[]> filteredStrings = new ArrayList<>();
+    private final List<String[]> filteredStrings;
 
     public ModelBuilderFilter(PokerStarsBase pokerStarsBase) {
         super(pokerStarsBase.getCsvParser());
         this.pokerStarsBase = pokerStarsBase;
+        filteredStrings = new ArrayList<>();
     }
 
     public void addToFilteredList(DateTimeFormatter dateTimeFormatter, LocalDate dateSelectFrom, LocalDate dateSelectTo) {
@@ -55,7 +56,7 @@ public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
         model.setSumKnockoutMTT(pokerStarsBase.sumKnockout(filteredStrings, gameMTT, getAmountIndex()));
 
         Set<String> gameCash = pokerStarsBase.game(pokerStarsBase.getRegexGameCash(), filteredStrings);
-        model.setGameCash(gameMTT);
+        model.setGameCash(gameCash);
         model.setCountRegistrationCash(pokerStarsBase.countTourney(filteredStrings, gameCash, pokerStarsBase.getRegistrationString()));
         model.setSumRegistrationCash(pokerStarsBase.sumColumn(filteredStrings, gameCash, pokerStarsBase.getRegistrationString(), getAmountIndex()));
         model.setCountUnRegistrationCash(pokerStarsBase.countTourney(filteredStrings, gameCash, pokerStarsBase.getUnRegistrationString()));
@@ -63,8 +64,8 @@ public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
         model.setSumNetWonCash(pokerStarsBase.sumColumn(filteredStrings, gameCash, pokerStarsBase.getNetWonString(), getAmountIndex()));
 
         model.setCountRegistrationSpinWithoutUnregistration(pokerStarsBase.totalCountRegistrationSpinWithoutUnregistration(filteredStrings, pokerStarsBase.getRegistrationString(), pokerStarsBase.getUnRegistrationString()));
-        model.setSumProfitMTT(pokerStarsBase.gameMTT(filteredStrings, gameMTT, getAmountIndex())); //TODO
-        model.setSumProfitCash(pokerStarsBase.gameCash(filteredStrings, gameMTT, getAmountIndex())); //TODO
+        model.setSumProfitMTT(pokerStarsBase.gameMTT(filteredStrings, gameMTT, getAmountIndex()));
+        model.setSumProfitCash(pokerStarsBase.gameCash(filteredStrings, gameCash, getAmountIndex()));
 
         model.setStartBalance(pokerStarsBase.startBalanceMoney(filteredStrings, getAmountIndex(), getBalanceIndex()));
         model.setFinalBalance(pokerStarsBase.finalBalance(filteredStrings, getBalanceIndex()));
