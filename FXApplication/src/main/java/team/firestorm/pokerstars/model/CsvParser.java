@@ -17,8 +17,9 @@ public class CsvParser {
     public CsvParser(File file) {
         strings = new ArrayList<>();
         List<String> stringList = read(file);
-        this.firstString = firstString(stringList);
+        removeStringWhichStartWithHTML(stringList);
         combine(stringList);
+        this.firstString = firstString(stringList);
     }
 
     private List<String> read(File file) {
@@ -32,7 +33,6 @@ public class CsvParser {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        removeStringWhichStartWithHTML(strings);
         return strings;
     }
 
