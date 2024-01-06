@@ -32,21 +32,18 @@ public class TextBuilder {
         tabController.getOtherBonus().setText(model.getOtherBonus());
         tabController.getCasino().setText(model.getCasino());
 
-        tabController.getCountSpins().setText(model.getCountRegistrationSpinWithoutUnregistration().toString());
-        tabController.getTotalProfitSpin().setText(getTextFromBigDecimal(model.getSumProfitSpin()));
-        tabController.getTotalBonusSpin().setText(getTextFromBigDecimal(model.getSumBonusSpin()));
+        tabController.getCountSpins().setText(String.valueOf(model.getCountRegistrationSpinWithoutUnregistration()));
+        tabController.getTotalProfitSpin().setText(getTextFromBigDecimalMap(model.getSumProfitSpin()));
+        tabController.getTotalBonusSpin().setText(getTextFromBigDecimalMap(model.getSumBonusSpin()));
         tabController.getTotalAllBonus().setText(getTextFromTotalBonus());
 
-        tabController.getTotalProfitMTT().setText(getTextFromProfitMTT());
-        tabController.getTotalProfitCash().setText(getTextFromProfitCash());
+        tabController.getTotalProfitMTT().setText(getTextFromBigDecimalMap(model.getSumProfitMTT()));
+        tabController.getTotalProfitCash().setText(getTextFromBigDecimalMap(model.getSumProfitCash()));
     }
 
-    private String getTextFromBigDecimal(Map<String, BigDecimal> valueMap) {
-        BigDecimal[] result = {BigDecimal.ZERO};
-        valueMap.values().stream()
-                .map(BigDecimal.ZERO::add)
-                .forEach(sum -> result[0] = result[0].add(sum));
-        return result[0].toString();
+    private String getTextFromBigDecimalMap(Map<String, BigDecimal> value) {
+        return value.values().stream()
+                .reduce(BigDecimal.ZERO, BigDecimal::add).toString();
     }
 
     private String getTextFromTotalBonus() {
@@ -54,15 +51,5 @@ public class TextBuilder {
         double exchangeCoin = Double.parseDouble(model.getExchangeCoin());
         double otherBonus = Double.parseDouble(model.getOtherBonus());
         return String.valueOf(chest + exchangeCoin + otherBonus);
-    }
-
-    private String getTextFromProfitMTT() {
-        return model.getSumProfitMTT().values().stream()
-                .reduce(BigDecimal.ZERO, BigDecimal::add).toString();
-    }
-
-    private String getTextFromProfitCash() {
-        return model.getSumProfitCash().values().stream()
-                .reduce(BigDecimal.ZERO, BigDecimal::add).toString();
     }
 }
