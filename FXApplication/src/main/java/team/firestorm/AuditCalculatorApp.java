@@ -22,7 +22,7 @@ public class AuditCalculatorApp extends Application {
         stage.setTitle("FireStorm Team Audit Calculator");
         stage.getIcons().add(new Image("/team/firestorm/FSAC.png"));
         stage.setMinHeight(550.0);
-        stage.setMinWidth(1050.0);
+        stage.setMinWidth(1180.0);
         stage.setScene(scene);
         stage.show();
     }
