@@ -205,13 +205,13 @@
                 <Button mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             </GridPane>
         </GridPane>
-      <VBox AnchorPane.bottomAnchor="125.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="100.0">
-         <children>
+      <SplitPane dividerPositions="0.33, 0.66" orientation="VERTICAL" AnchorPane.bottomAnchor="125.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="100.0">
+        <items>
             <TableView fx:id="tableViewSpin" editable="true" />
             <TableView fx:id="tableViewMTT" editable="true" />
             <TableView fx:id="tableViewCash" editable="true" />
-         </children>
-      </VBox>
+        </items>
+      </SplitPane>
       <GridPane gridLinesVisible="true" hgap="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" />
