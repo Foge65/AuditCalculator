@@ -35,6 +35,8 @@ public class Model {
     private Map<String, Integer> countReEntryMTT;
     private Map<String, BigDecimal> sumReEntryMTT;
     private Map<String, BigDecimal> sumKnockoutMTT;
+    private Map<String, BigDecimal> sumProfitMTT;
+    private Integer countRegistrationSpinWithoutUnregistration;
 
     private Set<String> gameCash;
     private Map<String, Integer> countRegistrationCash;
@@ -44,10 +46,6 @@ public class Model {
     private Map<String, Integer> countRebuyCash;
     private Map<String, BigDecimal> sumRebuyCash;
     private Map<String, BigDecimal> sumNetWonCash;
-
-    private Integer countRegistrationSpinWithoutUnregistration;
-    private Map<String, BigDecimal> sumProfitMTT;
-    private Map<String, BigDecimal> sumProfitCash;
 
     private LocalDate dateFrom;
     private LocalDate dateTo;
@@ -90,6 +88,7 @@ public class Model {
         setSumBonusSpin(modelBuilderFromCsvFile.getSumBonusSpin());
         setSumProfitPoolSpin(modelBuilderFromCsvFile.getSumProfitPoolSpin());
         setSumBonusPoolSpin(modelBuilderFromCsvFile.getSumBonusPoolSpin());
+        setCountRegistrationSpinWithoutUnregistration(modelBuilderFromCsvFile.getCountRegistrationSpinWithoutUnregistration());
 
         setGameMTT(modelBuilderFromCsvFile.getGameMTT());
         setCountRegistrationMTT(modelBuilderFromCsvFile.getCountRegistrationMTT());
@@ -100,6 +99,7 @@ public class Model {
         setCountReEntryMTT(modelBuilderFromCsvFile.getCountReEntryMTT());
         setSumReEntryMTT(modelBuilderFromCsvFile.getSumReEntryMTT());
         setSumKnockoutMTT(modelBuilderFromCsvFile.getSumKnockoutMTT());
+        setSumProfitMTT(modelBuilderFromCsvFile.getSumProfitMTT());
 
         setGameCash(modelBuilderFromCsvFile.getGameCash());
         setCountRegistrationCash(modelBuilderFromCsvFile.getCountRegistrationCash());
@@ -109,10 +109,6 @@ public class Model {
         setCountRebuyCash(modelBuilderFromCsvFile.getCountRebuyCash());
         setSumRebuyCash(modelBuilderFromCsvFile.getSumRebuyCash());
         setSumNetWonCash(modelBuilderFromCsvFile.getSumNetWonCash());
-
-        setCountRegistrationSpinWithoutUnregistration(modelBuilderFromCsvFile.getCountRegistrationSpinWithoutUnregistration());
-        setSumProfitMTT(modelBuilderFromCsvFile.getSumProfitMTT());
-        setSumProfitCash(modelBuilderFromCsvFile.getSumProfitCash());
 
         setDateFrom(modelBuilderFromCsvFile.getDateFrom());
         setDateTo(modelBuilderFromCsvFile.getDateTo());

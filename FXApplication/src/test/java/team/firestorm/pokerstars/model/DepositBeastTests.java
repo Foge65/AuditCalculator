@@ -68,12 +68,86 @@ class DepositBeastTests extends CsvFileBaseForTests {
     }
 
     @Override
-    BigDecimal setTotalProfit() {
+    BigDecimal setTotalProfitSpin() {
         return new BigDecimal("-2375.00");
     }
 
     @Override
-    BigDecimal setTotalBonus() {
+    BigDecimal setTotalBonusSpin() {
         return new BigDecimal("250.00");
+    }
+
+    @Override
+    Integer[] setCountRegistrationMTT() {
+        return new Integer[]{1, 1, 1};
+    }
+
+    @Override
+    BigDecimal[] setSumRegistrationMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("-7.5"),
+                new BigDecimal("-7.5"),
+                new BigDecimal("-1.1")
+        };
+    }
+
+    @Override
+    Integer[] setCountUnRegistrationMTT() {
+        return new Integer[]{1, 1, 1};
+    }
+
+    @Override
+    BigDecimal[] setSumUnRegistrationMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("7.5"),
+                new BigDecimal("7.5"),
+                new BigDecimal("1.1")
+        };
+    }
+
+    @Override
+    BigDecimal[] setSumNetWonMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0")
+        };
+    }
+
+    @Override
+    Integer[] setCountReEntryMTT() {
+        return new Integer[]{0, 0, 0};
+    }
+
+    @Override
+    BigDecimal[] setSumReEntryMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0")
+        };
+    }
+
+    @Override
+    BigDecimal[] setSumKnockoutMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0")
+        };
+    }
+
+    @Override
+    BigDecimal[] setProfitMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0")
+        };
+    }
+
+    @Override
+    BigDecimal setTotalProfitMTT() {
+        return new BigDecimal("0.00");
     }
 }

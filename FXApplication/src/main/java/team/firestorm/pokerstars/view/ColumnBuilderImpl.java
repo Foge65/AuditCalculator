@@ -96,6 +96,9 @@ public class ColumnBuilderImpl implements ColumnBuilder {
 
         TableColumn<Model, BigDecimal> sumKnockout = new TableColumn<>("Sum\nKnockout");
         setCellValueNumber(table, model.getSumKnockoutMTT(), sumKnockout);
+
+        TableColumn<Model, BigDecimal> sumProfit = new TableColumn<>("Sum\nProfit");
+        setCellValueNumber(table, model.getSumProfitMTT(), sumProfit);
     }
 
     @Override

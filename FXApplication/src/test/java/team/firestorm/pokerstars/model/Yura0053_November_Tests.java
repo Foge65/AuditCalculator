@@ -68,12 +68,92 @@ class Yura0053_November_Tests extends CsvFileBaseForTests {
     }
 
     @Override
-    BigDecimal setTotalProfit() {
+    BigDecimal setTotalProfitSpin() {
         return new BigDecimal("-675.00");
     }
 
     @Override
-    BigDecimal setTotalBonus() {
+    BigDecimal setTotalBonusSpin() {
         return new BigDecimal("200.00");
+    }
+
+    @Override
+    Integer[] setCountRegistrationMTT() {
+        return new Integer[]{1, 1, 1, 1};
+    }
+
+    @Override
+    BigDecimal[] setSumRegistrationMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("-22"),
+                new BigDecimal("0"),
+                new BigDecimal("-16.5"),
+                new BigDecimal("-3.3")
+        };
+    }
+
+    @Override
+    Integer[] setCountUnRegistrationMTT() {
+        return new Integer[]{1, 1, 1, 1};
+    }
+
+    @Override
+    BigDecimal[] setSumUnRegistrationMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("22"),
+                new BigDecimal("0"),
+                new BigDecimal("16.5"),
+                new BigDecimal("3.3")
+        };
+    }
+
+    @Override
+    BigDecimal[] setSumNetWonMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0")
+        };
+    }
+
+    @Override
+    Integer[] setCountReEntryMTT() {
+        return new Integer[]{0, 0, 0, 0};
+    }
+
+    @Override
+    BigDecimal[] setSumReEntryMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0")
+        };
+    }
+
+    @Override
+    BigDecimal[] setSumKnockoutMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0")
+        };
+    }
+
+    @Override
+    BigDecimal[] setProfitMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0")
+        };
+    }
+
+    @Override
+    BigDecimal setTotalProfitMTT() {
+        return new BigDecimal("0.00");
     }
 }

@@ -38,7 +38,7 @@ public class TextBuilder {
         tabController.getTotalAllBonus().setText(getTextFromTotalBonus());
 
         tabController.getTotalProfitMTT().setText(getTextFromBigDecimalMap(model.getSumProfitMTT()));
-        tabController.getTotalProfitCash().setText(getTextFromBigDecimalMap(model.getSumProfitCash()));
+        tabController.getTotalProfitCash().setText(getTextFromBigDecimalMap(model.getSumNetWonCash()));
     }
 
     private String getTextFromBigDecimalMap(Map<String, BigDecimal> value) {
