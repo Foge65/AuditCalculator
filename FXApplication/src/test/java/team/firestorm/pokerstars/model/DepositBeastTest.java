@@ -2,8 +2,8 @@ package team.firestorm.pokerstars.model;
 
 import java.math.BigDecimal;
 
-class DepositBeastTests extends CsvFileBaseForTests {
-    DepositBeastTests() {
+class DepositBeastTest extends CsvFileBaseForTests {
+    DepositBeastTest() {
         super("src/test/resources/DepositBeast.csv");
     }
 
@@ -28,7 +28,7 @@ class DepositBeastTests extends CsvFileBaseForTests {
     }
 
     @Override
-    BigDecimal[] setSumNetWonSpin() {
+    BigDecimal[] setSumWonSpin() {
         return new BigDecimal[]{new BigDecimal("250.00"), new BigDecimal("43100.00")};
     }
 
@@ -106,15 +106,6 @@ class DepositBeastTests extends CsvFileBaseForTests {
     }
 
     @Override
-    BigDecimal[] setSumNetWonMTT() {
-        return new BigDecimal[]{
-                new BigDecimal("0"),
-                new BigDecimal("0"),
-                new BigDecimal("0")
-        };
-    }
-
-    @Override
     Integer[] setCountReEntryMTT() {
         return new Integer[]{0, 0, 0};
     }
@@ -130,6 +121,24 @@ class DepositBeastTests extends CsvFileBaseForTests {
 
     @Override
     BigDecimal[] setSumKnockoutMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0")
+        };
+    }
+
+    @Override
+    BigDecimal[] setSumInterimMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0")
+        };
+    }
+
+    @Override
+    BigDecimal[] setSumWonMTT() {
         return new BigDecimal[]{
                 new BigDecimal("0"),
                 new BigDecimal("0"),

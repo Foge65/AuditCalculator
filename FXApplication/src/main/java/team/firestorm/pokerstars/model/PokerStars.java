@@ -20,7 +20,7 @@ public interface PokerStars {
 
     Map<String, BigDecimal> sumProfitSpinGame(List<String[]> strings, Set<String> game, int amount, int tMoney);
 
-    Map<String, BigDecimal> sumProfitMTTGame(List<String[]> strings, Set<String> game, int amount, int tMoney);
+    Map<String, BigDecimal> sumProfitMTTGame(List<String[]> strings, Set<String> game, int amount);
 
     Map<String, BigDecimal> sumProfitCashGame(List<String[]> strings, Set<String> game, int amount);
 
@@ -31,6 +31,8 @@ public interface PokerStars {
     Map<String, BigDecimal> sumReEntry(List<String[]> strings, Set<String> game, int amount);
 
     Map<String, BigDecimal> sumKnockout(List<String[]> strings, Set<String> game, int amount);
+
+    Map<String, BigDecimal> sumInterim(List<String[]> strings, Set<String> game, int amount);
 
     String startBalance(List<String[]> strings, int column);
 
@@ -54,11 +56,13 @@ public interface PokerStars {
 
     String getUnRegistrationString();
 
-    String getNetWonString();
+    String getWonString();
 
     String getReEntryString();
 
     String getKnockOutString();
+
+    String getInterimString();
 
     String getWithdrawalString();
 

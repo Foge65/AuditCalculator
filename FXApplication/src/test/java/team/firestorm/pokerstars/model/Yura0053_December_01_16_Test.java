@@ -2,39 +2,39 @@ package team.firestorm.pokerstars.model;
 
 import java.math.BigDecimal;
 
-class Yura0053_November_Tests extends CsvFileBaseForTests {
-    Yura0053_November_Tests() {
-        super("src/test/resources/Yura0053_November.csv");
+public class Yura0053_December_01_16_Test extends CsvFileBaseForTests {
+    public Yura0053_December_01_16_Test() {
+        super("src/test/resources/Yura0053_December_01_16.csv");
     }
 
     @Override
     Integer[] setCountRegistrationSpin() {
-        return new Integer[]{9161, 654};
+        return new Integer[]{1620, 2236};
     }
 
     @Override
     BigDecimal[] setSumRegistrationSpin() {
-        return new BigDecimal[]{new BigDecimal("-18172.00"), new BigDecimal("-3220.00")};
+        return new BigDecimal[]{new BigDecimal("-16040.00"), new BigDecimal("-11030.00")};
     }
 
     @Override
     Integer[] setCountUnRegistrationSpin() {
-        return new Integer[]{13, 2};
+        return new Integer[]{1, 0};
     }
 
     @Override
     BigDecimal[] setSumUnRegistrationSpin() {
-        return new BigDecimal[]{new BigDecimal("26.00"), new BigDecimal("10.00")};
+        return new BigDecimal[]{new BigDecimal("0.00"), new BigDecimal("0.00")};
     }
 
     @Override
-    BigDecimal[] setSumNetWonSpin() {
-        return new BigDecimal[]{new BigDecimal("17676.00"), new BigDecimal("3205.00")};
+    BigDecimal[] setSumWonSpin() {
+        return new BigDecimal[]{new BigDecimal("14760.00"), new BigDecimal("10455.00")};
     }
 
     @Override
     BigDecimal[] setSumRegistrationForTMoney() {
-        return new BigDecimal[]{new BigDecimal("-150.00"), new BigDecimal("-50.00")};
+        return new BigDecimal[]{new BigDecimal("-160.00"), new BigDecimal("-150.00")};
     }
 
     @Override
@@ -44,88 +44,75 @@ class Yura0053_November_Tests extends CsvFileBaseForTests {
 
     @Override
     BigDecimal[] setSumProfitSpin() {
-        return new BigDecimal[]{new BigDecimal("-620"), new BigDecimal("-55")};
+        return new BigDecimal[]{new BigDecimal("-1430"), new BigDecimal("-725")};
     }
 
     @Override
     BigDecimal[] setSumBonusSpin() {
-        return new BigDecimal[]{new BigDecimal("150"), new BigDecimal("50")};
+        return new BigDecimal[]{new BigDecimal("150"), new BigDecimal("150")};
     }
 
     @Override
     BigDecimal[] setSumProfitPoolSpin() {
-        return new BigDecimal[]{new BigDecimal("-620"), new BigDecimal("-55")};
+        return new BigDecimal[]{new BigDecimal("-1440"), new BigDecimal("-725")};
     }
 
     @Override
     BigDecimal[] setSumBonusPoolSpin() {
-        return new BigDecimal[]{new BigDecimal("150"), new BigDecimal("50")};
+        return new BigDecimal[]{new BigDecimal("160"), new BigDecimal("150")};
     }
 
     @Override
     Integer setTotalCountRegistrationWithoutUnregistration() {
-        return 9800;
+        return 3855;
     }
 
     @Override
     BigDecimal setTotalProfitSpin() {
-        return new BigDecimal("-675.00");
+        return new BigDecimal("-2155.00");
     }
 
     @Override
     BigDecimal setTotalBonusSpin() {
-        return new BigDecimal("200.00");
+        return new BigDecimal("300.00");
     }
 
     @Override
     Integer[] setCountRegistrationMTT() {
-        return new Integer[]{1, 1, 1, 1};
+        return new Integer[]{1, 2, 1};
     }
 
     @Override
     BigDecimal[] setSumRegistrationMTT() {
         return new BigDecimal[]{
-                new BigDecimal("-22"),
                 new BigDecimal("0"),
-                new BigDecimal("-16.5"),
+                new BigDecimal("0"),
                 new BigDecimal("-3.3")
         };
     }
 
     @Override
     Integer[] setCountUnRegistrationMTT() {
-        return new Integer[]{1, 1, 1, 1};
+        return new Integer[]{1, 0, 1};
     }
 
     @Override
     BigDecimal[] setSumUnRegistrationMTT() {
         return new BigDecimal[]{
-                new BigDecimal("22"),
                 new BigDecimal("0"),
-                new BigDecimal("16.5"),
+                new BigDecimal("0"),
                 new BigDecimal("3.3")
         };
     }
 
     @Override
-    BigDecimal[] setSumNetWonMTT() {
-        return new BigDecimal[]{
-                new BigDecimal("0"),
-                new BigDecimal("0"),
-                new BigDecimal("0"),
-                new BigDecimal("0")
-        };
-    }
-
-    @Override
     Integer[] setCountReEntryMTT() {
-        return new Integer[]{0, 0, 0, 0};
+        return new Integer[]{0, 0, 0};
     }
 
     @Override
     BigDecimal[] setSumReEntryMTT() {
         return new BigDecimal[]{
-                new BigDecimal("0"),
                 new BigDecimal("0"),
                 new BigDecimal("0"),
                 new BigDecimal("0")
@@ -137,6 +124,23 @@ class Yura0053_November_Tests extends CsvFileBaseForTests {
         return new BigDecimal[]{
                 new BigDecimal("0"),
                 new BigDecimal("0"),
+                new BigDecimal("0")
+        };
+    }
+
+    @Override
+    BigDecimal[] setSumInterimMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0")
+        };
+    }
+
+    @Override
+    BigDecimal[] setSumWonMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("0"),
                 new BigDecimal("0"),
                 new BigDecimal("0")
         };
@@ -145,7 +149,6 @@ class Yura0053_November_Tests extends CsvFileBaseForTests {
     @Override
     BigDecimal[] setProfitMTT() {
         return new BigDecimal[]{
-                new BigDecimal("0"),
                 new BigDecimal("0"),
                 new BigDecimal("0"),
                 new BigDecimal("0")

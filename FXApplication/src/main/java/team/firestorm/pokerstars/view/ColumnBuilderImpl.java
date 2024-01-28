@@ -50,14 +50,14 @@ public class ColumnBuilderImpl implements ColumnBuilder {
         TableColumn<Model, BigDecimal> sumUnRegistration = new TableColumn<>("Sum\nUnRegistration");
         setCellValueNumber(table, model.getSumUnRegistrationSpin(), sumUnRegistration);
 
-        TableColumn<Model, BigDecimal> sumNetWon = new TableColumn<>("Sum\nNetWon");
-        setCellValueNumber(table, model.getSumNetWonSpin(), sumNetWon);
+        TableColumn<Model, Integer> countRegistrationByTicket = new TableColumn<>("Count Registration\nBy Ticket");
+        setCellValueNumber(table, model.getCountRegistrationByTicketSpin(), countRegistrationByTicket);
 
         TableColumn<Model, BigDecimal> sumRegistrationForTMoney = new TableColumn<>("Sum Registration\nFor TMoney");
         setCellValueNumber(table, model.getSumRegistrationForTMoneySpin(), sumRegistrationForTMoney);
 
-        TableColumn<Model, Integer> countRegistrationByTicket = new TableColumn<>("Count Registration\nBy Ticket");
-        setCellValueNumber(table, model.getCountRegistrationByTicketSpin(), countRegistrationByTicket);
+        TableColumn<Model, BigDecimal> sumNetWon = new TableColumn<>("Sum\nWon");
+        setCellValueNumber(table, model.getSumNetWonSpin(), sumNetWon);
 
         TableColumn<Model, BigDecimal> sumProfit = new TableColumn<>("Sum\nProfit");
         setCellValueNumber(table, model.getSumProfitSpin(), sumProfit);
@@ -85,9 +85,6 @@ public class ColumnBuilderImpl implements ColumnBuilder {
         TableColumn<Model, BigDecimal> sumUnRegistration = new TableColumn<>("Sum\nUnRegistration");
         setCellValueNumber(table, model.getSumUnRegistrationMTT(), sumUnRegistration);
 
-        TableColumn<Model, BigDecimal> sumNetWon = new TableColumn<>("Sum\nNetWon");
-        setCellValueNumber(table, model.getSumNetWonMTT(), sumNetWon);
-
         TableColumn<Model, Integer> countReEntry = new TableColumn<>("Count\nRe-Entry");
         setCellValueNumber(table, model.getCountReEntryMTT(), countReEntry);
 
@@ -96,6 +93,12 @@ public class ColumnBuilderImpl implements ColumnBuilder {
 
         TableColumn<Model, BigDecimal> sumKnockout = new TableColumn<>("Sum\nKnockout");
         setCellValueNumber(table, model.getSumKnockoutMTT(), sumKnockout);
+
+        TableColumn<Model, BigDecimal> sumInterim = new TableColumn<>("Sum\nInterim");
+        setCellValueNumber(table, model.getSumInterimMTT(), sumInterim);
+
+        TableColumn<Model, BigDecimal> sumNetWon = new TableColumn<>("Sum\nWon");
+        setCellValueNumber(table, model.getSumWonMTT(), sumNetWon);
 
         TableColumn<Model, BigDecimal> sumProfit = new TableColumn<>("Sum\nProfit");
         setCellValueNumber(table, model.getSumProfitMTT(), sumProfit);
@@ -126,8 +129,8 @@ public class ColumnBuilderImpl implements ColumnBuilder {
         TableColumn<Model, BigDecimal> sumRebuy = new TableColumn<>("Sum\nAutoRebuy");
         setCellValueNumber(table, model.getSumRebuyCash(), sumRebuy);
 
-        TableColumn<Model, BigDecimal> sumNetWon = new TableColumn<>("Sum\nNetWon");
-        setCellValueNumber(table, model.getSumNetWonCash(), sumNetWon);
+        TableColumn<Model, BigDecimal> sumNetWon = new TableColumn<>("Sum\nWon");
+        setCellValueNumber(table, model.getSumWonCash(), sumNetWon);
     }
 
     @Override

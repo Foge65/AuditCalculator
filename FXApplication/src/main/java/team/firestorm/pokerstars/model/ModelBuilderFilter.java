@@ -36,7 +36,7 @@ public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
         model.setSumRegistrationSpin(pokerStarsBase.sumForDifferentColumn(filteredStrings, gameSpin, pokerStarsBase.getRegistrationString(), getAmountIndex()));
         model.setCountUnRegistrationSpin(pokerStarsBase.countGame(filteredStrings, gameSpin, pokerStarsBase.getUnRegistrationString()));
         model.setSumUnRegistrationSpin(pokerStarsBase.sumForDifferentColumn(filteredStrings, gameSpin, pokerStarsBase.getUnRegistrationString(), getAmountIndex()));
-        model.setSumNetWonSpin(pokerStarsBase.sumForDifferentColumn(filteredStrings, gameSpin, pokerStarsBase.getNetWonString(), getAmountIndex()));
+        model.setSumNetWonSpin(pokerStarsBase.sumForDifferentColumn(filteredStrings, gameSpin, pokerStarsBase.getWonString(), getAmountIndex()));
         model.setSumRegistrationForTMoneySpin(pokerStarsBase.sumForDifferentColumn(filteredStrings, gameSpin, pokerStarsBase.getRegistrationString(), getTMoneyAmountIndex()));
         model.setCountRegistrationByTicketSpin(pokerStarsBase.countRegistrationByTicket(filteredStrings, gameSpin, getAmountIndex(), getTMoneyAmountIndex()));
         model.setSumProfitSpin(pokerStarsBase.sumProfitSpinGame(filteredStrings, gameSpin, getAmountIndex(), getTMoneyAmountIndex()));
@@ -51,11 +51,12 @@ public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
         model.setSumRegistrationMTT(pokerStarsBase.sumForDifferentColumn(filteredStrings, gameMTT, pokerStarsBase.getRegistrationString(), getAmountIndex()));
         model.setCountUnRegistrationMTT(pokerStarsBase.countGame(filteredStrings, gameMTT, pokerStarsBase.getUnRegistrationString()));
         model.setSumUnRegistrationMTT(pokerStarsBase.sumForDifferentColumn(filteredStrings, gameMTT, pokerStarsBase.getUnRegistrationString(), getAmountIndex()));
-        model.setSumNetWonMTT(pokerStarsBase.sumForDifferentColumn(filteredStrings, gameMTT, pokerStarsBase.getNetWonString(), getAmountIndex()));
+        model.setSumWonMTT(pokerStarsBase.sumForDifferentColumn(filteredStrings, gameMTT, pokerStarsBase.getWonString(), getAmountIndex()));
         model.setCountReEntryMTT(pokerStarsBase.countReEntry(filteredStrings, gameMTT));
         model.setSumReEntryMTT(pokerStarsBase.sumReEntry(filteredStrings, gameMTT, getAmountIndex()));
         model.setSumKnockoutMTT(pokerStarsBase.sumKnockout(filteredStrings, gameMTT, getAmountIndex()));
-        model.setSumProfitMTT(pokerStarsBase.sumProfitMTTGame(filteredStrings, gameMTT, getAmountIndex(), getTMoneyAmountIndex()));
+        model.setSumInterimMTT(pokerStarsBase.sumInterim(filteredStrings, gameMTT, getAmountIndex()));
+        model.setSumProfitMTT(pokerStarsBase.sumProfitMTTGame(filteredStrings, gameMTT, getAmountIndex()));
 
         Set<String> gameCash = pokerStarsBase.game(pokerStarsBase.getRegexGameCash(), filteredStrings);
         model.setGameCash(gameCash);
@@ -65,7 +66,7 @@ public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
         model.setSumUnRegistrationCash(pokerStarsBase.sumForDifferentColumn(filteredStrings, gameCash, pokerStarsBase.getSeatOutTable(), getAmountIndex()));
         model.setCountRebuyCash(pokerStarsBase.countGame(filteredStrings, gameCash, pokerStarsBase.getAutoRebuyTable()));
         model.setSumRebuyCash(pokerStarsBase.sumForDifferentColumn(filteredStrings, gameCash, pokerStarsBase.getAutoRebuyTable(), getAmountIndex()));
-        model.setSumNetWonCash(pokerStarsBase.sumProfitCashGame(filteredStrings, gameCash, getAmountIndex()));
+        model.setSumWonCash(pokerStarsBase.sumProfitCashGame(filteredStrings, gameCash, getAmountIndex()));
 
         model.setStartBalance(pokerStarsBase.startBalanceMoney(filteredStrings, getAmountIndex(), getBalanceIndex()));
         model.setFinalBalance(pokerStarsBase.finalBalance(filteredStrings, getBalanceIndex()));

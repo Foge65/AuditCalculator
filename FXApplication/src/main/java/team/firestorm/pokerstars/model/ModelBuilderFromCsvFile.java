@@ -30,16 +30,18 @@ public class ModelBuilderFromCsvFile {
     private final Map<String, BigDecimal> sumBonusSpin;
     private final Map<String, BigDecimal> sumProfitPoolSpin;
     private final Map<String, BigDecimal> sumBonusPoolSpin;
+    private final Integer countRegistrationSpinWithoutUnregistration;
 
     private final Set<String> gameMTT;
     private final Map<String, Integer> countRegistrationMTT;
     private final Map<String, BigDecimal> sumRegistrationMTT;
     private final Map<String, Integer> countUnRegistrationMTT;
     private final Map<String, BigDecimal> sumUnRegistrationMTT;
-    private final Map<String, BigDecimal> sumNetWonMTT;
+    private final Map<String, BigDecimal> sumWonMTT;
     private final Map<String, Integer> countReEntryMTT;
     private final Map<String, BigDecimal> sumReEntryMTT;
     private final Map<String, BigDecimal> sumKnockoutMTT;
+    private final Map<String, BigDecimal> sumInterimMTT;
     private final Map<String, BigDecimal> sumProfitMTT;
 
     private final Set<String> gameCash;
@@ -49,9 +51,7 @@ public class ModelBuilderFromCsvFile {
     private final Map<String, BigDecimal> sumUnRegistrationCash;
     private final Map<String, Integer> countRebuyCash;
     private final Map<String, BigDecimal> sumRebuyCash;
-    private final Map<String, BigDecimal> sumNetWonCash;
-
-    private final Integer countRegistrationSpinWithoutUnregistration;
+    private final Map<String, BigDecimal> sumWonCash;
 
     private final String startBalance;
     private final String finalBalance;
@@ -131,7 +131,7 @@ public class ModelBuilderFromCsvFile {
         sumRegistrationSpin = pokerStarsBase.sumForDifferentColumn(csvStrings, gameSpin, pokerStarsBase.getRegistrationString(), amountIndex);
         countUnRegistrationSpin = pokerStarsBase.countGame(csvStrings, gameSpin, pokerStarsBase.getUnRegistrationString());
         sumUnRegistrationSpin = pokerStarsBase.sumForDifferentColumn(csvStrings, gameSpin, pokerStarsBase.getUnRegistrationString(), amountIndex);
-        sumNetWonSpin = pokerStarsBase.sumForDifferentColumn(csvStrings, gameSpin, pokerStarsBase.getNetWonString(), amountIndex);
+        sumNetWonSpin = pokerStarsBase.sumForDifferentColumn(csvStrings, gameSpin, pokerStarsBase.getWonString(), amountIndex);
         sumRegistrationForTMoneySpin = pokerStarsBase.sumForDifferentColumn(csvStrings, gameSpin, pokerStarsBase.getRegistrationString(), tMoneyAmountIndex);
         countRegistrationByTicketSpin = pokerStarsBase.countRegistrationByTicket(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);
         sumProfitSpin = pokerStarsBase.sumProfitSpinGame(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);
@@ -145,11 +145,12 @@ public class ModelBuilderFromCsvFile {
         sumRegistrationMTT = pokerStarsBase.sumForDifferentColumn(csvStrings, gameMTT, pokerStarsBase.getRegistrationString(), amountIndex);
         countUnRegistrationMTT = pokerStarsBase.countGame(csvStrings, gameMTT, pokerStarsBase.getUnRegistrationString());
         sumUnRegistrationMTT = pokerStarsBase.sumForDifferentColumn(csvStrings, gameMTT, pokerStarsBase.getUnRegistrationString(), amountIndex);
-        sumNetWonMTT = pokerStarsBase.sumForDifferentColumn(csvStrings, gameMTT, pokerStarsBase.getNetWonString(), amountIndex);
+        sumWonMTT = pokerStarsBase.sumForDifferentColumn(csvStrings, gameMTT, pokerStarsBase.getWonString(), amountIndex);
         countReEntryMTT = pokerStarsBase.countReEntry(csvStrings, gameMTT);
         sumReEntryMTT = pokerStarsBase.sumReEntry(csvStrings, gameMTT, amountIndex);
         sumKnockoutMTT = pokerStarsBase.sumKnockout(csvStrings, gameMTT, amountIndex);
-        sumProfitMTT = pokerStarsBase.sumProfitMTTGame(csvStrings, gameMTT, amountIndex, tMoneyAmountIndex);
+        sumInterimMTT = pokerStarsBase.sumInterim(csvStrings, gameMTT, amountIndex);
+        sumProfitMTT = pokerStarsBase.sumProfitMTTGame(csvStrings, gameMTT, amountIndex);
 
         gameCash = pokerStarsBase.game(pokerStarsBase.getRegexGameCash(), csvStrings);
         countRegistrationCash = pokerStarsBase.countGame(csvStrings, gameCash, pokerStarsBase.getSeatInTable());
@@ -158,7 +159,7 @@ public class ModelBuilderFromCsvFile {
         sumUnRegistrationCash = pokerStarsBase.sumForDifferentColumn(csvStrings, gameCash, pokerStarsBase.getSeatOutTable(), amountIndex);
         countRebuyCash = pokerStarsBase.countGame(csvStrings, gameCash, pokerStarsBase.getAutoRebuyTable());
         sumRebuyCash = pokerStarsBase.sumForDifferentColumn(csvStrings, gameCash, pokerStarsBase.getAutoRebuyTable(), amountIndex);
-        sumNetWonCash = pokerStarsBase.sumProfitCashGame(csvStrings, gameCash, amountIndex);
+        sumWonCash = pokerStarsBase.sumProfitCashGame(csvStrings, gameCash, amountIndex);
 
         startBalance = pokerStarsBase.startBalanceMoney(csvStrings, amountIndex, balanceIndex);
         finalBalance = pokerStarsBase.finalBalance(csvStrings, balanceIndex);

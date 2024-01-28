@@ -70,12 +70,12 @@ abstract class CsvFileBaseForTests {
 
     @Test
     void sumNetWonSpin() {
-        BigDecimal[] expected = setSumNetWonSpin();
+        BigDecimal[] expected = setSumWonSpin();
         BigDecimal[] actual = modelBuilderFromCsvFile.getSumNetWonSpin().values().toArray(new BigDecimal[0]);
         assertionBigDecimalArrays(expected, actual);
     }
 
-    abstract BigDecimal[] setSumNetWonSpin();
+    abstract BigDecimal[] setSumWonSpin();
 
     @Test
     void sumRegistrationForTMoneySpin() {
@@ -201,15 +201,6 @@ abstract class CsvFileBaseForTests {
     abstract BigDecimal[] setSumUnRegistrationMTT();
 
     @Test
-    void sumNetWonMTT() {
-        BigDecimal[] expected = setSumNetWonMTT();
-        BigDecimal[] actual = modelBuilderFromCsvFile.getSumNetWonMTT().values().toArray(new BigDecimal[0]);
-        assertionBigDecimalArrays(expected, actual);
-    }
-
-    abstract BigDecimal[] setSumNetWonMTT();
-
-    @Test
     void countReEntryMTT() {
         Integer[] expected = setCountReEntryMTT();
         Integer[] actual = modelBuilderFromCsvFile.getCountReEntryMTT().values().toArray(new Integer[0]);
@@ -235,6 +226,24 @@ abstract class CsvFileBaseForTests {
     }
 
     abstract BigDecimal[] setSumKnockoutMTT();
+
+    @Test
+    void sumInterimMTT() {
+        BigDecimal[] expected = setSumInterimMTT();
+        BigDecimal[] actual = modelBuilderFromCsvFile.getSumInterimMTT().values().toArray(new BigDecimal[0]);
+        assertionBigDecimalArrays(expected, actual);
+    }
+
+    abstract BigDecimal[] setSumInterimMTT();
+
+    @Test
+    void sumWonMTT() {
+        BigDecimal[] expected = setSumWonMTT();
+        BigDecimal[] actual = modelBuilderFromCsvFile.getSumWonMTT().values().toArray(new BigDecimal[0]);
+        assertionBigDecimalArrays(expected, actual);
+    }
+
+    abstract BigDecimal[] setSumWonMTT();
 
     @Test
     void sumProfitMTT() {

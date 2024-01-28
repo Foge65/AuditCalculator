@@ -8,7 +8,8 @@ public class LanguageRu extends PokerStarsBase implements DateFormat {
     private static final String UNREGISTRATION = "Отмена регистрации в турнире";
     private static final String NETWON = "Победа в турнире";
     private static final String REENTRY = "Ре-ентри в турнире";
-    private static final String KNOCKOUT = "Промежуточная выплата в турнире";
+    private static final String KNOCKOUT = "Награда: приз за выбивание";
+    private static final String INTERIM_PAYOUT = "Промежуточная выплата в турнире";
     private static final String WITHDRAWAL = "Вывод средств";
     private static final String SENT = "Деньги отправлены";
     private static final String RECEIVED1 = "Деньги получены";
@@ -47,7 +48,7 @@ public class LanguageRu extends PokerStarsBase implements DateFormat {
     }
 
     @Override
-    public String getNetWonString() {
+    public String getWonString() {
         return NETWON;
     }
 
@@ -59,6 +60,11 @@ public class LanguageRu extends PokerStarsBase implements DateFormat {
     @Override
     public String getKnockOutString() {
         return KNOCKOUT;
+    }
+
+    @Override
+    public String getInterimString() {
+        return INTERIM_PAYOUT;
     }
 
     @Override

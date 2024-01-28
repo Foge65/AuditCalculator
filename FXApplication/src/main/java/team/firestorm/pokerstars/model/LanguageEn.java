@@ -9,6 +9,7 @@ public class LanguageEn extends PokerStarsBase implements DateFormat {
     private static final String NETWON = "Tournament Won";
     private static final String REENTRY = "Tournament Re-entry";
     private static final String KNOCKOUT = "Reward: Knockout Bounty";
+    private static final String INTERIM_PAYOUT = "Tournament Interim Payout";
     private static final String WITHDRAWAL = "Withdrawal";
     private static final String SENT = "Real Money Transfer Sent";
     private static final String RECEIVED1 = "Real Money Transfer Received";
@@ -47,7 +48,7 @@ public class LanguageEn extends PokerStarsBase implements DateFormat {
     }
 
     @Override
-    public String getNetWonString() {
+    public String getWonString() {
         return NETWON;
     }
 
@@ -59,6 +60,11 @@ public class LanguageEn extends PokerStarsBase implements DateFormat {
     @Override
     public String getKnockOutString() {
         return KNOCKOUT;
+    }
+
+    @Override
+    public String getInterimString() {
+        return INTERIM_PAYOUT;
     }
 
     @Override

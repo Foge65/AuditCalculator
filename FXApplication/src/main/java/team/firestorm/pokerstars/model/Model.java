@@ -25,18 +25,19 @@ public class Model {
     private Map<String, BigDecimal> sumBonusSpin;
     private Map<String, BigDecimal> sumProfitPoolSpin;
     private Map<String, BigDecimal> sumBonusPoolSpin;
+    private Integer countRegistrationSpinWithoutUnregistration;
 
     private Set<String> gameMTT;
     private Map<String, Integer> countRegistrationMTT;
     private Map<String, BigDecimal> sumRegistrationMTT;
     private Map<String, Integer> countUnRegistrationMTT;
     private Map<String, BigDecimal> sumUnRegistrationMTT;
-    private Map<String, BigDecimal> sumNetWonMTT;
+    private Map<String, BigDecimal> sumWonMTT;
     private Map<String, Integer> countReEntryMTT;
     private Map<String, BigDecimal> sumReEntryMTT;
     private Map<String, BigDecimal> sumKnockoutMTT;
+    private Map<String, BigDecimal> sumInterimMTT;
     private Map<String, BigDecimal> sumProfitMTT;
-    private Integer countRegistrationSpinWithoutUnregistration;
 
     private Set<String> gameCash;
     private Map<String, Integer> countRegistrationCash;
@@ -45,7 +46,7 @@ public class Model {
     private Map<String, BigDecimal> sumUnRegistrationCash;
     private Map<String, Integer> countRebuyCash;
     private Map<String, BigDecimal> sumRebuyCash;
-    private Map<String, BigDecimal> sumNetWonCash;
+    private Map<String, BigDecimal> sumWonCash;
 
     private LocalDate dateFrom;
     private LocalDate dateTo;
@@ -95,10 +96,11 @@ public class Model {
         setSumRegistrationMTT(modelBuilderFromCsvFile.getSumRegistrationMTT());
         setCountUnRegistrationMTT(modelBuilderFromCsvFile.getCountUnRegistrationMTT());
         setSumUnRegistrationMTT(modelBuilderFromCsvFile.getSumUnRegistrationMTT());
-        setSumNetWonMTT(modelBuilderFromCsvFile.getSumNetWonMTT());
+        setSumWonMTT(modelBuilderFromCsvFile.getSumWonMTT());
         setCountReEntryMTT(modelBuilderFromCsvFile.getCountReEntryMTT());
         setSumReEntryMTT(modelBuilderFromCsvFile.getSumReEntryMTT());
         setSumKnockoutMTT(modelBuilderFromCsvFile.getSumKnockoutMTT());
+        setSumInterimMTT(modelBuilderFromCsvFile.getSumInterimMTT());
         setSumProfitMTT(modelBuilderFromCsvFile.getSumProfitMTT());
 
         setGameCash(modelBuilderFromCsvFile.getGameCash());
@@ -108,7 +110,7 @@ public class Model {
         setSumUnRegistrationCash(modelBuilderFromCsvFile.getSumUnRegistrationCash());
         setCountRebuyCash(modelBuilderFromCsvFile.getCountRebuyCash());
         setSumRebuyCash(modelBuilderFromCsvFile.getSumRebuyCash());
-        setSumNetWonCash(modelBuilderFromCsvFile.getSumNetWonCash());
+        setSumWonCash(modelBuilderFromCsvFile.getSumWonCash());
 
         setDateFrom(modelBuilderFromCsvFile.getDateFrom());
         setDateTo(modelBuilderFromCsvFile.getDateTo());

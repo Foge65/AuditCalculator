@@ -2,8 +2,8 @@ package team.firestorm.pokerstars.model;
 
 import java.math.BigDecimal;
 
-public class Obolonsky_May_2023 extends CsvFileBaseForTests {
-    public Obolonsky_May_2023() {
+public class Obolonsky_May_2023_Test extends CsvFileBaseForTests {
+    public Obolonsky_May_2023_Test() {
         super("src/test/resources/Obolonsky_May_2023.csv");
     }
 
@@ -28,7 +28,7 @@ public class Obolonsky_May_2023 extends CsvFileBaseForTests {
     }
 
     @Override
-    BigDecimal[] setSumNetWonSpin() {
+    BigDecimal[] setSumWonSpin() {
         return new BigDecimal[]{new BigDecimal("8610")};
     }
 
@@ -114,19 +114,6 @@ public class Obolonsky_May_2023 extends CsvFileBaseForTests {
     }
 
     @Override
-    BigDecimal[] setSumNetWonMTT() {
-        return new BigDecimal[]{
-                new BigDecimal("0"),
-                new BigDecimal("0"),
-                new BigDecimal("0"),
-                new BigDecimal("0"),
-                new BigDecimal("0"),
-                new BigDecimal("0"),
-                new BigDecimal("0")
-        };
-    }
-
-    @Override
     Integer[] setCountReEntryMTT() {
         return new Integer[]{11, 8, 5, 4, 1, 10, 5};
     }
@@ -154,6 +141,32 @@ public class Obolonsky_May_2023 extends CsvFileBaseForTests {
                 new BigDecimal("619.73"),
                 new BigDecimal("16.17"),
                 new BigDecimal("42.67")
+        };
+    }
+
+    @Override
+    BigDecimal[] setSumInterimMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0")
+        };
+    }
+
+    @Override
+    BigDecimal[] setSumWonMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0")
         };
     }
 
