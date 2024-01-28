@@ -71,7 +71,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void sumNetWonSpin() {
         BigDecimal[] expected = setSumWonSpin();
-        BigDecimal[] actual = modelBuilderFromCsvFile.getSumNetWonSpin().values().toArray(new BigDecimal[0]);
+        BigDecimal[] actual = modelBuilderFromCsvFile.getSumWonSpin().values().toArray(new BigDecimal[0]);
         assertionBigDecimalArrays(expected, actual);
     }
 

@@ -144,9 +144,9 @@ public abstract class PokerStarsBase implements PokerStars {
         return result;
     }
 
-    private void sumForDifferentColumnAndMerge(Map<String, BigDecimal> result, List<String[]> strings, Set<String> game, String columnName, int amount) {
-        Map<String, BigDecimal> columnMap = sumForDifferentColumn(strings, game, columnName, amount);
-        columnMap.forEach((buyIn, value) -> result.merge(buyIn, value, BigDecimal::add));
+    private void sumForDifferentColumnAndMerge(Map<String, BigDecimal> result, List<String[]> strings, Set<String> game, String action, int amount) {
+        Map<String, BigDecimal> map = sumForDifferentColumn(strings, game, action, amount);
+        map.forEach((buyIn, value) -> result.merge(buyIn, value, BigDecimal::add));
     }
 
     private void sumReEntryAndMerge(Map<String, BigDecimal> result, List<String[]> strings, Set<String> game, int amount) {

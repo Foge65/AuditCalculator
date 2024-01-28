@@ -23,7 +23,7 @@ public class ModelBuilderFromCsvFile {
     private final Map<String, BigDecimal> sumRegistrationSpin;
     private final Map<String, Integer> countUnRegistrationSpin;
     private final Map<String, BigDecimal> sumUnRegistrationSpin;
-    private final Map<String, BigDecimal> sumNetWonSpin;
+    private final Map<String, BigDecimal> sumWonSpin;
     private final Map<String, BigDecimal> sumRegistrationForTMoneySpin;
     private final Map<String, Integer> countRegistrationByTicketSpin;
     private final Map<String, BigDecimal> sumProfitSpin;
@@ -135,7 +135,7 @@ public class ModelBuilderFromCsvFile {
         sumRegistrationSpin = pokerStarsBase.sumForDifferentColumn(csvStrings, gameSpin, pokerStarsBase.getRegistrationString(), amountIndex);
         countUnRegistrationSpin = pokerStarsBase.countGame(csvStrings, gameSpin, pokerStarsBase.getUnRegistrationString());
         sumUnRegistrationSpin = pokerStarsBase.sumForDifferentColumn(csvStrings, gameSpin, pokerStarsBase.getUnRegistrationString(), amountIndex);
-        sumNetWonSpin = pokerStarsBase.sumForDifferentColumn(csvStrings, gameSpin, pokerStarsBase.getWonString(), amountIndex);
+        sumWonSpin = pokerStarsBase.sumForDifferentColumn(csvStrings, gameSpin, pokerStarsBase.getWonString(), amountIndex);
         sumRegistrationForTMoneySpin = pokerStarsBase.sumForDifferentColumn(csvStrings, gameSpin, pokerStarsBase.getRegistrationString(), tMoneyAmountIndex);
         countRegistrationByTicketSpin = pokerStarsBase.countRegistrationByTicket(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);
         sumProfitSpin = pokerStarsBase.sumProfitSpinGame(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);

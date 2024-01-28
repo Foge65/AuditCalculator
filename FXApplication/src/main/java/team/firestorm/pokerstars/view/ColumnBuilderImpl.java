@@ -56,8 +56,8 @@ public class ColumnBuilderImpl implements ColumnBuilder {
         TableColumn<Model, BigDecimal> sumRegistrationForTMoney = new TableColumn<>("Sum Registration\nFor TMoney");
         setCellValueNumber(table, model.getSumRegistrationForTMoneySpin(), sumRegistrationForTMoney);
 
-        TableColumn<Model, BigDecimal> sumNetWon = new TableColumn<>("Sum\nWon");
-        setCellValueNumber(table, model.getSumNetWonSpin(), sumNetWon);
+        TableColumn<Model, BigDecimal> sumWon = new TableColumn<>("Sum\nWon");
+        setCellValueNumber(table, model.getSumWonSpin(), sumWon);
 
         TableColumn<Model, BigDecimal> sumProfit = new TableColumn<>("Sum\nProfit");
         setCellValueNumber(table, model.getSumProfitSpin(), sumProfit);
@@ -109,8 +109,8 @@ public class ColumnBuilderImpl implements ColumnBuilder {
         TableColumn<Model, BigDecimal> sumInterim = new TableColumn<>("Sum\nInterim");
         setCellValueNumber(table, model.getSumInterimMTT(), sumInterim);
 
-        TableColumn<Model, BigDecimal> sumNetWon = new TableColumn<>("Sum\nWon");
-        setCellValueNumber(table, model.getSumWonMTT(), sumNetWon);
+        TableColumn<Model, BigDecimal> sumWon = new TableColumn<>("Sum\nWon");
+        setCellValueNumber(table, model.getSumWonMTT(), sumWon);
 
         TableColumn<Model, BigDecimal> sumProfit = new TableColumn<>("Sum\nProfit");
         setCellValueNumber(table, model.getSumProfitMTT(), sumProfit);
@@ -141,8 +141,8 @@ public class ColumnBuilderImpl implements ColumnBuilder {
         TableColumn<Model, BigDecimal> sumRebuy = new TableColumn<>("Sum\nAutoRebuy");
         setCellValueNumber(table, model.getSumRebuyCash(), sumRebuy);
 
-        TableColumn<Model, BigDecimal> sumNetWon = new TableColumn<>("Sum\nWon");
-        setCellValueNumber(table, model.getSumWonCash(), sumNetWon);
+        TableColumn<Model, BigDecimal> sumWon = new TableColumn<>("Sum\nWon");
+        setCellValueNumber(table, model.getSumWonCash(), sumWon);
     }
 
     @Override
