@@ -35,8 +35,12 @@ public class ModelBuilderFromCsvFile {
     private final Set<String> gameMTT;
     private final Map<String, Integer> countRegistrationMTT;
     private final Map<String, BigDecimal> sumRegistrationMTT;
+    private final Map<String, Integer> countRegistrationByTMoneyMTT;
+    private final Map<String, BigDecimal> sumRegistrationByTMoneyMTT;
     private final Map<String, Integer> countUnRegistrationMTT;
     private final Map<String, BigDecimal> sumUnRegistrationMTT;
+    private final Map<String, Integer> countUnRegistrationByTMoneyMTT;
+    private final Map<String, BigDecimal> sumUnRegistrationByTMoneyMTT;
     private final Map<String, BigDecimal> sumWonMTT;
     private final Map<String, Integer> countReEntryMTT;
     private final Map<String, BigDecimal> sumReEntryMTT;
@@ -143,8 +147,12 @@ public class ModelBuilderFromCsvFile {
         gameMTT = pokerStarsBase.game(pokerStarsBase.getRegexGameMTT(), csvStrings);
         countRegistrationMTT = pokerStarsBase.countGame(csvStrings, gameMTT, pokerStarsBase.getRegistrationString());
         sumRegistrationMTT = pokerStarsBase.sumForDifferentColumn(csvStrings, gameMTT, pokerStarsBase.getRegistrationString(), amountIndex);
+        countRegistrationByTMoneyMTT = pokerStarsBase.countRegistrationByTMoney(csvStrings, gameMTT, tMoneyAmountIndex);
+        sumRegistrationByTMoneyMTT = pokerStarsBase.sumRegistrationByTMoney(csvStrings, gameMTT, tMoneyAmountIndex);
         countUnRegistrationMTT = pokerStarsBase.countGame(csvStrings, gameMTT, pokerStarsBase.getUnRegistrationString());
         sumUnRegistrationMTT = pokerStarsBase.sumForDifferentColumn(csvStrings, gameMTT, pokerStarsBase.getUnRegistrationString(), amountIndex);
+        countUnRegistrationByTMoneyMTT = pokerStarsBase.countUnRegistrationByTMoney(csvStrings, gameMTT, tMoneyAmountIndex);
+        sumUnRegistrationByTMoneyMTT = pokerStarsBase.sumUnRegistrationByTMoney(csvStrings, gameMTT, tMoneyAmountIndex);
         sumWonMTT = pokerStarsBase.sumForDifferentColumn(csvStrings, gameMTT, pokerStarsBase.getWonString(), amountIndex);
         countReEntryMTT = pokerStarsBase.countReEntry(csvStrings, gameMTT);
         sumReEntryMTT = pokerStarsBase.sumReEntry(csvStrings, gameMTT, amountIndex);

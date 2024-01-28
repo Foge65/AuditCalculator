@@ -14,6 +14,14 @@ public interface PokerStars {
 
     Map<String, Integer> countGame(List<String[]> strings, Set<String> game, String action);
 
+    Map<String, Integer> countRegistrationByTMoney(List<String[]> strings, Set<String> game, int tMoney);
+
+    Map<String, Integer> countUnRegistrationByTMoney(List<String[]> strings, Set<String> game, int tMoney);
+
+    Map<String, BigDecimal> sumRegistrationByTMoney(List<String[]> strings, Set<String> game, int tMoney);
+
+    Map<String, BigDecimal> sumUnRegistrationByTMoney(List<String[]> strings, Set<String> game, int tMoney);
+
     Map<String, BigDecimal> sumForDifferentColumn(List<String[]> strings, Set<String> game, String action, int column);
 
     Map<String, Integer> countRegistrationByTicket(List<String[]> strings, Set<String> game, int amount, int tMoney);
@@ -85,4 +93,5 @@ public interface PokerStars {
     String sumOtherBonus(List<String[]> strings, String[] bonuses, int amount);
 
     Integer totalCountRegistrationSpinWithoutUnregistration(List<String[]> strings, String registerAction, String unRegisterAction);
+
 }

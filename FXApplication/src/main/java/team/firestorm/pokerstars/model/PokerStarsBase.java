@@ -164,58 +164,6 @@ public abstract class PokerStarsBase implements PokerStars {
         interimMap.forEach((buyIn, value) -> result.merge(buyIn, value, BigDecimal::add));
     }
 
-
-
-//        Map<String, BigDecimal> profit = new HashMap<>();
-//        Map<String, String> ids = new HashMap<>();
-//        for (String buyIn : game) {
-//            BigDecimal sumRegistrationForMoney = BigDecimal.ZERO;
-//            BigDecimal sumUnRegistrationForMoney = BigDecimal.ZERO;
-//            BigDecimal sumWon = BigDecimal.ZERO;
-//            BigDecimal sumReEntry = BigDecimal.ZERO;
-//            BigDecimal sumKnockout = BigDecimal.ZERO;
-//            BigDecimal sumInterim = BigDecimal.ZERO;
-//            for (String[] stringArray : strings) {
-//                String actionValue = stringArray[ACTION];
-//                String idValue = stringArray[ID];
-//                String buyInValueQuote = gameParser(stringArray);
-//                BigDecimal amountBigDecimal = new BigDecimal(numberColumnParser(stringArray[amount]));
-//                if (buyInValueQuote.equals(buyIn)) {
-//                    if (actionValue.equals(getRegistrationString())) {
-//                        ids.put(buyIn, idValue);
-//                        sumRegistrationForMoney = sumRegistrationForMoney.add(amountBigDecimal);
-//                    }
-//                    if (actionValue.equals(getUnRegistrationString())) {
-//                        sumUnRegistrationForMoney = sumUnRegistrationForMoney.add(amountBigDecimal);
-//                    }
-//                    if (actionValue.equals(getWonString())) {
-//                        sumWon = sumWon.add(amountBigDecimal);
-//                    }
-//                }
-//                for (Map.Entry<String, String> id : ids.entrySet()) {
-//                    if (id.getKey().equals(buyIn) && id.getValue().startsWith(idValue)) {
-//                        if (actionValue.equals(getReEntryString())) {
-//                            sumReEntry = sumReEntry.add(amountBigDecimal);
-//                        }
-//                        if (actionValue.equals(getKnockOutString())) {
-//                            sumKnockout = sumKnockout.add(amountBigDecimal);
-//                        }
-//                        if (actionValue.equals(getInterimString())) {
-//                            sumInterim = sumInterim.add(amountBigDecimal);
-//                        }
-//                    }
-//                }
-//                profit.put(buyIn, sumRegistrationForMoney
-//                        .add(sumUnRegistrationForMoney)
-//                        .add(sumWon)
-//                        .add(sumReEntry)
-//                        .add(sumKnockout)
-//                        .add(sumInterim));
-//            }
-//        }
-//        return profit;
-
-
     @Override
     public Map<String, BigDecimal> sumProfitCashGame(List<String[]> strings, Set<String> games, int amount) {
         Map<String, BigDecimal> result = new HashMap<>();
@@ -290,6 +238,82 @@ public abstract class PokerStarsBase implements PokerStars {
             count.put(buyIn, counter);
         }
         return count;
+    }
+
+    @Override
+    public Map<String, Integer> countRegistrationByTMoney(List<String[]> strings, Set<String> game, int tMoney) {
+        Map<String, Integer> count = new HashMap<>();
+        for (String buyIn : game) {
+            int counter = 0;
+            for (String[] stringArray : strings) {
+                String actionValue = stringArray[ACTION];
+                String buyInValueQuote = gameParser(stringArray);
+                BigDecimal tMoneyBigDecimal = new BigDecimal(numberColumnParser(stringArray[tMoney]));
+                if (buyInValueQuote.equals(buyIn) && actionValue.startsWith(getRegistrationString())
+                        && tMoneyBigDecimal.compareTo(BigDecimal.ZERO) < 0) {
+                    counter++;
+                }
+            }
+            count.put(buyIn, counter);
+        }
+        return count;
+    }
+
+    @Override
+    public Map<String, Integer> countUnRegistrationByTMoney(List<String[]> strings, Set<String> game, int tMoney) {
+        Map<String, Integer> count = new HashMap<>();
+        for (String buyIn : game) {
+            int counter = 0;
+            for (String[] stringArray : strings) {
+                String actionValue = stringArray[ACTION];
+                String buyInValueQuote = gameParser(stringArray);
+                BigDecimal tMoneyBigDecimal = new BigDecimal(numberColumnParser(stringArray[tMoney]));
+                if (buyInValueQuote.equals(buyIn) && actionValue.startsWith(getUnRegistrationString())
+                        && tMoneyBigDecimal.compareTo(BigDecimal.ZERO) > 0) {
+                    counter++;
+                }
+            }
+            count.put(buyIn, counter);
+        }
+        return count;
+    }
+
+    @Override
+    public Map<String, BigDecimal> sumRegistrationByTMoney(List<String[]> strings, Set<String> game, int tMoney) {
+        Map<String, BigDecimal> result = new HashMap<>();
+        for (String buyIn : game) {
+            BigDecimal sumRegistration = BigDecimal.ZERO;
+            for (String[] stringArray : strings) {
+                String actionValue = stringArray[ACTION];
+                String buyInValueQuote = gameParser(stringArray);
+                BigDecimal tMoneyBigDecimal = new BigDecimal(numberColumnParser(stringArray[tMoney]));
+                if (buyInValueQuote.equals(buyIn) && actionValue.startsWith(getRegistrationString())
+                        && tMoneyBigDecimal.compareTo(BigDecimal.ZERO) < 0) {
+                    sumRegistration = sumRegistration.add(tMoneyBigDecimal);
+                }
+            }
+            result.put(buyIn, sumRegistration);
+        }
+        return result;
+    }
+
+    @Override
+    public Map<String, BigDecimal> sumUnRegistrationByTMoney(List<String[]> strings, Set<String> game, int tMoney) {
+        Map<String, BigDecimal> result = new HashMap<>();
+        for (String buyIn : game) {
+            BigDecimal sumRegistration = BigDecimal.ZERO;
+            for (String[] stringArray : strings) {
+                String actionValue = stringArray[ACTION];
+                String buyInValueQuote = gameParser(stringArray);
+                BigDecimal tMoneyBigDecimal = new BigDecimal(numberColumnParser(stringArray[tMoney]));
+                if (buyInValueQuote.equals(buyIn) && actionValue.startsWith(getUnRegistrationString())
+                        && tMoneyBigDecimal.compareTo(BigDecimal.ZERO) > 0) {
+                    sumRegistration = sumRegistration.add(tMoneyBigDecimal);
+                }
+            }
+            result.put(buyIn, sumRegistration);
+        }
+        return result;
     }
 
     @Override

@@ -79,11 +79,23 @@ public class ColumnBuilderImpl implements ColumnBuilder {
         TableColumn<Model, BigDecimal> sumRegistration = new TableColumn<>("Sum\nRegistration");
         setCellValueNumber(table, model.getSumRegistrationMTT(), sumRegistration);
 
+        TableColumn<Model, Integer> countRegistrationByTMoney = new TableColumn<>("Count Registration\nBy TMoney");
+        setCellValueNumber(table, model.getCountRegistrationByTMoneyMTT(), countRegistrationByTMoney);
+
+        TableColumn<Model, BigDecimal> sumRegistrationByTMoney = new TableColumn<>("Sum Registration\nBy TMoney");
+        setCellValueNumber(table, model.getSumRegistrationByTMoneyMTT(), sumRegistrationByTMoney);
+
         TableColumn<Model, Integer> countUnRegistration = new TableColumn<>("Count\nUnRegistration");
         setCellValueNumber(table, model.getCountUnRegistrationMTT(), countUnRegistration);
 
         TableColumn<Model, BigDecimal> sumUnRegistration = new TableColumn<>("Sum\nUnRegistration");
         setCellValueNumber(table, model.getSumUnRegistrationMTT(), sumUnRegistration);
+
+        TableColumn<Model, Integer> countUnRegistrationByTMoney = new TableColumn<>("Count UnRegistration\nBy TMoney");
+        setCellValueNumber(table, model.getCountUnRegistrationByTMoneyMTT(), countUnRegistrationByTMoney);
+
+        TableColumn<Model, BigDecimal> sumUnRegistrationByTMoney = new TableColumn<>("Sum UnRegistration\nBy TMoney");
+        setCellValueNumber(table, model.getSumUnRegistrationByTMoneyMTT(), sumUnRegistrationByTMoney);
 
         TableColumn<Model, Integer> countReEntry = new TableColumn<>("Count\nRe-Entry");
         setCellValueNumber(table, model.getCountReEntryMTT(), countReEntry);

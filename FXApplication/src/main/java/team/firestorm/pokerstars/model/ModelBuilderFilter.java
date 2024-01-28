@@ -49,8 +49,12 @@ public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
         model.setGameMTT(gameMTT);
         model.setCountRegistrationMTT(pokerStarsBase.countGame(filteredStrings, gameMTT, pokerStarsBase.getRegistrationString()));
         model.setSumRegistrationMTT(pokerStarsBase.sumForDifferentColumn(filteredStrings, gameMTT, pokerStarsBase.getRegistrationString(), getAmountIndex()));
+        model.setCountRegistrationByTMoneyMTT(pokerStarsBase.countRegistrationByTMoney(filteredStrings, gameMTT, getTMoneyAmountIndex()));
+        model.setSumRegistrationByTMoneyMTT(pokerStarsBase.sumRegistrationByTMoney(filteredStrings, gameMTT, getTMoneyAmountIndex()));
         model.setCountUnRegistrationMTT(pokerStarsBase.countGame(filteredStrings, gameMTT, pokerStarsBase.getUnRegistrationString()));
         model.setSumUnRegistrationMTT(pokerStarsBase.sumForDifferentColumn(filteredStrings, gameMTT, pokerStarsBase.getUnRegistrationString(), getAmountIndex()));
+        model.setCountUnRegistrationByTMoneyMTT(pokerStarsBase.countUnRegistrationByTMoney(filteredStrings, gameMTT, getTMoneyAmountIndex()));
+        model.setSumUnRegistrationByTMoneyMTT(pokerStarsBase.sumUnRegistrationByTMoney(filteredStrings, gameMTT, getTMoneyAmountIndex()));
         model.setSumWonMTT(pokerStarsBase.sumForDifferentColumn(filteredStrings, gameMTT, pokerStarsBase.getWonString(), getAmountIndex()));
         model.setCountReEntryMTT(pokerStarsBase.countReEntry(filteredStrings, gameMTT));
         model.setSumReEntryMTT(pokerStarsBase.sumReEntry(filteredStrings, gameMTT, getAmountIndex()));

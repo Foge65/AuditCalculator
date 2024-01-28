@@ -30,8 +30,12 @@ public class Model {
     private Set<String> gameMTT;
     private Map<String, Integer> countRegistrationMTT;
     private Map<String, BigDecimal> sumRegistrationMTT;
+    private Map<String, Integer> countRegistrationByTMoneyMTT;
+    private Map<String, BigDecimal> sumRegistrationByTMoneyMTT;
     private Map<String, Integer> countUnRegistrationMTT;
     private Map<String, BigDecimal> sumUnRegistrationMTT;
+    private Map<String, Integer> countUnRegistrationByTMoneyMTT;
+    private Map<String, BigDecimal> sumUnRegistrationByTMoneyMTT;
     private Map<String, BigDecimal> sumWonMTT;
     private Map<String, Integer> countReEntryMTT;
     private Map<String, BigDecimal> sumReEntryMTT;
@@ -94,8 +98,12 @@ public class Model {
         setGameMTT(modelBuilderFromCsvFile.getGameMTT());
         setCountRegistrationMTT(modelBuilderFromCsvFile.getCountRegistrationMTT());
         setSumRegistrationMTT(modelBuilderFromCsvFile.getSumRegistrationMTT());
+        setCountRegistrationByTMoneyMTT(modelBuilderFromCsvFile.getCountRegistrationByTMoneyMTT());
+        setSumRegistrationByTMoneyMTT(modelBuilderFromCsvFile.getSumRegistrationByTMoneyMTT());
         setCountUnRegistrationMTT(modelBuilderFromCsvFile.getCountUnRegistrationMTT());
         setSumUnRegistrationMTT(modelBuilderFromCsvFile.getSumUnRegistrationMTT());
+        setCountUnRegistrationByTMoneyMTT(modelBuilderFromCsvFile.getCountUnRegistrationByTMoneyMTT());
+        setSumUnRegistrationByTMoneyMTT(modelBuilderFromCsvFile.getSumUnRegistrationByTMoneyMTT());
         setSumWonMTT(modelBuilderFromCsvFile.getSumWonMTT());
         setCountReEntryMTT(modelBuilderFromCsvFile.getCountReEntryMTT());
         setSumReEntryMTT(modelBuilderFromCsvFile.getSumReEntryMTT());
