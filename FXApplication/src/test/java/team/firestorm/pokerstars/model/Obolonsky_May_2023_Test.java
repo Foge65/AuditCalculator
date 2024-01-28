@@ -178,8 +178,8 @@ public class Obolonsky_May_2023_Test extends CsvFileBaseForTests {
                 new BigDecimal("48.37"),
                 new BigDecimal("-15.7"),
                 new BigDecimal("570.23"),
-                new BigDecimal("-33.33"),
-                new BigDecimal("-0.23")
+                new BigDecimal("-0.23"),
+                new BigDecimal("-33.33")
         };
     }
 

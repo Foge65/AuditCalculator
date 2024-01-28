@@ -212,15 +212,15 @@ public class Artemio09_2023_Test extends CsvFileBaseForTests {
     BigDecimal[] setProfitMTT() {
         return new BigDecimal[]{
                 new BigDecimal("-840.55"),
-                new BigDecimal("-961.34"),
                 new BigDecimal("-203.5"),
+                new BigDecimal("-961.34"),
                 new BigDecimal("-20.24"),
-                new BigDecimal("-699.43"),
                 new BigDecimal("-893.02"),
+                new BigDecimal("-699.43"),
                 new BigDecimal("0"),
-                new BigDecimal("-163.64"),
-                new BigDecimal("105.97"),
                 new BigDecimal("-27.91"),
+                new BigDecimal("105.97"),
+                new BigDecimal("-163.64"),
                 new BigDecimal("-149.09"),
                 new BigDecimal("0")
         };
