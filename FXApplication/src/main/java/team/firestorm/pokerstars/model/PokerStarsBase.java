@@ -684,10 +684,4 @@ public abstract class PokerStarsBase implements PokerStars {
         }
         return registerCount - unRegisterCount;
     }
-
-    public abstract String getSeatInTable();
-
-    public abstract String getSeatOutTable();
-
-    public abstract String getAutoRebuyTable();
 }

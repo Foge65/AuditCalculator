@@ -94,4 +94,9 @@ public interface PokerStars {
 
     Integer totalCountRegistrationSpinWithoutUnregistration(List<String[]> strings, String registerAction, String unRegisterAction);
 
+    String getSeatInTable();
+
+    String getSeatOutTable();
+
+    String getAutoRebuyTable();
 }
