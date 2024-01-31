@@ -400,42 +400,40 @@ public abstract class PokerStarsBase implements PokerStars {
     @Override
     public Map<String, BigDecimal> sumKnockout(List<String[]> strings, Set<String> game, int amount) {
         Map<String, BigDecimal> knockoutMap = new HashMap<>();
-        Map<String, List<String>> buyInIdMap = new HashMap<>();
+        Map<String, Set<String>> idMap = new HashMap<>();
         for (String[] stringArray : strings) {
             String actionValue = stringArray[ACTION];
             String idValue = stringArray[ID];
             String buyInValueQuote = gameParser(stringArray);
             if (actionValue.equals(getRegistrationString())) {
-                if (buyInIdMap.containsKey(buyInValueQuote)) {
-                    buyInIdMap.get(buyInValueQuote).add(idValue);
+                if (idMap.containsKey(buyInValueQuote)) {
+                    idMap.get(buyInValueQuote).add(idValue);
                 } else {
-                    List<String> ids = new ArrayList<>();
-                    ids.add(idValue);
-                    buyInIdMap.put(buyInValueQuote, ids);
+                    Set<String> idList = new HashSet<>();
+                    idList.add(idValue);
+                    idMap.put(buyInValueQuote, idList);
                 }
             }
         }
         for (String buyIn : game) {
-            BigDecimal sum = BigDecimal.ZERO;
+            BigDecimal sumKnockout = BigDecimal.ZERO;
             for (String[] stringArray : strings) {
                 String actionValue = stringArray[ACTION];
                 String idValue = stringArray[ID];
                 BigDecimal amountBigDecimal = new BigDecimal(numberColumnParser(stringArray[amount]));
                 if (actionValue.equals(getKnockOutString())) {
-                    for (Map.Entry<String, List<String>> entry : buyInIdMap.entrySet()) {
-                        String bi = entry.getKey();
-                        List<String> ids = entry.getValue();
-                        if (bi.equals(buyIn)) {
-                            for (String id : ids) {
+                    for (Map.Entry<String, Set<String>> entry : idMap.entrySet()) {
+                        if (entry.getKey().equals(buyIn)) {
+                            for (String id : entry.getValue()) {
                                 if (id.startsWith(idValue)) {
-                                    sum = sum.add(amountBigDecimal);
+                                    sumKnockout = sumKnockout.add(amountBigDecimal);
                                 }
                             }
                         }
                     }
                 }
             }
-            knockoutMap.put(buyIn, sum);
+            knockoutMap.put(buyIn, sumKnockout);
         }
         return knockoutMap;
     }
