@@ -132,36 +132,40 @@ public abstract class PokerStarsBase implements PokerStars {
 
     @Override
     public Map<String, BigDecimal> sumProfitMTTGame(List<String[]> strings, Set<String> game, int amount) {
-        Map<String, BigDecimal> result = new HashMap<>();
-
-        sumForDifferentColumnAndMerge(result, strings, game, getRegistrationString(), amount);
-        sumForDifferentColumnAndMerge(result, strings, game, getUnRegistrationString(), amount);
-        sumReEntryAndMerge(result, strings, game, amount);
-        sumKnockoutAndMerge(result, strings, game, amount);
-        sumInterimAndMerge(result, strings, game, amount);
-        sumForDifferentColumnAndMerge(result, strings, game, getWonString(), amount);
-
-        return result;
-    }
-
-    private void sumForDifferentColumnAndMerge(Map<String, BigDecimal> result, List<String[]> strings, Set<String> game, String action, int amount) {
-        Map<String, BigDecimal> map = sumForDifferentColumn(strings, game, action, amount);
-        map.forEach((buyIn, value) -> result.merge(buyIn, value, BigDecimal::add));
-    }
-
-    private void sumReEntryAndMerge(Map<String, BigDecimal> result, List<String[]> strings, Set<String> game, int amount) {
-        Map<String, BigDecimal> reEntryMap = sumReEntry(strings, game, amount);
-        reEntryMap.forEach((buyIn, value) -> result.merge(buyIn, value, BigDecimal::add));
-    }
-
-    private void sumKnockoutAndMerge(Map<String, BigDecimal> result, List<String[]> strings, Set<String> game, int amount) {
-        Map<String, BigDecimal> knockoutMap = sumKnockout(strings, game, amount);
-        knockoutMap.forEach((buyIn, value) -> result.merge(buyIn, value, BigDecimal::add));
-    }
-
-    private void sumInterimAndMerge(Map<String, BigDecimal> result, List<String[]> strings, Set<String> game, int amount) {
-        Map<String, BigDecimal> interimMap = sumInterim(strings, game, amount);
-        interimMap.forEach((buyIn, value) -> result.merge(buyIn, value, BigDecimal::add));
+        Map<String, BigDecimal> profitMap = new HashMap<>();
+        Map<String, Set<String>> idMap = new HashMap<>();
+        for (String[] stringArray : strings) {
+            String actionValue = stringArray[ACTION];
+            String idValue = stringArray[ID];
+            String buyInValueQuote = gameParser(stringArray);
+            if (actionValue.equals(getRegistrationString())) {
+                if (idMap.containsKey(buyInValueQuote)) {
+                    idMap.get(buyInValueQuote).add(idValue);
+                } else {
+                    Set<String> idList = new HashSet<>();
+                    idList.add(idValue);
+                    idMap.put(buyInValueQuote, idList);
+                }
+            }
+        }
+        for (String buyIn : game) {
+            BigDecimal sumProfit = BigDecimal.ZERO;
+            for (String[] stringArray : strings) {
+                String idValue = stringArray[ID];
+                BigDecimal amountBigDecimal = new BigDecimal(numberColumnParser(stringArray[amount]));
+                for (Map.Entry<String, Set<String>> entry : idMap.entrySet()) {
+                    if (entry.getKey().equals(buyIn)) {
+                        for (String id : entry.getValue()) {
+                            if (id.startsWith(idValue)) {
+                                sumProfit = sumProfit.add(amountBigDecimal);
+                            }
+                        }
+                    }
+                }
+            }
+            profitMap.put(buyIn, sumProfit);
+        }
+        return profitMap;
     }
 
     @Override
