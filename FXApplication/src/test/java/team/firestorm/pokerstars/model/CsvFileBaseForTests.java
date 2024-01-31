@@ -69,15 +69,6 @@ abstract class CsvFileBaseForTests {
     abstract BigDecimal[] setSumUnRegistrationSpin();
 
     @Test
-    void sumNetWonSpin() {
-        BigDecimal[] expected = setSumWonSpin();
-        BigDecimal[] actual = modelBuilderFromCsvFile.getSumWonSpin().values().toArray(new BigDecimal[0]);
-        assertionBigDecimalArrays(expected, actual);
-    }
-
-    abstract BigDecimal[] setSumWonSpin();
-
-    @Test
     void sumRegistrationForTMoneySpin() {
         BigDecimal[] expected = setSumRegistrationForTMoney();
         BigDecimal[] actual = modelBuilderFromCsvFile.getSumRegistrationForTMoneySpin().values().toArray(new BigDecimal[0]);
@@ -94,6 +85,15 @@ abstract class CsvFileBaseForTests {
     }
 
     abstract Integer[] setCountRegistrationForTicketSpin();
+
+    @Test
+    void sumNetWonSpin() {
+        BigDecimal[] expected = setSumWonSpin();
+        BigDecimal[] actual = modelBuilderFromCsvFile.getSumWonSpin().values().toArray(new BigDecimal[0]);
+        assertionBigDecimalArrays(expected, actual);
+    }
+
+    abstract BigDecimal[] setSumWonSpin();
 
     @Test
     void sumProfitSpin() {
@@ -199,6 +199,42 @@ abstract class CsvFileBaseForTests {
     }
 
     abstract BigDecimal[] setSumUnRegistrationMTT();
+
+    @Test
+    void countRegistrationByTMoneyMTT() {
+        Integer[] expected = setCountRegistrationByTMoneyMTT();
+        Integer[] actual = modelBuilderFromCsvFile.getCountRegistrationByTMoneyMTT().values().toArray(new Integer[0]);
+        assertionIntegerArrays(expected, actual);
+    }
+
+    abstract Integer[] setCountRegistrationByTMoneyMTT();
+
+    @Test
+    void sumRegistrationByTMoneyMTT() {
+        BigDecimal[] expected = setSumRegistrationByTMoneyMTT();
+        BigDecimal[] actual = modelBuilderFromCsvFile.getSumRegistrationByTMoneyMTT().values().toArray(new BigDecimal[0]);
+        assertionBigDecimalArrays(expected, actual);
+    }
+
+    abstract BigDecimal[] setSumRegistrationByTMoneyMTT();
+
+    @Test
+    void countUnRegistrationByTMoneyMTT() {
+        Integer[] expected = setCountUnRegistrationByTMoneyMTT();
+        Integer[] actual = modelBuilderFromCsvFile.getCountUnRegistrationByTMoneyMTT().values().toArray(new Integer[0]);
+        assertionIntegerArrays(expected, actual);
+    }
+
+    abstract Integer[] setCountUnRegistrationByTMoneyMTT();
+
+    @Test
+    void sumUnRegistrationByTMoneyMTT() {
+        BigDecimal[] expected = setSumUnRegistrationByTMoneyMTT();
+        BigDecimal[] actual = modelBuilderFromCsvFile.getSumUnRegistrationByTMoneyMTT().values().toArray(new BigDecimal[0]);
+        assertionBigDecimalArrays(expected, actual);
+    }
+
+    abstract BigDecimal[] setSumUnRegistrationByTMoneyMTT();
 
     @Test
     void countReEntryMTT() {

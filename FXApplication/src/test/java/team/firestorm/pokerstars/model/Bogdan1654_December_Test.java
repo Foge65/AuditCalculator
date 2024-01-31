@@ -28,13 +28,13 @@ public class Bogdan1654_December_Test extends CsvFileBaseForTests {
     }
 
     @Override
-    Integer[] setCountRegistrationForTicketSpin() {
-        return new Integer[]{};
+    BigDecimal[] setSumRegistrationForTMoney() {
+        return new BigDecimal[]{};
     }
 
     @Override
-    BigDecimal[] setSumRegistrationForTMoney() {
-        return new BigDecimal[]{};
+    Integer[] setCountRegistrationForTicketSpin() {
+        return new Integer[]{};
     }
 
     @Override
@@ -134,6 +134,70 @@ public class Bogdan1654_December_Test extends CsvFileBaseForTests {
                 new BigDecimal("215"),
                 new BigDecimal("0"),
                 new BigDecimal("44"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0")
+        };
+    }
+
+    @Override
+    Integer[] setCountRegistrationByTMoneyMTT() {
+        return new Integer[]{
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+        };
+    }
+
+    @Override
+    BigDecimal[] setSumRegistrationByTMoneyMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("0"),
+                new BigDecimal("-50.0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0")
+        };
+    }
+
+    @Override
+    Integer[] setCountUnRegistrationByTMoneyMTT() {
+        return new Integer[]{
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+        };
+    }
+
+    @Override
+    BigDecimal[] setSumUnRegistrationByTMoneyMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
                 new BigDecimal("0"),
                 new BigDecimal("0"),
                 new BigDecimal("0"),

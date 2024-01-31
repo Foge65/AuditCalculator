@@ -28,11 +28,6 @@ public class Yura0053_December_01_16_Test extends CsvFileBaseForTests {
     }
 
     @Override
-    BigDecimal[] setSumWonSpin() {
-        return new BigDecimal[]{new BigDecimal("14760.00"), new BigDecimal("10455.00")};
-    }
-
-    @Override
     BigDecimal[] setSumRegistrationForTMoney() {
         return new BigDecimal[]{new BigDecimal("-160.00"), new BigDecimal("-150.00")};
     }
@@ -40,6 +35,11 @@ public class Yura0053_December_01_16_Test extends CsvFileBaseForTests {
     @Override
     Integer[] setCountRegistrationForTicketSpin() {
         return new Integer[]{0, 0};
+    }
+
+    @Override
+    BigDecimal[] setSumWonSpin() {
+        return new BigDecimal[]{new BigDecimal("14760.00"), new BigDecimal("10455.00")};
     }
 
     @Override
@@ -102,6 +102,42 @@ public class Yura0053_December_01_16_Test extends CsvFileBaseForTests {
                 new BigDecimal("0"),
                 new BigDecimal("0"),
                 new BigDecimal("3.3")
+        };
+    }
+
+    @Override
+    Integer[] setCountRegistrationByTMoneyMTT() {
+        return new Integer[]{
+                0,
+                0,
+                0
+        };
+    }
+
+    @Override
+    BigDecimal[] setSumRegistrationByTMoneyMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0")
+        };
+    }
+
+    @Override
+    Integer[] setCountUnRegistrationByTMoneyMTT() {
+        return new Integer[]{
+                0,
+                0,
+                0
+        };
+    }
+
+    @Override
+    BigDecimal[] setSumUnRegistrationByTMoneyMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0")
         };
     }
 

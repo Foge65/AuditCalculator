@@ -2,9 +2,9 @@ package team.firestorm.pokerstars.model;
 
 import java.math.BigDecimal;
 
-class Yura0053_November_Test extends CsvFileBaseForTests {
-    Yura0053_November_Test() {
-        super("src/test/resources/Yura0053_November.csv");
+class Yura0053_October_Test extends CsvFileBaseForTests {
+    Yura0053_October_Test() {
+        super("src/test/resources/Yura0053_October.csv");
     }
 
     @Override
@@ -28,11 +28,6 @@ class Yura0053_November_Test extends CsvFileBaseForTests {
     }
 
     @Override
-    BigDecimal[] setSumWonSpin() {
-        return new BigDecimal[]{new BigDecimal("17676.00"), new BigDecimal("3205.00")};
-    }
-
-    @Override
     BigDecimal[] setSumRegistrationForTMoney() {
         return new BigDecimal[]{new BigDecimal("-150.00"), new BigDecimal("-50.00")};
     }
@@ -40,6 +35,11 @@ class Yura0053_November_Test extends CsvFileBaseForTests {
     @Override
     Integer[] setCountRegistrationForTicketSpin() {
         return new Integer[]{0, 0};
+    }
+
+    @Override
+    BigDecimal[] setSumWonSpin() {
+        return new BigDecimal[]{new BigDecimal("17676.00"), new BigDecimal("3205.00")};
     }
 
     @Override
@@ -104,6 +104,46 @@ class Yura0053_November_Test extends CsvFileBaseForTests {
                 new BigDecimal("0"),
                 new BigDecimal("16.5"),
                 new BigDecimal("3.3")
+        };
+    }
+
+    @Override
+    Integer[] setCountRegistrationByTMoneyMTT() {
+        return new Integer[]{
+                0,
+                1,
+                0,
+                0
+        };
+    }
+
+    @Override
+    BigDecimal[] setSumRegistrationByTMoneyMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("0"),
+                new BigDecimal("-1.1"),
+                new BigDecimal("0"),
+                new BigDecimal("0")
+        };
+    }
+
+    @Override
+    Integer[] setCountUnRegistrationByTMoneyMTT() {
+        return new Integer[]{
+                0,
+                1,
+                0,
+                0
+        };
+    }
+
+    @Override
+    BigDecimal[] setSumUnRegistrationByTMoneyMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("0"),
+                new BigDecimal("1.1"),
+                new BigDecimal("0"),
+                new BigDecimal("0")
         };
     }
 

@@ -28,11 +28,6 @@ public class Obolonsky_May_2023_Test extends CsvFileBaseForTests {
     }
 
     @Override
-    BigDecimal[] setSumWonSpin() {
-        return new BigDecimal[]{new BigDecimal("8610")};
-    }
-
-    @Override
     BigDecimal[] setSumRegistrationForTMoney() {
         return new BigDecimal[]{new BigDecimal("-100")};
     }
@@ -40,6 +35,11 @@ public class Obolonsky_May_2023_Test extends CsvFileBaseForTests {
     @Override
     Integer[] setCountRegistrationForTicketSpin() {
         return new Integer[]{0};
+    }
+
+    @Override
+    BigDecimal[] setSumWonSpin() {
+        return new BigDecimal[]{new BigDecimal("8610")};
     }
 
     @Override
@@ -107,6 +107,58 @@ public class Obolonsky_May_2023_Test extends CsvFileBaseForTests {
                 new BigDecimal("15"),
                 new BigDecimal("0"),
                 new BigDecimal("22"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0")
+        };
+    }
+
+    @Override
+    Integer[] setCountRegistrationByTMoneyMTT() {
+        return new Integer[]{
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+        };
+    }
+
+    @Override
+    BigDecimal[] setSumRegistrationByTMoneyMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0")
+        };
+    }
+
+    @Override
+    Integer[] setCountUnRegistrationByTMoneyMTT() {
+        return new Integer[]{
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+        };
+    }
+
+    @Override
+    BigDecimal[] setSumUnRegistrationByTMoneyMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
                 new BigDecimal("0"),
                 new BigDecimal("0"),
                 new BigDecimal("0")

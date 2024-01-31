@@ -28,11 +28,6 @@ class DepositBeastTest extends CsvFileBaseForTests {
     }
 
     @Override
-    BigDecimal[] setSumWonSpin() {
-        return new BigDecimal[]{new BigDecimal("250.00"), new BigDecimal("43100.00")};
-    }
-
-    @Override
     BigDecimal[] setSumRegistrationForTMoney() {
         return new BigDecimal[]{new BigDecimal("0.00"), new BigDecimal("0.00")};
     }
@@ -40,6 +35,11 @@ class DepositBeastTest extends CsvFileBaseForTests {
     @Override
     Integer[] setCountRegistrationForTicketSpin() {
         return new Integer[]{1, 0};
+    }
+
+    @Override
+    BigDecimal[] setSumWonSpin() {
+        return new BigDecimal[]{new BigDecimal("250.00"), new BigDecimal("43100.00")};
     }
 
     @Override
@@ -102,6 +102,42 @@ class DepositBeastTest extends CsvFileBaseForTests {
                 new BigDecimal("7.5"),
                 new BigDecimal("7.5"),
                 new BigDecimal("1.1")
+        };
+    }
+
+    @Override
+    Integer[] setCountRegistrationByTMoneyMTT() {
+        return new Integer[]{
+                0,
+                0,
+                0
+        };
+    }
+
+    @Override
+    BigDecimal[] setSumRegistrationByTMoneyMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0")
+        };
+    }
+
+    @Override
+    Integer[] setCountUnRegistrationByTMoneyMTT() {
+        return new Integer[]{
+                0,
+                0,
+                0
+        };
+    }
+
+    @Override
+    BigDecimal[] setSumUnRegistrationByTMoneyMTT() {
+        return new BigDecimal[]{
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0")
         };
     }
 
