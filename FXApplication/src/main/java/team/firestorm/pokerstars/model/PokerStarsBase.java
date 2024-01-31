@@ -359,30 +359,40 @@ public abstract class PokerStarsBase implements PokerStars {
     @Override
     public Map<String, BigDecimal> sumReEntry(List<String[]> strings, Set<String> game, int amount) {
         Map<String, BigDecimal> reentry = new HashMap<>();
-        Map<String, String> ids = new HashMap<>();
+        Map<String, Set<String>> idMap = new HashMap<>();
+        for (String[] stringArray : strings) {
+            String actionValue = stringArray[ACTION];
+            String idValue = stringArray[ID];
+            String buyInValueQuote = gameParser(stringArray);
+            if (actionValue.equals(getRegistrationString())) {
+                if (idMap.containsKey(buyInValueQuote)) {
+                    idMap.get(buyInValueQuote).add(idValue);
+                } else {
+                    Set<String> idList = new HashSet<>();
+                    idList.add(idValue);
+                    idMap.put(buyInValueQuote, idList);
+                }
+            }
+        }
         for (String buyIn : game) {
             BigDecimal sumReEntry = BigDecimal.ZERO;
             for (String[] stringArray : strings) {
                 String actionValue = stringArray[ACTION];
                 String idValue = stringArray[ID];
-                String buyInValueQuote = gameParser(stringArray);
                 BigDecimal amountBigDecimal = new BigDecimal(numberColumnParser(stringArray[amount]));
-                if (buyInValueQuote.equals(buyIn)) {
-                    if (actionValue.equals(getRegistrationString())) {
-                        ids.put(buyIn, idValue);
-                    }
-                }
-                for (Map.Entry<String, String> id : ids.entrySet()) {
-                    if (id.getKey().equals(buyIn)) {
-                        if (id.getValue().startsWith(idValue)) {
-                            if (actionValue.equals(getReEntryString())) {
-                                sumReEntry = sumReEntry.add(amountBigDecimal);
+                if (actionValue.equals(getReEntryString())) {
+                    for (Map.Entry<String, Set<String>> entry : idMap.entrySet()) {
+                        if (entry.getKey().equals(buyIn)) {
+                            for (String id : entry.getValue()) {
+                                if (id.startsWith(idValue)) {
+                                    sumReEntry = sumReEntry.add(amountBigDecimal);
+                                }
                             }
                         }
                     }
                 }
-                reentry.put(buyIn, sumReEntry);
             }
+            reentry.put(buyIn, sumReEntry);
         }
         return reentry;
     }
