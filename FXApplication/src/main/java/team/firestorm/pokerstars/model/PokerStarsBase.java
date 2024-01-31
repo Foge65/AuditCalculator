@@ -319,12 +319,19 @@ public abstract class PokerStarsBase implements PokerStars {
     @Override
     public Map<String, Integer> countReEntry(List<String[]> strings, Set<String> game) {
         Map<String, Integer> countReEntry = new HashMap<>();
-        List<String> ids = new ArrayList<>();
+        Map<String, Set<String>> idMap = new HashMap<>();
         for (String[] stringArray : strings) {
             String actionValue = stringArray[ACTION];
             String idValue = stringArray[ID];
-            if (actionValue.equals(getReEntryString())) {
-                ids.add(idValue);
+            String buyInValueQuote = gameParser(stringArray);
+            if (actionValue.equals(getRegistrationString())) {
+                if (idMap.containsKey(buyInValueQuote)) {
+                    idMap.get(buyInValueQuote).add(idValue);
+                } else {
+                    Set<String> idList = new HashSet<>();
+                    idList.add(idValue);
+                    idMap.put(buyInValueQuote, idList);
+                }
             }
         }
         for (String buyIn : game) {
@@ -332,9 +339,16 @@ public abstract class PokerStarsBase implements PokerStars {
             for (String[] stringArray : strings) {
                 String actionValue = stringArray[ACTION];
                 String idValue = stringArray[ID];
-                String buyInValueQuote = gameParser(stringArray);
-                if (buyInValueQuote.equals(buyIn) && actionValue.equals(getRegistrationString())) {
-                    counter += (int) ids.stream().filter(idValue::startsWith).count();
+                if (actionValue.equals(getReEntryString())) {
+                    for (Map.Entry<String, Set<String>> entry : idMap.entrySet()) {
+                        if (entry.getKey().equals(buyIn)) {
+                            for (String id : entry.getValue()) {
+                                if (id.startsWith(idValue)) {
+                                    counter++;
+                                }
+                            }
+                        }
+                    }
                 }
             }
             countReEntry.put(buyIn, counter);
