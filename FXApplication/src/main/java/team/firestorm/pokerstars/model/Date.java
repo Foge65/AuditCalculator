@@ -12,15 +12,10 @@ public class Date {
     private CsvParser csvParser;
 
     public LocalDate setDateFrom(List<String[]> strings, DateTimeFormatter dateTimeFormatter) {
-        String[] firstStringArray = strings.get(0);
-        String date = firstStringArray[0];
-        return LocalDate.from(LocalDateTime.parse(date, dateTimeFormatter));
+        return LocalDate.from(LocalDateTime.parse(strings.get(0)[0], dateTimeFormatter));
     }
 
     public LocalDate setDateTo(List<String[]> strings, DateTimeFormatter dateTimeFormatter) {
-        int sizeList = strings.size();
-        String[] lastStringArray = csvParser.getStrings().get(sizeList - 1);
-        String date = lastStringArray[0];
-        return LocalDate.from(LocalDateTime.parse(date, dateTimeFormatter));
+        return LocalDate.from(LocalDateTime.parse(csvParser.getStrings().get(strings.size() - 1)[0], dateTimeFormatter));
     }
 }

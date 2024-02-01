@@ -9,9 +9,8 @@ public class ErrorLog {
     public static void errorsToFile() {
         Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
             try (PrintWriter printWriter = new PrintWriter(new FileWriter("Errors.log", true))) {
-                DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-                LocalDateTime localDateTime = LocalDateTime.now();
-                printWriter.println("=== Uncaught Exception === " + dateTimeFormatter.format(localDateTime));
+                printWriter.println("=== Uncaught Exception === "
+                        + DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss").format(LocalDateTime.now()));
                 throwable.printStackTrace(printWriter);
             } catch (Exception e) {
                 e.printStackTrace();

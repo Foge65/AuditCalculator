@@ -1,6 +1,7 @@
 package team.firestorm.pokerstars.model;
 
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class LanguageRu extends PokerStarsBase implements DateFormat {
     private static final String DATETIMEFORMAT = "dd.MM.yyyy h:mm a";
@@ -34,7 +35,7 @@ public class LanguageRu extends PokerStarsBase implements DateFormat {
 
     @Override
     public DateTimeFormatter getFormat() {
-        return DateTimeFormatter.ofPattern(DATETIMEFORMAT);
+        return DateTimeFormatter.ofPattern(DATETIMEFORMAT, Locale.US);
     }
 
     @Override

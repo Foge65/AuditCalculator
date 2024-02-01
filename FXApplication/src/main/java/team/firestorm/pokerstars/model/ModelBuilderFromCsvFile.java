@@ -16,7 +16,7 @@ public class ModelBuilderFromCsvFile {
     private final Language languageDetection;
     private final String language;
     private final Date date;
-    private final int elements;
+    private int elements;
 
     private final Set<String> gameSpin;
     private final Map<String, Integer> countRegistrationSpin;
@@ -107,27 +107,27 @@ public class ModelBuilderFromCsvFile {
             } else {
                 Platform.runLater(Alerts::unknownLanguage);
             }
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
 
-        elements = csvParser.countElements();
-        if (elements == 13) {
-            elementIndex = new ElementIndex13();
-            amountIndex = elementIndex.getAmountIndex();
-            coinAmountIndex = elementIndex.getStarsCoinAmountIndex();
-            tMoneyAmountIndex = elementIndex.getTMoneyAmountIndex();
-            balanceIndex = elementIndex.getBalanceIndex();
-            coinBalanceIndex = elementIndex.getCoinBalanceIndex();
-            tMoneyBalanceIndex = elementIndex.getTMoneyBalanceIndex();
-        } else if (elements == 14) {
-            elementIndex = new ElementIndex14();
-            amountIndex = elementIndex.getAmountIndex();
-            coinAmountIndex = elementIndex.getStarsCoinAmountIndex();
-            tMoneyAmountIndex = elementIndex.getTMoneyAmountIndex();
-            balanceIndex = elementIndex.getBalanceIndex();
-            coinBalanceIndex = elementIndex.getCoinBalanceIndex();
-            tMoneyBalanceIndex = elementIndex.getTMoneyBalanceIndex();
+            elements = csvParser.countElements();
+            if (elements == 13) {
+                elementIndex = new ElementIndex13();
+                amountIndex = elementIndex.getAmountIndex();
+                coinAmountIndex = elementIndex.getStarsCoinAmountIndex();
+                tMoneyAmountIndex = elementIndex.getTMoneyAmountIndex();
+                balanceIndex = elementIndex.getBalanceIndex();
+                coinBalanceIndex = elementIndex.getCoinBalanceIndex();
+                tMoneyBalanceIndex = elementIndex.getTMoneyBalanceIndex();
+            } else if (elements == 14) {
+                elementIndex = new ElementIndex14();
+                amountIndex = elementIndex.getAmountIndex();
+                coinAmountIndex = elementIndex.getStarsCoinAmountIndex();
+                tMoneyAmountIndex = elementIndex.getTMoneyAmountIndex();
+                balanceIndex = elementIndex.getBalanceIndex();
+                coinBalanceIndex = elementIndex.getCoinBalanceIndex();
+                tMoneyBalanceIndex = elementIndex.getTMoneyBalanceIndex();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         gameSpin = pokerStarsBase.game(pokerStarsBase.getRegexGameSpin(), csvStrings);
