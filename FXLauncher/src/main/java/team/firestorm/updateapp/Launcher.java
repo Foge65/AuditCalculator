@@ -9,17 +9,22 @@ public class Launcher {
 
     private static void update() {
         Updater updater = new Updater();
-        String serverVersion = updater.fetchVersionFromServer();
-        String localVersion = updater.currentVersionFromFile();
-        if (!serverVersion.equals(localVersion)) {
-            updater.downloadUpdate();
-            updater.updateVersionInFile(serverVersion);
-            updater.replaceExe();
-            updater.deleteTmpFile();
-            launchMainApplication();
-        } else {
+        try {
+            String serverVersion = updater.fetchVersionFromServer();
+            String localVersion = updater.currentVersionFromFile();
+            if (!serverVersion.equals(localVersion)) {
+                updater.downloadUpdate();
+                updater.updateVersionInFile(serverVersion);
+                updater.replaceExe();
+                updater.deleteTmpFile();
+                launchMainApplication();
+            } else {
+                launchMainApplication();
+            }
+        } catch (Exception e) {
             launchMainApplication();
         }
+        launchMainApplication();
     }
 
     private static void launchMainApplication() {
