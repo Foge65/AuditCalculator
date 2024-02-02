@@ -138,8 +138,8 @@ public class ModelBuilderFromCsvFile {
         sumWonSpin = pokerStarsBase.sumForDifferentColumn(csvStrings, gameSpin, pokerStarsBase.getWonString(), amountIndex);
         sumRegistrationForTMoneySpin = pokerStarsBase.sumForDifferentColumn(csvStrings, gameSpin, pokerStarsBase.getRegistrationString(), tMoneyAmountIndex);
         countRegistrationByTicketSpin = pokerStarsBase.countRegistrationByTicket(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);
-        sumProfitSpin = pokerStarsBase.sumProfitSpinGame(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);
-        sumBonusSpin = pokerStarsBase.sumBonus(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);
+        sumProfitSpin = pokerStarsBase.sumProfitSpin(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);
+        sumBonusSpin = pokerStarsBase.sumBonusSpin(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);
         sumProfitPoolSpin = pokerStarsBase.sumProfitPool(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);
         sumBonusPoolSpin = pokerStarsBase.sumBonusPool(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);
         countRegistrationSpinWithoutUnregistration = pokerStarsBase.totalCountRegistrationSpinWithoutUnregistration(csvStrings, getPokerStarsBase().getRegistrationString(), pokerStarsBase.getUnRegistrationString());
@@ -158,7 +158,7 @@ public class ModelBuilderFromCsvFile {
         sumReEntryMTT = pokerStarsBase.sumReEntry(csvStrings, gameMTT, amountIndex);
         sumKnockoutMTT = pokerStarsBase.sumKnockout(csvStrings, gameMTT, amountIndex);
         sumInterimMTT = pokerStarsBase.sumInterim(csvStrings, gameMTT, amountIndex);
-        sumProfitMTT = pokerStarsBase.sumProfitMTTGame(csvStrings, gameMTT, amountIndex);
+        sumProfitMTT = pokerStarsBase.sumProfitMTT(csvStrings, gameMTT, amountIndex);
 
         gameCash = pokerStarsBase.game(pokerStarsBase.getRegexGameCash(), csvStrings);
         countRegistrationCash = pokerStarsBase.countGame(csvStrings, gameCash, pokerStarsBase.getSeatInTable());
@@ -175,7 +175,7 @@ public class ModelBuilderFromCsvFile {
         startTMoney = pokerStarsBase.startBalanceTMoney(csvStrings, tMoneyAmountIndex, tMoneyBalanceIndex);
         finalTMoney = pokerStarsBase.finalBalance(csvStrings, tMoneyBalanceIndex);
 
-        startCoin = pokerStarsBase.startBalance(csvStrings, coinBalanceIndex);
+        startCoin = pokerStarsBase.startBalanceCoin(csvStrings, coinBalanceIndex);
         finalCoin = pokerStarsBase.finalBalance(csvStrings, coinBalanceIndex);
 
         withdrawal = pokerStarsBase.sumTransfer(csvStrings, amountIndex, pokerStarsBase.getWithdrawalString(), "    ");

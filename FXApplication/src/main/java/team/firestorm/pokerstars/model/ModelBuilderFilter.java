@@ -39,8 +39,8 @@ public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
         model.setSumWonSpin(pokerStarsBase.sumForDifferentColumn(filteredStrings, gameSpin, pokerStarsBase.getWonString(), getAmountIndex()));
         model.setSumRegistrationForTMoneySpin(pokerStarsBase.sumForDifferentColumn(filteredStrings, gameSpin, pokerStarsBase.getRegistrationString(), getTMoneyAmountIndex()));
         model.setCountRegistrationByTicketSpin(pokerStarsBase.countRegistrationByTicket(filteredStrings, gameSpin, getAmountIndex(), getTMoneyAmountIndex()));
-        model.setSumProfitSpin(pokerStarsBase.sumProfitSpinGame(filteredStrings, gameSpin, getAmountIndex(), getTMoneyAmountIndex()));
-        model.setSumBonusSpin(pokerStarsBase.sumBonus(filteredStrings, gameSpin, getAmountIndex(), getTMoneyAmountIndex()));
+        model.setSumProfitSpin(pokerStarsBase.sumProfitSpin(filteredStrings, gameSpin, getAmountIndex(), getTMoneyAmountIndex()));
+        model.setSumBonusSpin(pokerStarsBase.sumBonusSpin(filteredStrings, gameSpin, getAmountIndex(), getTMoneyAmountIndex()));
         model.setSumProfitPoolSpin(pokerStarsBase.sumProfitPool(filteredStrings, gameSpin, getAmountIndex(), getTMoneyAmountIndex()));
         model.setSumBonusPoolSpin(pokerStarsBase.sumBonusPool(filteredStrings, gameSpin, getAmountIndex(), getTMoneyAmountIndex()));
         model.setCountRegistrationSpinWithoutUnregistration(pokerStarsBase.totalCountRegistrationSpinWithoutUnregistration(filteredStrings, pokerStarsBase.getRegistrationString(), pokerStarsBase.getUnRegistrationString()));
@@ -60,7 +60,7 @@ public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
         model.setSumReEntryMTT(pokerStarsBase.sumReEntry(filteredStrings, gameMTT, getAmountIndex()));
         model.setSumKnockoutMTT(pokerStarsBase.sumKnockout(filteredStrings, gameMTT, getAmountIndex()));
         model.setSumInterimMTT(pokerStarsBase.sumInterim(filteredStrings, gameMTT, getAmountIndex()));
-        model.setSumProfitMTT(pokerStarsBase.sumProfitMTTGame(filteredStrings, gameMTT, getAmountIndex()));
+        model.setSumProfitMTT(pokerStarsBase.sumProfitMTT(filteredStrings, gameMTT, getAmountIndex()));
 
         Set<String> gameCash = pokerStarsBase.game(pokerStarsBase.getRegexGameCash(), filteredStrings);
         model.setGameCash(gameCash);
@@ -78,7 +78,7 @@ public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
         model.setStartTMoney(pokerStarsBase.startBalanceTMoney(filteredStrings, getTMoneyAmountIndex(), getTMoneyBalanceIndex()));
         model.setFinalTMoney(pokerStarsBase.finalBalance(filteredStrings, getTMoneyBalanceIndex()));
 
-        model.setStartCoin(pokerStarsBase.startBalance(filteredStrings, getCoinBalanceIndex()));
+        model.setStartCoin(pokerStarsBase.startBalanceCoin(filteredStrings, getCoinBalanceIndex()));
         model.setFinalCoin(pokerStarsBase.finalBalance(filteredStrings, getCoinBalanceIndex()));
 
         model.setWithdrawal(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getWithdrawalString(), "    "));

@@ -6,71 +6,17 @@ import java.util.Map;
 import java.util.Set;
 
 public interface PokerStars {
-    Set<String> game(String regex, List<String[]> strings);
-
-    String replaceQuote(String string);
-
-    String replaceComma(String string);
-
-    Map<String, Integer> countGame(List<String[]> strings, Set<String> game, String action);
-
-    Map<String, Integer> countRegistrationByTMoney(List<String[]> strings, Set<String> game, int tMoney);
-
-    Map<String, Integer> countUnRegistrationByTMoney(List<String[]> strings, Set<String> game, int tMoney);
-
-    Map<String, BigDecimal> sumRegistrationByTMoney(List<String[]> strings, Set<String> game, int tMoney);
-
-    Map<String, BigDecimal> sumUnRegistrationByTMoney(List<String[]> strings, Set<String> game, int tMoney);
-
-    Map<String, BigDecimal> sumForDifferentColumn(List<String[]> strings, Set<String> game, String action, int column);
-
-    Map<String, Integer> countRegistrationByTicket(List<String[]> strings, Set<String> game, int amount, int tMoney);
-
-    Map<String, BigDecimal> sumProfitSpinGame(List<String[]> strings, Set<String> game, int amount, int tMoney);
-
-    Map<String, BigDecimal> sumProfitMTTGame(List<String[]> strings, Set<String> game, int amount);
-
-    Map<String, BigDecimal> sumProfitCashGame(List<String[]> strings, Set<String> game, int amount);
-
-    Map<String, BigDecimal> sumBonus(List<String[]> strings, Set<String> game, int amount, int tMoney);
-
-    Map<String, Integer> countReEntry(List<String[]> strings, Set<String> game);
-
-    Map<String, BigDecimal> sumReEntry(List<String[]> strings, Set<String> game, int amount);
-
-    Map<String, BigDecimal> sumKnockout(List<String[]> strings, Set<String> game, int amount);
-
-    Map<String, BigDecimal> sumInterim(List<String[]> strings, Set<String> game, int amount);
-
-    String startBalance(List<String[]> strings, int column);
-
-    String startBalanceMoney(List<String[]> strings, int amount, int balance);
-
-    String startBalanceTMoney(List<String[]> strings, int amount, int balance);
-
-    String finalBalance(List<String[]> strings, int column);
-
-    int totalCountRow(List<String[]> strings);
-
-    String sumTransfer(List<String[]> strings, int amount, String actionParam1, String actionParam2);
-
-    Map<String, BigDecimal> sumProfitPool(List<String[]> strings, Set<String> game, int amount, int tMoney);
-
-    Map<String, BigDecimal> sumBonusPool(List<String[]> strings, Set<String> game, int amount, int tMoney);
-
-    Double parseBuyInFromString(String buyIn);
-
     String getRegistrationString();
 
     String getUnRegistrationString();
-
-    String getWonString();
 
     String getReEntryString();
 
     String getKnockOutString();
 
     String getInterimString();
+
+    String getWonString();
 
     String getWithdrawalString();
 
@@ -90,13 +36,67 @@ public interface PokerStars {
 
     String[] getBonuses();
 
-    String sumOtherBonus(List<String[]> strings, String[] bonuses, int amount);
-
-    Integer totalCountRegistrationSpinWithoutUnregistration(List<String[]> strings, String registerAction, String unRegisterAction);
-
     String getSeatInTable();
 
     String getSeatOutTable();
 
     String getAutoRebuyTable();
+
+    Set<String> game(String regex, List<String[]> strings);
+
+    String replaceQuote(String string);
+
+    String replaceComma(String string);
+
+    Map<String, Integer> countGame(List<String[]> strings, Set<String> game, String action);
+
+    Map<String, BigDecimal> sumForDifferentColumn(List<String[]> strings, Set<String> game, String action, int column);
+
+    Map<String, Integer> countRegistrationByTMoney(List<String[]> strings, Set<String> game, int tMoney);
+
+    Map<String, Integer> countUnRegistrationByTMoney(List<String[]> strings, Set<String> game, int tMoney);
+
+    Map<String, BigDecimal> sumRegistrationByTMoney(List<String[]> strings, Set<String> game, int tMoney);
+
+    Map<String, BigDecimal> sumUnRegistrationByTMoney(List<String[]> strings, Set<String> game, int tMoney);
+
+    Map<String, Integer> countRegistrationByTicket(List<String[]> strings, Set<String> game, int amount, int tMoney);
+
+    Map<String, BigDecimal> sumProfitSpin(List<String[]> strings, Set<String> game, int amount, int tMoney);
+
+    Map<String, BigDecimal> sumBonusSpin(List<String[]> strings, Set<String> game, int amount, int tMoney);
+
+    Map<String, BigDecimal> sumProfitPool(List<String[]> strings, Set<String> game, int amount, int tMoney);
+
+    Map<String, BigDecimal> sumBonusPool(List<String[]> strings, Set<String> game, int amount, int tMoney);
+
+    Integer totalCountRegistrationSpinWithoutUnregistration(List<String[]> strings, String registerAction, String unRegisterAction);
+
+    Map<String, Integer> countReEntry(List<String[]> strings, Set<String> game);
+
+    Map<String, BigDecimal> sumReEntry(List<String[]> strings, Set<String> game, int amount);
+
+    Map<String, BigDecimal> sumKnockout(List<String[]> strings, Set<String> game, int amount);
+
+    Map<String, BigDecimal> sumInterim(List<String[]> strings, Set<String> game, int amount);
+
+    Map<String, BigDecimal> sumProfitMTT(List<String[]> strings, Set<String> game, int amount);
+
+    Map<String, BigDecimal> sumProfitCashGame(List<String[]> strings, Set<String> game, int amount);
+
+    String startBalanceMoney(List<String[]> strings, int amount, int balance);
+
+    String startBalanceTMoney(List<String[]> strings, int amount, int balance);
+
+    String startBalanceCoin(List<String[]> strings, int column);
+
+    String finalBalance(List<String[]> strings, int column);
+
+    int totalCountRow(List<String[]> strings);
+
+    String sumTransfer(List<String[]> strings, int amount, String actionParam1, String actionParam2);
+
+    String sumOtherBonus(List<String[]> strings, String[] bonuses, int amount);
+
+    Double parseBuyInFromString(String buyIn);
 }
