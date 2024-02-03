@@ -19,7 +19,13 @@ public class LanguageEn extends PokerStarsBase implements DateFormat {
     private static final String CHEST_REWARD = "Chest Reward";
     private static final String BUY_CHIPS = "Buy Chips";
     private static final String CASINO = "Casino: ";
-    private static final String[] BONUSES = new String[]{"LC_", "Good Will Credit", "Bonus credit", "Tournament Prize Adjustment"};
+    private static final String[] BONUSES = new String[]{
+            "LC_",
+            "Good Will Credit",
+            "Bonus credit",
+            "Tournament Prize Adjustment",
+            "ICE Challenge Reward (Cash)"
+    };
     private static final String SEAT_IN_TABLE = "Table Buy In";
     private static final String SEAT_OUT_TABLE = "Leave Table";
     private static final String AUTO_REBUY_TABLE = "Table Auto Rebuy";
