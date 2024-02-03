@@ -18,12 +18,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class ColumnBuilderImpl implements ColumnBuilder {
+public class PokerStarsColumn implements ColumnBuilder {
     private final TabController tabController;
     private final Model model;
     private final Map<String, CheckBox> checkBoxMap = new HashMap<>();
 
-    public ColumnBuilderImpl(TabController tabController, Model model) {
+    public PokerStarsColumn(TabController tabController, Model model) {
         this.tabController = tabController;
         this.model = model;
     }
@@ -64,6 +64,8 @@ public class ColumnBuilderImpl implements ColumnBuilder {
 
         TableColumn<Model, BigDecimal> sumBonus = new TableColumn<>("Sum\nBonus");
         setCellValueNumber(table, model.getSumBonusSpin(), sumBonus);
+
+        setSizeColumn(table);
     }
 
     @Override
@@ -114,6 +116,8 @@ public class ColumnBuilderImpl implements ColumnBuilder {
 
         TableColumn<Model, BigDecimal> sumProfit = new TableColumn<>("Sum\nProfit");
         setCellValueNumber(table, model.getSumProfitMTT(), sumProfit);
+
+        setSizeColumn(table);
     }
 
     @Override
@@ -143,6 +147,8 @@ public class ColumnBuilderImpl implements ColumnBuilder {
 
         TableColumn<Model, BigDecimal> sumWon = new TableColumn<>("Sum\nWon");
         setCellValueNumber(table, model.getSumWonCash(), sumWon);
+
+        setSizeColumn(table);
     }
 
     @Override
@@ -261,5 +267,21 @@ public class ColumnBuilderImpl implements ColumnBuilder {
             observableList.add(model);
         }
         table.setItems(observableList);
+    }
+
+    @Override
+    public void setSizeColumn(TableView<Model> tableView) {
+        for (TableColumn<Model, ?> tableColumn : tableView.getColumns()) {
+            if (tableColumn.getText().contains("Enable\nPool")) {
+                tableColumn.setMinWidth(40.0);
+                tableColumn.setPrefWidth(40.0);
+            } else if (tableColumn.getText().contains("BuyIn") || tableColumn.getText().contains("Cash\nGame")) {
+                tableColumn.setMinWidth(150.0);
+                tableColumn.setPrefWidth(200.0);
+            } else {
+                tableColumn.setMinWidth(50.0);
+                tableColumn.setPrefWidth(75.0);
+            }
+        }
     }
 }

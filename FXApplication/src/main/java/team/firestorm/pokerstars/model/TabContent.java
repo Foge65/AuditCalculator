@@ -4,8 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import team.firestorm.pokerstars.controller.TabController;
 import team.firestorm.pokerstars.view.ColumnBuilder;
-import team.firestorm.pokerstars.view.ColumnBuilderImpl;
 import team.firestorm.pokerstars.view.ModelObserver;
+import team.firestorm.pokerstars.view.PokerStarsColumn;
 import team.firestorm.pokerstars.view.TextBuilder;
 
 import java.io.File;
@@ -20,7 +20,7 @@ public class TabContent {
     private Model model;
 
     private ModelObserver modelObserver;
-    private ColumnBuilderImpl columnBuilderFromCsv;
+    private PokerStarsColumn columnBuilderFromCsv;
     private TextBuilder textBuilder;
     private DateSet dateSetFrom;
     private DateSet dateSetTo;
@@ -28,7 +28,7 @@ public class TabContent {
     private String tabNameString;
 
     private ModelBuilderFilter modelBuilderCsvFilter;
-    private ColumnBuilderImpl columnBuilderFilterByDate;
+    private PokerStarsColumn columnBuilderFilterByDate;
     private TabContentDefault tabContentDefault;
 
     public void buildCsvData(File file) {
@@ -45,7 +45,7 @@ public class TabContent {
         modelObserver = new ModelObserver();
         modelObserver.clear(tabController);
 
-        columnBuilderFromCsv = new ColumnBuilderImpl(tabController, model);
+        columnBuilderFromCsv = new PokerStarsColumn(tabController, model);
         buildTable(columnBuilderFromCsv, tabController);
 
         textBuilder = new TextBuilder(tabController, model);
@@ -75,7 +75,7 @@ public class TabContent {
         modelObserver = new ModelObserver();
         modelObserver.clear(tabController);
 
-        columnBuilderFilterByDate = new ColumnBuilderImpl(tabController, model);
+        columnBuilderFilterByDate = new PokerStarsColumn(tabController, model);
         buildTable(columnBuilderFilterByDate, tabController);
 
         textBuilder = new TextBuilder(tabController, model);

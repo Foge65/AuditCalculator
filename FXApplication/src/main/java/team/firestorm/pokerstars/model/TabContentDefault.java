@@ -2,8 +2,8 @@ package team.firestorm.pokerstars.model;
 
 import lombok.Getter;
 import team.firestorm.pokerstars.controller.TabController;
-import team.firestorm.pokerstars.view.ColumnBuilderImpl;
 import team.firestorm.pokerstars.view.ModelObserver;
+import team.firestorm.pokerstars.view.PokerStarsColumn;
 import team.firestorm.pokerstars.view.TextBuilder;
 
 @Getter
@@ -13,7 +13,7 @@ public class TabContentDefault {
     private Model model;
 
     private ModelObserver modelObserver;
-    private ColumnBuilderImpl columnBuilder;
+    private PokerStarsColumn columnBuilder;
     private TextBuilder textBuilder;
     private DateSet dateSetFrom;
     private DateSet dateSetTo;
@@ -25,7 +25,7 @@ public class TabContentDefault {
         this.modelObserver = modelObserver;
     }
 
-    public void saveView(ModelObserver modelObserver, ColumnBuilderImpl columnBuilder, TextBuilder textBuilder, DateSet dateSetFrom, DateSet dateSetTo) {
+    public void saveView(ModelObserver modelObserver, PokerStarsColumn columnBuilder, TextBuilder textBuilder, DateSet dateSetFrom, DateSet dateSetTo) {
         this.modelObserver = modelObserver;
         this.columnBuilder = columnBuilder;
         this.textBuilder = textBuilder;
@@ -54,7 +54,7 @@ public class TabContentDefault {
         modelObserver = new ModelObserver();
         modelObserver.clear(tabController);
 
-        columnBuilder = new ColumnBuilderImpl(tabController, model);
+        columnBuilder = new PokerStarsColumn(tabController, model);
         columnBuilder.buildColumnSpin();
         columnBuilder.buildColumnMTT();
         columnBuilder.buildColumnCash();
