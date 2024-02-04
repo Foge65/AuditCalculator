@@ -19,7 +19,7 @@ public class VersionController {
     @GetMapping("/version")
     public String currentVersion() {
         Path filePath = Paths.get("", "version").toAbsolutePath();
-        List<String> lines = null;
+        List<String> lines;
         try {
             lines = Files.readAllLines(filePath);
         } catch (IOException e) {
@@ -30,9 +30,9 @@ public class VersionController {
 
     @GetMapping("/download")
     public ResponseEntity<Resource> update() {
-        Resource resource = null;
+        Resource resource;
         try {
-            resource = new UrlResource(Paths.get("/home/foge/java/AuditCalculator/app.exe").toUri());
+            resource = new UrlResource(Paths.get("/home/foge/java/auditcalculator/app.exe").toUri());
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }

@@ -21,30 +21,34 @@ public class Updater {
     public String fetchVersionFromServer() {
         HttpURLConnection connection = null;
         try {
+            System.out.println("Connecting to server");
             connection = (HttpURLConnection) new URL(SERVER_URL + "version").openConnection();
             connection.setRequestMethod("GET");
+            connection.setConnectTimeout(5000);
             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 StringBuilder version = new StringBuilder();
                 String line;
-                while ((line = bufferedReader.readLine()) != null) {
+                while ((line = new BufferedReader(new InputStreamReader(connection.getInputStream())).readLine()) != null) {
                     version.append(line);
                 }
                 return version.toString();
             } else {
-                throw new RuntimeException("Failed get version from server");
+                throw new RuntimeException();
             }
         } catch (MalformedURLException | ProtocolException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
+            System.out.println("Connection failed. Running old version");
+            sleep();
             throw new RuntimeException(e);
         } finally {
+            assert connection != null;
             connection.disconnect();
         }
     }
 
     public String currentVersionFromFile() {
-        List<String> lines = null;
+        List<String> lines;
         try {
             lines = Files.readAllLines(pathToVersionFile);
         } catch (IOException e) {
@@ -55,15 +59,25 @@ public class Updater {
 
     public void downloadUpdate() {
         System.out.println("Downloading Update!");
-        try (InputStream inputStream = new URL(SERVER_URL + "download").openStream()){
+        try (InputStream inputStream = new URL(SERVER_URL + "download").openStream()) {
             Path sourcePath = Paths.get(".", "app.tmp");
             Files.copy(inputStream, sourcePath, StandardCopyOption.REPLACE_EXISTING);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
+            System.out.println("Downloading failed");
+            sleep();
             throw new RuntimeException(e);
         }
         System.out.println("Update Downloaded!");
+    }
+
+    private void sleep() {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void updateVersionInFile(String current) {
