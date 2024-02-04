@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 
 import java.io.File;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 @AllArgsConstructor
 public class Language {
@@ -29,11 +30,14 @@ public class Language {
     }
 
     private static void loadProfileForApp() throws LangDetectException {
-        DetectorFactory.loadProfile("FXApplication/src/main/resources/profiles");
+        DetectorFactory.loadProfile("profiles");
     }
 
     public static void loadProfileForTest() throws LangDetectException, URISyntaxException {
-        DetectorFactory.loadProfile(new File(Language.class.getResource("/profiles").toURI()));
+        URL resourceUrl = Language.class.getResource("/profiles");
+        if (resourceUrl != null) {
+            DetectorFactory.loadProfile(new File(resourceUrl.toURI()));
+        }
     }
 
     public String detect() {
