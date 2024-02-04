@@ -15,7 +15,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 public class Updater {
-    private static final String SERVER_URL = "http://195.201.60.237:8080/";
+    private static final String SERVER_URL = "http://185.35.222.253:8080/";
     private final Path pathToVersionFile = Paths.get("Version").toAbsolutePath();
 
     public String fetchVersionFromServer() {
