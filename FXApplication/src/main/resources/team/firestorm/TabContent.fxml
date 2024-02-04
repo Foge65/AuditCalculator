@@ -402,7 +402,7 @@
                <RowConstraints vgrow="SOMETIMES" />
                <RowConstraints vgrow="SOMETIMES" />
                <RowConstraints vgrow="SOMETIMES" />
-               <RowConstraints vgrow="SOMETIMES" />
+               <RowConstraints minHeight="27.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                <Label text="Count Spins:">
@@ -460,23 +460,6 @@
                   </GridPane.margin>
                </Text>
                <Button fx:id="btnCopyTotalBonusSpin" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-               <Label text="Total All bonus:" GridPane.rowIndex="3">
-                  <font>
-                     <Font size="18.0" />
-                  </font>
-                  <GridPane.margin>
-                     <Insets left="5.0" right="5.0" />
-                  </GridPane.margin>
-               </Label>
-               <Text fx:id="totalAllBonus" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                  <font>
-                     <Font size="18.0" />
-                  </font>
-                  <GridPane.margin>
-                     <Insets left="5.0" right="5.0" />
-                  </GridPane.margin>
-               </Text>
-               <Button fx:id="btnCopyAllBonus" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                <Label text="Total Profit MTT:" GridPane.columnIndex="3">
                   <font>
                      <Font size="18.0" />
@@ -511,6 +494,23 @@
                   </GridPane.margin>
                </Text>
                <Button fx:id="btnCopyTotalProfitCash" mnemonicParsing="false" text="Copy" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+               <Label text="Total All Bonuses:" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Label>
+               <Text fx:id="totalAllBonuses" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <GridPane.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </GridPane.margin>
+               </Text>
+               <Button fx:id="btnCopyAllBonuses" mnemonicParsing="false" text="Copy" GridPane.columnIndex="5" GridPane.rowIndex="2" />
             </children>
          </GridPane>
       </children>
