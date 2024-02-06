@@ -14,6 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class Model {
     private Set<String> gameSpin;
+    private Map<String, Boolean> checkBoxState;
     private Map<String, Integer> countRegistrationSpin;
     private Map<String, BigDecimal> sumRegistrationSpin;
     private Map<String, Integer> countUnRegistrationSpin;
@@ -82,6 +83,7 @@ public class Model {
 
     public void setModel(ModelBuilderFromCsvFile modelBuilderFromCsvFile) {
         setGameSpin(modelBuilderFromCsvFile.getGameSpin());
+        setCheckBoxState(modelBuilderFromCsvFile.getCheckBoxState());
         setCountRegistrationSpin(modelBuilderFromCsvFile.getCountRegistrationSpin());
         setSumRegistrationSpin(modelBuilderFromCsvFile.getSumRegistrationSpin());
         setCountUnRegistrationSpin(modelBuilderFromCsvFile.getCountUnRegistrationSpin());

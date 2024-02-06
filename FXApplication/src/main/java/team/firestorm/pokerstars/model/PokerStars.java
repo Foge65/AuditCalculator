@@ -44,6 +44,8 @@ public interface PokerStars {
 
     Set<String> game(String regex, List<String[]> strings);
 
+    Map<String, Boolean> checkBoxState(Set<String> game);
+
     String replaceQuote(String string);
 
     String replaceComma(String string);

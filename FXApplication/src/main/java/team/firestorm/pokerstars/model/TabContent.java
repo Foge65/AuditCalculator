@@ -5,7 +5,7 @@ import lombok.Setter;
 import team.firestorm.pokerstars.controller.TabController;
 import team.firestorm.pokerstars.view.ColumnBuilder;
 import team.firestorm.pokerstars.view.ModelObserver;
-import team.firestorm.pokerstars.view.PokerStarsColumn;
+import team.firestorm.pokerstars.view.PokerStarsColumnBuilder;
 import team.firestorm.pokerstars.view.TextBuilder;
 
 import java.io.File;
@@ -20,7 +20,7 @@ public class TabContent {
     private Model model;
 
     private ModelObserver modelObserver;
-    private PokerStarsColumn columnBuilderFromCsv;
+    private PokerStarsColumnBuilder columnBuilderFromCsv;
     private TextBuilder textBuilder;
     private DateSet dateSetFrom;
     private DateSet dateSetTo;
@@ -28,7 +28,7 @@ public class TabContent {
     private String tabNameString;
 
     private ModelBuilderFilter modelBuilderCsvFilter;
-    private PokerStarsColumn columnBuilderFilterByDate;
+    private PokerStarsColumnBuilder columnBuilderFilterByDate;
     private TabContentDefault tabContentDefault;
 
     public void buildCsvData(File file) {
@@ -45,7 +45,7 @@ public class TabContent {
         modelObserver = new ModelObserver();
         modelObserver.clear(tabController);
 
-        columnBuilderFromCsv = new PokerStarsColumn(tabController, model);
+        columnBuilderFromCsv = new PokerStarsColumnBuilder(tabController, model);
         buildTable(columnBuilderFromCsv, tabController);
 
         textBuilder = new TextBuilder(tabController, model);
@@ -61,8 +61,7 @@ public class TabContent {
     }
 
     public void setTabName() {
-        TabName tabName = new TabName(csvParser);
-        tabNameString = tabName.getTabName();
+        tabNameString = new TabName(csvParser).getTabName();
     }
 
     public void buildFilterDataByDate(DateTimeFormatter dateTimeFormatter, LocalDate dateSelectFrom, LocalDate dateSelectTo) {
@@ -75,7 +74,7 @@ public class TabContent {
         modelObserver = new ModelObserver();
         modelObserver.clear(tabController);
 
-        columnBuilderFilterByDate = new PokerStarsColumn(tabController, model);
+        columnBuilderFilterByDate = new PokerStarsColumnBuilder(tabController, model);
         buildTable(columnBuilderFilterByDate, tabController);
 
         textBuilder = new TextBuilder(tabController, model);

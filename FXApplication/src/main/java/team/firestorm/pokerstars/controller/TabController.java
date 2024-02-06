@@ -16,8 +16,10 @@ import team.firestorm.pokerstars.model.TabContent;
 import team.firestorm.pokerstars.view.Alerts;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 @Getter
@@ -76,7 +78,7 @@ public class TabController implements Initializable {
     @FXML
     private Text totalBonusSpin;
     @FXML
-    private Text totalAllBonus;
+    private Text totalAllBonuses;
 
     @FXML
     private Text totalProfitMTT;
@@ -123,7 +125,7 @@ public class TabController implements Initializable {
     @FXML
     private Button btnCopyTotalBonusSpin;
     @FXML
-    private Button btnCopyAllBonus;
+    private Button btnCopyAllBonuses;
 
     @FXML
     private Button btnCopyTotalProfitMTT;
@@ -164,7 +166,7 @@ public class TabController implements Initializable {
         onClickBtnCopy(btnCopyTotalSpins, countSpins);
         onClickBtnCopy(btnCopyTotalProfitSpin, totalProfitSpin);
         onClickBtnCopy(btnCopyTotalBonusSpin, totalBonusSpin);
-        onClickBtnCopy(btnCopyAllBonus, totalAllBonus);
+        onClickBtnCopy(btnCopyAllBonuses, totalAllBonuses);
 
         onClickBtnCopy(btnCopyTotalProfitMTT, totalProfitMTT);
         onClickBtnCopy(btnCopyTotalProfitCash, totalProfitCash);
@@ -212,11 +214,7 @@ public class TabController implements Initializable {
                 super.updateItem(date, empty);
                 LocalDate dateFrom = tabContent.getModel().getDateFrom();
                 LocalDate dateTo = tabContent.getModel().getDateTo();
-                if (date.isBefore(dateFrom) || date.isAfter(dateTo)) {
-                    setDisable(true);
-                } else {
-                    setDisable(false);
-                }
+                setDisable(date.isBefore(dateFrom) || date.isAfter(dateTo));
             }
         };
     }
@@ -232,12 +230,46 @@ public class TabController implements Initializable {
     private void onClickBtnCopy(Button button, Text text) {
         button.setOnMouseClicked(event -> {
             String textToCopy = text.getText();
-            Clipboard clipboard = Clipboard.getSystemClipboard();
             ClipboardContent content = new ClipboardContent();
             if (!textToCopy.isEmpty()) {
                 content.putString(textToCopy);
-                clipboard.setContent(content);
+                Clipboard.getSystemClipboard().setContent(content);
             }
         });
+    }
+
+    public void addListenerToCheckBox(String buyIn, CheckBox checkBox, Map<String, BigDecimal> profitDefault, Map<String, BigDecimal> bonusDefault) {
+        checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            putNewValuesToModel(buyIn, newValue, profitDefault, bonusDefault);
+            tableViewSpin.refresh();
+        });
+    }
+
+    private void putNewValuesToModel(String buyIn, Boolean newValue, Map<String, BigDecimal> profitDefault, Map<String, BigDecimal> bonusDefault) {
+        Map<String, Boolean> checkBoxState = tabContent.getModel().getCheckBoxState();
+
+        Map<String, BigDecimal> profit = tabContent.getModel().getSumProfitSpin();
+        Map<String, BigDecimal> bonus = tabContent.getModel().getSumBonusSpin();
+        Map<String, BigDecimal> profitPool = tabContent.getModel().getSumProfitPoolSpin();
+        Map<String, BigDecimal> bonusPool = tabContent.getModel().getSumBonusPoolSpin();
+        if (newValue) {
+            checkBoxState.put(buyIn, true);
+            profit.put(buyIn, profitPool.get(buyIn));
+            bonus.put(buyIn, bonusPool.get(buyIn));
+            setNewTextValue(totalProfitSpin, profit);
+            setNewTextValue(totalBonusSpin, bonus);
+        } else {
+            checkBoxState.put(buyIn, false);
+            profit.put(buyIn, profitDefault.get(buyIn));
+            bonus.put(buyIn, bonusDefault.get(buyIn));
+            setNewTextValue(totalProfitSpin, profitDefault);
+            setNewTextValue(totalBonusSpin, bonusDefault);
+        }
+    }
+
+    public void setNewTextValue(Text field, Map<String, BigDecimal> valueMap) {
+        BigDecimal[] result = {BigDecimal.ZERO};
+        valueMap.values().stream().map(BigDecimal.ZERO::add).forEach(sum -> result[0] = result[0].add(sum));
+        field.setText(result[0].toString());
     }
 }

@@ -32,6 +32,7 @@ public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
 
         Set<String> gameSpin = pokerStarsBase.game(pokerStarsBase.getRegexGameSpin(), filteredStrings);
         model.setGameSpin(gameSpin);
+        model.setCheckBoxState(pokerStarsBase.checkBoxState(gameSpin));
         model.setCountRegistrationSpin(pokerStarsBase.countGame(filteredStrings, gameSpin, pokerStarsBase.getRegistrationString()));
         model.setSumRegistrationSpin(pokerStarsBase.sumForDifferentColumn(filteredStrings, gameSpin, pokerStarsBase.getRegistrationString(), getAmountIndex()));
         model.setCountUnRegistrationSpin(pokerStarsBase.countGame(filteredStrings, gameSpin, pokerStarsBase.getUnRegistrationString()));

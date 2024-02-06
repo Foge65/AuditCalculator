@@ -1,16 +1,16 @@
 package team.firestorm.pokerstars.view;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import team.firestorm.pokerstars.controller.TabController;
 import team.firestorm.pokerstars.model.Model;
 
 import java.math.BigDecimal;
 import java.util.Map;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class TextBuilder {
-    private TabController tabController;
-    private Model model;
+    private final TabController tabController;
+    private final Model model;
 
     public void setText() {
         tabController.getStartBalance().setText(model.getStartBalance());
@@ -33,23 +33,31 @@ public class TextBuilder {
         tabController.getCasino().setText(model.getCasino());
 
         tabController.getCountSpins().setText(String.valueOf(model.getCountRegistrationSpinWithoutUnregistration()));
-        tabController.getTotalProfitSpin().setText(getTextFromBigDecimalMap(model.getSumProfitSpin()));
-        tabController.getTotalBonusSpin().setText(getTextFromBigDecimalMap(model.getSumBonusSpin()));
-        tabController.getTotalAllBonus().setText(getTextFromTotalBonus());
+        tabController.getTotalProfitSpin().setText(getSumValuesFromMap(model.getSumProfitSpin()));
+        tabController.getTotalBonusSpin().setText(getSumValuesFromMap(model.getSumBonusSpin()));
 
-        tabController.getTotalProfitMTT().setText(getTextFromBigDecimalMap(model.getSumProfitMTT()));
-        tabController.getTotalProfitCash().setText(getTextFromBigDecimalMap(model.getSumWonCash()));
+        tabController.getTotalProfitMTT().setText(getSumValuesFromMap(model.getSumProfitMTT()));
+        tabController.getTotalProfitCash().setText(getSumValuesFromMap(model.getSumWonCash()));
+
+        tabController.getTotalAllBonuses().setText(getSumTotalBonuses());
     }
 
-    private String getTextFromBigDecimalMap(Map<String, BigDecimal> value) {
+    private String getSumValuesFromMap(Map<String, BigDecimal> value) {
         return value.values().stream()
                 .reduce(BigDecimal.ZERO, BigDecimal::add).toString();
     }
 
-    private String getTextFromTotalBonus() {
+    private String getSumTotalBonuses() {
         double chest = Double.parseDouble(model.getChestReward());
         double exchangeCoin = Double.parseDouble(model.getExchangeCoin());
         double otherBonus = Double.parseDouble(model.getOtherBonus());
-        return String.valueOf(chest + exchangeCoin + otherBonus);
+        double bonus = Double.parseDouble(getSumValuesFromMap(model.getSumBonusSpin()));
+        double bonusPool = Double.parseDouble(getSumValuesFromMap(model.getSumBonusPoolSpin()));
+        Map<String, Boolean> checkBoxState = model.getCheckBoxState();
+        if (checkBoxState.containsValue(false)) {
+            return String.valueOf(chest + exchangeCoin + otherBonus + bonus);
+        } else {
+            return String.valueOf(chest + exchangeCoin + otherBonus + bonusPool);
+        }
     }
 }

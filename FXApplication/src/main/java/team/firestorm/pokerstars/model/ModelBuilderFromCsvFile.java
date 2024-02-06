@@ -16,10 +16,11 @@ public class ModelBuilderFromCsvFile {
     private final Language languageDetection;
     private final String language;
     private final Date date;
-    private List<String[]> csvStrings;
+    private final List<String[]> csvStrings;
     private int elements;
 
     private Set<String> gameSpin;
+    private Map<String, Boolean> checkBoxState;
     private Map<String, Integer> countRegistrationSpin;
     private Map<String, BigDecimal> sumRegistrationSpin;
     private Map<String, Integer> countUnRegistrationSpin;
@@ -136,6 +137,7 @@ public class ModelBuilderFromCsvFile {
 
     private void setModel() {
         gameSpin = pokerStarsBase.game(pokerStarsBase.getRegexGameSpin(), csvStrings);
+        checkBoxState = pokerStarsBase.checkBoxState(gameSpin);
         countRegistrationSpin = pokerStarsBase.countGame(csvStrings, gameSpin, pokerStarsBase.getRegistrationString());
         sumRegistrationSpin = pokerStarsBase.sumForDifferentColumn(csvStrings, gameSpin, pokerStarsBase.getRegistrationString(), amountIndex);
         countUnRegistrationSpin = pokerStarsBase.countGame(csvStrings, gameSpin, pokerStarsBase.getUnRegistrationString());
