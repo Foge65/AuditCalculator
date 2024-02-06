@@ -238,16 +238,15 @@ public class TabController implements Initializable {
         });
     }
 
-    public void addListenerToCheckBox(String buyIn, CheckBox checkBox, Map<String, BigDecimal> profitDefault, Map<String, BigDecimal> bonusDefault) {
+    public void addListenerToCheckBox(String buyIn, CheckBox checkBox, Map<String, Boolean> checkBoxStateDefault, Map<String, BigDecimal> profitDefault, Map<String, BigDecimal> bonusDefault) {
         checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            putNewValuesToModel(buyIn, newValue, profitDefault, bonusDefault);
+            putNewValuesToModel(buyIn, newValue, checkBoxStateDefault, profitDefault, bonusDefault);
             tableViewSpin.refresh();
         });
     }
 
-    private void putNewValuesToModel(String buyIn, Boolean newValue, Map<String, BigDecimal> profitDefault, Map<String, BigDecimal> bonusDefault) {
+    private void putNewValuesToModel(String buyIn, Boolean newValue, Map<String, Boolean> checkBoxStateDefault, Map<String, BigDecimal> profitDefault, Map<String, BigDecimal> bonusDefault) {
         Map<String, Boolean> checkBoxState = tabContent.getModel().getCheckBoxState();
-
         Map<String, BigDecimal> profit = tabContent.getModel().getSumProfitSpin();
         Map<String, BigDecimal> bonus = tabContent.getModel().getSumBonusSpin();
         Map<String, BigDecimal> profitPool = tabContent.getModel().getSumProfitPoolSpin();
@@ -256,18 +255,19 @@ public class TabController implements Initializable {
             checkBoxState.put(buyIn, true);
             profit.put(buyIn, profitPool.get(buyIn));
             bonus.put(buyIn, bonusPool.get(buyIn));
-            setNewTextValue(totalProfitSpin, profit);
-            setNewTextValue(totalBonusSpin, bonus);
+            setNewTextValue(profit, totalProfitSpin);
+            setNewTextValue(bonus, totalBonusSpin);
         } else {
-            checkBoxState.put(buyIn, false);
+            checkBoxState.put(buyIn, checkBoxStateDefault.get(buyIn));
             profit.put(buyIn, profitDefault.get(buyIn));
             bonus.put(buyIn, bonusDefault.get(buyIn));
-            setNewTextValue(totalProfitSpin, profitDefault);
-            setNewTextValue(totalBonusSpin, bonusDefault);
+            setNewTextValue(profitDefault, totalProfitSpin);
+            setNewTextValue(bonusDefault, totalBonusSpin);
         }
+        totalAllBonuses.setText(tabContent.getTextBuilder().sumTotalBonuses());
     }
 
-    public void setNewTextValue(Text field, Map<String, BigDecimal> valueMap) {
+    public void setNewTextValue(Map<String, BigDecimal> valueMap, Text field) {
         BigDecimal[] result = {BigDecimal.ZERO};
         valueMap.values().stream().map(BigDecimal.ZERO::add).forEach(sum -> result[0] = result[0].add(sum));
         field.setText(result[0].toString());

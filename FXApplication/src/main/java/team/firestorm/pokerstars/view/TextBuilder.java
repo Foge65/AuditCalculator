@@ -39,7 +39,7 @@ public class TextBuilder {
         tabController.getTotalProfitMTT().setText(getSumValuesFromMap(model.getSumProfitMTT()));
         tabController.getTotalProfitCash().setText(getSumValuesFromMap(model.getSumWonCash()));
 
-        tabController.getTotalAllBonuses().setText(getSumTotalBonuses());
+        tabController.getTotalAllBonuses().setText(sumTotalBonuses());
     }
 
     private String getSumValuesFromMap(Map<String, BigDecimal> value) {
@@ -47,14 +47,14 @@ public class TextBuilder {
                 .reduce(BigDecimal.ZERO, BigDecimal::add).toString();
     }
 
-    private String getSumTotalBonuses() {
+    public String sumTotalBonuses() {
         double chest = Double.parseDouble(model.getChestReward());
         double exchangeCoin = Double.parseDouble(model.getExchangeCoin());
         double otherBonus = Double.parseDouble(model.getOtherBonus());
         double bonus = Double.parseDouble(getSumValuesFromMap(model.getSumBonusSpin()));
         double bonusPool = Double.parseDouble(getSumValuesFromMap(model.getSumBonusPoolSpin()));
-        Map<String, Boolean> checkBoxState = model.getCheckBoxState();
-        if (checkBoxState.containsValue(false)) {
+        Map<String, Boolean> checkBoxStateMap = model.getCheckBoxState();
+        if (checkBoxStateMap.containsValue(false)) {
             return String.valueOf(chest + exchangeCoin + otherBonus + bonus);
         } else {
             return String.valueOf(chest + exchangeCoin + otherBonus + bonusPool);

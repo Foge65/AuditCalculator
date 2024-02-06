@@ -10,12 +10,11 @@ import javafx.scene.control.TableView;
 import javafx.util.Callback;
 import lombok.RequiredArgsConstructor;
 import team.firestorm.pokerstars.controller.TabController;
-import team.firestorm.pokerstars.model.DefaultBonus;
-import team.firestorm.pokerstars.model.DefaultProfit;
 import team.firestorm.pokerstars.model.Model;
 
 import java.math.BigDecimal;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -149,8 +148,9 @@ public class PokerStarsColumnBuilder implements ColumnBuilder {
 
     @Override
     public void setCellCheckBox(TableView<Model> table, TableColumn<Model, Boolean> poolColumn) {
-        DefaultProfit defaultProfit = new DefaultProfit(model);
-        DefaultBonus defaultBonus = new DefaultBonus(model);
+        Map<String, BigDecimal> defaultProfit = new HashMap<>(model.getSumProfitSpin());
+        Map<String, BigDecimal> defaultBonus = new HashMap<>(model.getSumBonusSpin());
+        Map<String, Boolean> checkBoxStateDefault = new HashMap<>(model.getCheckBoxState());
         poolColumn.setCellValueFactory(cell -> new SimpleBooleanProperty());
         poolColumn.setCellFactory(new Callback<>() {
             @Override
@@ -166,8 +166,8 @@ public class PokerStarsColumnBuilder implements ColumnBuilder {
                         } else {
                             setGraphic(checkBox);
                             if (getTableRow() != null && getTableRow().getItem() != null) {
-                                checkBox.setSelected(model.getCheckBoxState().getOrDefault(getKey(), null));
-                                tabController.addListenerToCheckBox(getKey(), checkBox, defaultProfit.getProfit(), defaultBonus.getBonus());
+                                checkBox.setSelected(model.getCheckBoxState().getOrDefault(getKey(), true));
+                                tabController.addListenerToCheckBox(getKey(), checkBox, checkBoxStateDefault, defaultProfit, defaultBonus);
                             }
                         }
                     }
