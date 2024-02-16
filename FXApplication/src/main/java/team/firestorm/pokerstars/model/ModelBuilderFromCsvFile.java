@@ -4,75 +4,17 @@ import javafx.application.Platform;
 import lombok.Getter;
 import team.firestorm.pokerstars.view.Alerts;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 @Getter
 public class ModelBuilderFromCsvFile {
-    private final Language languageDetection;
     private final String language;
     private final Date date;
     private final List<String[]> csvStrings;
     private int elements;
-
-    private Set<String> gameSpin;
-    private Map<String, Boolean> checkBoxState;
-    private Map<String, Integer> countRegistrationSpin;
-    private Map<String, BigDecimal> sumRegistrationSpin;
-    private Map<String, Integer> countUnRegistrationSpin;
-    private Map<String, BigDecimal> sumUnRegistrationSpin;
-    private Map<String, BigDecimal> sumWonSpin;
-    private Map<String, BigDecimal> sumRegistrationForTMoneySpin;
-    private Map<String, Integer> countRegistrationByTicketSpin;
-    private Map<String, BigDecimal> sumProfitSpin;
-    private Map<String, BigDecimal> sumBonusSpin;
-    private Map<String, BigDecimal> sumProfitPoolSpin;
-    private Map<String, BigDecimal> sumBonusPoolSpin;
-    private Integer countRegistrationSpinWithoutUnregistration;
-
-    private Set<String> gameMTT;
-    private Map<String, Integer> countRegistrationMTT;
-    private Map<String, BigDecimal> sumRegistrationMTT;
-    private Map<String, Integer> countRegistrationByTMoneyMTT;
-    private Map<String, BigDecimal> sumRegistrationByTMoneyMTT;
-    private Map<String, Integer> countUnRegistrationMTT;
-    private Map<String, BigDecimal> sumUnRegistrationMTT;
-    private Map<String, Integer> countUnRegistrationByTMoneyMTT;
-    private Map<String, BigDecimal> sumUnRegistrationByTMoneyMTT;
-    private Map<String, BigDecimal> sumWonMTT;
-    private Map<String, Integer> countReEntryMTT;
-    private Map<String, BigDecimal> sumReEntryMTT;
-    private Map<String, BigDecimal> sumKnockoutMTT;
-    private Map<String, BigDecimal> sumInterimMTT;
-    private Map<String, BigDecimal> sumProfitMTT;
-
-    private Set<String> gameCash;
-    private Map<String, Integer> countRegistrationCash;
-    private Map<String, BigDecimal> sumRegistrationCash;
-    private Map<String, Integer> countUnRegistrationCash;
-    private Map<String, BigDecimal> sumUnRegistrationCash;
-    private Map<String, Integer> countRebuyCash;
-    private Map<String, BigDecimal> sumRebuyCash;
-    private Map<String, BigDecimal> sumWonCash;
-
-    private String startBalance;
-    private String finalBalance;
-    private String startTMoney;
-    private String finalTMoney;
-    private String startCoin;
-    private String finalCoin;
-    private String withdrawal;
-    private String sent;
-    private String received;
-    private String deposit;
-    private String chestReward;
-    private String exchangeCoin;
-    private String otherBonus;
-    private String casino;
     private LanguageEn languageEn;
     private LanguageRu languageRu;
     private PokerStarsBase pokerStarsBase;
@@ -90,8 +32,7 @@ public class ModelBuilderFromCsvFile {
     public ModelBuilderFromCsvFile(CsvParser csvParser) {
         csvStrings = csvParser.getStrings();
 
-        languageDetection = new Language(csvParser);
-        language = languageDetection.detect();
+        language = new Language(csvParser).detect();
         date = new Date(csvParser);
         try {
             if (language.equals("en")) {
@@ -131,68 +72,72 @@ public class ModelBuilderFromCsvFile {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        setModel();
     }
 
-    private void setModel() {
-        gameSpin = pokerStarsBase.game(pokerStarsBase.getRegexGameSpin(), csvStrings);
-        checkBoxState = pokerStarsBase.checkBoxState(gameSpin);
-        countRegistrationSpin = pokerStarsBase.countGame(csvStrings, gameSpin, pokerStarsBase.getRegistrationString());
-        sumRegistrationSpin = pokerStarsBase.sumForDifferentColumn(csvStrings, gameSpin, pokerStarsBase.getRegistrationString(), amountIndex);
-        countUnRegistrationSpin = pokerStarsBase.countGame(csvStrings, gameSpin, pokerStarsBase.getUnRegistrationString());
-        sumUnRegistrationSpin = pokerStarsBase.sumForDifferentColumn(csvStrings, gameSpin, pokerStarsBase.getUnRegistrationString(), amountIndex);
-        sumWonSpin = pokerStarsBase.sumForDifferentColumn(csvStrings, gameSpin, pokerStarsBase.getWonString(), amountIndex);
-        sumRegistrationForTMoneySpin = pokerStarsBase.sumForDifferentColumn(csvStrings, gameSpin, pokerStarsBase.getRegistrationString(), tMoneyAmountIndex);
-        countRegistrationByTicketSpin = pokerStarsBase.countRegistrationByTicket(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);
-        sumProfitSpin = pokerStarsBase.sumProfitSpin(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);
-        sumBonusSpin = pokerStarsBase.sumBonusSpin(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);
-        sumProfitPoolSpin = pokerStarsBase.sumProfitPool(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);
-        sumBonusPoolSpin = pokerStarsBase.sumBonusPool(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex);
-        countRegistrationSpinWithoutUnregistration = pokerStarsBase.totalCountRegistrationSpinWithoutUnregistration(csvStrings, getPokerStarsBase().getRegistrationString(), pokerStarsBase.getUnRegistrationString());
+    public void setModel(Model model) {
+        model.setDateFrom(getDateFrom());
+        model.setDateTo(getDateTo());
 
-        gameMTT = pokerStarsBase.game(pokerStarsBase.getRegexGameMTT(), csvStrings);
-        countRegistrationMTT = pokerStarsBase.countGame(csvStrings, gameMTT, pokerStarsBase.getRegistrationString());
-        sumRegistrationMTT = pokerStarsBase.sumForDifferentColumn(csvStrings, gameMTT, pokerStarsBase.getRegistrationString(), amountIndex);
-        countRegistrationByTMoneyMTT = pokerStarsBase.countRegistrationByTMoney(csvStrings, gameMTT, tMoneyAmountIndex);
-        sumRegistrationByTMoneyMTT = pokerStarsBase.sumRegistrationByTMoney(csvStrings, gameMTT, tMoneyAmountIndex);
-        countUnRegistrationMTT = pokerStarsBase.countGame(csvStrings, gameMTT, pokerStarsBase.getUnRegistrationString());
-        sumUnRegistrationMTT = pokerStarsBase.sumForDifferentColumn(csvStrings, gameMTT, pokerStarsBase.getUnRegistrationString(), amountIndex);
-        countUnRegistrationByTMoneyMTT = pokerStarsBase.countUnRegistrationByTMoney(csvStrings, gameMTT, tMoneyAmountIndex);
-        sumUnRegistrationByTMoneyMTT = pokerStarsBase.sumUnRegistrationByTMoney(csvStrings, gameMTT, tMoneyAmountIndex);
-        sumWonMTT = pokerStarsBase.sumForDifferentColumn(csvStrings, gameMTT, pokerStarsBase.getWonString(), amountIndex);
-        countReEntryMTT = pokerStarsBase.countReEntry(csvStrings, gameMTT);
-        sumReEntryMTT = pokerStarsBase.sumReEntry(csvStrings, gameMTT, amountIndex);
-        sumKnockoutMTT = pokerStarsBase.sumKnockout(csvStrings, gameMTT, amountIndex);
-        sumInterimMTT = pokerStarsBase.sumInterim(csvStrings, gameMTT, amountIndex);
-        sumProfitMTT = pokerStarsBase.sumProfitMTT(csvStrings, gameMTT, amountIndex);
+        Set<String> gameSpin = pokerStarsBase.game(pokerStarsBase.getRegexGameSpin(), csvStrings);
+        model.setGameSpin(pokerStarsBase.game(pokerStarsBase.getRegexGameSpin(), csvStrings));
+        model.setCheckBoxState(pokerStarsBase.checkBoxState(gameSpin));
+        model.setCountRegistrationSpin(pokerStarsBase.countGame(csvStrings, gameSpin, pokerStarsBase.getRegistrationString()));
+        model.setSumRegistrationSpin(pokerStarsBase.sumForDifferentColumn(csvStrings, gameSpin, pokerStarsBase.getRegistrationString(), amountIndex));
+        model.setCountUnRegistrationSpin(pokerStarsBase.countGame(csvStrings, gameSpin, pokerStarsBase.getUnRegistrationString()));
+        model.setSumUnRegistrationSpin(pokerStarsBase.sumForDifferentColumn(csvStrings, gameSpin, pokerStarsBase.getUnRegistrationString(), amountIndex));
+        model.setSumWonSpin(pokerStarsBase.sumForDifferentColumn(csvStrings, gameSpin, pokerStarsBase.getWonString(), amountIndex));
+        model.setSumRegistrationForTMoneySpin(pokerStarsBase.sumForDifferentColumn(csvStrings, gameSpin, pokerStarsBase.getRegistrationString(), tMoneyAmountIndex));
+        model.setCountRegistrationByTicketSpin(pokerStarsBase.countRegistrationByTicket(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex));
+        model.setSumProfitSpin(pokerStarsBase.sumProfitSpin(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex));
+        model.setSumBonusSpin(pokerStarsBase.sumBonusSpin(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex));
+        model.setSumProfitPoolSpin(pokerStarsBase.sumProfitPool(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex));
+        model.setSumBonusPoolSpin(pokerStarsBase.sumBonusPool(csvStrings, gameSpin, amountIndex, tMoneyAmountIndex));
+        model.setCountRegistrationSpinWithoutUnregistration(pokerStarsBase.totalCountRegistrationSpinWithoutUnregistration(csvStrings, getPokerStarsBase().getRegistrationString(), pokerStarsBase.getUnRegistrationString()));
 
-        gameCash = pokerStarsBase.game(pokerStarsBase.getRegexGameCash(), csvStrings);
-        countRegistrationCash = pokerStarsBase.countGame(csvStrings, gameCash, pokerStarsBase.getSeatInTable());
-        sumRegistrationCash = pokerStarsBase.sumForDifferentColumn(csvStrings, gameCash, pokerStarsBase.getSeatInTable(), amountIndex);
-        countUnRegistrationCash = pokerStarsBase.countGame(csvStrings, gameCash, pokerStarsBase.getSeatOutTable());
-        sumUnRegistrationCash = pokerStarsBase.sumForDifferentColumn(csvStrings, gameCash, pokerStarsBase.getSeatOutTable(), amountIndex);
-        countRebuyCash = pokerStarsBase.countGame(csvStrings, gameCash, pokerStarsBase.getAutoRebuyTable());
-        sumRebuyCash = pokerStarsBase.sumForDifferentColumn(csvStrings, gameCash, pokerStarsBase.getAutoRebuyTable(), amountIndex);
-        sumWonCash = pokerStarsBase.sumProfitCashGame(csvStrings, gameCash, amountIndex);
+        Set<String> gameMTT = pokerStarsBase.game(pokerStarsBase.getRegexGameMTT(), csvStrings);
+        model.setGameMTT(pokerStarsBase.game(pokerStarsBase.getRegexGameMTT(), csvStrings));
+        model.setCountRegistrationMTT(pokerStarsBase.countGame(csvStrings, gameMTT, pokerStarsBase.getRegistrationString()));
+        model.setSumRegistrationMTT(pokerStarsBase.sumForDifferentColumn(csvStrings, gameMTT, pokerStarsBase.getRegistrationString(), amountIndex));
+        model.setCountRegistrationByTMoneyMTT(pokerStarsBase.countRegistrationByTMoney(csvStrings, gameMTT, tMoneyAmountIndex));
+        model.setSumRegistrationByTMoneyMTT(pokerStarsBase.sumRegistrationByTMoney(csvStrings, gameMTT, tMoneyAmountIndex));
+        model.setCountUnRegistrationMTT(pokerStarsBase.countGame(csvStrings, gameMTT, pokerStarsBase.getUnRegistrationString()));
+        model.setSumUnRegistrationMTT(pokerStarsBase.sumForDifferentColumn(csvStrings, gameMTT, pokerStarsBase.getUnRegistrationString(), amountIndex));
+        model.setCountUnRegistrationByTMoneyMTT(pokerStarsBase.countUnRegistrationByTMoney(csvStrings, gameMTT, tMoneyAmountIndex));
+        model.setSumUnRegistrationByTMoneyMTT(pokerStarsBase.sumUnRegistrationByTMoney(csvStrings, gameMTT, tMoneyAmountIndex));
+        model.setSumWonMTT(pokerStarsBase.sumForDifferentColumn(csvStrings, gameMTT, pokerStarsBase.getWonString(), amountIndex));
+        model.setCountReEntryMTT(pokerStarsBase.countReEntry(csvStrings, gameMTT));
+        model.setSumReEntryMTT(pokerStarsBase.sumReEntry(csvStrings, gameMTT, amountIndex));
+        model.setSumKnockoutMTT(pokerStarsBase.sumKnockout(csvStrings, gameMTT, amountIndex));
+        model.setSumInterimMTT(pokerStarsBase.sumInterim(csvStrings, gameMTT, amountIndex));
+        model.setSumProfitMTT(pokerStarsBase.sumProfitMTT(csvStrings, gameMTT, amountIndex));
 
-        startBalance = pokerStarsBase.startBalanceMoney(csvStrings, amountIndex, balanceIndex);
-        finalBalance = pokerStarsBase.finalBalance(csvStrings, balanceIndex);
+        Set<String> gameCash = pokerStarsBase.game(pokerStarsBase.getRegexGameCash(), csvStrings);
+        model.setGameCash(pokerStarsBase.game(pokerStarsBase.getRegexGameCash(), csvStrings));
+        model.setCountRegistrationCash(pokerStarsBase.countGame(csvStrings, gameCash, pokerStarsBase.getSeatInTable()));
+        model.setSumRegistrationCash(pokerStarsBase.sumForDifferentColumn(csvStrings, gameCash, pokerStarsBase.getSeatInTable(), amountIndex));
+        model.setCountUnRegistrationCash(pokerStarsBase.countGame(csvStrings, gameCash, pokerStarsBase.getSeatOutTable()));
+        model.setSumUnRegistrationCash(pokerStarsBase.sumForDifferentColumn(csvStrings, gameCash, pokerStarsBase.getSeatOutTable(), amountIndex));
+        model.setCountRebuyCash(pokerStarsBase.countGame(csvStrings, gameCash, pokerStarsBase.getAutoRebuyTable()));
+        model.setSumRebuyCash(pokerStarsBase.sumForDifferentColumn(csvStrings, gameCash, pokerStarsBase.getAutoRebuyTable(), amountIndex));
+        model.setSumWonCash(pokerStarsBase.sumProfitCashGame(csvStrings, gameCash, amountIndex));
 
-        startTMoney = pokerStarsBase.startBalanceTMoney(csvStrings, tMoneyAmountIndex, tMoneyBalanceIndex);
-        finalTMoney = pokerStarsBase.finalBalance(csvStrings, tMoneyBalanceIndex);
+        model.setStartBalance(pokerStarsBase.startBalanceMoney(csvStrings, amountIndex, balanceIndex));
+        model.setFinalBalance(pokerStarsBase.finalBalance(csvStrings, balanceIndex));
 
-        startCoin = pokerStarsBase.startBalanceCoin(csvStrings, coinBalanceIndex);
-        finalCoin = pokerStarsBase.finalBalance(csvStrings, coinBalanceIndex);
+        model.setStartTMoney(pokerStarsBase.startBalanceTMoney(csvStrings, tMoneyAmountIndex, tMoneyBalanceIndex));
+        model.setFinalTMoney(pokerStarsBase.finalBalance(csvStrings, tMoneyBalanceIndex));
 
-        withdrawal = pokerStarsBase.sumTransfer(csvStrings, amountIndex, pokerStarsBase.getWithdrawalString(), "    ");
-        sent = pokerStarsBase.sumTransfer(csvStrings, amountIndex, pokerStarsBase.getMoneySentString(), "    ");
-        received = pokerStarsBase.sumTransfer(csvStrings, amountIndex, pokerStarsBase.getMoneyReceivedStringVer1(), pokerStarsBase.getMoneyReceivedStringVer2());
-        deposit = pokerStarsBase.sumTransfer(csvStrings, amountIndex, pokerStarsBase.getDepositString(), "    ");
+        model.setStartCoin(pokerStarsBase.startBalanceCoin(csvStrings, coinBalanceIndex));
+        model.setFinalCoin(pokerStarsBase.finalBalance(csvStrings, coinBalanceIndex));
 
-        chestReward = pokerStarsBase.sumTransfer(csvStrings, amountIndex, pokerStarsBase.getChestString(), "    ");
-        exchangeCoin = pokerStarsBase.sumTransfer(csvStrings, amountIndex, pokerStarsBase.getExchangeCoinString(), "    ");
-        otherBonus = pokerStarsBase.sumOtherBonus(csvStrings, pokerStarsBase.getBonuses(), amountIndex);
-        casino = pokerStarsBase.sumTransfer(csvStrings, amountIndex, pokerStarsBase.getCasinoString(), "    ");
+        model.setWithdrawal(pokerStarsBase.sumTransfer(csvStrings, amountIndex, pokerStarsBase.getWithdrawalString(), "    "));
+        model.setSent(pokerStarsBase.sumTransfer(csvStrings, amountIndex, pokerStarsBase.getMoneySentString(), "    "));
+        model.setReceived(pokerStarsBase.sumTransfer(csvStrings, amountIndex, pokerStarsBase.getMoneyReceivedStringVer1(), pokerStarsBase.getMoneyReceivedStringVer2()));
+        model.setDeposit(pokerStarsBase.sumTransfer(csvStrings, amountIndex, pokerStarsBase.getDepositString(), "    "));
+
+        model.setChestReward(pokerStarsBase.sumTransfer(csvStrings, amountIndex, pokerStarsBase.getChestString(), "    "));
+        model.setExchangeCoin(pokerStarsBase.sumTransfer(csvStrings, amountIndex, pokerStarsBase.getExchangeCoinString(), "    "));
+        model.setOtherBonus(pokerStarsBase.sumOtherBonus(csvStrings, pokerStarsBase.getBonuses(), amountIndex));
+        model.setCasino(pokerStarsBase.sumTransfer(csvStrings, amountIndex, pokerStarsBase.getCasinoString(), "    "));
     }
 }

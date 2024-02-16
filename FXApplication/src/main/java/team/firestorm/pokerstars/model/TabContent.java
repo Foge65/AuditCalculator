@@ -33,9 +33,9 @@ public class TabContent {
 
     public void buildCsvData(File file) {
         csvParser = new CsvParser(file);
-        modelBuilderFromCsvFile = new ModelBuilderFromCsvFile(csvParser);
         model = new Model();
-        model.setModel(modelBuilderFromCsvFile);
+        modelBuilderFromCsvFile = new ModelBuilderFromCsvFile(csvParser);
+        modelBuilderFromCsvFile.setModel(model);
 
         tabContentDefault = new TabContentDefault();
         tabContentDefault.saveData(csvParser, modelBuilderFromCsvFile, model, modelObserver);

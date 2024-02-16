@@ -9,11 +9,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 abstract class CsvFileBaseForTests {
+    protected Model model;
     protected ModelBuilderFromCsvFile modelBuilderFromCsvFile;
 
     public CsvFileBaseForTests(String filePath) {
         CsvParser csvParser = new CsvParser(new File(filePath));
+        model = new Model();
         modelBuilderFromCsvFile = new ModelBuilderFromCsvFile(csvParser);
+        modelBuilderFromCsvFile.setModel(model);
     }
 
     private static void assertionIntegerArrays(Integer[] expectedArray, Integer[] actualArray) {
@@ -35,7 +38,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void countRegistrationSpin() {
         Integer[] expected = setCountRegistrationSpin();
-        Integer[] actual = modelBuilderFromCsvFile.getCountRegistrationSpin().values().toArray(new Integer[0]);
+        Integer[] actual = model.getCountRegistrationSpin().values().toArray(new Integer[0]);
         assertionIntegerArrays(expected, actual);
     }
 
@@ -44,7 +47,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void sumRegistrationSpin() {
         BigDecimal[] expected = setSumRegistrationSpin();
-        BigDecimal[] actual = modelBuilderFromCsvFile.getSumRegistrationSpin().values().toArray(new BigDecimal[0]);
+        BigDecimal[] actual = model.getSumRegistrationSpin().values().toArray(new BigDecimal[0]);
         assertionBigDecimalArrays(expected, actual);
     }
 
@@ -53,7 +56,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void countUnRegistrationSpin() {
         Integer[] expected = setCountUnRegistrationSpin();
-        Integer[] actual = modelBuilderFromCsvFile.getCountUnRegistrationSpin().values().toArray(new Integer[0]);
+        Integer[] actual = model.getCountUnRegistrationSpin().values().toArray(new Integer[0]);
         assertionIntegerArrays(expected, actual);
     }
 
@@ -62,7 +65,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void sumUnRegistrationSpin() {
         BigDecimal[] expected = setSumUnRegistrationSpin();
-        BigDecimal[] actual = modelBuilderFromCsvFile.getSumUnRegistrationSpin().values().toArray(new BigDecimal[0]);
+        BigDecimal[] actual = model.getSumUnRegistrationSpin().values().toArray(new BigDecimal[0]);
         assertionBigDecimalArrays(expected, actual);
     }
 
@@ -71,7 +74,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void sumRegistrationForTMoneySpin() {
         BigDecimal[] expected = setSumRegistrationForTMoney();
-        BigDecimal[] actual = modelBuilderFromCsvFile.getSumRegistrationForTMoneySpin().values().toArray(new BigDecimal[0]);
+        BigDecimal[] actual = model.getSumRegistrationForTMoneySpin().values().toArray(new BigDecimal[0]);
         assertionBigDecimalArrays(expected, actual);
     }
 
@@ -80,7 +83,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void countRegistrationForTicketSpin() {
         Integer[] expected = setCountRegistrationForTicketSpin();
-        Integer[] actual = modelBuilderFromCsvFile.getCountRegistrationByTicketSpin().values().toArray(new Integer[0]);
+        Integer[] actual = model.getCountRegistrationByTicketSpin().values().toArray(new Integer[0]);
         assertionIntegerArrays(expected, actual);
     }
 
@@ -89,7 +92,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void sumNetWonSpin() {
         BigDecimal[] expected = setSumWonSpin();
-        BigDecimal[] actual = modelBuilderFromCsvFile.getSumWonSpin().values().toArray(new BigDecimal[0]);
+        BigDecimal[] actual = model.getSumWonSpin().values().toArray(new BigDecimal[0]);
         assertionBigDecimalArrays(expected, actual);
     }
 
@@ -98,7 +101,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void sumProfitSpin() {
         BigDecimal[] expected = setSumProfitSpin();
-        BigDecimal[] actual = modelBuilderFromCsvFile.getSumProfitSpin().values().toArray(new BigDecimal[0]);
+        BigDecimal[] actual = model.getSumProfitSpin().values().toArray(new BigDecimal[0]);
         assertionBigDecimalArrays(expected, actual);
     }
 
@@ -107,7 +110,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void sumBonusSpin() {
         BigDecimal[] expected = setSumBonusSpin();
-        BigDecimal[] actual = modelBuilderFromCsvFile.getSumBonusSpin().values().toArray(new BigDecimal[0]);
+        BigDecimal[] actual = model.getSumBonusSpin().values().toArray(new BigDecimal[0]);
         assertionBigDecimalArrays(expected, actual);
     }
 
@@ -116,7 +119,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void sumProfitPoolSpin() {
         BigDecimal[] expected = setSumProfitPoolSpin();
-        BigDecimal[] actual = modelBuilderFromCsvFile.getSumProfitPoolSpin().values().toArray(new BigDecimal[0]);
+        BigDecimal[] actual = model.getSumProfitPoolSpin().values().toArray(new BigDecimal[0]);
         assertionBigDecimalArrays(expected, actual);
     }
 
@@ -125,7 +128,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void sumBonusPoolSpin() {
         BigDecimal[] expected = setSumBonusPoolSpin();
-        BigDecimal[] actual = modelBuilderFromCsvFile.getSumBonusPoolSpin().values().toArray(new BigDecimal[0]);
+        BigDecimal[] actual = model.getSumBonusPoolSpin().values().toArray(new BigDecimal[0]);
         assertionBigDecimalArrays(expected, actual);
     }
 
@@ -134,7 +137,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void totalCountRegistrationWithoutUnregistration() {
         Integer expected = setTotalCountRegistrationWithoutUnregistration();
-        Integer actual = modelBuilderFromCsvFile.getCountRegistrationSpinWithoutUnregistration();
+        Integer actual = model.getCountRegistrationSpinWithoutUnregistration();
         assertEquals(expected, actual);
     }
 
@@ -144,7 +147,7 @@ abstract class CsvFileBaseForTests {
     void totalProfitSpin() {
         BigDecimal expected = setTotalProfitSpin();
         BigDecimal[] actual = {BigDecimal.ZERO};
-        modelBuilderFromCsvFile.getSumProfitSpin().values().stream()
+        model.getSumProfitSpin().values().stream()
                 .map(BigDecimal.ZERO::add)
                 .forEach(element -> actual[0] = actual[0].add(element));
         assertEquals(expected, actual[0]);
@@ -156,7 +159,7 @@ abstract class CsvFileBaseForTests {
     void totalBonusSpin() {
         BigDecimal expected = setTotalBonusSpin();
         BigDecimal[] actual = {BigDecimal.ZERO};
-        modelBuilderFromCsvFile.getSumBonusSpin().values().stream()
+        model.getSumBonusSpin().values().stream()
                 .map(BigDecimal.ZERO::add)
                 .forEach(element -> actual[0] = actual[0].add(element));
         assertEquals(expected, actual[0]);
@@ -167,7 +170,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void countRegistrationMTT() {
         Integer[] expected = setCountRegistrationMTT();
-        Integer[] actual = modelBuilderFromCsvFile.getCountRegistrationMTT().values().toArray(new Integer[0]);
+        Integer[] actual = model.getCountRegistrationMTT().values().toArray(new Integer[0]);
         assertionIntegerArrays(expected, actual);
     }
 
@@ -176,7 +179,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void sumRegistrationMTT() {
         BigDecimal[] expected = setSumRegistrationMTT();
-        BigDecimal[] actual = modelBuilderFromCsvFile.getSumRegistrationMTT().values().toArray(new BigDecimal[0]);
+        BigDecimal[] actual = model.getSumRegistrationMTT().values().toArray(new BigDecimal[0]);
         assertionBigDecimalArrays(expected, actual);
     }
 
@@ -185,7 +188,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void countUnRegistrationMTT() {
         Integer[] expected = setCountUnRegistrationMTT();
-        Integer[] actual = modelBuilderFromCsvFile.getCountUnRegistrationMTT().values().toArray(new Integer[0]);
+        Integer[] actual = model.getCountUnRegistrationMTT().values().toArray(new Integer[0]);
         assertionIntegerArrays(expected, actual);
     }
 
@@ -194,7 +197,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void sumUnRegistrationMTT() {
         BigDecimal[] expected = setSumUnRegistrationMTT();
-        BigDecimal[] actual = modelBuilderFromCsvFile.getSumUnRegistrationMTT().values().toArray(new BigDecimal[0]);
+        BigDecimal[] actual = model.getSumUnRegistrationMTT().values().toArray(new BigDecimal[0]);
         assertionBigDecimalArrays(expected, actual);
     }
 
@@ -203,7 +206,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void countRegistrationByTMoneyMTT() {
         Integer[] expected = setCountRegistrationByTMoneyMTT();
-        Integer[] actual = modelBuilderFromCsvFile.getCountRegistrationByTMoneyMTT().values().toArray(new Integer[0]);
+        Integer[] actual = model.getCountRegistrationByTMoneyMTT().values().toArray(new Integer[0]);
         assertionIntegerArrays(expected, actual);
     }
 
@@ -212,7 +215,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void sumRegistrationByTMoneyMTT() {
         BigDecimal[] expected = setSumRegistrationByTMoneyMTT();
-        BigDecimal[] actual = modelBuilderFromCsvFile.getSumRegistrationByTMoneyMTT().values().toArray(new BigDecimal[0]);
+        BigDecimal[] actual = model.getSumRegistrationByTMoneyMTT().values().toArray(new BigDecimal[0]);
         assertionBigDecimalArrays(expected, actual);
     }
 
@@ -221,7 +224,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void countUnRegistrationByTMoneyMTT() {
         Integer[] expected = setCountUnRegistrationByTMoneyMTT();
-        Integer[] actual = modelBuilderFromCsvFile.getCountUnRegistrationByTMoneyMTT().values().toArray(new Integer[0]);
+        Integer[] actual = model.getCountUnRegistrationByTMoneyMTT().values().toArray(new Integer[0]);
         assertionIntegerArrays(expected, actual);
     }
 
@@ -230,7 +233,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void sumUnRegistrationByTMoneyMTT() {
         BigDecimal[] expected = setSumUnRegistrationByTMoneyMTT();
-        BigDecimal[] actual = modelBuilderFromCsvFile.getSumUnRegistrationByTMoneyMTT().values().toArray(new BigDecimal[0]);
+        BigDecimal[] actual = model.getSumUnRegistrationByTMoneyMTT().values().toArray(new BigDecimal[0]);
         assertionBigDecimalArrays(expected, actual);
     }
 
@@ -239,7 +242,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void countReEntryMTT() {
         Integer[] expected = setCountReEntryMTT();
-        Integer[] actual = modelBuilderFromCsvFile.getCountReEntryMTT().values().toArray(new Integer[0]);
+        Integer[] actual = model.getCountReEntryMTT().values().toArray(new Integer[0]);
         assertionIntegerArrays(expected, actual);
     }
 
@@ -248,7 +251,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void sumReEntryMTT() {
         BigDecimal[] expected = setSumReEntryMTT();
-        BigDecimal[] actual = modelBuilderFromCsvFile.getSumReEntryMTT().values().toArray(new BigDecimal[0]);
+        BigDecimal[] actual = model.getSumReEntryMTT().values().toArray(new BigDecimal[0]);
         assertionBigDecimalArrays(expected, actual);
     }
 
@@ -257,7 +260,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void sumKnockoutMTT() {
         BigDecimal[] expected = setSumKnockoutMTT();
-        BigDecimal[] actual = modelBuilderFromCsvFile.getSumKnockoutMTT().values().toArray(new BigDecimal[0]);
+        BigDecimal[] actual = model.getSumKnockoutMTT().values().toArray(new BigDecimal[0]);
         assertionBigDecimalArrays(expected, actual);
     }
 
@@ -266,7 +269,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void sumInterimMTT() {
         BigDecimal[] expected = setSumInterimMTT();
-        BigDecimal[] actual = modelBuilderFromCsvFile.getSumInterimMTT().values().toArray(new BigDecimal[0]);
+        BigDecimal[] actual = model.getSumInterimMTT().values().toArray(new BigDecimal[0]);
         assertionBigDecimalArrays(expected, actual);
     }
 
@@ -275,7 +278,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void sumWonMTT() {
         BigDecimal[] expected = setSumWonMTT();
-        BigDecimal[] actual = modelBuilderFromCsvFile.getSumWonMTT().values().toArray(new BigDecimal[0]);
+        BigDecimal[] actual = model.getSumWonMTT().values().toArray(new BigDecimal[0]);
         assertionBigDecimalArrays(expected, actual);
     }
 
@@ -284,7 +287,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void sumProfitMTT() {
         BigDecimal[] expected = setProfitMTT();
-        BigDecimal[] actual = modelBuilderFromCsvFile.getSumProfitMTT().values().toArray(new BigDecimal[0]);
+        BigDecimal[] actual = model.getSumProfitMTT().values().toArray(new BigDecimal[0]);
         assertionBigDecimalArrays(expected, actual);
     }
 
@@ -294,7 +297,7 @@ abstract class CsvFileBaseForTests {
     void totalProfitMTT() {
         BigDecimal expected = setTotalProfitMTT();
         BigDecimal[] actual = {BigDecimal.ZERO};
-        modelBuilderFromCsvFile.getSumProfitMTT().values().stream()
+        model.getSumProfitMTT().values().stream()
                 .map(BigDecimal.ZERO::add)
                 .forEach(element -> actual[0] = actual[0].add(element));
         assertEquals(expected, actual[0]);

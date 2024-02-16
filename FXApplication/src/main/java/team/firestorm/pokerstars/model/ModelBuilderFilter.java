@@ -26,6 +26,7 @@ public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
         }
     }
 
+    @Override
     public void setModel(Model model) {
         model.setDateFrom(getDateFrom());
         model.setDateTo(getDateTo());

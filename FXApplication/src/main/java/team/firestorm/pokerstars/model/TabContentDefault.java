@@ -36,7 +36,7 @@ public class TabContentDefault {
     public void updateData() {
         modelBuilderFromCsvFile = new ModelBuilderFromCsvFile(csvParser);
         model = new Model();
-        model.setModel(modelBuilderFromCsvFile);
+        modelBuilderFromCsvFile.setModel(model);
     }
 
     public void setTabContent(TabContent tabContent) {
