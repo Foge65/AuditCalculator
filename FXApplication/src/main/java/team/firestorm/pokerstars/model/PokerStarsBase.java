@@ -19,7 +19,6 @@ public abstract class PokerStarsBase implements PokerStars {
     public final String regexGameSpin = "^\sNL\sHold'em\sSit&Go\sBuy-In:\s\\d+[.,]\\d+\\/\\d+[.,]\\d+$";
     public final String regexGameMTT = "^(?!\\d+[.,]\\d+\\/\\d+[.,]\\d+)(?!.*Sit&Go\sBuy-In).*$";
     public final String regexGameCash = "^\\d+[.,]\\d+\\/\\d+[.,]\\d+\\s\\w.+$";
-    private final CsvParser csvParser;
 
     @Override
     public Set<String> game(String regex, List<String[]> strings) {

@@ -65,7 +65,7 @@ public class TabContent {
     }
 
     public void buildFilterDataByDate(DateTimeFormatter dateTimeFormatter, LocalDate dateSelectFrom, LocalDate dateSelectTo) {
-        modelBuilderCsvFilter = new ModelBuilderFilter(modelBuilderFromCsvFile.getPokerStarsBase());
+        modelBuilderCsvFilter = new ModelBuilderFilter(csvParser);
         modelBuilderCsvFilter.addToFilteredList(dateTimeFormatter, dateSelectFrom, dateSelectTo);
         modelBuilderCsvFilter.setModel(model);
     }

@@ -30,8 +30,8 @@ public class LanguageEn extends PokerStarsBase implements DateFormat {
     private static final String SEAT_OUT_TABLE = "Leave Table";
     private static final String AUTO_REBUY_TABLE = "Table Auto Rebuy";
 
-    public LanguageEn(CsvParser csvParser) {
-        super(csvParser);
+    public LanguageEn() {
+        super();
     }
 
     @Override

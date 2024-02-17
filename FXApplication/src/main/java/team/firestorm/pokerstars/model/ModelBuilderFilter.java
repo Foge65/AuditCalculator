@@ -8,16 +8,16 @@ import java.util.Set;
 
 public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
     private final PokerStarsBase pokerStarsBase;
-    private final List<String[]> filteredStrings;
+    private List<String[]> filteredStrings;
 
-    public ModelBuilderFilter(PokerStarsBase pokerStarsBase) {
-        super(pokerStarsBase.getCsvParser());
-        this.pokerStarsBase = pokerStarsBase;
-        filteredStrings = new ArrayList<>();
+    public ModelBuilderFilter(CsvParser csvParser) {
+        super(csvParser);
+        this.pokerStarsBase = super.getPokerStarsBase();
     }
 
     public void addToFilteredList(DateTimeFormatter dateTimeFormatter, LocalDate dateSelectFrom, LocalDate dateSelectTo) {
-        for (String[] string : pokerStarsBase.getCsvParser().getStrings()) {
+        filteredStrings = new ArrayList<>();
+        for (String[] string : super.getCsvStrings()) {
             LocalDate date = LocalDate.parse(string[0], dateTimeFormatter);
             if ((date.isEqual(dateSelectFrom) || date.isAfter(dateSelectFrom))
                     && (date.isEqual(dateSelectTo) || date.isBefore(dateSelectTo))) {

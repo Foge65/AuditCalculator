@@ -40,13 +40,13 @@ public class ModelBuilderFromCsvFile {
         date = new Date(csvParser);
         try {
             if (language.equals("en")) {
-                languageEn = new LanguageEn(csvParser);
+                languageEn = new LanguageEn();
                 pokerStarsBase = languageEn;
                 dateFrom = date.setDateFrom(csvStrings, languageEn.getFormat());
                 dateTo = date.setDateTo(csvStrings, languageEn.getFormat());
                 dateTimeFormatter = languageEn.getFormat();
             } else if (language.equals("ru")) {
-                languageRu = new LanguageRu(csvParser);
+                languageRu = new LanguageRu();
                 pokerStarsBase = languageRu;
                 dateFrom = date.setDateFrom(csvStrings, languageRu.getFormat());
                 dateTo = date.setDateTo(csvStrings, languageRu.getFormat());

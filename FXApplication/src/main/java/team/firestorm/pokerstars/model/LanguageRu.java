@@ -27,8 +27,8 @@ public class LanguageRu extends PokerStarsBase implements DateFormat {
     private static final String SEAT_OUT_TABLE = "Покинуть стол";
     private static final String AUTO_REBUY_TABLE = "Авторебай на столе";
 
-    public LanguageRu(CsvParser csvParser) {
-        super(csvParser);
+    public LanguageRu() {
+        super();
     }
 
     @Override
