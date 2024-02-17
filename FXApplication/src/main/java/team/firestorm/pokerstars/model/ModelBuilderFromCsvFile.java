@@ -11,9 +11,9 @@ import java.util.Set;
 
 @Getter
 public class ModelBuilderFromCsvFile {
-    private final String language;
-    private final Date date;
     private final List<String[]> csvStrings;
+    private String language;
+    private Date date;
     private int elements;
     private LanguageEn languageEn;
     private LanguageRu languageRu;
@@ -32,6 +32,10 @@ public class ModelBuilderFromCsvFile {
     public ModelBuilderFromCsvFile(CsvParser csvParser) {
         csvStrings = csvParser.getStrings();
 
+        build(csvParser);
+    }
+
+    private void build(CsvParser csvParser) {
         language = new Language(csvParser).detect();
         date = new Date(csvParser);
         try {
