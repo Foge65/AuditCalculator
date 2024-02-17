@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 import team.firestorm.pokerstars.model.Model;
 import team.firestorm.pokerstars.model.ModelBuilderFromCsvFile;
 import team.firestorm.pokerstars.model.TabContent;
+import team.firestorm.pokerstars.model.TabName;
 import team.firestorm.pokerstars.view.Alerts;
 
 import java.io.File;
@@ -136,6 +137,8 @@ public class TabController implements Initializable {
     private LocalDate dateSelectFrom;
     private LocalDate dateSelectTo;
 
+    private String tabNameString;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         disableOutOfRangeDate();
@@ -179,13 +182,17 @@ public class TabController implements Initializable {
 
     public void buildTabView(TabController tabController) {
         tabContent.buildCsvView(tabController);
-        tabContent.setTabName();
+        setTabName();
     }
 
     public void addTab(AnchorPane anchorPane, TabPane tabPane) {
-        Tab tab = new Tab(tabContent.getTabNameString());
+        Tab tab = new Tab(tabNameString);
         tab.setContent(anchorPane);
         tabPane.getTabs().add(tab);
+    }
+
+    private void setTabName() {
+        tabNameString = new TabName(tabContent.getCsvParser()).getTabName();
     }
 
     private void filterByDate(ModelBuilderFromCsvFile modelBuilderFromCsvFile) {

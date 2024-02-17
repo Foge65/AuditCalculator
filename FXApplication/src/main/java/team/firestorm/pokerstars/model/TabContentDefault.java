@@ -55,12 +55,7 @@ public class TabContentDefault {
         modelObserver.clear(tabController);
 
         columnBuilder = new PokerStarsColumnBuilder(tabController, model);
-        columnBuilder.buildColumnSpin();
-        columnBuilder.buildColumnMTT();
-        columnBuilder.buildColumnCash();
-        columnBuilder.addGameToObservableList(model.getGameSpin(), modelObserver.getObservableListSpin(), tabController.getTableViewSpin());
-        columnBuilder.addGameToObservableList(model.getGameMTT(), modelObserver.getObservableListMTT(), tabController.getTableViewMTT());
-        columnBuilder.addGameToObservableList(model.getGameCash(), modelObserver.getObservableListCash(), tabController.getTableViewCash());
+        TabContent.buildColumns(columnBuilder, tabController, model, modelObserver);
 
         textBuilder = new TextBuilder(tabController, model);
         textBuilder.setText();

@@ -25,8 +25,6 @@ public class TabContent {
     private DateSet dateSetFrom;
     private DateSet dateSetTo;
 
-    private String tabNameString;
-
     private ModelBuilderFilter modelBuilderCsvFilter;
     private PokerStarsColumnBuilder columnBuilderFilterByDate;
     private TabContentDefault tabContentDefault;
@@ -60,10 +58,6 @@ public class TabContent {
         tabContentDefault.saveView(modelObserver, columnBuilderFromCsv, textBuilder, dateSetFrom, getDateSetTo());
     }
 
-    public void setTabName() {
-        tabNameString = new TabName(csvParser).getTabName();
-    }
-
     public void buildFilterDataByDate(DateTimeFormatter dateTimeFormatter, LocalDate dateSelectFrom, LocalDate dateSelectTo) {
         modelBuilderCsvFilter = new ModelBuilderFilter(csvParser);
         modelBuilderCsvFilter.addToFilteredList(dateTimeFormatter, dateSelectFrom, dateSelectTo);
@@ -81,12 +75,16 @@ public class TabContent {
         textBuilder.setText();
     }
 
-    public void buildTable(ColumnBuilder columnBuilder, TabController tabController) {
+    public static void buildColumns(ColumnBuilder columnBuilder, TabController tabController, Model model, ModelObserver modelObserver) {
         columnBuilder.buildColumnSpin();
         columnBuilder.buildColumnMTT();
         columnBuilder.buildColumnCash();
         columnBuilder.addGameToObservableList(model.getGameSpin(), modelObserver.getObservableListSpin(), tabController.getTableViewSpin());
         columnBuilder.addGameToObservableList(model.getGameMTT(), modelObserver.getObservableListMTT(), tabController.getTableViewMTT());
         columnBuilder.addGameToObservableList(model.getGameCash(), modelObserver.getObservableListCash(), tabController.getTableViewCash());
+    }
+
+    public void buildTable(ColumnBuilder columnBuilder, TabController tabController) {
+        buildColumns(columnBuilder, tabController, model, modelObserver);
     }
 }
