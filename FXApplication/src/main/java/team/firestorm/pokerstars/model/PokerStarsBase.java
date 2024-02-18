@@ -16,9 +16,9 @@ public abstract class PokerStarsBase implements PokerStars {
     private static final int ACTION = 1;
     private static final int ID = 2;
     private static final int GAME = 3;
-    public final String regexGameSpin = "^\sNL\sHold'em\sSit&Go\sBuy-In:\s\\d+[.,]\\d+\\/\\d+[.,]\\d+$";
-    public final String regexGameMTT = "^(?!\\d+[.,]\\d+\\/\\d+[.,]\\d+)(?!.*Sit&Go\sBuy-In).*$";
-    public final String regexGameCash = "^\\d+[.,]\\d+\\/\\d+[.,]\\d+\\s\\w.+$";
+    private final String regexGameSpin = "^\sNL\sHold'em\sSit&Go\sBuy-In:\s\\d+[.,]\\d+\\/\\d+[.,]\\d+$";
+    private final String regexGameMTT = "^(?!\\d+[.,]\\d+\\/\\d+[.,]\\d+)(?!.*Sit&Go\sBuy-In).*$";
+    private final String regexGameCash = "^\\d+[.,]\\d+\\/\\d+[.,]\\d+\\s\\w.+$";
 
     @Override
     public Set<String> game(String regex, List<String[]> strings) {
@@ -54,13 +54,13 @@ public abstract class PokerStarsBase implements PokerStars {
     }
 
     @Override
-    public Map<String, BigDecimal> sumForDifferentColumn(List<String[]> strings, Set<String> game, String action, int column) {
+    public Map<String, BigDecimal> sumForDifferentColumn(List<String[]> strings, Set<String> game, String action, int element) {
         Map<String, BigDecimal> sumRegistration = new HashMap<>();
         for (String buyIn : game) {
             BigDecimal sum = BigDecimal.ZERO;
             for (String[] stringArray : strings) {
                 if (gameParser(stringArray).equals(buyIn) && stringArray[ACTION].startsWith(action)) {
-                    sum = sum.add(new BigDecimal(amountParser(stringArray[column])));
+                    sum = sum.add(new BigDecimal(amountParser(stringArray[element])));
                 }
             }
             sumRegistration.put(buyIn, sum);
@@ -460,13 +460,13 @@ public abstract class PokerStarsBase implements PokerStars {
     }
 
     @Override
-    public String startBalanceCoin(List<String[]> strings, int column) {
-        return replaceComma(replaceQuote(strings.get(0)[column]));
+    public String startBalanceCoin(List<String[]> strings, int element) {
+        return replaceComma(replaceQuote(strings.get(0)[element]));
     }
 
     @Override
-    public String finalBalance(List<String[]> strings, int column) {
-        return replaceComma(replaceQuote(strings.get(totalCountRow(strings))[column]));
+    public String finalBalance(List<String[]> strings, int element) {
+        return replaceComma(replaceQuote(strings.get(totalCountRow(strings))[element]));
     }
 
     @Override

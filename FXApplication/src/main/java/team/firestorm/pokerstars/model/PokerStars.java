@@ -52,7 +52,7 @@ public interface PokerStars {
 
     Map<String, Integer> countGame(List<String[]> strings, Set<String> game, String action);
 
-    Map<String, BigDecimal> sumForDifferentColumn(List<String[]> strings, Set<String> game, String action, int column);
+    Map<String, BigDecimal> sumForDifferentColumn(List<String[]> strings, Set<String> game, String action, int element);
 
     Map<String, Integer> countRegistrationByTMoney(List<String[]> strings, Set<String> game, int tMoney);
 
@@ -90,9 +90,9 @@ public interface PokerStars {
 
     String startBalanceTMoney(List<String[]> strings, int amount, int balance);
 
-    String startBalanceCoin(List<String[]> strings, int column);
+    String startBalanceCoin(List<String[]> strings, int element);
 
-    String finalBalance(List<String[]> strings, int column);
+    String finalBalance(List<String[]> strings, int element);
 
     int totalCountRow(List<String[]> strings);
 
