@@ -190,10 +190,10 @@ public class TabController implements Initializable {
         onClickBtnCopy(btnCopyTotalProfitMTT, totalProfitMTT);
         onClickBtnCopy(btnCopyTotalProfitCash, totalProfitCash);
 
-        onClickBtnDetail(btnDetailsWithdrawal);
-        onClickBtnDetail(btnDetailsTransferSent);
-        onClickBtnDetail(btnDetailsTransferReceived);
-        onClickBtnDetail(btnDetailsDeposit);
+        btnDetailsWithdrawal.setOnAction(event -> onClickBtnDetail(tabContent.getModel().getWithdrawalDetails()));
+        btnDetailsTransferSent.setOnAction(event -> onClickBtnDetail(tabContent.getModel().getTransferSentDetails()));
+        btnDetailsTransferReceived.setOnAction(event -> onClickBtnDetail(tabContent.getModel().getTransferReceivedDetails()));
+        btnDetailsDeposit.setOnAction(event -> onClickBtnDetail(tabContent.getModel().getDepositDetails()));
     }
 
     public void buildTabData(File file) {
@@ -272,38 +272,6 @@ public class TabController implements Initializable {
         });
     }
 
-    private void onClickBtnDetail(Button button) {
-        button.setOnMouseClicked(event -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/team/firestorm/Transfer.fxml"));
-            AnchorPane anchorPane;
-            try {
-                anchorPane = fxmlLoader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            TransferController transferController = fxmlLoader.getController();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Transfer Window");
-            stage.getIcons().add(new Image("/team/firestorm/FSAC.png"));
-            stage.setResizable(false);
-            stage.setScene(new Scene(anchorPane));
-            transferController.setStage(stage);
-
-            ModelObserverTransferWindow observerTransfer = new ModelObserverTransferWindow();
-
-            transferController.getTransferTable().getColumns().clear();
-            observerTransfer.clear();
-
-            observerTransfer.addGameToObservableList(tabContent.getModel().getDates(), transferController.getTransferTable());
-
-            TransferWindowBuilder transferWindowBuilder = new TransferWindowBuilder(transferController, observerTransfer);
-            transferWindowBuilder.buildWindow(tabContent.getModel());
-
-            stage.showAndWait();
-        });
-    }
-
     public void addListenerToCheckBox(String buyIn, CheckBox checkBox, Map<String, Boolean> checkBoxStateDefault, Map<String, BigDecimal> profitDefault, Map<String, BigDecimal> bonusDefault) {
         checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
             putNewValuesToModel(buyIn, newValue, checkBoxStateDefault, profitDefault, bonusDefault);
@@ -333,9 +301,39 @@ public class TabController implements Initializable {
         totalAllBonuses.setText(tabContent.getTextBuilder().sumTotalBonuses());
     }
 
-    public void setNewTextValue(Map<String, BigDecimal> valueMap, Text field) {
+    private void setNewTextValue(Map<String, BigDecimal> valueMap, Text field) {
         BigDecimal[] result = {BigDecimal.ZERO};
         valueMap.values().stream().map(BigDecimal.ZERO::add).forEach(sum -> result[0] = result[0].add(sum));
         field.setText(result[0].toString());
+    }
+
+    private void onClickBtnDetail(Map<String, String> value) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/team/firestorm/Transfer.fxml"));
+        AnchorPane anchorPane;
+        try {
+            anchorPane = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        TransferController transferController = fxmlLoader.getController();
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Transfer Window");
+        stage.getIcons().add(new Image("/team/firestorm/FSAC.png"));
+        stage.setResizable(false);
+        stage.setScene(new Scene(anchorPane));
+        transferController.setStage(stage);
+
+        ModelObserverTransferWindow observerTransfer = new ModelObserverTransferWindow();
+
+        transferController.getTransferTable().getColumns().clear();
+        observerTransfer.clear();
+
+        observerTransfer.addGameToObservableList(tabContent.getModel().getDates(), transferController.getTransferTable());
+
+        TransferWindowBuilder transferWindowBuilder = new TransferWindowBuilder(transferController, observerTransfer);
+        transferWindowBuilder.buildWindow(value);
+
+        stage.showAndWait();
     }
 }

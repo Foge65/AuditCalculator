@@ -15,12 +15,12 @@ public class TransferWindowBuilder {
     private final TransferController transferController;
     private final ModelObserverTransferWindow observerTransferWindow;
 
-    public void buildWindow(Model model) {
+    public void buildWindow(Map<String, String> value) {
         TableColumn<Model, Set<String>> dateColumn = new TableColumn<>("Date");
-        setCellValueDate(dateColumn, model.getWithdrawalDetails());
+        setCellValueDate(dateColumn, value);
 
-        TableColumn<Model, String> withdrawalColumn = new TableColumn<>("Amount");
-        setCellValue(withdrawalColumn, model.getWithdrawalDetails());
+        TableColumn<Model, String> amountColumn = new TableColumn<>("Amount");
+        setCellValue(amountColumn, value);
     }
 
     private void setCellValueDate(TableColumn<Model, Set<String>> column, Map<String, String> keyMap) {
