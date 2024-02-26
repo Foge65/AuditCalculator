@@ -13,8 +13,10 @@ public class LanguageEn extends PokerStarsBase implements DateFormat {
     private static final String INTERIM_PAYOUT = "Tournament Interim Payout";
     private static final String WITHDRAWAL = "Withdrawal";
     private static final String SENT = "Real Money Transfer Sent";
-    private static final String RECEIVED1 = "Real Money Transfer Received";
-    private static final String RECEIVED2 = "Transfer Received (Admin)";
+    private static final String[] RECEIVED = new String[]{
+            "Real Money Transfer Received",
+            "Transfer Received (Admin)"
+    };
     private static final String DEPOSIT = "Deposit (Player)";
     private static final String CHEST_REWARD = "Chest Reward";
     private static final String BUY_CHIPS = "Buy Chips";
@@ -85,13 +87,8 @@ public class LanguageEn extends PokerStarsBase implements DateFormat {
     }
 
     @Override
-    public String getMoneyReceivedStringVer1() {
-        return RECEIVED1;
-    }
-
-    @Override
-    public String getMoneyReceivedStringVer2() {
-        return RECEIVED2;
+    public String[] getMoneyReceivedString() {
+        return RECEIVED;
     }
 
     @Override

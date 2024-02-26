@@ -13,8 +13,10 @@ public class LanguageRu extends PokerStarsBase implements DateFormat {
     private static final String INTERIM_PAYOUT = "Промежуточная выплата в турнире";
     private static final String WITHDRAWAL = "Вывод средств";
     private static final String SENT = "Деньги отправлены";
-    private static final String RECEIVED1 = "Деньги получены";
-    private static final String RECEIVED2 = "Перевод получен (админ)";
+    private static final String[] RECEIVED = new String[]{
+            "Деньги получены",
+            "Перевод получен (админ)"
+    };
     private static final String DEPOSIT = "Депозит (игрок)";
     private static final String CHEST_REWARD = "Награда из подарка";
     private static final String BUY_CHIPS = "Награда при покупке фишек";
@@ -82,13 +84,8 @@ public class LanguageRu extends PokerStarsBase implements DateFormat {
     }
 
     @Override
-    public String getMoneyReceivedStringVer1() {
-        return RECEIVED1;
-    }
-
-    @Override
-    public String getMoneyReceivedStringVer2() {
-        return RECEIVED2;
+    public String[] getMoneyReceivedString() {
+        return RECEIVED;
     }
 
     @Override

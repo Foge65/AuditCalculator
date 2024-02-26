@@ -75,9 +75,16 @@ public class Model {
     private String otherBonus;
     private String casino;
 
-    public Model(Set<String> game) {
-        gameSpin = game;
-        gameMTT = game;
-        gameCash = game;
+    private Set<String> dates;
+    private Map<String, String> withdrawalDetails;
+    private Map<String, String> transferSentDetails;
+    private Map<String, String> transferReceivedDetails;
+    private Map<String, String> depositDetails;
+
+    public Model(Set<String> set) {
+        gameSpin = set;
+        gameMTT = set;
+        gameCash = set;
+        dates = set;
     }
 }

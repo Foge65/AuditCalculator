@@ -74,7 +74,7 @@ public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
         model.setSumRebuyCash(pokerStarsBase.sumForDifferentColumn(filteredStrings, gameCash, pokerStarsBase.getAutoRebuyTable(), getAmountIndex()));
         model.setSumWonCash(pokerStarsBase.sumProfitCashGame(filteredStrings, gameCash, getAmountIndex()));
 
-        model.setStartBalance(pokerStarsBase.startBalanceMoney(filteredStrings, getAmountIndex(), getBalanceIndex()));
+        model.setStartBalance(pokerStarsBase.startBalanceMoney(filteredStrings, getAmountIndex(), getBalanceIndex(), pokerStarsBase.getMoneyReceivedString()));
         model.setFinalBalance(pokerStarsBase.finalBalance(filteredStrings, getBalanceIndex()));
 
         model.setStartTMoney(pokerStarsBase.startBalanceTMoney(filteredStrings, getTMoneyAmountIndex(), getTMoneyBalanceIndex()));
@@ -83,14 +83,21 @@ public class ModelBuilderFilter extends ModelBuilderFromCsvFile {
         model.setStartCoin(pokerStarsBase.startBalanceCoin(filteredStrings, getCoinBalanceIndex()));
         model.setFinalCoin(pokerStarsBase.finalBalance(filteredStrings, getCoinBalanceIndex()));
 
-        model.setWithdrawal(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getWithdrawalString(), "    "));
-        model.setSent(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getMoneySentString(), "    "));
-        model.setReceived(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getMoneyReceivedStringVer1(), pokerStarsBase.getMoneyReceivedStringVer2()));
-        model.setDeposit(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getDepositString(), "    "));
+        model.setWithdrawal(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getWithdrawalString()));
+        model.setSent(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getMoneySentString()));
+        model.setReceived(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getMoneyReceivedString()));
+        model.setDeposit(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getDepositString()));
 
-        model.setChestReward(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getChestString(), "    "));
-        model.setExchangeCoin(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getExchangeCoinString(), "    "));
+        model.setChestReward(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getChestString()));
+        model.setExchangeCoin(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getExchangeCoinString()));
         model.setOtherBonus(pokerStarsBase.sumOtherBonus(filteredStrings, pokerStarsBase.getBonuses(), getAmountIndex()));
-        model.setCasino(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getCasinoString(), "    "));
+        model.setCasino(pokerStarsBase.sumTransfer(filteredStrings, getAmountIndex(), pokerStarsBase.getCasinoString()));
+
+        Set<String> dates = pokerStarsBase.dates(filteredStrings, pokerStarsBase.getMoneyReceivedString());
+        model.setDates(dates);
+        model.setWithdrawalDetails(pokerStarsBase.transferDetail(filteredStrings, dates, pokerStarsBase.getWithdrawalString(), getAmountIndex()));
+        model.setTransferSentDetails(pokerStarsBase.transferDetail(filteredStrings, dates, pokerStarsBase.getMoneySentString(), getAmountIndex()));
+        model.setTransferReceivedDetails(pokerStarsBase.transferDetail(filteredStrings, dates, pokerStarsBase.getMoneyReceivedString(), getAmountIndex()));
+        model.setDepositDetails(pokerStarsBase.transferDetail(filteredStrings, dates, pokerStarsBase.getDepositString(), getAmountIndex()));
     }
 }

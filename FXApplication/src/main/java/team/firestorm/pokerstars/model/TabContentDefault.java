@@ -2,7 +2,7 @@ package team.firestorm.pokerstars.model;
 
 import lombok.Getter;
 import team.firestorm.pokerstars.controller.TabController;
-import team.firestorm.pokerstars.view.ModelObserver;
+import team.firestorm.pokerstars.view.ModelObserverTables;
 import team.firestorm.pokerstars.view.PokerStarsColumnBuilder;
 import team.firestorm.pokerstars.view.TextBuilder;
 
@@ -12,21 +12,21 @@ public class TabContentDefault {
     private ModelBuilderFromCsvFile modelBuilderFromCsvFile;
     private Model model;
 
-    private ModelObserver modelObserver;
+    private ModelObserverTables modelObserverTables;
     private PokerStarsColumnBuilder columnBuilder;
     private TextBuilder textBuilder;
     private DateSet dateSetFrom;
     private DateSet dateSetTo;
 
-    public void saveData(CsvParser csvParser, ModelBuilderFromCsvFile modelBuilderFromCsvFile, Model model, ModelObserver modelObserver) {
+    public void saveData(CsvParser csvParser, ModelBuilderFromCsvFile modelBuilderFromCsvFile, Model model, ModelObserverTables modelObserverTables) {
         this.csvParser = csvParser;
         this.modelBuilderFromCsvFile = modelBuilderFromCsvFile;
         this.model = model;
-        this.modelObserver = modelObserver;
+        this.modelObserverTables = modelObserverTables;
     }
 
-    public void saveView(ModelObserver modelObserver, PokerStarsColumnBuilder columnBuilder, TextBuilder textBuilder, DateSet dateSetFrom, DateSet dateSetTo) {
-        this.modelObserver = modelObserver;
+    public void saveView(ModelObserverTables modelObserverTables, PokerStarsColumnBuilder columnBuilder, TextBuilder textBuilder, DateSet dateSetFrom, DateSet dateSetTo) {
+        this.modelObserverTables = modelObserverTables;
         this.columnBuilder = columnBuilder;
         this.textBuilder = textBuilder;
         this.dateSetFrom = dateSetFrom;
@@ -43,7 +43,7 @@ public class TabContentDefault {
         tabContent.setCsvParser(csvParser);
         tabContent.setModelBuilderFromCsvFile(modelBuilderFromCsvFile);
         tabContent.setModel(model);
-        tabContent.setModelObserver(modelObserver);
+        tabContent.setModelObserverTables(modelObserverTables);
         tabContent.setColumnBuilderFromCsv(columnBuilder);
         tabContent.setTextBuilder(textBuilder);
         tabContent.setDateSetFrom(dateSetFrom);
@@ -51,11 +51,12 @@ public class TabContentDefault {
     }
 
     public void updateView(TabController tabController) {
-        modelObserver = new ModelObserver();
-        modelObserver.clear(tabController);
+        modelObserverTables = new ModelObserverTables();
+        tabController.clearTables();
+        modelObserverTables.clear();
 
         columnBuilder = new PokerStarsColumnBuilder(tabController, model);
-        TabContent.buildColumns(columnBuilder, tabController, model, modelObserver);
+        TabContent.buildColumns(columnBuilder, tabController, model, modelObserverTables);
 
         textBuilder = new TextBuilder(tabController, model);
         textBuilder.setText();

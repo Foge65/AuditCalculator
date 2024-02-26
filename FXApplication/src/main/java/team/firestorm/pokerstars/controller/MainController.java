@@ -38,9 +38,7 @@ public class MainController implements Initializable {
                 updateAnchorVisibility();
             }
         });
-        btnCloseAllTab.setOnAction(event -> {
-            tabPane.getTabs().removeAll(tabPane.getTabs());
-        });
+        btnCloseAllTab.setOnAction(event -> tabPane.getTabs().removeAll(tabPane.getTabs()));
     }
 
     private void updateAnchorVisibility() {

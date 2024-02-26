@@ -22,9 +22,7 @@ public interface PokerStars {
 
     String getMoneySentString();
 
-    String getMoneyReceivedStringVer1();
-
-    String getMoneyReceivedStringVer2();
+    String[] getMoneyReceivedString();
 
     String getDepositString();
 
@@ -86,7 +84,7 @@ public interface PokerStars {
 
     Map<String, BigDecimal> sumProfitCashGame(List<String[]> strings, Set<String> game, int amount);
 
-    String startBalanceMoney(List<String[]> strings, int amount, int balance);
+    String startBalanceMoney(List<String[]> strings, int amount, int balance, String[] receivedActions);
 
     String startBalanceTMoney(List<String[]> strings, int amount, int balance);
 
@@ -96,9 +94,17 @@ public interface PokerStars {
 
     int totalCountRow(List<String[]> strings);
 
-    String sumTransfer(List<String[]> strings, int amount, String actionParam1, String actionParam2);
+    String sumTransfer(List<String[]> strings, int amount, String action);
+
+    String sumTransfer(List<String[]> strings, int amount, String[] actions);
 
     String sumOtherBonus(List<String[]> strings, String[] bonuses, int amount);
 
     Double parseBuyInFromString(String buyIn);
+
+    Set<String> dates(List<String[]> strings, String[] receivedAction);
+
+    Map<String, String> transferDetail(List<String[]> strings, Set<String> dates, String action, int amount);
+
+    Map<String, String> transferDetail(List<String[]> strings, Set<String> dates, String[] receivedAction, int amount);
 }

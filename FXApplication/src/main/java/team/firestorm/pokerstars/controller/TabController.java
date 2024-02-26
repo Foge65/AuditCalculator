@@ -1,12 +1,17 @@
 package team.firestorm.pokerstars.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,8 +20,11 @@ import team.firestorm.pokerstars.model.ModelBuilderFromCsvFile;
 import team.firestorm.pokerstars.model.TabContent;
 import team.firestorm.pokerstars.model.TabName;
 import team.firestorm.pokerstars.view.Alerts;
+import team.firestorm.pokerstars.view.ModelObserverTransferWindow;
+import team.firestorm.pokerstars.view.TransferWindowBuilder;
 
 import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.time.LocalDate;
@@ -104,6 +112,14 @@ public class TabController implements Initializable {
     @FXML
     private Button btnCopyWithdrawal;
     @FXML
+    private Button btnDetailsWithdrawal;
+    @FXML
+    private Button btnDetailsTransferSent;
+    @FXML
+    private Button btnDetailsTransferReceived;
+    @FXML
+    private Button btnDetailsDeposit;
+    @FXML
     private Button btnCopyTransferSent;
     @FXML
     private Button btnCopyTransferReceived;
@@ -173,6 +189,11 @@ public class TabController implements Initializable {
 
         onClickBtnCopy(btnCopyTotalProfitMTT, totalProfitMTT);
         onClickBtnCopy(btnCopyTotalProfitCash, totalProfitCash);
+
+        onClickBtnDetail(btnDetailsWithdrawal);
+        onClickBtnDetail(btnDetailsTransferSent);
+        onClickBtnDetail(btnDetailsTransferReceived);
+        onClickBtnDetail(btnDetailsDeposit);
     }
 
     public void buildTabData(File file) {
@@ -189,6 +210,12 @@ public class TabController implements Initializable {
         Tab tab = new Tab(tabNameString);
         tab.setContent(anchorPane);
         tabPane.getTabs().add(tab);
+    }
+
+    public void clearTables() {
+        tableViewSpin.getColumns().clear();
+        tableViewMTT.getColumns().clear();
+        tableViewCash.getColumns().clear();
     }
 
     private void setTabName() {
@@ -242,6 +269,38 @@ public class TabController implements Initializable {
                 content.putString(textToCopy);
                 Clipboard.getSystemClipboard().setContent(content);
             }
+        });
+    }
+
+    private void onClickBtnDetail(Button button) {
+        button.setOnMouseClicked(event -> {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/team/firestorm/Transfer.fxml"));
+            AnchorPane anchorPane;
+            try {
+                anchorPane = fxmlLoader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            TransferController transferController = fxmlLoader.getController();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Transfer Window");
+            stage.getIcons().add(new Image("/team/firestorm/FSAC.png"));
+            stage.setResizable(false);
+            stage.setScene(new Scene(anchorPane));
+            transferController.setStage(stage);
+
+            ModelObserverTransferWindow observerTransfer = new ModelObserverTransferWindow();
+
+            transferController.getTransferTable().getColumns().clear();
+            observerTransfer.clear();
+
+            observerTransfer.addGameToObservableList(tabContent.getModel().getDates(), transferController.getTransferTable());
+
+            TransferWindowBuilder transferWindowBuilder = new TransferWindowBuilder(transferController, observerTransfer);
+            transferWindowBuilder.buildWindow(tabContent.getModel());
+
+            stage.showAndWait();
         });
     }
 

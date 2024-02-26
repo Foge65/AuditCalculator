@@ -13,6 +13,7 @@ import java.util.stream.IntStream;
 @Getter
 @AllArgsConstructor
 public abstract class PokerStarsBase implements PokerStars {
+    private static final int DATE = 0;
     private static final int ACTION = 1;
     private static final int ID = 2;
     private static final int GAME = 3;
@@ -428,18 +429,20 @@ public abstract class PokerStarsBase implements PokerStars {
     }
 
     @Override
-    public String startBalanceMoney(List<String[]> strings, int amount, int balance) {
+    public String startBalanceMoney(List<String[]> strings, int amount, int balance, String[] receivedActions) {
         String[] firstString = strings.get(0);
         String actionValue = replaceQuote(firstString[ACTION]);
         BigDecimal amountBigDecimal = new BigDecimal(amountParser(firstString[amount]));
         BigDecimal balanceBigDecimal = new BigDecimal(amountParser(firstString[balance]));
         BigDecimal startBalance = BigDecimal.ZERO;
-        if (actionValue.equals(getRegistrationString()) && amountBigDecimal.compareTo(BigDecimal.ZERO) < 0) {
-            startBalance = startBalance.add(balanceBigDecimal).add(amountBigDecimal.negate());
-        } else if (actionValue.equals(getMoneyReceivedStringVer1()) || actionValue.equals(getMoneyReceivedStringVer2())) {
-            startBalance = startBalance.add(balanceBigDecimal).subtract(amountBigDecimal);
-        } else {
-            startBalance = startBalance.add(balanceBigDecimal);
+        for (String action : receivedActions) {
+            if (actionValue.equals(getRegistrationString()) && amountBigDecimal.compareTo(BigDecimal.ZERO) < 0) {
+                startBalance = startBalance.add(balanceBigDecimal).add(amountBigDecimal.negate());
+            } else if (actionValue.equals(action)) {
+                startBalance = startBalance.add(balanceBigDecimal).subtract(amountBigDecimal);
+            } else {
+                startBalance = startBalance.add(balanceBigDecimal);
+            }
         }
         return startBalance.toString();
     }
@@ -477,12 +480,26 @@ public abstract class PokerStarsBase implements PokerStars {
     }
 
     @Override
-    public String sumTransfer(List<String[]> strings, int amount, String actionParam1, String actionParam2) {
+    public String sumTransfer(List<String[]> strings, int amount, String action) {
         BigDecimal sumTransfer = BigDecimal.ZERO;
         for (String[] stringArray : strings) {
             String actionValue = replaceQuote(stringArray[ACTION]);
-            if (actionValue.startsWith(actionParam1) || actionValue.startsWith(actionParam2)) {
+            if (actionValue.startsWith(action)) {
                 sumTransfer = sumTransfer.add(new BigDecimal(amountParser(stringArray[amount])));
+            }
+        }
+        return String.valueOf(sumTransfer);
+    }
+
+    @Override
+    public String sumTransfer(List<String[]> strings, int amount, String[] actions) {
+        BigDecimal sumTransfer = BigDecimal.ZERO;
+        for (String[] stringArray : strings) {
+            String actionValue = replaceQuote(stringArray[ACTION]);
+            for (String action : actions) {
+                if (actionValue.startsWith(action)) {
+                    sumTransfer = sumTransfer.add(new BigDecimal(amountParser(stringArray[amount])));
+                }
             }
         }
         return String.valueOf(sumTransfer);
@@ -531,6 +548,56 @@ public abstract class PokerStarsBase implements PokerStars {
             rake = Double.parseDouble(buyInRight);
         }
         return stake + rake;
+    }
+
+    @Override
+    public Set<String> dates(List<String[]> strings, String[] receivedAction) {
+        Set<String> dates = new HashSet<>();
+        for (String[] string : strings) {
+            if (string[ACTION].startsWith(getWithdrawalString())
+                    || string[ACTION].startsWith(getMoneySentString())
+                    || string[ACTION].startsWith(getDepositString())) {
+                dates.add(string[DATE]);
+            }
+            for (String moneyReceived : receivedAction) {
+                if (string[ACTION].startsWith(moneyReceived)) {
+                    dates.add(string[DATE]);
+                }
+            }
+        }
+        return dates;
+    }
+
+    @Override
+    public Map<String, String> transferDetail(List<String[]> strings, Set<String> dates, String action, int amount) {
+        Map<String, String> result = new HashMap<>();
+        for (String date : dates) {
+            for (String[] stringArray : strings) {
+                String dateValue = stringArray[DATE];
+                if (dateValue.equals(date) && stringArray[ACTION].startsWith(action)) {
+                    result.put(dateValue, stringArray[amount]);
+                }
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public Map<String, String> transferDetail(List<String[]> strings, Set<String> dates, String[] receivedAction, int amount) {
+        Map<String, String> result = new HashMap<>();
+        for (String date : dates) {
+            for (String[] stringArray : strings) {
+                String dateValue = stringArray[DATE];
+                if (dateValue.equals(date)) {
+                    for (String action : receivedAction) {
+                        if (stringArray[ACTION].startsWith(action)) {
+                            result.put(dateValue, stringArray[amount]);
+                        }
+                    }
+                }
+            }
+        }
+        return result;
     }
 
     private Map<String, Set<String>> getId(List<String[]> strings) {
