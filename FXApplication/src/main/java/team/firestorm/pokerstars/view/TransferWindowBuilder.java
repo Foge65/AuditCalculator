@@ -1,6 +1,7 @@
 package team.firestorm.pokerstars.view;
 
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import lombok.RequiredArgsConstructor;
 import team.firestorm.pokerstars.controller.TransferController;
@@ -36,6 +37,18 @@ public class TransferWindowBuilder {
                     filter -> filter.getDates().stream().noneMatch(mapKeys::contains));
 
             return new SimpleObjectProperty<>(result);
+        });
+
+        column.setCellFactory(tableColumn -> new TableCell<>() {
+            @Override
+            protected void updateItem(Set<String> item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item == null || empty) {
+                    setText(null);
+                } else {
+                    setText(String.join("\n", item));
+                }
+            }
         });
 
         transferController.getTransferTable().getColumns().add(column);
