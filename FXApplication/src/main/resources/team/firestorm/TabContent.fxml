@@ -288,8 +288,7 @@
                     <Button fx:id="btnCopyTransferReceived" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2"
                             GridPane.rowIndex="2"/>
                     <Button fx:id="btnDetailsTransferReceived" mnemonicParsing="false" text="Detail"
-                            textAlignment="CENTER"
-                            GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+                            textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
                     <Label text="Deposit:" GridPane.rowIndex="3">
                         <font>
                             <Font size="18.0"/>
@@ -318,14 +317,13 @@
                     <ColumnConstraints hgrow="SOMETIMES"/>
                     <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="35.0"/>
                     <ColumnConstraints hgrow="SOMETIMES"/>
-                    <ColumnConstraints hgrow="SOMETIMES"/>
                 </columnConstraints>
                 <rowConstraints>
                     <RowConstraints vgrow="SOMETIMES"/>
                     <RowConstraints vgrow="SOMETIMES"/>
-               <RowConstraints vgrow="SOMETIMES" />
-               <RowConstraints vgrow="SOMETIMES" />
-            </rowConstraints>
+                    <RowConstraints vgrow="SOMETIMES"/>
+                    <RowConstraints vgrow="SOMETIMES"/>
+                </rowConstraints>
             <GridPane.margin>
                <Insets />
             </GridPane.margin>
@@ -347,7 +345,6 @@
                   </GridPane.margin>
                </Text>
                <Button fx:id="btnCopyChestReward" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" />
-               <Button fx:id="btnDetailChest" mnemonicParsing="false" text="Detail" textAlignment="CENTER" GridPane.columnIndex="3" />
                <Label text="Exchange Coin:" GridPane.rowIndex="1">
                   <font>
                      <Font size="18.0" />
@@ -365,7 +362,6 @@
                   </GridPane.margin>
                </Text>
                <Button fx:id="btnCopyExchangeCoin" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-               <Button fx:id="btnDetailExchangeCoin" mnemonicParsing="false" text="Detail" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                <Label text="Other Bonus:" GridPane.rowIndex="2">
                   <font>
                      <Font size="18.0" />
@@ -383,7 +379,6 @@
                   </GridPane.margin>
                </Text>
                <Button fx:id="btnCopyOtherBonus" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-               <Button fx:id="btnDetailOtherBonus" mnemonicParsing="false" text="Detail" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                <Label text="Casino:" GridPane.rowIndex="3">
                   <font>
                      <Font size="18.0" />
@@ -401,7 +396,6 @@
                   </GridPane.margin>
                </Text>
                <Button fx:id="btnCopyCasino" mnemonicParsing="false" text="Copy" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-               <Button fx:id="btnDetailCasino" mnemonicParsing="false" text="Detail" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="3" />
             </children>
          </GridPane>
          <GridPane gridLinesVisible="true" GridPane.columnIndex="2">
