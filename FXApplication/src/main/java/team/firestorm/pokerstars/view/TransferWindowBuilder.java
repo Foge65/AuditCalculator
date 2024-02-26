@@ -62,6 +62,18 @@ public class TransferWindowBuilder {
             return new SimpleObjectProperty<>(result);
         });
 
+        column.setCellFactory(tableColumn -> new TableCell<>() {
+            @Override
+            protected void updateItem(T item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item == null || empty) {
+                    setText(null);
+                } else {
+                    setText(item.toString().replace("\"", ""));
+                }
+            }
+        });
+
         transferController.getTransferTable().getColumns().add(column);
     }
 }
