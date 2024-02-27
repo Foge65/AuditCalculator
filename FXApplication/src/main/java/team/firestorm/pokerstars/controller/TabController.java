@@ -3,14 +3,11 @@ package team.firestorm.pokerstars.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import lombok.Getter;
@@ -24,7 +21,6 @@ import team.firestorm.pokerstars.view.ModelObserverTransferWindow;
 import team.firestorm.pokerstars.view.TransferWindowBuilder;
 
 import java.io.File;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.time.LocalDate;
@@ -308,20 +304,12 @@ public class TabController implements Initializable {
     }
 
     private void onClickBtnDetail(Map<String, String> value) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/team/firestorm/Transfer.fxml"));
-        AnchorPane anchorPane;
-        try {
-            anchorPane = fxmlLoader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        TransferController transferController = fxmlLoader.getController();
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Transfer Window");
-        stage.getIcons().add(new Image("/team/firestorm/FSAC.png"));
-        stage.setResizable(false);
-        stage.setScene(new Scene(anchorPane));
+        ControllerManager controllerManager = new ControllerManager();
+        FXMLLoader fxmlLoader = controllerManager.getLoader("/team/firestorm/Transfer.fxml");
+        AnchorPane anchorPane = controllerManager.getAnchorPane(fxmlLoader);
+        TransferController transferController = controllerManager.getTabController(fxmlLoader);
+
+        Stage stage = transferController.init(anchorPane);
         transferController.setStage(stage);
 
         ModelObserverTransferWindow observerTransfer = new ModelObserverTransferWindow();

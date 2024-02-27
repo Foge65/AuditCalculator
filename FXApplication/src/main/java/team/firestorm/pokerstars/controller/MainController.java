@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 import lombok.Getter;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -83,7 +82,6 @@ public class MainController implements Initializable {
                 return System.getProperty("user.home");
             }
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
             return System.getProperty("user.home");
         }
     }
@@ -94,9 +92,10 @@ public class MainController implements Initializable {
 
     private void addTask(List<File> files) {
         for (File file : files) {
-            FXMLLoader fxmlLoader = getLoader("/team/firestorm/TabContent.fxml");
-            AnchorPane anchorPane = getAnchorPane(fxmlLoader);
-            TabController tabController = getTabController(fxmlLoader);
+            ControllerManager controllerManager = new ControllerManager();
+            FXMLLoader fxmlLoader = controllerManager.getLoader("/team/firestorm/TabContent.fxml");
+            AnchorPane anchorPane = controllerManager.getAnchorPane(fxmlLoader);
+            TabController tabController = controllerManager.getTabController(fxmlLoader);
             Task<Void> task = new Task<>() {
                 @Override
                 protected Void call() {
@@ -113,21 +112,5 @@ public class MainController implements Initializable {
             };
             new Thread(task).start();
         }
-    }
-
-    private FXMLLoader getLoader(String path) {
-        return new FXMLLoader(getClass().getResource(path));
-    }
-
-    private AnchorPane getAnchorPane(FXMLLoader fxmlLoader) {
-        try {
-            return fxmlLoader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private <T> T getTabController(FXMLLoader fxmlLoader) {
-        return fxmlLoader.getController();
     }
 }
