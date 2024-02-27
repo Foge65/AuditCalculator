@@ -12,16 +12,51 @@ import java.util.stream.IntStream;
 
 @Getter
 @AllArgsConstructor
-public abstract class PokerStarsBase implements PokerStars {
+public abstract class PokerStarsBase {
     private static final int DATE = 0;
     private static final int ACTION = 1;
     private static final int ID = 2;
     private static final int GAME = 3;
-    private final String regexGameSpin = "^\sNL\sHold'em\sSit&Go\sBuy-In:\s\\d+[.,]\\d+\\/\\d+[.,]\\d+$";
-    private final String regexGameMTT = "^(?!\\d+[.,]\\d+\\/\\d+[.,]\\d+)(?!.*Sit&Go\sBuy-In).*$";
+    private final String regexGameSpin = "^ NL Hold'em Sit&Go Buy-In: \\d+[.,]\\d+\\/\\d+[.,]\\d+$";
+    private final String regexGameMTT = "^(?!\\d+[.,]\\d+\\/\\d+[.,]\\d+)(?!.*Sit&Go Buy-In).*$";
     private final String regexGameCash = "^\\d+[.,]\\d+\\/\\d+[.,]\\d+\\s\\w.+$";
 
-    @Override
+    abstract String getRegistrationString();
+
+    abstract String getUnRegistrationString();
+
+    abstract String getReEntryString();
+
+    abstract String getKnockOutString();
+
+    abstract String getInterimString();
+
+    abstract String getWonString();
+
+    abstract String getWithdrawalString();
+
+    abstract String getMoneySentString();
+
+    abstract String[] getMoneyReceivedString();
+
+    abstract String getDepositString();
+
+    abstract String getChestString();
+
+    abstract String getExchangeCoinString();
+
+    abstract String getCasinoString();
+
+    abstract String[] getBonuses();
+
+    abstract String getSeatInTable();
+
+    abstract String getSeatOutTable();
+
+    abstract String getAutoRebuyTable();
+
+    abstract String replaceComma(String string);
+
     public Set<String> game(String regex, List<String[]> strings) {
         return strings.stream()
                 .map(element -> element[GAME])
@@ -30,7 +65,6 @@ public abstract class PokerStarsBase implements PokerStars {
                 .filter(buyIn -> !buyIn.isEmpty()).collect(Collectors.toSet());
     }
 
-    @Override
     public Map<String, Boolean> checkBoxState(Set<String> game) {
         Map<String, Boolean> checkBoxStateMap = new HashMap<>();
         for (String buyIn : game) {
@@ -39,7 +73,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return checkBoxStateMap;
     }
 
-    @Override
     public Map<String, Integer> countGame(List<String[]> strings, Set<String> game, String action) {
         Map<String, Integer> count = new HashMap<>();
         for (String buyIn : game) {
@@ -54,7 +87,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return count;
     }
 
-    @Override
     public Map<String, BigDecimal> sumForDifferentColumn(List<String[]> strings, Set<String> game, String action, int element) {
         Map<String, BigDecimal> sumRegistration = new HashMap<>();
         for (String buyIn : game) {
@@ -69,7 +101,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return sumRegistration;
     }
 
-    @Override
     public Map<String, Integer> countRegistrationByTMoney(List<String[]> strings, Set<String> game, int tMoney) {
         Map<String, Integer> count = new HashMap<>();
         for (String buyIn : game) {
@@ -85,7 +116,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return count;
     }
 
-    @Override
     public Map<String, Integer> countUnRegistrationByTMoney(List<String[]> strings, Set<String> game, int tMoney) {
         Map<String, Integer> count = new HashMap<>();
         for (String buyIn : game) {
@@ -102,7 +132,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return count;
     }
 
-    @Override
     public Map<String, BigDecimal> sumRegistrationByTMoney(List<String[]> strings, Set<String> game, int tMoney) {
         Map<String, BigDecimal> result = new HashMap<>();
         for (String buyIn : game) {
@@ -119,7 +148,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return result;
     }
 
-    @Override
     public Map<String, BigDecimal> sumUnRegistrationByTMoney(List<String[]> strings, Set<String> game, int tMoney) {
         Map<String, BigDecimal> result = new HashMap<>();
         for (String buyIn : game) {
@@ -136,7 +164,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return result;
     }
 
-    @Override
     public Map<String, Integer> countRegistrationByTicket(List<String[]> strings, Set<String> game, int amount, int tMoney) {
         Map<String, Integer> countRegistration = new HashMap<>();
         for (String buyIn : game) {
@@ -153,7 +180,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return countRegistration;
     }
 
-    @Override
     public Map<String, BigDecimal> sumProfitSpin(List<String[]> strings, Set<String> game, int amount, int tMoney) {
         Map<String, BigDecimal> profit = new HashMap<>();
         List<String> ids = new ArrayList<>();
@@ -200,7 +226,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return profit;
     }
 
-    @Override
     public Map<String, BigDecimal> sumBonusSpin(List<String[]> strings, Set<String> game, int amount, int tMoney) {
         Map<String, BigDecimal> bonus = new HashMap<>();
         List<String> ids = new ArrayList<>();
@@ -234,7 +259,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return bonus;
     }
 
-    @Override
     public Map<String, BigDecimal> sumProfitPool(List<String[]> strings, Set<String> game, int amount, int tMoney) {
         Map<String, BigDecimal> profit = new HashMap<>();
         for (String buyIn : game) {
@@ -277,7 +301,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return profit;
     }
 
-    @Override
     public Map<String, BigDecimal> sumBonusPool(List<String[]> strings, Set<String> game, int amount, int tMoney) {
         Map<String, BigDecimal> bonus = new HashMap<>();
         for (String buyIn : game) {
@@ -304,7 +327,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return bonus;
     }
 
-    @Override
     public Integer totalCountRegistrationSpinWithoutUnregistration(List<String[]> strings,
                                                                    String registerAction, String unRegisterAction) {
         int registerCount = 0;
@@ -323,7 +345,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return registerCount - unRegisterCount;
     }
 
-    @Override
     public Map<String, Integer> countReEntry(List<String[]> strings, Set<String> game) {
         Map<String, Integer> countReEntry = new HashMap<>();
         Map<String, Set<String>> idMap = getId(strings);
@@ -347,7 +368,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return countReEntry;
     }
 
-    @Override
     public Map<String, BigDecimal> sumReEntry(List<String[]> strings, Set<String> game, int amount) {
         Map<String, BigDecimal> reentry = new HashMap<>();
         Map<String, Set<String>> idMap = getId(strings);
@@ -364,7 +384,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return reentry;
     }
 
-    @Override
     public Map<String, BigDecimal> sumKnockout(List<String[]> strings, Set<String> game, int amount) {
         Map<String, BigDecimal> knockoutMap = new HashMap<>();
         Map<String, Set<String>> idMap = getId(strings);
@@ -381,7 +400,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return knockoutMap;
     }
 
-    @Override
     public Map<String, BigDecimal> sumInterim(List<String[]> strings, Set<String> game, int amount) {
         Map<String, BigDecimal> interimMap = new HashMap<>();
         Map<String, Set<String>> idMap = getId(strings);
@@ -398,7 +416,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return interimMap;
     }
 
-    @Override
     public Map<String, BigDecimal> sumProfitMTT(List<String[]> strings, Set<String> game, int amount) {
         Map<String, BigDecimal> profitMap = new HashMap<>();
         Map<String, Set<String>> idMap = getId(strings);
@@ -413,7 +430,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return profitMap;
     }
 
-    @Override
     public Map<String, BigDecimal> sumProfitCashGame(List<String[]> strings, Set<String> games, int amount) {
         Map<String, BigDecimal> result = new HashMap<>();
         for (String game : games) {
@@ -428,7 +444,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return result;
     }
 
-    @Override
     public String startBalanceMoney(List<String[]> strings, int amount, int balance, String[] receivedActions) {
         String[] firstString = strings.get(0);
         String actionValue = replaceQuote(firstString[ACTION]);
@@ -447,7 +462,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return startBalance.toString();
     }
 
-    @Override
     public String startBalanceTMoney(List<String[]> strings, int amount, int balance) {
         String[] firstString = strings.get(0);
         BigDecimal amountBigDecimal = new BigDecimal(amountParser(firstString[amount]));
@@ -462,24 +476,20 @@ public abstract class PokerStarsBase implements PokerStars {
         return startBalance.toString();
     }
 
-    @Override
     public String startBalanceCoin(List<String[]> strings, int element) {
         return replaceComma(replaceQuote(strings.get(0)[element]));
     }
 
-    @Override
     public String finalBalance(List<String[]> strings, int element) {
         return replaceComma(replaceQuote(strings.get(totalCountRow(strings))[element]));
     }
 
-    @Override
     public int totalCountRow(List<String[]> strings) {
         int counter = 0;
         counter += (int) IntStream.rangeClosed(0, strings.size() - 2).count();
         return counter;
     }
 
-    @Override
     public String sumTransfer(List<String[]> strings, int amount, String action) {
         BigDecimal sumTransfer = BigDecimal.ZERO;
         for (String[] stringArray : strings) {
@@ -491,7 +501,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return String.valueOf(sumTransfer);
     }
 
-    @Override
     public String sumTransfer(List<String[]> strings, int amount, String[] actions) {
         BigDecimal sumTransfer = BigDecimal.ZERO;
         for (String[] stringArray : strings) {
@@ -505,7 +514,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return String.valueOf(sumTransfer);
     }
 
-    @Override
     public String sumOtherBonus(List<String[]> strings, String[] bonuses, int amount) {
         BigDecimal result = BigDecimal.ZERO;
         for (String bonus : bonuses) {
@@ -518,7 +526,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return String.valueOf(result);
     }
 
-    @Override
     public String replaceQuote(String string) {
         return string.replace("\"", "");
     }
@@ -531,7 +538,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return replaceComma(replaceQuote(stringArray));
     }
 
-    @Override
     public Double parseBuyInFromString(String buyIn) {
         Pattern compile = Pattern.compile("(\\d*[.,]\\d*)/(\\d*[.,]\\d*)");
         Matcher matcher = compile.matcher(buyIn);
@@ -550,7 +556,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return stake + rake;
     }
 
-    @Override
     public Set<String> dates(List<String[]> strings, String[] receivedAction) {
         Set<String> dates = new HashSet<>();
         for (String[] string : strings) {
@@ -568,7 +573,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return dates;
     }
 
-    @Override
     public Map<String, String> transferDetail(List<String[]> strings, Set<String> dates, String action, int amount) {
         Map<String, String> result = new HashMap<>();
         for (String date : dates) {
@@ -582,7 +586,6 @@ public abstract class PokerStarsBase implements PokerStars {
         return result;
     }
 
-    @Override
     public Map<String, String> transferDetail(List<String[]> strings, Set<String> dates, String[] receivedAction, int amount) {
         Map<String, String> result = new HashMap<>();
         for (String date : dates) {
