@@ -137,7 +137,7 @@ abstract class CsvFileBaseForTests {
     @Test
     void totalCountRegistrationWithoutUnregistration() {
         Integer expected = setTotalCountRegistrationWithoutUnregistration();
-        Integer actual = model.getCountRegistrationSpinWithoutUnregistration();
+        Integer actual = model.getCountRegistrationSpinWithoutUnRegistration();
         assertEquals(expected, actual);
     }
 

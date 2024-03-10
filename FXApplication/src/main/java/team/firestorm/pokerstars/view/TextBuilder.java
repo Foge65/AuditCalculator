@@ -32,7 +32,7 @@ public class TextBuilder {
         tabController.getOtherBonus().setText(model.getOtherBonus());
         tabController.getCasino().setText(model.getCasino());
 
-        tabController.getCountSpins().setText(String.valueOf(model.getCountRegistrationSpinWithoutUnregistration()));
+        tabController.getCountSpins().setText(String.valueOf(model.getCountRegistrationSpinWithoutUnRegistration()));
         tabController.getTotalProfitSpin().setText(getSumValuesFromMap(model.getSumProfitSpin()));
         tabController.getTotalBonusSpin().setText(getSumValuesFromMap(model.getSumBonusSpin()));
 

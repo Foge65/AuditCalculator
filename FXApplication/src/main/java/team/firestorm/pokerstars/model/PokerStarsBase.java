@@ -327,7 +327,7 @@ public abstract class PokerStarsBase {
         return bonus;
     }
 
-    public Integer totalCountRegistrationSpinWithoutUnregistration(List<String[]> strings,
+    public Integer totalCountRegistrationSpinWithoutUnRegistration(List<String[]> strings,
                                                                    String registerAction, String unRegisterAction) {
         int registerCount = 0;
         int unRegisterCount = 0;
@@ -347,7 +347,7 @@ public abstract class PokerStarsBase {
 
     public Map<String, Integer> countReEntry(List<String[]> strings, Set<String> game) {
         Map<String, Integer> countReEntry = new HashMap<>();
-        Map<String, Set<String>> idMap = getId(strings);
+        Map<String, Set<String>> idMap = buildIdMap(strings);
         for (String buyIn : game) {
             int counter = 0;
             for (String[] stringArray : strings) {
@@ -370,7 +370,7 @@ public abstract class PokerStarsBase {
 
     public Map<String, BigDecimal> sumReEntry(List<String[]> strings, Set<String> game, int amount) {
         Map<String, BigDecimal> reentry = new HashMap<>();
-        Map<String, Set<String>> idMap = getId(strings);
+        Map<String, Set<String>> idMap = buildIdMap(strings);
         for (String buyIn : game) {
             BigDecimal sumReEntry = BigDecimal.ZERO;
             for (String[] stringArray : strings) {
@@ -386,7 +386,7 @@ public abstract class PokerStarsBase {
 
     public Map<String, BigDecimal> sumKnockout(List<String[]> strings, Set<String> game, int amount) {
         Map<String, BigDecimal> knockoutMap = new HashMap<>();
-        Map<String, Set<String>> idMap = getId(strings);
+        Map<String, Set<String>> idMap = buildIdMap(strings);
         for (String buyIn : game) {
             BigDecimal sumKnockout = BigDecimal.ZERO;
             for (String[] stringArray : strings) {
@@ -402,7 +402,7 @@ public abstract class PokerStarsBase {
 
     public Map<String, BigDecimal> sumInterim(List<String[]> strings, Set<String> game, int amount) {
         Map<String, BigDecimal> interimMap = new HashMap<>();
-        Map<String, Set<String>> idMap = getId(strings);
+        Map<String, Set<String>> idMap = buildIdMap(strings);
         for (String buyIn : game) {
             BigDecimal sumInterim = BigDecimal.ZERO;
             for (String[] stringArray : strings) {
@@ -418,7 +418,7 @@ public abstract class PokerStarsBase {
 
     public Map<String, BigDecimal> sumProfitMTT(List<String[]> strings, Set<String> game, int amount) {
         Map<String, BigDecimal> profitMap = new HashMap<>();
-        Map<String, Set<String>> idMap = getId(strings);
+        Map<String, Set<String>> idMap = buildIdMap(strings);
         for (String buyIn : game) {
             BigDecimal sumProfit = BigDecimal.ZERO;
             for (String[] stringArray : strings) {
@@ -430,16 +430,16 @@ public abstract class PokerStarsBase {
         return profitMap;
     }
 
-    public Map<String, BigDecimal> sumProfitCashGame(List<String[]> strings, Set<String> games, int amount) {
+    public Map<String, BigDecimal> sumProfitCashGame(List<String[]> strings, Set<String> game, int amount) {
         Map<String, BigDecimal> result = new HashMap<>();
-        for (String game : games) {
+        for (String buyIn : game) {
             BigDecimal sum = BigDecimal.ZERO;
             for (String[] stringArray : strings) {
-                if (gameParser(stringArray).equals(game)) {
+                if (gameParser(stringArray).equals(buyIn)) {
                     sum = sum.add(new BigDecimal(amountParser(stringArray[amount])));
                 }
             }
-            result.put(game, sum);
+            result.put(buyIn, sum);
         }
         return result;
     }
@@ -603,7 +603,7 @@ public abstract class PokerStarsBase {
         return result;
     }
 
-    private Map<String, Set<String>> getId(List<String[]> strings) {
+    private Map<String, Set<String>> buildIdMap(List<String[]> strings) {
         Map<String, Set<String>> idMap = new HashMap<>();
         for (String[] stringArray : strings) {
             String idValue = stringArray[ID];
@@ -621,9 +621,9 @@ public abstract class PokerStarsBase {
         return idMap;
     }
 
-    private BigDecimal getSumProfitFromMap(Map<String, Set<String>> idMap, String buyIn,
+    private BigDecimal getSumProfitFromMap(Map<String, Set<String>> map, String buyIn,
                                            BigDecimal sumProfit, String idValue, BigDecimal amountBigDecimal) {
-        for (Map.Entry<String, Set<String>> entry : idMap.entrySet()) {
+        for (Map.Entry<String, Set<String>> entry : map.entrySet()) {
             if (entry.getKey().equals(buyIn)) {
                 for (String id : entry.getValue()) {
                     if (id.startsWith(idValue)) {

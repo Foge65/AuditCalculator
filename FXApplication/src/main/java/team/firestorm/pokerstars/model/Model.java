@@ -19,29 +19,29 @@ public class Model {
     private Map<String, BigDecimal> sumRegistrationSpin;
     private Map<String, Integer> countUnRegistrationSpin;
     private Map<String, BigDecimal> sumUnRegistrationSpin;
-    private Map<String, BigDecimal> sumWonSpin;
     private Map<String, BigDecimal> sumRegistrationForTMoneySpin;
     private Map<String, Integer> countRegistrationByTicketSpin;
+    private Map<String, BigDecimal> sumWonSpin;
     private Map<String, BigDecimal> sumProfitSpin;
     private Map<String, BigDecimal> sumBonusSpin;
     private Map<String, BigDecimal> sumProfitPoolSpin;
     private Map<String, BigDecimal> sumBonusPoolSpin;
-    private Integer countRegistrationSpinWithoutUnregistration;
+    private Integer countRegistrationSpinWithoutUnRegistration;
 
     private Set<String> gameMTT;
     private Map<String, Integer> countRegistrationMTT;
     private Map<String, BigDecimal> sumRegistrationMTT;
-    private Map<String, Integer> countRegistrationByTMoneyMTT;
-    private Map<String, BigDecimal> sumRegistrationByTMoneyMTT;
     private Map<String, Integer> countUnRegistrationMTT;
     private Map<String, BigDecimal> sumUnRegistrationMTT;
+    private Map<String, Integer> countRegistrationByTMoneyMTT;
+    private Map<String, BigDecimal> sumRegistrationByTMoneyMTT;
     private Map<String, Integer> countUnRegistrationByTMoneyMTT;
     private Map<String, BigDecimal> sumUnRegistrationByTMoneyMTT;
-    private Map<String, BigDecimal> sumWonMTT;
     private Map<String, Integer> countReEntryMTT;
     private Map<String, BigDecimal> sumReEntryMTT;
     private Map<String, BigDecimal> sumKnockoutMTT;
     private Map<String, BigDecimal> sumInterimMTT;
+    private Map<String, BigDecimal> sumWonMTT;
     private Map<String, BigDecimal> sumProfitMTT;
 
     private Set<String> gameCash;
