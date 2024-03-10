@@ -74,7 +74,7 @@ public class ModelBuilderFromCsvFile {
                 tMoneyBalanceIndex = elementIndex.getTMoneyBalanceIndex();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Alerts.unknownError();
         }
     }
 

@@ -1,5 +1,6 @@
 package team.firestorm.pokerstars.view;
 
+import javafx.application.Platform;
 import javafx.scene.control.Alert;
 
 public class Alerts {
@@ -17,5 +18,15 @@ public class Alerts {
         alert.setHeaderText(null);
         alert.setContentText("Please, select the correct date!");
         alert.showAndWait();
+    }
+
+    public static void unknownError() {
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Unsupported exception");
+            alert.setHeaderText(null);
+            alert.setContentText("Unknown error. Please, contact with developer");
+            alert.showAndWait();
+        });
     }
 }
