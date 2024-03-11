@@ -452,11 +452,14 @@ public abstract class PokerStarsBase {
         BigDecimal startBalance = BigDecimal.ZERO;
         for (String action : receivedActions) {
             if (actionValue.equals(getRegistrationString()) && amountBigDecimal.compareTo(BigDecimal.ZERO) < 0) {
-                startBalance = startBalance.add(balanceBigDecimal).add(amountBigDecimal.negate());
+                startBalance = startBalance.add(balanceBigDecimal).subtract(amountBigDecimal);
+                break;
             } else if (actionValue.equals(action)) {
                 startBalance = startBalance.add(balanceBigDecimal).subtract(amountBigDecimal);
+                break;
             } else {
                 startBalance = startBalance.add(balanceBigDecimal);
+                break;
             }
         }
         return startBalance.toString();

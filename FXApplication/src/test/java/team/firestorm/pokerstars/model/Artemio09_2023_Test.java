@@ -2,7 +2,7 @@ package team.firestorm.pokerstars.model;
 
 import java.math.BigDecimal;
 
-public class Artemio09_2023_Test extends CsvFileBaseForTests {
+public class Artemio09_2023_Test extends BaseForTests {
     public Artemio09_2023_Test() {
         super("src/test/resources/Artemio09_2023.csv");
     }
@@ -301,5 +301,35 @@ public class Artemio09_2023_Test extends CsvFileBaseForTests {
     @Override
     BigDecimal setTotalProfitMTT() {
         return new BigDecimal("-3852.75");
+    }
+
+    @Override
+    String setStartBalance() {
+        return "300.34";
+    }
+
+    @Override
+    String setFinalBalance() {
+        return "467.59";
+    }
+
+    @Override
+    String setStartTMoneyBalance() {
+        return "0.00";
+    }
+
+    @Override
+    String setFinalTMoneyBalance() {
+        return "0.00";
+    }
+
+    @Override
+    String setStartCoinBalance() {
+        return "4820.46";
+    }
+
+    @Override
+    String setFinalCoinBalance() {
+        return "1620.46";
     }
 }

@@ -2,7 +2,7 @@ package team.firestorm.pokerstars.model;
 
 import java.math.BigDecimal;
 
-class DepositBeastTest extends CsvFileBaseForTests {
+class DepositBeastTest extends BaseForTests {
     DepositBeastTest() {
         super("src/test/resources/DepositBeast.csv");
     }
@@ -194,5 +194,35 @@ class DepositBeastTest extends CsvFileBaseForTests {
     @Override
     BigDecimal setTotalProfitMTT() {
         return new BigDecimal("0.00");
+    }
+
+    @Override
+    String setStartBalance() {
+        return "1950.94";
+    }
+
+    @Override
+    String setFinalBalance() {
+        return "2175.94";
+    }
+
+    @Override
+    String setStartTMoneyBalance() {
+        return "0.00";
+    }
+
+    @Override
+    String setFinalTMoneyBalance() {
+        return "0.00";
+    }
+
+    @Override
+    String setStartCoinBalance() {
+        return "3.00";
+    }
+
+    @Override
+    String setFinalCoinBalance() {
+        return "2503.00";
     }
 }

@@ -8,11 +8,11 @@ import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-abstract class CsvFileBaseForTests {
+abstract class BaseForTests {
     protected Model model;
     protected ModelBuilderFromCsvFile modelBuilderFromCsvFile;
 
-    public CsvFileBaseForTests(String filePath) {
+    public BaseForTests(String filePath) {
         CsvParser csvParser = new CsvParser(new File(filePath));
         model = new Model();
         modelBuilderFromCsvFile = new ModelBuilderFromCsvFile(csvParser);
@@ -304,4 +304,58 @@ abstract class CsvFileBaseForTests {
     }
 
     abstract BigDecimal setTotalProfitMTT();
+
+    @Test
+    void startBalance() {
+        String expected = setStartBalance();
+        String actual = model.getStartBalance();
+        assertEquals(expected, actual);
+    }
+
+    abstract String setStartBalance();
+
+    @Test
+    void finalBalance() {
+        String expected = setFinalBalance();
+        String actual = model.getFinalBalance();
+        assertEquals(expected, actual);
+    }
+
+    abstract String setFinalBalance();
+
+    @Test
+    void startTMoneyBalance() {
+        String expected = setStartTMoneyBalance();
+        String actual = model.getStartTMoney();
+        assertEquals(expected, actual);
+    }
+
+    abstract String setStartTMoneyBalance();
+
+    @Test
+    void finalTMoneyBalance() {
+        String expected = setFinalTMoneyBalance();
+        String actual = model.getFinalTMoney();
+        assertEquals(expected, actual);
+    }
+
+    abstract String setFinalTMoneyBalance();
+
+    @Test
+    void startCoinBalance() {
+        String expected = setStartCoinBalance();
+        String actual = model.getStartCoin();
+        assertEquals(expected, actual);
+    }
+
+    abstract String setStartCoinBalance();
+
+    @Test
+    void finalCoinBalance() {
+        String expected = setFinalCoinBalance();
+        String actual = model.getFinalCoin();
+        assertEquals(expected, actual);
+    }
+
+    abstract String setFinalCoinBalance();
 }
