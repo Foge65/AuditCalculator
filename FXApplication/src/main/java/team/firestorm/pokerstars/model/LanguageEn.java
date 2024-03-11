@@ -26,7 +26,8 @@ public class LanguageEn extends PokerStarsBase implements DateFormat {
             "Good Will Credit",
             "Bonus credit",
             "Tournament Prize Adjustment",
-            "ICE Challenge Reward (Cash)"
+            "ICE Challenge Reward (Cash)",
+            "Conversion from StarsCoin",
     };
     private static final String SEAT_IN_TABLE = "Table Buy In";
     private static final String SEAT_OUT_TABLE = "Leave Table";
